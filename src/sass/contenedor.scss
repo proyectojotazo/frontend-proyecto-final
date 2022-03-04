@@ -7,6 +7,7 @@
 	text-decoration: none;
 	border: none;
 	outline: none;
+    color: white;
 }
 
 .container {  
@@ -32,7 +33,6 @@
 
 .main { 
     grid-area: main;
-    background-color: $pink; 
 }
 
 .footer { 
