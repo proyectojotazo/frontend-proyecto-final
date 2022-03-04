@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/layout';
 
-import Homepage from './pages/Homepage';
 
 const App = () => {
   return (
-    <div>
+    <div className='container'>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Layout />} />
       </Routes>
     </div>
   );

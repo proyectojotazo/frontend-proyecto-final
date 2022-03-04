@@ -1,0 +1,23 @@
+@import "variablesSass.scss";
+
+.header{
+    background-color: $orange;
+    .imagen {
+        grid-area: imagen;
+        background-color: black;
+    }
+    .texto {
+        grid-area: texto;
+        background-color: white;
+    }
+    height: 30rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "imagen texto";
+    
+}
+
