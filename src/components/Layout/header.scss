@@ -22,11 +22,10 @@
         .texto {
             grid-area: texto;
             text-align: left;
-            padding: 2rem;
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 2fr 1fr;
-            gap: 0px 0px;
+            gap: 1rem ;
             grid-auto-flow: row;
             grid-template-areas:
             "h1"
@@ -41,10 +40,11 @@
 
             }
             p {
+                display: flex;
                 font-family: $tMaquina;
-                padding-top: 2rem;
                 color: $orange;
                 max-width: 35rem;
+                align-items: center;
             }
         }
 
@@ -65,7 +65,6 @@
         flex-direction: column;
 
         .texto{
-            padding: 0%;
             padding-bottom: 1rem;
             h1{
             font-size: 5rem;

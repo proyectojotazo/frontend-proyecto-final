@@ -3,7 +3,7 @@ import './header.scss';
 import React from "react";
 import { ReactComponent as Gente } from '../../assets/gente.svg';
 
-function header() {
+function Header() {
         return(
             <header className="header">
                 <div className='imagen'>
@@ -17,4 +17,4 @@ function header() {
         );
 }
 
-export default header;
+export default Header;
