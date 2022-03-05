@@ -1,7 +1,7 @@
 @import "../../sass/variablesSass.scss";
 
 .header{    
-    height: 30rem;
+    height: minmax(30rem, auto);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -25,7 +25,7 @@
             padding: 2rem;
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 4fr 1fr;
+            grid-template-rows: 2fr 1fr;
             gap: 0px 0px;
             grid-auto-flow: row;
             grid-template-areas:
@@ -42,18 +42,46 @@
             }
             p {
                 font-family: $tMaquina;
-                margin-top: 2rem;
+                padding-top: 2rem;
                 color: $orange;
                 max-width: 35rem;
             }
         }
-    @media only screen and (max-width: 600px) {
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-        grid-template-areas:
-        "imagen"
-        "texto";
+
+
+    @media only screen and (max-width: 1300px) {
+            .texto>h1{
+                font-size: 3.5rem;
+                line-height: 4rem;
+            }
+
+            .imagen{
+                padding-top: 1rem;
+            }
     }
 
-}
+    @media only screen and (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
 
+        .texto{
+            padding: 0%;
+            padding-bottom: 1rem;
+            h1{
+            font-size: 5rem;
+            line-height: 5.5rem;
+            }
+        }
+
+        .imagen{
+            justify-content: center;
+        }
+    }
+
+    @media only screen and (max-width: 650px) {
+        .texto>h1{
+            font-size: 3rem;
+            line-height: 3.5rem;
+        }
+    }
+}
