@@ -1,10 +1,9 @@
-import '../../sass/contenedor.scss';
-import '../../sass/header.scss';
+import './layout.scss';
+import './header.scss';
 import React from "react";
 import { ReactComponent as Gente } from '../../assets/gente.svg';
 
-class Header extends React.Component {
-    render() {
+function header() {
         return(
             <header className="header">
                 <div className='imagen'>
@@ -16,7 +15,6 @@ class Header extends React.Component {
                 </div>
             </header>
         );
-    }
 }
 
-export default Header;
+export default header;

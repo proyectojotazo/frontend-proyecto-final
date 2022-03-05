@@ -1,14 +1,12 @@
 import React from "react";
-import '../../sass/contenedor.scss';
+import './layout.scss';
 
-class Nav extends React.Component {
-    render() {
+function Nav() {
         return(
             <nav className="nav">
             Nav
             </nav>
         );
-    }
 }
 
 export default Nav;

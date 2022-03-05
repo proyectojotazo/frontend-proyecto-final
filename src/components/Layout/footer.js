@@ -1,14 +1,13 @@
-import '../../sass/contenedor.scss';
+import './layout.scss';
+import './layout.scss';
 import React from "react";
 
-class Footer extends React.Component {
-    render() {
+function Footer () {
         return(
             <footer className="footer">
             Footer
             </footer>
         );
-    }
 }
 
 export default Footer;

@@ -1,21 +1,21 @@
-import '../../sass/contenedor.scss';
+import './layout.scss';
 import React from "react"
 import Header from "./header"
 import Footer from "./footer"
 import Nav from "./nav"
 
 
-class Layout extends React.Component {
-    render(){
+function Layout({children}) {
+    
         return (
-        <>
+        <div className='container'>
             <Nav/>
             <main className='main'>
                 <Header/>
-                {this.props.children}
+                {children}
             </main>
             <Footer/>
-        </>
+        </div>
     )
     }
-}export default Layout;
+    export default Layout;

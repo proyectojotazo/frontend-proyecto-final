@@ -1,4 +1,4 @@
-@import "variablesSass.scss";
+@import "../../sass/variablesSass.scss";
 
 .header{    
     height: 30rem;
@@ -47,5 +47,13 @@
                 max-width: 35rem;
             }
         }
+    @media only screen and (max-width: 600px) {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "imagen"
+        "texto";
+    }
+
 }
 
