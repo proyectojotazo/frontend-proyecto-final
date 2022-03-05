@@ -5,7 +5,7 @@ function BarraCategorias () {
     return(
         <section className="categorias">
             <hr/>
-            <ul>
+            <ul className="ulCategorias">
                 <li className="todas">TODAS</li>
                 <li className="frontend">HTML</li>
                 <li className="frontend">CSS</li>

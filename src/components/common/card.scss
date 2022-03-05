@@ -1,0 +1,44 @@
+@import "../../sass/variablesSass.scss";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    height: auto;
+    gap: 10px;
+    div.imgportada>img {
+        object-fit: cover;
+        width: 400px;
+        height: 200px;
+    }
+    div.avatar>img {
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+    }
+    p.cat{
+        font-family: $tMaquina;
+        font-size: 15pt;
+    }
+    .textoIntroductorio {
+        font-family: $tSubtitulo;
+        line-height : 125%;
+    }
+    .info{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .iconosInfo{
+        max-width: 100px;
+        width: 100%;
+    }
+
+    ul.info{
+        justify-content: end;
+    }
+}
