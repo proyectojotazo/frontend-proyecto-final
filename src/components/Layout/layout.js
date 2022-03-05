@@ -5,17 +5,17 @@ import Footer from "./footer"
 import Nav from "./nav"
 
 
-function Layout({children}) {
-    
-        return (
+function Layout({ children }) {
+
+    return (
         <div className='container'>
-            <Nav/>
+            <Nav />
             <main className='main'>
-                <Header/>
+                <Header />
                 {children}
             </main>
-            <Footer/>
+            <Footer />
         </div>
     )
-    }
-    export default Layout;
+}
+export default Layout;
