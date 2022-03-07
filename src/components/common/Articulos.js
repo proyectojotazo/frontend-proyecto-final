@@ -1,0 +1,35 @@
+import React from "react";
+import { useEffect, useState } from 'react'
+import { getArticulos, getArticulosCategorias } from "../../api/services/articulos";
+import Card from "./Card";
+import { Link } from "react-router-dom";
+
+function Articulos(props) {
+    const [articulos, setArticulos] = useState([])
+    const {categoria} = props;
+
+    
+    useEffect(() => {
+        if (categoria)  {
+                getArticulosCategorias(categoria).then(x=>{setArticulos(x)})}
+            else {
+                getArticulos().then(x=>{setArticulos(x)})
+            }
+            
+    }, [categoria])
+
+    return (
+        <div>
+            {articulos.map(({ id, ...advert }) => (
+                <Link to={`/articles/${id}`}>
+                    <Card {...advert} />
+                </Link>
+            ))}   
+    
+        </div>
+        )
+    
+
+}
+
+export default Articulos
