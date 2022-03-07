@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react'
-import { getArticulos, getArticulosCategorias } from "../../api/services/service";
+import { getArticulos, getArticulosCategorias } from "../../api/services/articulos";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
