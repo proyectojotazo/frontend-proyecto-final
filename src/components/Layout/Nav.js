@@ -1,17 +1,17 @@
-import React from 'react';
-import './nav.scss';
-import './layout.scss';
-import { NavLink, Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/LOGO.svg';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+import React from "react";
+import "./Nav.scss";
+import "./layout.scss";
+import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/LOGO.svg";
+import { ReactComponent as Lupa } from "../../assets/iconoLupa.svg";
+import { ReactComponent as Nuevo } from "../../assets/nuevo.svg";
+import { ReactComponent as Inicio } from "../../assets/inicio.svg";
+import { ReactComponent as Usuario } from "../../assets/usuario.svg";
 
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-import LoginPopup from '../Auth/Login/Login';
+import LoginPopup from "../Auth/Login/Login";
 
 const MySwal = withReactContent(Swal);
 
