@@ -4,22 +4,20 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Nav from "./Nav"
 import BarraCategorias from "../common/BarraCategorias"
+import Articulos from "../common/Articulos"
 import Card from '../common/Card';
 
 
-function Layout({children}) {
-    
-        return (
+function Layout({children }) {
+
+    return (
         <div className='container'>
-            <Nav/>
+            <Nav />
             <main className='main'>
-                <Header/>
-                <BarraCategorias/>
-                <Card/>
                 {children}
             </main>
-            <Footer/>
+            <Footer />
         </div>
     )
-    }
-    export default Layout;
+}
+export default Layout;

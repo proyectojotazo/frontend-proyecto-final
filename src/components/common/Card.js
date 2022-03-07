@@ -1,15 +1,12 @@
 import React from "react";
 import "./card.scss"
 
-function Card () {
-    const listaarticulo = require('./prueba.json')
-    const articulo = listaarticulo[1]
-
+function Card ({...articulo}) {
 
     return(
         <div className="card">
             <div className="imgportada">
-                <img src="https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg"></img>
+                <img  src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`} alt="avatar"/>
             </div>
             <p className="cat">{articulo.categorias}</p>
             <h2>{articulo.titulo}</h2>
@@ -17,7 +14,7 @@ function Card () {
             <hr/>
             <div className="info">
                 <div className="info">
-                    <div className="avatar"><img src="https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg"></img></div>
+                    <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
                     <div>
                         <p>{articulo.usuario[0].nickname}</p>
                         <p>{articulo.fechaPublicacion}</p>

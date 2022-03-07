@@ -8,11 +8,15 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "react": "^17.0.2",
+    "react-components": "^0.5.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.27.1",
+    "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "sass": "^1.49.9",
+    "sweetalert2": "^11.4.4",
+    "sweetalert2-react-content": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,0 +1,87 @@
+@import '../../sass/variablesSass.scss';
+
+.login-button {
+  background-color: #000;
+  padding: 10px;
+}
+
+.nav {
+  grid-area: nav;
+  background-color: $current_line;
+  display: flex;
+  width: 100vw;
+  padding: 1rem 1rem;
+  height: 4rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.4);
+  justify-content: space-between;
+  align-content: center;
+
+  .logo {
+    display: flex;
+    width: min-content;
+    align-content: stretch;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: space-evenly;
+    width: min-content;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    align-items: center;
+  }
+
+  .navbar-item {
+    margin: 2rem;
+    transition: all 200ms ease;
+
+    .nav-link {
+      text-decoration: none;
+      color: coral;
+      font-size: 2px;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      padding: 0 10px;
+      position: relative;
+      transition: all 200ms ease;
+
+      //   &::before {
+      //     content: '';
+      //     position: absolute;
+      //     top: 0;
+      //     left: 0;
+      //     height: 40px;
+      //     width: 4px;
+      //     background-color: blueviolet;
+      //     opacity: 1;
+      //     transition: all 200ms ease;
+      //   }
+      &:houver {
+        background-color: brown;
+        color: cadetblue;
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .icon-inicio {
+  }
+
+  .navbar-home {
+    color: black;
+  }
+}

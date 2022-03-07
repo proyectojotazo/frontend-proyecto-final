@@ -1,13 +1,15 @@
 import React from "react";
 import "./barraCategorias.scss"
 
-function BarraCategorias () {
+function BarraCategorias (props) {
+    const {cambiarCategoria} = props;
+
     return(
         <section className="categorias">
             <hr/>
             <ul className="ulCategorias">
-                <li className="todas">TODAS</li>
-                <li className="frontend">HTML</li>
+                <li className="todas" onClick={()=>{cambiarCategoria('')}}>TODAS</li>
+                <li className="frontend" onClick={()=>{cambiarCategoria('html')}}>HTML</li>
                 <li className="frontend">CSS</li>
                 <li className="frontend">JAVASCRIPT</li>
                 <li className="frontendF">ANGULAR</li>
