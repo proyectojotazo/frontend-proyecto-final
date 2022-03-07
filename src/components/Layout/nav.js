@@ -51,19 +51,11 @@ function Nav() {
                     <NavLink className='nav-link' exact to='/ Iniciar Sesión'>
                         <Usuario
                             className='icon icon-usuario'
+                            onClick={() => LoginPopup()}
                         />
                     </NavLink>
                 </li>
-                <li className='navbar-item'>
-                    <button className="login-button" onClick={() => LoginPopup()}>
-                        Login
-                    </button>
-                </li>
             </ul>
-
-
-
-
         </nav>
     );
 
