@@ -1,6 +1,6 @@
 import React from "react";
 import "./Nav.scss";
-import "./layout.scss";
+import "./Layout.scss";
 import { NavLink, Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/LOGO.svg";
 import { ReactComponent as Lupa } from "../../assets/iconoLupa.svg";
