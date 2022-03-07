@@ -1,9 +1,8 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
-import Layout from './components/Layout/layout';
+import Layout from './components/Layout/Layout';
 
 
-const App = () => {
+function App () {
   return (
       <Layout/>
   );

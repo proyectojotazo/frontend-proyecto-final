@@ -1,0 +1,129 @@
+@import "../../sass/variablesSass.scss";
+
+.categorias {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    hr {
+        height: 3px;
+        background-color: $comment;
+    }
+    ul {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        li {
+            font-family: $tMaquina;
+            font-size: large;
+        }
+        
+        
+    }
+
+    @media only screen and (max-width: 1000px) {
+        ul {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+.todas{
+    color: $red;
+}
+
+.todas:hover{
+    text-shadow:
+        0 0 7px $redBrillo,
+        0 0 10px $redBrillo,
+        0 0 21px $redBrillo,
+        0 0 42px  $red,
+        0 0 82px  $red,
+        0 0 92px  $red,
+        0 0 102px $red,
+        0 0 151px $red;
+}
+
+.frontend {
+    color: $cyan
+}
+
+.frontend:hover{
+    text-shadow:
+        0 0 7px $cyanBrillo,
+        0 0 10px $cyanBrillo,
+        0 0 21px $cyanBrillo,
+        0 0 42px  $cyan,
+        0 0 82px  $cyan,
+        0 0 92px  $cyan,
+        0 0 102px $cyan,
+        0 0 151px $cyan;
+}
+
+.frontendF {
+    color: $pink
+}
+
+.frontendF:hover{
+    text-shadow:
+        0 0 7px $pinkBrillo,
+        0 0 10px $pinkBrillo,
+        0 0 21px $pinkBrillo,
+        0 0 42px  $pink,
+        0 0 82px  $pink,
+        0 0 92px  $pink,
+        0 0 102px $pink,
+        0 0 151px $pink;
+}
+
+.backend {
+    color: $orange
+}
+
+.backend:hover{
+    text-shadow:
+        0 0 7px $orangeBrillo,
+        0 0 10px $orangeBrillo,
+        0 0 21px $orangeBrillo,
+        0 0 42px  $orange,
+        0 0 82px  $orange,
+        0 0 92px  $orange,
+        0 0 102px $orange,
+        0 0 151px $orange;
+}
+.backendF {
+    color: $purple
+}
+
+.backendF:hover{
+    text-shadow:
+        0 0 7px $purpleBrillo,
+        0 0 10px $purpleBrillo,
+        0 0 21px $purpleBrillo,
+        0 0 42px  $purple,
+        0 0 82px  $purple,
+        0 0 92px  $purple,
+        0 0 102px $purple,
+        0 0 151px $purple;
+}
+
+.DB{
+    color: $green
+}
+
+.DB:hover{
+    text-shadow:
+        0 0 7px $greenBrillo,
+        0 0 10px $greenBrillo,
+        0 0 21px $greenBrillo,
+        0 0 42px  $green,
+        0 0 82px  $green,
+        0 0 92px  $green,
+        0 0 102px $green,
+        0 0 151px $green;
+}
