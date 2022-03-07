@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import './nav.scss';
-import './layout.scss';
-import { NavLink, Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/LOGO.svg';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+import React, { useState } from "react";
+import "./Nav.scss";
+import "./Layout.scss";
+import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/LOGO.svg";
+import { ReactComponent as Lupa } from "../../assets/iconoLupa.svg";
+import { ReactComponent as Nuevo } from "../../assets/nuevo.svg";
+import { ReactComponent as Inicio } from "../../assets/inicio.svg";
+import { ReactComponent as Usuario } from "../../assets/usuario.svg";
 
-import Login from '../Auth/Login/Login';
+import Login from "../Auth/Login/Login";
 
-import SweetAlert2 from 'react-sweetalert2';
+import SweetAlert2 from "react-sweetalert2";
 
 function Nav() {
   const [showLogin, setShowLogin] = useState({});
   function LoginPopup() {
     setShowLogin({
       show: true,
-      title: 'Accede a tu cuenta',
+      title: "Accede a tu cuenta",
     });
   }
 
@@ -36,12 +36,12 @@ function Nav() {
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink exact to="/" className="nav-link">
+          <NavLink to="/" className="nav-link">
             <Nuevo className="icon icon-nuevo" />
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="nav-link" exact to="/escribir">
+          <NavLink className="nav-link" to="/escribir">
             <Inicio className="icon icon-inicio" />
           </NavLink>
         </li>

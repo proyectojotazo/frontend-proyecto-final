@@ -26,8 +26,8 @@ function Articulos(props) {
 
   return (
     <section className="seccionArticulos">
-      {articulos.map(({ id, ...advert }) => (
-        <Link key={`/articles/${id}`}>
+      {articulos.map(({ _id, ...advert }) => (
+        <Link key={_id} to={`/articles/${_id}`}>
           <Card {...advert} />
         </Link>
       ))}
