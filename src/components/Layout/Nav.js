@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './nav.scss';
-import './layout.scss';
+import './Nav.scss';
+import './Layout.scss';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/LOGO.svg';
 import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
@@ -14,12 +14,16 @@ import SweetAlert2 from 'react-sweetalert2';
 
 function Nav() {
   const [showLogin, setShowLogin] = useState({});
+
   function LoginPopup() {
     setShowLogin({
       show: true,
       title: 'Accede a tu cuenta',
+      confirmButtonText: 'Cerrar',
     });
   }
+
+  console.log(showLogin);
 
   return (
     <nav className="nav">
@@ -36,12 +40,12 @@ function Nav() {
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink exact to="/" className="nav-link">
+          <NavLink to="/" className="nav-link">
             <Nuevo className="icon icon-nuevo" />
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="nav-link" exact to="/escribir">
+          <NavLink className="nav-link" to="/escribir">
             <Inicio className="icon icon-inicio" />
           </NavLink>
         </li>
@@ -51,7 +55,14 @@ function Nav() {
               className="icon icon-usuario"
               onClick={() => LoginPopup()}
             />
-            <SweetAlert2 {...showLogin}>
+            <SweetAlert2
+              {...showLogin}
+              didClose={() => {
+                setShowLogin({
+                  show: false,
+                });
+              }}
+            >
               <Login />
             </SweetAlert2>
           </div>
