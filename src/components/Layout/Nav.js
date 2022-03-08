@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Nav.scss';
 import './Layout.scss';
 import { NavLink, Link } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { ReactComponent as Usuario } from '../../assets/usuario.svg';
 
 import Login from '../Auth/Login/Login';
 
+import { useAuth } from '../../contexts/authContext';
+
 import SweetAlert2 from 'react-sweetalert2';
 
 function Nav() {
@@ -18,12 +20,10 @@ function Nav() {
   function LoginPopup() {
     setShowLogin({
       show: true,
-      title: 'Accede a tu cuenta',
-      confirmButtonText: 'Cerrar',
+      showConfirmButton: false,
+      showCloseButton: true,
     });
   }
-
-  console.log(showLogin);
 
   return (
     <nav className="nav">
