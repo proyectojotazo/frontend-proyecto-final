@@ -1,19 +1,17 @@
 @import "../../sass/variablesSass.scss";
 
 .categorias {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    hr {
-        height: 3px;
-        background-color: $comment;
-    }
+
+    
     .ulCategorias {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        gap: 3rem;
+        align-items: center;
         justify-content: space-between;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
 
         li {
             font-family: $tMaquina;
@@ -23,15 +21,38 @@
         
     }
 
-    @media only screen and (max-width: 1000px) {
+    .divCat {
+        width: auto;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 1700px) {
+        .ulCategorias {
+            gap: 2rem
+        }
+    }
+
+    @media only screen and (max-width: 1400px) {
+        .ulCategorias {
+            gap: 1rem
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
         .ulCategorias {
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 1rem;
             align-items: center;
             justify-content: center;
+            gap:1rem
         }
     }
+}
+
+.hr {
+    margin: 1rem;
+    border: solid;
+    border-color: $comment transparent $comment transparent;
 }
 
 .rojo{
