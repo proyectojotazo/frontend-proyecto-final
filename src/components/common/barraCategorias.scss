@@ -7,7 +7,7 @@
         height: 3px;
         background-color: $comment;
     }
-    ul.ulCategorias {
+    .ulCategorias {
         padding-top: 1rem;
         padding-bottom: 1rem;
         display: flex;
@@ -24,7 +24,7 @@
     }
 
     @media only screen and (max-width: 1000px) {
-        ul {
+        .ulCategorias {
             flex-direction: row;
             flex-wrap: wrap;
             gap: 1rem;
@@ -35,19 +35,20 @@
 }
 .todas{
     color: $red;
+    &:hover{
+        text-shadow:
+            0 0 7px $redBrillo,
+            0 0 10px $redBrillo,
+            0 0 21px $redBrillo,
+            0 0 42px  $red,
+            0 0 82px  $red,
+            0 0 92px  $red,
+            0 0 102px $red,
+            0 0 151px $red;
+    }
 }
 
-.todas:hover{
-    text-shadow:
-        0 0 7px $redBrillo,
-        0 0 10px $redBrillo,
-        0 0 21px $redBrillo,
-        0 0 42px  $red,
-        0 0 82px  $red,
-        0 0 92px  $red,
-        0 0 102px $red,
-        0 0 151px $red;
-}
+
 
 .frontend {
     color: $cyan

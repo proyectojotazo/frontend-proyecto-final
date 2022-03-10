@@ -6,12 +6,13 @@
     max-width: 400px;
     height: auto;
     gap: 10px;
-    div.imgportada>img {
+
+    .imgportada>img {
         object-fit: cover;
         width: 400px;
         height: 200px;
     }
-    div.avatar>img {
+    .avatar>img {
         object-fit: cover;
         width: 60px;
         height: 60px;
@@ -40,5 +41,15 @@
 
     ul.info{
         justify-content: end;
+    }
+
+}
+
+@media only screen and (max-width: 650px) {
+    .card{
+        max-width: 300px;
+    }
+    .imgportada>img {
+        max-width: 300px;
     }
 }
