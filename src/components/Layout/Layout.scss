@@ -18,7 +18,7 @@
   min-height: 100vh;
   background-color: $background;
   grid-template-columns: 1fr 10fr 1fr;
-  grid-template-rows: 1fr minmax(200px, 10fr) 0.5fr;
+  grid-template-rows: 5rem minmax(200px, 10fr) 0.5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:

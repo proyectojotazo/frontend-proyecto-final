@@ -33,7 +33,8 @@
         }
     }
 }
-.todas{
+
+.rojo{
     color: $red;
     &:hover{
         text-shadow:
@@ -50,28 +51,25 @@
 
 
 
-.frontend {
-    color: $cyan
+.cyan {
+    color: $cyan;
+    &:hover {
+        text-shadow:
+            0 0 7px $cyanBrillo,
+            0 0 10px $cyanBrillo,
+            0 0 21px $cyanBrillo,
+            0 0 42px  $cyan,
+            0 0 82px  $cyan,
+            0 0 92px  $cyan,
+            0 0 102px $cyan,
+            0 0 151px $cyan;
+    }
 }
 
-.frontend:hover{
-    text-shadow:
-        0 0 7px $cyanBrillo,
-        0 0 10px $cyanBrillo,
-        0 0 21px $cyanBrillo,
-        0 0 42px  $cyan,
-        0 0 82px  $cyan,
-        0 0 92px  $cyan,
-        0 0 102px $cyan,
-        0 0 151px $cyan;
-}
-
-.frontendF {
-    color: $pink
-}
-
-.frontendF:hover{
-    text-shadow:
+.pink {
+    color: $pink;
+    &:hover{
+        text-shadow:
         0 0 7px $pinkBrillo,
         0 0 10px $pinkBrillo,
         0 0 21px $pinkBrillo,
@@ -80,14 +78,13 @@
         0 0 92px  $pink,
         0 0 102px $pink,
         0 0 151px $pink;
+    }
 }
 
-.backend {
-    color: $orange
-}
-
-.backend:hover{
-    text-shadow:
+.orange {
+    color: $orange;
+    &:hover{
+        text-shadow:
         0 0 7px $orangeBrillo,
         0 0 10px $orangeBrillo,
         0 0 21px $orangeBrillo,
@@ -96,12 +93,13 @@
         0 0 92px  $orange,
         0 0 102px $orange,
         0 0 151px $orange;
-}
-.backendF {
-    color: $purple
+    }
+
 }
 
-.backendF:hover{
+.purple {
+    color: $purple;
+    &:hover{
     text-shadow:
         0 0 7px $purpleBrillo,
         0 0 10px $purpleBrillo,
@@ -111,13 +109,13 @@
         0 0 92px  $purple,
         0 0 102px $purple,
         0 0 151px $purple;
+    }
 }
 
-.DB{
-    color: $green
-}
 
-.DB:hover{
+.green{
+    color: $green;
+    &:hover{
     text-shadow:
         0 0 7px $greenBrillo,
         0 0 10px $greenBrillo,
@@ -127,4 +125,6 @@
         0 0 92px  $green,
         0 0 102px $green,
         0 0 151px $green;
+    }
 }
+
