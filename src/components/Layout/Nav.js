@@ -1,21 +1,23 @@
-import React, { useContext, useState } from 'react';
-import './Nav.scss';
-import './Layout.scss';
-import { NavLink, Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/LOGO.svg';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+import React, { useContext, useState } from "react";
+import "./Nav.scss";
+import "./Layout.scss";
+import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/LOGO.svg";
+import { ReactComponent as Lupa } from "../../assets/iconoLupa.svg";
+import { ReactComponent as Nuevo } from "../../assets/nuevo.svg";
+import { ReactComponent as Inicio } from "../../assets/inicio.svg";
+import { ReactComponent as Usuario } from "../../assets/usuario.svg";
 
-import Login from '../Auth/Login/Login';
+import Login from "../Auth/Login/Login";
+import Popup from "../Auth/Popup/PopUp";
 
-import { useAuth } from '../../contexts/authContext';
+import { useAuth } from "../../contexts/authContext";
 
-import SweetAlert2 from 'react-sweetalert2';
+import SweetAlert2 from "react-sweetalert2";
 
 function Nav() {
   const [showLogin, setShowLogin] = useState({});
+  const [showRegister, setShowRegister] = useState({});
 
   function LoginPopup() {
     setShowLogin({
@@ -63,7 +65,7 @@ function Nav() {
                 });
               }}
             >
-              <Login />
+              <Popup />
             </SweetAlert2>
           </div>
         </li>

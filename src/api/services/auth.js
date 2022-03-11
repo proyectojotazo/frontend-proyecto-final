@@ -1,16 +1,16 @@
 import client, {
   removeAuthorizationHeader,
   setAuthorizationHeader,
-} from '../client';
+} from "../client";
 
-import storage from '../../utils/storage';
+import storage from "../../utils/storage";
 
 export const login = (data) => {
   const credentials = { email: data.email, password: data.password };
-  return client.post('login', credentials).then(({ token }) => {
+  return client.post("login", credentials).then(({ token }) => {
     setAuthorizationHeader(token);
     if (data.remember) {
-      storage.set('auth', token);
+      storage.set("auth", token);
     }
   });
 };
@@ -18,5 +18,12 @@ export const login = (data) => {
 export const logout = () =>
   Promise.resolve().then(() => {
     removeAuthorizationHeader();
-    storage.remove('auth');
+    storage.remove("auth");
   });
+
+export const recoverPassword = (data) => {
+  const email = { email: data.email };
+  return client.post("password-reset", email).catch((error) => {
+    return Promise.reject(error);
+  });
+};
