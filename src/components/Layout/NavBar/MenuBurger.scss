@@ -46,6 +46,7 @@
   align-items: center;
   flex-direction: column;
   transition: 0.2s all ease-out;
+  cursor: pointer;
 }
 
 .sidebar-item {
@@ -54,6 +55,7 @@
   width: 100%;
   height: 7rem;
   transition: all 200ms ease;
+  cursor: pointer;
 }
 
 .sidebar-item a {
