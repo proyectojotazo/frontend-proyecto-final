@@ -1,11 +1,19 @@
 import React from "react";
+import { FcNext, FcPrevious } from "react-icons/fc";
+import "./paginacion.scss";
 
 function Paginacion({ paginaAtras, paginaSig }) {
   return (
-    <div>
+    <div className="pagination-box">
       <ul>
-        <li onClick={() => paginaAtras()}>Página anterior</li>
-        <li onClick={() => paginaSig()}>Página siguiente</li>
+        <li onClick={() => paginaAtras()}>
+          <FcPrevious />
+          Página anterior
+        </li>
+        <li onClick={() => paginaSig()}>
+          Página siguiente
+          <FcNext />
+        </li>
       </ul>
     </div>
   );
