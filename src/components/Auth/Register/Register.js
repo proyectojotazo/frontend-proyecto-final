@@ -200,7 +200,7 @@ const Register = () => {
                 {errors.repeatPassword &&
                   errors.repeatPassword.type === "repeatPwd" && (
                     <p className="form-custom-error">
-                      Tu contraseña no coincide
+                      Tus contraseñas no coinciden
                     </p>
                   )}
               </div>
