@@ -1,0 +1,47 @@
+[33mcommit e95cfe513d73da4508f439a415f3b538a57c20ec[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;32mcesar[m[33m)[m
+Author: César Pinto <63161873+csrap@users.noreply.github.com>
+Date:   Sat Mar 5 21:04:49 2022 +0100
+
+    nav-bar-v1
+
+[33mcommit 3c5c14886a962db0f022a1041e9a63403c05a667[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Elisabet D'Acosta <venganzaalchocolate@gmail.com>
+Date:   Sat Mar 5 10:38:44 2022 +0100
+
+    cambiando de clases a funciones
+
+[33mcommit 40fbdbc9bb07cb0b882036a00e8bdd33a7c03873[m[33m ([m[1;31morigin/eli[m[33m)[m
+Author: Elisabet D'Acosta <venganzaalchocolate@gmail.com>
+Date:   Fri Mar 4 23:54:43 2022 +0100
+
+    header imagen y texto sin responsive
+
+[33mcommit 9e6b05646586b3fcbf6e02d1cc9166eabcae8c48[m
+Author: Elisabet D'Acosta <venganzaalchocolate@gmail.com>
+Date:   Fri Mar 4 23:02:21 2022 +0100
+
+    estructura html y css
+
+[33mcommit acb9c0900e2ae22f602c1f70e58afd0dc0e6d8eb[m
+Author: Elisabet D'Acosta <venganzaalchocolate@gmail.com>
+Date:   Fri Mar 4 20:40:58 2022 +0100
+
+    variables
+
+[33mcommit 964c48fb8d7348bfe89d26b4d784980b82cb92ec[m
+Author: Elisabet D'Acosta <venganzaalchocolate@gmail.com>
+Date:   Fri Mar 4 20:40:08 2022 +0100
+
+    logo
+
+[33mcommit 53ee906fdf5ff9c8ba4067ee3209a2b81e74cc1e[m
+Author: Josep Miquel <tommyshelby@disroot.org>
+Date:   Fri Mar 4 19:01:43 2022 +0100
+
+    react-router-dom v6 and axios configured
+
+[33mcommit 36aad842888e7a01181e7fba60d50422813cdcb2[m
+Author: Javier <javigh87@gmail.com>
+Date:   Fri Mar 4 17:48:10 2022 +0100
+
+    Primer commit

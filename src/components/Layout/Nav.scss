@@ -70,7 +70,7 @@ h2#swal2-title {
 
 .nav {
   grid-area: nav;
-  background-color: $current_line;
+  background-color: #14141b;
   display: flex;
   width: 100vw;
   padding: 1rem 1rem;
@@ -105,8 +105,6 @@ h2#swal2-title {
 
     .nav-link {
       text-decoration: none;
-      color: coral;
-      font-size: 2px;
       height: 100%;
       width: 100%;
       display: flex;
@@ -126,7 +124,6 @@ h2#swal2-title {
       //     transition: all 200ms ease;
       //   }
       &:hover {
-        background-color: brown;
         color: cadetblue;
 
         &::before {

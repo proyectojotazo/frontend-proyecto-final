@@ -1,87 +1,86 @@
-@import "../../sass/variablesSass.scss";
+@import '../../sass/variablesSass.scss';
 
-.header{    
-    height: minmax(30rem, auto);
+.header {
+  height: minmax(30rem, auto);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: 'imagen texto';
+
+  .imagen {
+    grid-area: imagen;
+    display: flex;
+    justify-content: end;
+    svg {
+      max-width: 35rem;
+    }
+    text-align: end;
+  }
+  .texto {
+    grid-area: texto;
+
+    text-align: left;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 0px 0px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+    gap: 1rem;
     grid-auto-flow: row;
     grid-template-areas:
-        "imagen texto";
-        
-        .imagen {
-            grid-area: imagen;
-            display: flex;
-            justify-content: end;
-            svg {
-                max-width: 35rem;
-            }
-            text-align: end;
-        }
-        .texto {
-            grid-area: texto;
-            text-align: left;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 2fr 1fr;
-            gap: 1rem ;
-            grid-auto-flow: row;
-            grid-template-areas:
-            "h1"
-            "p";
-    
-            h1 {
-                display: flex;
-                font-family: $tTitulares;
-                font-size: 5rem;
-                line-height: 5.5rem;
-                align-items: flex-end;
+      'h1'
+      'p';
 
-            }
-            p {
-                display: flex;
-                font-family: $tMaquina;
-                color: $orange;
-                max-width: 35rem;
-                align-items: center;
-            }
-        }
+    h1 {
+      display: flex;
+      font-family: $tTitulares;
+      font-size: 5rem;
+      line-height: 5.5rem;
+      align-items: flex-end;
+      color: white;
+    }
+    p {
+      display: flex;
+      font-family: $tMaquina;
+      color: $orange;
+      max-width: 35rem;
+      align-items: center;
+    }
+  }
 
-
-    @media only screen and (max-width: 1300px) {
-            .texto>h1{
-                font-size: 3.5rem;
-                line-height: 4rem;
-            }
-
-            .imagen{
-                padding-top: 1rem;
-            }
+  @media only screen and (max-width: 1300px) {
+    .texto > h1 {
+      font-size: 3.5rem;
+      line-height: 4rem;
     }
 
-    @media only screen and (max-width: 900px) {
-        display: flex;
-        flex-direction: column;
+    .imagen {
+      padding-top: 1rem;
+    }
+  }
 
-        .texto{
-            padding-bottom: 1rem;
-            h1{
-            font-size: 5rem;
-            line-height: 5.5rem;
-            }
-        }
+  @media only screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
 
-        .imagen{
-            vertical-align: center;
-            justify-content: center;
-        }
+    .texto {
+      padding-bottom: 1rem;
+      h1 {
+        font-size: 5rem;
+        line-height: 5.5rem;
+      }
     }
 
-    @media only screen and (max-width: 650px) {
-        .texto>h1{
-            font-size: 3rem;
-            line-height: 3.5rem;
-        }
+    .imagen {
+      vertical-align: center;
+      justify-content: center;
     }
+  }
+
+  @media only screen and (max-width: 650px) {
+    .texto > h1 {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+  }
 }
