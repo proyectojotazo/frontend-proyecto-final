@@ -1,5 +1,17 @@
 @import "../../sass/variablesSass.scss";
 
+.info{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+ul.info{
+    justify-content: end;
+}
+
 .uinfo {
     display: flex;
     gap: 10px;
@@ -7,6 +19,10 @@
     align-items: center;
 }
 
+.iconosInfo{
+    max-width: 150px;
+    width: 100%;
+}
 .usuario {
     color: $orange;
     font-family: $tSubtitulo;
@@ -26,6 +42,13 @@
 
 .iconos {
     font-size: 1rem;
+}
+
+.avatar>img {
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
 }
 
 .corazon {

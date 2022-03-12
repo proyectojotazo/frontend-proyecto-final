@@ -2,11 +2,15 @@
 
 p.cat{
     font-size: 15pt;
+    font-family: $tMaquina;
 }
 
+.divCategorias{
+    display: flex;
+    gap: 10px;
+}
 
 .html, .css, .javascript{
-    font-family: $tMaquina;
     color: $cyan;
     &:hover {
         text-shadow:
@@ -68,7 +72,7 @@ p.cat{
 }
 
 
-.mysql, .monogodb{
+.mysql, .mongodb{
     color: $green;
     &:hover{
     text-shadow:
