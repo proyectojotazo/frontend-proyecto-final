@@ -6,10 +6,9 @@ function Categoria ({categoria, cambiarCategoria}) {
     
 
     return (
-        <div>
+        <div className="divCategorias">
             {categoria.map((lenguaje)=>(
                 <p key={Math.random()} className={`cat ${lenguaje}`} onClick={()=>{cambiarCategoria((lenguaje==='todas') ?'':lenguaje)}}>{lenguaje}</p>
-                
             ))}
         </div>
     )
