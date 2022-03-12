@@ -1,6 +1,4 @@
-import React, { useState, useRef } from "react";
-
-import RecoverPassword from "../RecoverPassword/RecoverPassword";
+import React, { useState } from "react";
 
 import { useAuth } from "../../../contexts/authContext";
 import { login } from "../../../api/services/auth";
@@ -60,7 +58,6 @@ const Login = () => {
       <div className="login-form-container">
         <form noValidate onSubmit={handleSubmit(handleLogin)}>
           <div className="input-container">
-            <label htmlFor="email">Correo electrònico</label>
             <input
               {...register("email", {
                 required: "Introduce tu correo electrònico",
@@ -74,6 +71,7 @@ const Login = () => {
               name="email"
               id="email"
               onChange={handleInputChange}
+              placeholder="Correo electrónico"
             />
             <ErrorMessage
               errors={errors}
@@ -84,7 +82,6 @@ const Login = () => {
             />
           </div>
           <div className="input-container">
-            <label htmlFor="password">Contraseña</label>
             <input
               {...register("password", {
                 required: "Introduce tu contraseña",
@@ -93,6 +90,7 @@ const Login = () => {
               name="password"
               id="password"
               onChange={handleInputChange}
+              placeholder="Contraseña"
             />
             <ErrorMessage
               errors={errors}

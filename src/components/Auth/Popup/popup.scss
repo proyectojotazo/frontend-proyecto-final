@@ -31,8 +31,20 @@ a {
   }
 
   input {
-    padding: 10px 0;
-    color: #181921;
+    padding: 5px 0;
+    color: #fff;
+    background: none;
+    border-bottom: 2px solid #50fa7b;
+    font-weight: bold;
+    &:focus {
+      border-color: #7066e0;
+    }
+    &::placeholder {
+      color: rgb(228, 228, 228);
+    }
+    &:-webkit-autofill {
+      background-color: none !important;
+    }
   }
 
   .input-container {
@@ -57,14 +69,16 @@ a {
 }
 
 .login-submit-button,
-.logout-submit-button {
+.logout-submit-button,
+.recover-submit-button {
   border-radius: 5px;
   padding: 10px 40px !important;
   color: #fff !important;
   font-weight: bold;
-  background-color: #7066e0;
+  background-color: #7066e0 !important;
+  border: none !important;
   &:hover {
-    background-color: #ffb86c;
+    background-color: #ffb86c !important;
     color: #181921;
     transition: all 0.3s;
   }
@@ -78,6 +92,7 @@ a {
 
 .form-custom-error {
   background-color: #ff5555;
+  font-size: 15px;
 }
 
 .recover-link-container {
@@ -114,5 +129,14 @@ a {
     background-color: #ffb86c;
     color: #181921;
     transition: all 0.3s;
+  }
+}
+
+.succes-message {
+  font-family: $tSubtitulo;
+  font-size: 10px;
+  margin: 10px 0;
+  h2 {
+    color: #50fa7b;
   }
 }

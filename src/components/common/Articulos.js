@@ -1,35 +1,30 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import {
-  getArticulos,
-  getArticulosCategorias,
-} from '../../api/services/articulos';
-import Card from './Card';
-import { Link } from 'react-router-dom';
-import '../common/articulos.scss';
+import React from "react";
+import { useEffect, useState } from "react";
+import { getArticulosCategorias } from "../../api/services/articulos";
+import Card from "./Card";
+import { Link } from "react-router-dom";
+import "../common/articulos.scss";
 
 function Articulos(props) {
   const [articulos, setArticulos] = useState([]);
-  const { categoria } = props;
+  const { categoria, orden, pagina, cambiarCategoria, ultimaPag } = props;
 
   useEffect(() => {
-    if (categoria) {
-      getArticulosCategorias(categoria).then((x) => {
-        setArticulos(x);
-      });
-    } else {
-      getArticulos().then((x) => {
-        setArticulos(x);
-      });
-    }
-  }, [categoria]);
+    getArticulosCategorias(categoria, orden, pagina).then((x) => {
+      if (x.length === 0) return ultimaPag();
+      setArticulos(x);
+    });
+  }, [categoria, orden, pagina, ultimaPag]);
 
   return (
     <section className="seccionArticulos">
       {articulos.map(({ _id, ...advert }) => (
-        <Link key={_id} to={`/articles/${_id}`}>
-          <Card {...advert} />
-        </Link>
+        <Card
+          key={_id}
+          {...advert}
+          id={_id}
+          cambiarCategoria={cambiarCategoria}
+        />
       ))}
     </section>
   );

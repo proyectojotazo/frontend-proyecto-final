@@ -1,25 +1,48 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import Articulos from "../components/common/Articulos";
 import BarraCategorias from "../components/common/BarraCategorias";
 import Header from "../components/Layout/Header";
-import Layout from "../components/Layout/Layout"
+import Layout from "../components/Layout/Layout";
+import Paginacion from "../components/common/Paginacion";
 
-function Home () {
-    const [categoria, setCategoria] = useState('')
+function Home() {
+  const [categoria, setCategoria] = useState("");
+  const [orden, setOrden] = useState("-fechaPublicacion");
+  const [pagina, setPagina] = useState(0);
 
-    function cambiarCategoria (x) {
-        setCategoria(x)
-    }
+  const cambiarCategoria = (x) => {
+    setCategoria(x);
+    setPagina(0);
+  };
 
-    return (
-        <>
-            <Layout>
-                <Header/>
-                <BarraCategorias cambiarCategoria={cambiarCategoria} />
-                <Articulos categoria={categoria}/>
-            </Layout>
-        </>
-    )
+  const cambiarPaginaSig = () => {
+    setPagina(pagina + 6);
+  };
+
+  const cambiarPaginaAnt = () => {
+    if (pagina === 0) return;
+    setPagina(pagina - 6);
+  };
+
+  return (
+    <>
+      <Layout>
+        <Header />
+        <BarraCategorias cambiarCategoria={cambiarCategoria} />
+        <Paginacion
+          paginaAtras={cambiarPaginaAnt}
+          paginaSig={cambiarPaginaSig}
+        />
+        <Articulos
+          categoria={categoria}
+          cambiarCategoria={cambiarCategoria}
+          ultimaPag={cambiarPaginaAnt}
+          orden={orden}
+          pagina={pagina}
+        />
+      </Layout>
+    </>
+  );
 }
 
 export default Home;

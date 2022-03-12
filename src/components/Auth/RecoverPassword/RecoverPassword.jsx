@@ -17,6 +17,7 @@ const RecoverPassword = () => {
   };
 
   const [credentials, setCredentials] = useState(initialState);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
@@ -34,15 +35,13 @@ const RecoverPassword = () => {
     });
     clearErrors(name);
     clearErrors("custom");
+    setIsSubmitted(false);
   };
 
   const handleRecover = () => {
     recoverPassword(credentials)
       .then((data) => {
-        setError("email", {
-          type: "manual",
-          message: data.message,
-        });
+        setIsSubmitted(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -55,45 +54,47 @@ const RecoverPassword = () => {
 
   return (
     <div>
-      <div>
-        <div className="header-login-container">
-          <Usuario className="icon icon-usuario" />
-          <h3 className="header-login-title">Recupera tu contraseña</h3>
-        </div>
-        <div className="login-form-container">
-          <form noValidate onSubmit={handleSubmit(handleRecover)}>
-            <div className="input-container">
-              <label htmlFor="email">Correo electrònico</label>
-              <input
-                {...register("email", {
-                  required: "Introduce tu correo electrònico",
-                  pattern: {
-                    value:
-                      /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
-                    message: "Tienes que introducir un correo electrònico",
-                  },
-                })}
-                type="email"
-                name="email"
-                id="email"
-                onChange={handleInputChange}
-              />
-              <ErrorMessage
-                errors={errors}
-                name="email"
-                render={({ message }) => (
-                  <p className="form-custom-error">{message}</p>
-                )}
-              />
-            </div>
-
+      <div className="header-login-container">
+        <Usuario className="icon icon-usuario" />
+        <h3 className="header-login-title">Recupera tu contraseña</h3>
+      </div>
+      <div className="login-form-container">
+        <form noValidate onSubmit={handleSubmit(handleRecover)}>
+          <div className="input-container">
             <input
-              type="submit"
-              value="Recuperar cuenta"
-              className="recover-submit-button"
+              {...register("email", {
+                required: "Introduce tu correo electrónico",
+                pattern: {
+                  value:
+                    /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                  message: "Tienes que introducir un correo electrònico",
+                },
+              })}
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleInputChange}
+              placeholder="Correó electrónico"
             />
-          </form>
-        </div>
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ message }) => (
+                <p className="form-custom-error">{message}</p>
+              )}
+            />
+          </div>
+          {isSubmitted && (
+            <div className="succes-message">
+              <h2>Se han enviado las instrucciones a tu correo</h2>
+            </div>
+          )}
+          <input
+            type="submit"
+            value="Recuperar cuenta"
+            className="recover-submit-button"
+          />
+        </form>
       </div>
     </div>
   );

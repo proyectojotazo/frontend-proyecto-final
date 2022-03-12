@@ -1,7 +1,7 @@
-@import '../../sass/variablesSass.scss';
+@import "../../sass/variablesSass.scss";
 
 .swal2-popup.swal2-modal.swal2-show {
-  height: 520px;
+  height: auto;
   width: 430px;
   background-color: rgba(255, 255, 255, 0.07);
   position: absolute;
