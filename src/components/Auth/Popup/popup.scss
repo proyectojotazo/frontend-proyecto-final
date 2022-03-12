@@ -116,3 +116,12 @@ a {
     transition: all 0.3s;
   }
 }
+
+.succes-message {
+  font-family: $tSubtitulo;
+  font-size: 10px;
+  margin: 10px 0;
+  h2 {
+    color: #50fa7b;
+  }
+}
