@@ -12,17 +12,16 @@ function Home() {
 
   const cambiarCategoria = (x) => {
     setCategoria(x);
+    setPagina(0);
   };
 
   const cambiarPaginaSig = () => {
-    setPagina(pagina + 3 * 1);
-    console.log(pagina);
+    setPagina(pagina + 6);
   };
 
   const cambiarPaginaAnt = () => {
     if (pagina === 0) return;
-    setPagina(pagina + 3 * -1);
-    console.log(pagina);
+    setPagina(pagina - 6);
   };
 
   return (
@@ -30,15 +29,16 @@ function Home() {
       <Layout>
         <Header />
         <BarraCategorias cambiarCategoria={cambiarCategoria} />
-        <Articulos
-          categoria={categoria}
-          cambiarCategoria={cambiarCategoria}
-          orden={orden}
-          pagina={pagina}
-        />
         <Paginacion
           paginaAtras={cambiarPaginaAnt}
           paginaSig={cambiarPaginaSig}
+        />
+        <Articulos
+          categoria={categoria}
+          cambiarCategoria={cambiarCategoria}
+          ultimaPag={cambiarPaginaAnt}
+          orden={orden}
+          pagina={pagina}
         />
       </Layout>
     </>

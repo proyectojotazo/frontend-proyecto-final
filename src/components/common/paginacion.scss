@@ -1,0 +1,11 @@
+@import "../../sass/variablesSass.scss";
+
+.pagination-box {
+  ul {
+    display: flex;
+    li {
+      cursor: pointer;
+      margin-right: 2rem;
+    }
+  }
+}
