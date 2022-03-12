@@ -16,7 +16,7 @@ function Home () {
             <Layout>
                 <Header/>
                 <BarraCategorias cambiarCategoria={cambiarCategoria} />
-                <Articulos categoria={categoria}/>
+                <Articulos categoria={categoria} cambiarCategoria={cambiarCategoria}/>
             </Layout>
         </>
     )

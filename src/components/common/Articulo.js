@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getArticulos} from '../../api/services/articulos';
+import {getArticulosId} from '../../api/services/articulos';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Articulo () {
@@ -10,7 +10,7 @@ function Articulo () {
 
     useEffect(() => {
         const id = location.pathname.split('/')[2]
-        getArticulos(id).then((articulo) => {
+        getArticulosId(id).then((articulo) => {
             setArt(articulo);
         });
     }, []);

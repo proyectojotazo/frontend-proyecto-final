@@ -1,0 +1,32 @@
+@import "../../sass/variablesSass.scss";
+
+.uinfo {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaIconos {
+    display: flex;
+    gap: 3px;
+}
+.iconos {
+    font-size: 1rem;
+}
+
+.corazon {
+    fill: $red
+}
+
+.inviar {
+    fill: $cyan
+}
+
+.comentarios{
+    fill:$green
+}
+
+.contestar{
+    fill:$orange
+}

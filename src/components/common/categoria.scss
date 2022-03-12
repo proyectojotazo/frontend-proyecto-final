@@ -1,12 +1,12 @@
 @import "../../sass/variablesSass.scss";
 
 p.cat{
-    font-family: $tMaquina;
     font-size: 15pt;
 }
 
 
-.cyan {
+.html, .css, .javascript{
+    font-family: $tMaquina;
     color: $cyan;
     &:hover {
         text-shadow:
@@ -21,17 +21,64 @@ p.cat{
     }
 }
 
-.rojo{
-    color: $red;
+.angular, .vue, .react {
+    color: $pink;
     &:hover{
         text-shadow:
-            0 0 7px $redBrillo,
-            0 0 10px $redBrillo,
-            0 0 21px $redBrillo,
-            0 0 42px  $red,
-            0 0 82px  $red,
-            0 0 92px  $red,
-            0 0 102px $red,
-            0 0 151px $red;
+        0 0 7px $pinkBrillo,
+        0 0 10px $pinkBrillo,
+        0 0 21px $pinkBrillo,
+        0 0 42px  $pink,
+        0 0 82px  $pink,
+        0 0 92px  $pink,
+        0 0 102px $pink,
+        0 0 151px $pink;
+    }
+}
+
+.php, .python, .java {
+    color: $orange;
+    &:hover{
+        text-shadow:
+        0 0 7px $orangeBrillo,
+        0 0 10px $orangeBrillo,
+        0 0 21px $orangeBrillo,
+        0 0 42px  $orange,
+        0 0 82px  $orange,
+        0 0 92px  $orange,
+        0 0 102px $orange,
+        0 0 151px $orange;
+    }
+
+}
+
+.node, .laravel {
+    color: $purple;
+    &:hover{
+    text-shadow:
+        0 0 7px $purpleBrillo,
+        0 0 10px $purpleBrillo,
+        0 0 21px $purpleBrillo,
+        0 0 42px  $purple,
+        0 0 82px  $purple,
+        0 0 92px  $purple,
+        0 0 102px $purple,
+        0 0 151px $purple;
+    }
+}
+
+
+.mysql, .monogodb{
+    color: $green;
+    &:hover{
+    text-shadow:
+        0 0 7px $greenBrillo,
+        0 0 10px $greenBrillo,
+        0 0 21px $greenBrillo,
+        0 0 42px  $green,
+        0 0 82px  $green,
+        0 0 92px  $green,
+        0 0 102px $green,
+        0 0 151px $green;
     }
 }

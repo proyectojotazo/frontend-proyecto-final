@@ -1,34 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./card.scss"
 import Categoria from "./Categoria";
+import Info from "./Info";
 
-function Card ({...articulo}) {
+function Card ({ cambiarCategoria, id, ...articulo}) {
 
     return(
         <div className="card">
+            <Link key={id} to={`/articles/${id}`}>
             <div className="imgportada">
                 <img  src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`} alt="avatar"/>
             </div>
-            <Categoria categoria={articulo.categorias}/>
+            </Link>
+            <Categoria categoria={articulo.categorias} cambiarCategoria={cambiarCategoria}/>
+            <Link key={id} to={`/articles/${id}`}>
             <h2>{articulo.titulo}</h2>
             <p className="textoIntroductorio">{articulo.textoIntroductorio}</p>
             <hr/>
-            <div className="info">
-                <div className="info">
-                    <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
-                    <div>
-                        <p>{articulo.usuario[0].nickname}</p>
-                        <p>{articulo.fechaPublicacion}</p>
-                    </div>
-                </div>
-                <div className="iconosInfo">
-                    <ul className="info">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
-                </div>
-            </div>
+            <Info {...articulo}/>
+            </Link>
         </div>
     );
 }
