@@ -45,10 +45,19 @@ const Register = () => {
         setRegisterSucces(true);
       })
       .catch((err) => {
-        setError("custom", {
-          type: "manual",
-          message: err.message,
-        });
+        if (err.email) {
+          setError("email", {
+            type: "manual",
+            message: err.email.message,
+          });
+        }
+
+        if (err.nickname) {
+          setError("nickname", {
+            type: "manual",
+            message: err.nickname.message,
+          });
+        }
       });
   };
 
@@ -68,7 +77,6 @@ const Register = () => {
           <div className="login-form-container">
             <form noValidate onSubmit={handleSubmit(handleRegister)}>
               <div className="input-container">
-                <label htmlFor="name">Nombre</label>
                 <input
                   {...register("name", {
                     required: "Introduce tu nombre",
@@ -82,6 +90,7 @@ const Register = () => {
                   name="name"
                   id="name"
                   onChange={handleInputChange}
+                  placeholder="Nombre"
                 />
                 <ErrorMessage
                   errors={errors}
@@ -92,7 +101,6 @@ const Register = () => {
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="apellidos">Apellidos</label>
                 <input
                   {...register("apellidos", {
                     required: "Introduce tus apellidos",
@@ -106,6 +114,7 @@ const Register = () => {
                   name="apellidos"
                   id="apellidos"
                   onChange={handleInputChange}
+                  placeholder="Apellidos"
                 />
                 <ErrorMessage
                   errors={errors}
@@ -116,7 +125,6 @@ const Register = () => {
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="email">Correo electrònico</label>
                 <input
                   {...register("email", {
                     required: "Introduce tu correo electrònico",
@@ -130,6 +138,7 @@ const Register = () => {
                   name="email"
                   id="email"
                   onChange={handleInputChange}
+                  placeholder="Email"
                 />
                 <ErrorMessage
                   errors={errors}
@@ -140,7 +149,6 @@ const Register = () => {
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="nickname">Nickname</label>
                 <input
                   {...register("nickname", {
                     required: "Introduce tu nickname",
@@ -149,6 +157,7 @@ const Register = () => {
                   name="nickname"
                   id="nickname"
                   onChange={handleInputChange}
+                  placeholder="Nickname"
                 />
                 <ErrorMessage
                   errors={errors}
@@ -159,7 +168,6 @@ const Register = () => {
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="password">Contraseña</label>
                 <input
                   {...register("password", {
                     required: "Introduce tu contraseña",
@@ -174,6 +182,7 @@ const Register = () => {
                   name="password"
                   id="password"
                   onChange={handleInputChange}
+                  placeholder="Contraseña"
                 />
                 <ErrorMessage
                   errors={errors}
@@ -184,7 +193,6 @@ const Register = () => {
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="repeatPassword">Repite la contraseña</label>
                 <input
                   {...register("repeatPassword", {
                     required: "Introduce tu contraseña",
@@ -196,6 +204,7 @@ const Register = () => {
                   name="repeatPassword"
                   id="repeatPassword"
                   onChange={handleInputChange}
+                  placeholder="Repite tu contraseña"
                 />
                 {errors.repeatPassword &&
                   errors.repeatPassword.type === "repeatPwd" && (

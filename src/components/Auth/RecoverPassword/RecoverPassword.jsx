@@ -61,7 +61,6 @@ const RecoverPassword = () => {
       <div className="login-form-container">
         <form noValidate onSubmit={handleSubmit(handleRecover)}>
           <div className="input-container">
-            <label htmlFor="email">Correo electrónico</label>
             <input
               {...register("email", {
                 required: "Introduce tu correo electrónico",
@@ -75,6 +74,7 @@ const RecoverPassword = () => {
               name="email"
               id="email"
               onChange={handleInputChange}
+              placeholder="Correó electrónico"
             />
             <ErrorMessage
               errors={errors}
