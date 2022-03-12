@@ -72,6 +72,11 @@ const Register = () => {
                 <input
                   {...register("name", {
                     required: "Introduce tu nombre",
+                    pattern: {
+                      value:
+                        /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
+                      message: "El nombre tiene carácteres no válidos",
+                    },
                   })}
                   type="text"
                   name="name"
@@ -91,6 +96,11 @@ const Register = () => {
                 <input
                   {...register("apellidos", {
                     required: "Introduce tus apellidos",
+                    pattern: {
+                      value:
+                        /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
+                      message: "Los apellidos tienen carácteres no válidos",
+                    },
                   })}
                   type="text"
                   name="apellidos"
@@ -142,7 +152,7 @@ const Register = () => {
                 />
                 <ErrorMessage
                   errors={errors}
-                  name="apellidos"
+                  name="nickname"
                   render={({ message }) => (
                     <p className="form-custom-error">{message}</p>
                   )}
@@ -153,6 +163,12 @@ const Register = () => {
                 <input
                   {...register("password", {
                     required: "Introduce tu contraseña",
+                    pattern: {
+                      value:
+                        /^(?=.*[a-zÀ-ÿ\u00f1\u00d1])(?=.*[A-ZÀ-ÿ\u00f1\u00d1])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-zÀ-ÿ\u00f1\u00d1\d@$!%*?&\-_]{8,}$/,
+                      message:
+                        "mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_",
+                    },
                   })}
                   type="password"
                   name="password"
@@ -172,19 +188,21 @@ const Register = () => {
                 <input
                   {...register("repeatPassword", {
                     required: "Introduce tu contraseña",
+                    validate: {
+                      repeatPwd: (value) => value === userData.password,
+                    },
                   })}
                   type="password"
                   name="repeatPassword"
                   id="repeatPassword"
                   onChange={handleInputChange}
                 />
-                <ErrorMessage
-                  errors={errors}
-                  name="password"
-                  render={({ message }) => (
-                    <p className="form-custom-error">{message}</p>
+                {errors.repeatPassword &&
+                  errors.repeatPassword.type === "repeatPwd" && (
+                    <p className="form-custom-error">
+                      Tu contraseña no coincide
+                    </p>
                   )}
-                />
               </div>
               <input
                 type="submit"
