@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {getArticulosId} from '../../api/services/articulos';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Info from "./Info";
 
 function Articulo () {
     const [art, setArt] = useState('')
@@ -13,7 +14,7 @@ function Articulo () {
         getArticulosId(id).then((articulo) => {
             setArt(articulo);
         });
-    }, []);
+    }, [art]);
 
     return(
         <div>
