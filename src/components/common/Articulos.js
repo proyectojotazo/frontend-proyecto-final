@@ -8,9 +8,9 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 import "../common/articulos.scss";
 
-function Articulos({ categoria, cambiarCategoria }) {
+function Articulos(props) {
   const [articulos, setArticulos] = useState([]);
-  const { categoria, orden, pagina } = props;
+  const { categoria, orden, pagina, cambiarCategoria } = props;
 
   useEffect(() => {
     getArticulosCategorias(categoria, orden, pagina).then((x) => {
