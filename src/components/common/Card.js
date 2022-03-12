@@ -18,8 +18,9 @@ function Card ({ cambiarCategoria, id, ...articulo}) {
             <h2>{articulo.titulo}</h2>
             <p className="textoIntroductorio">{articulo.textoIntroductorio}</p>
             <hr/>
-            <Info {...articulo}/>
             </Link>
+            <Info {...articulo}/>
+            
         </div>
     );
 }

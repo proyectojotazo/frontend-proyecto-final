@@ -2,15 +2,28 @@
 
 .uinfo {
     display: flex;
-    gap: 5px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
 }
 
+.usuario {
+    color: $orange;
+    font-family: $tSubtitulo;
+    font-weight: 1000;
+}
+
+.fecha{
+    color: $comment;
+    font-family: $tMaquina;
+    font-weight: bold;
+}
+
 .listaIconos {
     display: flex;
-    gap: 3px;
+    gap: 5px;
 }
+
 .iconos {
     font-size: 1rem;
 }
@@ -19,7 +32,7 @@
     fill: $red
 }
 
-.inviar {
+.enviar {
     fill: $cyan
 }
 
@@ -29,4 +42,8 @@
 
 .contestar{
     fill:$orange
+}
+
+.padre{
+    padding-top: 1rem;
 }

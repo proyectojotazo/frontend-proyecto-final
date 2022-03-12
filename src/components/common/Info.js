@@ -14,20 +14,20 @@ function Info ({...articulo}) {
     
 
     return (
-        <div className="info">
+        <div className="info padre">
                 <div className="info">
                     <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
                     <div>
-                        <p>{articulo.usuario[0].nickname}</p>
-                        <p>{representarFecha}</p>
+                        <p className="usuario">{articulo.usuario[0].nickname}</p>
+                        <p className="fecha">{representarFecha}</p>
                     </div>
                 </div>
                 <div className="iconosInfo">
                     <ul className="uinfo">
-                        <li className="listaIconos comentarios"><FaRegComments className="iconos"/>5 </li>
-                        <li className="listaIconos corazon"><FaRegHeart className="iconos"/>4</li>
-                        <li className="listaIconos enviar"><FaRegPaperPlane className="iconos"/></li>
-                        <li className="listaIconos contestar"><FaRegEdit className="iconos"/></li>
+                        <li className="listaIconos "><FaRegComments className="iconos comentarios"/>5 </li>
+                        <li className="listaIconos "><FaRegHeart className="iconos corazon"/>4</li>
+                        <li className="listaIconos "><FaRegPaperPlane className="iconos enviar"/></li>
+                        <li className="listaIconos "><FaRegEdit className="iconos contestar"/></li>
                     </ul>
                 </div>
         </div>
