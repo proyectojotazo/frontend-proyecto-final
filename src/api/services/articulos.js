@@ -3,7 +3,7 @@ import client, {
   setAuthorizationHeader,
 } from "../client";
 
-export const getArticulos = async (id = "") => {
+export const getArticulosId = async (id = "") => {
   const url = `${process.env.REACT_APP_API_BASE_URL}/articles/${id}`;
   try {
     return await client.get(url);

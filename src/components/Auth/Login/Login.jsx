@@ -1,6 +1,4 @@
-import React, { useState, useRef } from "react";
-
-import RecoverPassword from "../RecoverPassword/RecoverPassword";
+import React, { useState } from "react";
 
 import { useAuth } from "../../../contexts/authContext";
 import { login } from "../../../api/services/auth";

@@ -4,6 +4,7 @@ import { useAuth } from "../../../contexts/authContext";
 
 import Login from "../Login/Login";
 import RecoverPassword from "../RecoverPassword/RecoverPassword";
+import Register from "../Register/Register";
 
 import "./popup.scss";
 
@@ -11,6 +12,24 @@ const Popup = () => {
   const [showLogin, setShowLogin] = useState(true);
   const [showRecover, setShowRecover] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+
+  const openLogin = () => {
+    setShowLogin(true);
+    setShowRecover(false);
+    setShowRegister(false);
+  };
+
+  const openRegister = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+    setShowRecover(false);
+  };
+
+  const openRecover = () => {
+    setShowRecover(true);
+    setShowLogin(false);
+    setShowRegister(false);
+  };
 
   const { isLogged, accountLogout } = useAuth();
 
@@ -22,17 +41,10 @@ const Popup = () => {
             <>
               <Login />
               <div className="recover-link-container">
-                <a
-                  onClick={() => {
-                    setShowRecover(true);
-                    setShowLogin(false);
-                  }}
-                >
-                  ¿Has perdido tu contraseña?
-                </a>
+                <a onClick={openRecover}>¿Has perdido tu contraseña?</a>
               </div>
               <div className="register-link-container">
-                <a href="">Registrate</a>
+                <a onClick={openRegister}>Registrate</a>
               </div>
             </>
           )}
@@ -41,14 +53,16 @@ const Popup = () => {
             <>
               <RecoverPassword />
               <div className="goback-link-container">
-                <a
-                  onClick={() => {
-                    setShowRecover(false);
-                    setShowLogin(true);
-                  }}
-                >
-                  Volver
-                </a>
+                <a onClick={openLogin}>Volver</a>
+              </div>
+            </>
+          )}
+
+          {showRegister && (
+            <>
+              <Register />
+              <div className="goback-link-container">
+                <a onClick={openLogin}>Volver</a>
               </div>
             </>
           )}

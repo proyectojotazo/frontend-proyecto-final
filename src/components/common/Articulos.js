@@ -8,7 +8,7 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 import "../common/articulos.scss";
 
-function Articulos(props) {
+function Articulos({ categoria, cambiarCategoria }) {
   const [articulos, setArticulos] = useState([]);
   const { categoria, orden, pagina } = props;
 
@@ -21,9 +21,12 @@ function Articulos(props) {
   return (
     <section className="seccionArticulos">
       {articulos.map(({ _id, ...advert }) => (
-        <Link key={_id} to={`/articles/${_id}`}>
-          <Card {...advert} />
-        </Link>
+        <Card
+          key={_id}
+          {...advert}
+          id={_id}
+          cambiarCategoria={cambiarCategoria}
+        />
       ))}
     </section>
   );

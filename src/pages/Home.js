@@ -30,7 +30,12 @@ function Home() {
       <Layout>
         <Header />
         <BarraCategorias cambiarCategoria={cambiarCategoria} />
-        <Articulos categoria={categoria} orden={orden} pagina={pagina} />
+        <Articulos
+          categoria={categoria}
+          cambiarCategoria={cambiarCategoria}
+          orden={orden}
+          pagina={pagina}
+        />
         <Paginacion
           paginaAtras={cambiarPaginaAnt}
           paginaSig={cambiarPaginaSig}
