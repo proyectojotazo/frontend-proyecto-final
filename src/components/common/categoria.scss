@@ -1,0 +1,37 @@
+@import "../../sass/variablesSass.scss";
+
+p.cat{
+    font-family: $tMaquina;
+    font-size: 15pt;
+}
+
+
+.cyan {
+    color: $cyan;
+    &:hover {
+        text-shadow:
+            0 0 7px $cyanBrillo,
+            0 0 10px $cyanBrillo,
+            0 0 21px $cyanBrillo,
+            0 0 42px  $cyan,
+            0 0 82px  $cyan,
+            0 0 92px  $cyan,
+            0 0 102px $cyan,
+            0 0 151px $cyan;
+    }
+}
+
+.rojo{
+    color: $red;
+    &:hover{
+        text-shadow:
+            0 0 7px $redBrillo,
+            0 0 10px $redBrillo,
+            0 0 21px $redBrillo,
+            0 0 42px  $red,
+            0 0 82px  $red,
+            0 0 92px  $red,
+            0 0 102px $red,
+            0 0 151px $red;
+    }
+}

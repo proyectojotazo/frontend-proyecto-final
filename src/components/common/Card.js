@@ -1,5 +1,6 @@
 import React from "react";
 import "./card.scss"
+import Categoria from "./Categoria";
 
 function Card ({...articulo}) {
 
@@ -8,7 +9,7 @@ function Card ({...articulo}) {
             <div className="imgportada">
                 <img  src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`} alt="avatar"/>
             </div>
-            <p className="cat">{articulo.categorias}</p>
+            <Categoria categoria={articulo.categorias}/>
             <h2>{articulo.titulo}</h2>
             <p className="textoIntroductorio">{articulo.textoIntroductorio}</p>
             <hr/>

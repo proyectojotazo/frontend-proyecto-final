@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import { setAuthorizationHeader } from './api/client';
 import App from './App';
 import storage from './utils/storage';

@@ -10,7 +10,7 @@ import Card from "../common/Card";
 function Layout({ children }) {
   return (
     <div className="container">
-      <Nav />
+      <Nav/>
       <main className="main">{children}</main>
       <Footer />
     </div>

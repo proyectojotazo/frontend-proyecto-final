@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
-
-import { Route, Routes } from 'react-router-dom';
-
+import { Router, Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/authContext';
 import { logout } from './api/services/auth';
+import Article from './pages/Article';
 
 function App({ isAlreadyLogged }) {
   const [isLogged, setIsLogged] = useState(isAlreadyLogged);
@@ -23,6 +21,7 @@ function App({ isAlreadyLogged }) {
     <AuthContextProvider value={{ isLogged, accountLogin, accountLogout }}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/articles/:id" element={<Article/>} />
       </Routes>
     </AuthContextProvider>
   );
