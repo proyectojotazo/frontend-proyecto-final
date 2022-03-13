@@ -48,6 +48,7 @@
 .hr {
   border: solid;
   border-color: $comment transparent $comment transparent;
+  margin-top: 2rem;
 }
 
 .rojo {
@@ -107,5 +108,11 @@
     text-shadow: 0 0 7px $greenBrillo, 0 0 10px $greenBrillo,
       0 0 21px $greenBrillo, 0 0 42px $green, 0 0 82px $green, 0 0 92px $green,
       0 0 102px $green, 0 0 151px $green;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .hr {
+  margin: 0;
   }
 }

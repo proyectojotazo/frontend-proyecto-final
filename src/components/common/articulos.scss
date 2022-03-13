@@ -2,7 +2,7 @@
 
 .seccionArticulos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
     justify-items: center;
     padding-left: 1rem;

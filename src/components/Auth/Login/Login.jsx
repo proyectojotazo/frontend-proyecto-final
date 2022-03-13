@@ -64,7 +64,7 @@ const Login = () => {
                 pattern: {
                   value:
                     /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
-                  message: "Tienes que introducir un correo electrònico",
+                  message: "Tienes que introducir un correo electrónico",
                 },
               })}
               type="email"
