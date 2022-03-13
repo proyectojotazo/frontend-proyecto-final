@@ -18,6 +18,7 @@ function Articulo () {
 
     return(
         <div>
+            {/* <Info art={art}/> */}
             <h1>{art.titulo}</h1>
         </div>
     );

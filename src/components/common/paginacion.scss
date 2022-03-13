@@ -2,10 +2,34 @@
 
 .pagination-box {
   ul {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     display: flex;
+    gap: 2rem;
+    width: auto;
+    justify-content: center;
+    align-items: center;
     li {
       cursor: pointer;
-      margin-right: 2rem;
+      font-family: $tMaquina;
+      align-items: center;
+      display: flex;
+      gap: 2rem;
+      // margin-right: 2rem;
+      .icon-pag{
+        fill: $pink;
+        font-size: 1.5rem;
+      }
+      .paginacionPalabra {
+        color: $comment;
+      }
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .paginacionPalabra {
+    display: none;
+  }
+}
+

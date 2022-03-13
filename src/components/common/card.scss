@@ -3,31 +3,19 @@
 .card {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    width: 100%;
     height: auto;
-    gap: 10px;
+    gap: 0.5rem;
 
     .imgportada>img {
+        display: flex;
         object-fit: cover;
-        width: 400px;
+        width: 100%;
         height: 200px;
     }
     
     .textoIntroductorio {
         font-family: $tSubtitulo;
         line-height : 125%;
-    }
-    
-
-    
-
-}
-
-@media only screen and (max-width: 650px) {
-    .card{
-        max-width: 300px;
-    }
-    .imgportada>img {
-        max-width: 300px;
     }
 }

@@ -1,5 +1,126 @@
+@import '../../sass/variablesSass.scss';
+
 footer {
+  margin-top: 8rem;
   width: 100%;
-  padding: 50px 0px;
-  background-image: url(../../assets/footer.svg);
+  height: auto;
+  display: flex;
+  background-image: url(../../assets/fondoFooter.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footer {
+  padding-top: 6rem;
+  width: 100%;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+//   padding: 50px 0px;
+//   *background-image: url(../../assets/footer.svg);
+//   *background-size: cover;
+//   background-color: #14141b;
+//   -webkit-mask-image: url(../../assets/footer.svg);
+//   max-image: url(../../assets/footer.svg);
+// }
+  
+}
+
+.container_footer {
+  display: grid;
+  width: auto;
+  height: auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'footerTexto footerPersonas'
+    'box__copyright box__copyright';
+
+  
+}
+
+.footerTexto{
+  grid-area: footerTexto;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerPersonas{
+  display: flex;
+  grid-area: footerPersonas;
+}
+
+
+// .box__footer {
+//   display: flex;
+//   flex-direction: column;
+//   padding: 50px;
+//   margin-top: 30px;
+// }
+
+// .box__footer .logo img {
+//   width: 180px;
+// }
+
+// .box__footer .terms {
+//   max-width: 350px;
+//   margin-top: 20px;
+//   font-weight: 500;
+//   color: $orange;
+//   font-size: 18px;
+//   font-family: $tMaquina;
+// }
+
+// .box__footer h2 {
+//   margin-bottom: 30px;
+//   color: $cyan;
+//   font-weight: 700;
+// }
+
+// .box__footer a {
+//   margin-top: 10px;
+//   color: $current_line;
+//   font-weight: 600;
+// }
+// .box__footer a:hover {
+//   opacity: 0.8;
+// }
+
+// .box__footer a fab {
+//   font-size: 20px;
+// }
+
+.box__copyright {
+  grid-area: box__copyright;
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+
+.box__copyright p {
+  color: $green;
+  font-family: $tMaquina;
+}
+
+.box__copyright hr {
+  border: none;
+  height: 1px;
+  background-color: $current_line;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container_footer {
+    display: grid;
+    width: 80%;
+    height: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    grid-auto-flow: column;
+    grid-template-areas:
+      'footerTexto' 
+      'footerPersonas'
+      'box__copyright';
+  }
 }

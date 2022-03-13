@@ -3,6 +3,7 @@ import "./Nav.scss";
 import "./Layout.scss";
 import "./NavBar/MenuBurger.scss";
 import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as Lupa } from "../../assets/iconoLupa.svg";
 import { ReactComponent as Nuevo } from "../../assets/nuevo.svg";
 import { ReactComponent as Inicio } from "../../assets/inicio.svg";
@@ -59,7 +60,8 @@ function Nav() {
       <nav className="nav">
         <div className="logo">
           <Link to="/">
-            <img src={LogoMa} width="200" height="75" />
+            <Logo className="logoImg"/>
+            {/* <img src={LogoMa} className="logoImg"/> */}
           </Link>
         </div>
 

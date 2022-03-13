@@ -1,5 +1,5 @@
 import React from "react";
-import { FcNext, FcPrevious } from "react-icons/fc";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./paginacion.scss";
 
 function Paginacion({ paginaAtras, paginaSig }) {
@@ -7,12 +7,12 @@ function Paginacion({ paginaAtras, paginaSig }) {
     <div className="pagination-box">
       <ul>
         <li onClick={() => paginaAtras()}>
-          <FcPrevious />
-          Página anterior
+          <FaChevronLeft className="icon-pag"/>
+          <p className="paginacionPalabra">Página anterior</p>
         </li>
         <li onClick={() => paginaSig()}>
-          Página siguiente
-          <FcNext />
+          <p className="paginacionPalabra">Página siguiente</p>
+          <FaChevronRight className="icon-pag"/>
         </li>
       </ul>
     </div>
