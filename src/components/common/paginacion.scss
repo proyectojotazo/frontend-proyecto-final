@@ -18,12 +18,24 @@
       display: flex;
       gap: 2rem;
       // margin-right: 2rem;
-      .icon-pag{
+      .icon-pag {
         fill: $pink;
         font-size: 1.5rem;
       }
       .paginacionPalabra {
         color: $comment;
+      }
+      .order-select {
+        color: $green;
+        border-color: $pink;
+        background-color: transparent;
+        height: 1.5rem;
+        font-weight: bold;
+        option {
+          background-color: $background;
+          color: $purple;
+          font-weight: bold;
+        }
       }
     }
   }
@@ -34,4 +46,3 @@
     display: none;
   }
 }
-

@@ -24,6 +24,10 @@ function Home() {
     setPagina(pagina - 6);
   };
 
+  const cambiarOrden = (o) => {
+    setOrden(o);
+  };
+
   return (
     <>
       <Layout>
@@ -32,6 +36,7 @@ function Home() {
         <Paginacion
           paginaAtras={cambiarPaginaAnt}
           paginaSig={cambiarPaginaSig}
+          order={cambiarOrden}
         />
         <Articulos
           categoria={categoria}
