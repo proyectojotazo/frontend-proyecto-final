@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
@@ -12,6 +12,7 @@ const RecoverAccount = () => {
   const { id, token } = useParams();
 
   const [newPassword, setNewPassword] = useState({});
+  const [submittedSucces, setSubmittedSucces] = useState(true);
 
   const {
     register,
@@ -30,12 +31,13 @@ const RecoverAccount = () => {
     clearErrors(name);
   };
 
-  console.log(newPassword.password);
-
   const handleRecoverAccount = () => {
-    recoverAccount()
+    const data = { id, token, password: newPassword.password };
+    recoverAccount(data)
       .then(() => {
-        // TODO: Redireccionar a la home despues de unos segundos
+        setTimeout(() => {
+          setSubmittedSucces(true);
+        }, 3000);
       })
       .catch((err) => {
         setError("custom", {
@@ -44,6 +46,10 @@ const RecoverAccount = () => {
         });
       });
   };
+
+  if (submittedSucces) {
+    return <Navigate to="/" replace={true} />;
+  }
 
   return (
     <div>
@@ -113,6 +119,15 @@ const RecoverAccount = () => {
             value="Cambiar contraseña"
             className="login-submit-button"
           />
+
+          {submittedSucces && (
+            <div>
+              <p className="form-custom-succes">
+                Se ha cambiado la contraseña correctamente. Se te va a redirigir
+                a la página de Inicio.
+              </p>
+            </div>
+          )}
         </form>
       </div>
     </div>

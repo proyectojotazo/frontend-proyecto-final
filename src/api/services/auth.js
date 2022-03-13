@@ -45,8 +45,11 @@ export const recoverPassword = (data) => {
 };
 
 export const recoverAccount = (data) => {
+  console.log(data);
   return client
-    .post(`password-reset/${data.id}/${data.token}`, data.password)
+    .post(`password-reset/${data.id}/${data.token}`, {
+      password: data.password,
+    })
     .catch((error) => {
       return Promise.reject(error);
     });

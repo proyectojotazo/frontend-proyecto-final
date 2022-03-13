@@ -91,8 +91,19 @@ a {
 }
 
 .form-custom-error {
+  margin-top: 15px;
+  padding: 10px;
   background-color: #ff5555;
   font-size: 15px;
+  font-family: $tSubtitulo;
+}
+
+.form-custom-succes {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #114d20;
+  font-size: 15px;
+  font-family: $tSubtitulo;
 }
 
 .recover-link-container {
