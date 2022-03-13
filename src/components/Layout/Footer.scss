@@ -12,7 +12,6 @@ footer {
 
 .footer {
   padding-top: 6rem;
-  width: 100%;
   display: flex;
   height: auto;
   justify-content: center;
@@ -28,9 +27,12 @@ footer {
 }
 
 .container_footer {
+  width: 80%;
   display: grid;
   width: auto;
   height: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   grid-auto-flow: row;
@@ -43,15 +45,27 @@ footer {
 
 .footerTexto{
   grid-area: footerTexto;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .footerPersonas{
   display: flex;
+  width: 100%;
   grid-area: footerPersonas;
 }
 
+.logo{
+  max-width: 10rem;
+}
+
+.logoFooter{
+  height: 100%;
+  object-fit:contain;
+  object-position: center center;
+  image-rendering: crisp-edges;
+}
 
 // .box__footer {
 //   display: flex;

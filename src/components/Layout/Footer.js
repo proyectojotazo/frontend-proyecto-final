@@ -1,8 +1,8 @@
 import "./Layout.scss";
 import "./Footer.scss"
 import React from "react";
-import LogoMa from '../../assets/logomadeja.png';
 import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/logomadeja.svg";
 import * as Icons from "react-icons/fa";
 import { FaFacebook, FaInstagramSquare, FaTwitter, FaYoutube } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ function Footer() {
       <div className="footerTexto">
         <div className="logo">
           <Link to="/">
-            <img src={LogoMa} width="200" height="75" />
+            <Logo className='logoFooter' />
           </Link>
         </div>
         <div className="terms">
