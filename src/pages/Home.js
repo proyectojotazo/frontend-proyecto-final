@@ -30,22 +30,20 @@ function Home() {
 
   return (
     <>
-      <Layout>
-        <Header />
-        <BarraCategorias cambiarCategoria={cambiarCategoria} />
-        <Paginacion
-          paginaAtras={cambiarPaginaAnt}
-          paginaSig={cambiarPaginaSig}
-          order={cambiarOrden}
-        />
-        <Articulos
-          categoria={categoria}
-          cambiarCategoria={cambiarCategoria}
-          ultimaPag={cambiarPaginaAnt}
-          orden={orden}
-          pagina={pagina}
-        />
-      </Layout>
+      <Header />
+      <BarraCategorias cambiarCategoria={cambiarCategoria} />
+      <Paginacion
+        paginaAtras={cambiarPaginaAnt}
+        paginaSig={cambiarPaginaSig}
+        order={cambiarOrden}
+      />
+      <Articulos
+        categoria={categoria}
+        cambiarCategoria={cambiarCategoria}
+        ultimaPag={cambiarPaginaAnt}
+        orden={orden}
+        pagina={pagina}
+      />
     </>
   );
 }

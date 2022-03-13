@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./contexts/authContext";
 import { logout } from "./api/services/auth";
+
+import Layout from "./components/Layout/Layout";
+
+import Home from "./pages/Home";
 import Article from "./pages/Article";
+import RecoverAccount from "./pages/RecoverAccount";
 
 function App({ isAlreadyLogged }) {
   const [isLogged, setIsLogged] = useState(isAlreadyLogged);
@@ -42,10 +46,16 @@ function App({ isAlreadyLogged }) {
     <AuthContextProvider
       value={{ isLogged, accountLogin, accountLogout, dataUser }}
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/articles/:id" element={<Article />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles/:id" element={<Article />} />
+          <Route
+            path="/recuperatucuenta/:id/:token"
+            element={<RecoverAccount />}
+          />
+        </Routes>
+      </Layout>
     </AuthContextProvider>
   );
 }

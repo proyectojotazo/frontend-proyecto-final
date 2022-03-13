@@ -1,11 +1,11 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import { setAuthorizationHeader } from './api/client';
-import App from './App';
-import storage from './utils/storage';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import ReactDOM from "react-dom";
+import { setAuthorizationHeader } from "./api/client";
+import App from "./App";
+import storage, { session } from "./utils/storage";
 
-const accesToken = storage.get('auth');
+const accesToken = storage.get("auth") || session.get("auth");
 setAuthorizationHeader(accesToken);
 
 ReactDOM.render(
@@ -14,5 +14,5 @@ ReactDOM.render(
       <App isAlreadyLogged={!!accesToken} />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

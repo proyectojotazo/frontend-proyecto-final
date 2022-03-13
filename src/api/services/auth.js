@@ -3,7 +3,7 @@ import client, {
   setAuthorizationHeader,
 } from "../client";
 
-import storage from "../../utils/storage";
+import storage, { session } from "../../utils/storage";
 
 export const register = (data) => {
   const userData = {
@@ -25,6 +25,8 @@ export const login = (data) => {
     setAuthorizationHeader(token);
     if (data.remember) {
       storage.set("auth", token);
+    } else {
+      session.set("auth", token);
     }
   });
 };
@@ -40,4 +42,12 @@ export const recoverPassword = (data) => {
   return client.post("password-reset", email).catch((error) => {
     return Promise.reject(error);
   });
+};
+
+export const recoverAccount = (data) => {
+  return client
+    .post(`password-reset/${data.id}/${data.token}`, data.password)
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 };

@@ -19,7 +19,6 @@ import SweetAlert2 from "react-sweetalert2";
 
 function Nav() {
   const [showLogin, setShowLogin] = useState({});
-  const [showRegister, setShowRegister] = useState({});
   const [mobile, setMobile] = useState(false);
   const [sidebar, setSidebar] = useState(false);
 
@@ -53,19 +52,17 @@ function Nav() {
     };
   }, []);
 
-
   return (
     <>
       <nav className="nav">
         <div className="logo">
           <Link to="/">
-            <Logo className="logoImg"/>
+            <Logo className="logoImg" />
             {/* <img src={LogoMa} className="logoImg"/> */}
           </Link>
         </div>
-
         {!mobile && (
-          < ul className="nav-list">
+          <ul className="nav-list">
             <li className="navbar-item">
               <NavLink to="/" className="nav-link">
                 <Lupa className="icon icon-lupa" />
@@ -100,8 +97,8 @@ function Nav() {
               </div>
             </li>
           </ul>
-        )} {mobile}
-
+        )}{" "}
+        {mobile}
         {mobile && (
           <div className="sidebar-toggle">
             {sidebar ? (
@@ -155,11 +152,7 @@ function Nav() {
             </div>
           </li>
         </ul>
-
-
       </div>
-
-
     </>
   );
 }
