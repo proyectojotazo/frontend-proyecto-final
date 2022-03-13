@@ -4,22 +4,38 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Info from "./Info";
 
 function Articulo () {
-    const [art, setArt] = useState('')
-    const navigat = useNavigate()
+    const [art, setArticulo] = useState('')
     const location = useLocation()
-
+    const id = location.pathname.split('/')[2]
 
     useEffect(() => {
-        const id = location.pathname.split('/')[2]
-        getArticulosId(id).then((articulo) => {
-            setArt(articulo);
+        getArticulosId(id).then((x) => {
+            setArticulo(x);
         });
-    }, [art]);
+    }, [id]);
+
 
     return(
         <div>
-            {/* <Info art={art}/> */}
+            { art && (
+                <Info art={art}/>
+                
+            )}
+            
+            <div className="imgportada">
+                <img  src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`} alt="avatar"/>
+            </div>
+            
             <h1>{art.titulo}</h1>
+            <h3>{art.textoIntroductorio}</h3>
+            <p>{art.contenido}</p>
+            <div>
+                {/* { art && art.comentarios.length>0 && (
+                    art.comentarios.map((x)=>(
+                        <p>{x}</p>
+                    ))
+                )} */}
+            </div>
         </div>
     );
 }

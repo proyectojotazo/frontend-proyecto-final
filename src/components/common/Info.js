@@ -5,7 +5,7 @@ import AuthContext from "../../contexts/authContext";
 
 function Info ({art}) {
     const date = new Date(art.fechaPublicacion)
-    const representarFecha = date.toDateString()
+    const representarFecha = date.toUTCString()
     const { isLogged } = useContext(AuthContext)
 
 
