@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { getArticulosCategorias } from "../../api/services/articulos";
 import Card from "./Card";
-import { Link } from "react-router-dom";
+
 import "../common/articulos.scss";
 
 function Articulos(props) {
