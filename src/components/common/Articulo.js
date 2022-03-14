@@ -38,7 +38,9 @@ function Articulo() {
       <Info art={art} />
 
       <div className="articulo__imgPortada">
-        <img src={parseImgUrl(art.archivoDestacado)} alt="Imagen titular" />
+        {art.archivoDestacado && (
+          <img src={parseImgUrl(art.archivoDestacado)} alt="Imagen titular" />
+        )}
       </div>
 
       <h1 className="articulo__titulo">{art.titulo}</h1>
@@ -48,13 +50,13 @@ function Articulo() {
       <div className="articulo__container-comentarios">
         Comentarios:
         {art.comentarios.map((comentario) => (
-            <p
-              key={comentario.fechaPublicacion}
-              className="comentario__texto-comentario"
-            >
-              {comentario.contenido}
-            </p>
-          ))}
+          <p
+            key={comentario.fechaPublicacion}
+            className="comentario__texto-comentario"
+          >
+            {comentario.contenido}
+          </p>
+        ))}
       </div>
     </div>
   )
