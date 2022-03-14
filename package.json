@@ -17,6 +17,8 @@
     "react-scripts": "5.0.0",
     "react-sweetalert2": "^0.5.1",
     "sass": "^1.49.9",
+    "slate": "^0.73.1",
+    "slate-react": "^0.74.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
