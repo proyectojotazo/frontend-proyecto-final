@@ -7,16 +7,14 @@ const client = axios.create({
 client.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    if (error.response.status === 302) {
+    if (error.response?.status === 302) {
       return Promise.resolve(error.response.data)
     }
     if (!error.response) {
       return Promise.reject({ message: error.message })
     }
     return Promise.reject({
-      message: error.response.statusText,
-      ...error.response,
-      ...error.response.data,
+      ...error.response.data
     })
   }
 )

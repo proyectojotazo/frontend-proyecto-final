@@ -1,15 +1,7 @@
-import React, { useState } from "react"
-import Articulo from "../components/common/Articulo";
-import Layout from "../components/Layout/Layout";
+import Articulo from '../components/common/Articulo'
 
-function Article () {
-    return (
-        <>
-            <Layout>
-                <Articulo/>
-            </Layout>
-        </>
-    )
+function Article() {
+  return <Articulo />
 }
 
-export default Article;
+export default Article
