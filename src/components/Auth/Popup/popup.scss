@@ -1,4 +1,4 @@
-@import "../../../sass/variablesSass.scss";
+@import '../../../sass/variablesSass.scss';
 
 a {
   cursor: pointer;
@@ -55,7 +55,7 @@ a {
 
   .remember-container {
     display: block;
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       margin-right: 5px;
     }
   }
@@ -92,7 +92,7 @@ a {
 
 .form-custom-error {
   margin-top: 15px;
-  padding: 10px;
+  padding: 5px;
   background-color: #ff5555;
   font-size: 15px;
   font-family: $tSubtitulo;

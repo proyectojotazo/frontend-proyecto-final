@@ -1,4 +1,4 @@
-@import "../../sass/variablesSass.scss";
+@import '../../sass/variablesSass.scss';
 
 .pagination-box {
   margin-top: 1.5rem;
@@ -23,7 +23,12 @@
         font-size: 1.5rem;
       }
       .paginacionPalabra {
-        color: $comment;
+        color: #fff;
+      }
+      &:hover {
+        text-shadow: 0 0 7px #947af9, 0 0 10px #947af9, 0 0 21px #947af9,
+          0 0 42px #bd93f9, 0 0 82px #bd93f9, 0 0 92px #bd93f9,
+          0 0 102px #bd93f9, 0 0 151px #bd93f9;
       }
       .order-select {
         color: $green;
@@ -35,6 +40,12 @@
           background-color: $background;
           color: $purple;
           font-weight: bold;
+        }
+        &:hover {
+          text-shadow: 0 0 7px #50fa34, 0 0 10px #50fa34, 0 0 21px #50fa34,
+            0 0 42px #50fa7b, 0 0 82px #50fa7b, 0 0 92px #50fa7b,
+            0 0 102px #50fa7b, 0 0 151px #50fa7b;
+          color: #fff;
         }
       }
     }
