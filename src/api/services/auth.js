@@ -5,6 +5,26 @@ import client, {
 
 import storage, { session } from "../../utils/storage";
 
+// GET
+  export const getUser = async (nickname) => {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/users/${nickname}`;
+    try {
+      return await client.get(url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // POST
+  export const artFav = async (idArticulo) => {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/users/articles/favourites/${idArticulo}`;
+    try {
+      return await client.post(url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 export const register = (data) => {
   const userData = {
     nombre: data.name,

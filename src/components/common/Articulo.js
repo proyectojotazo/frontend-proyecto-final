@@ -18,7 +18,7 @@ function Articulo () {
     return(
         <div>
             { art && (
-                <Info art={art}/>
+                <Info art={art} _id={art._id}/>
                 
             )}
             

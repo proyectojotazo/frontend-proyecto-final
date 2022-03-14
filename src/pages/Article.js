@@ -5,9 +5,7 @@ import Layout from "../components/Layout/Layout";
 function Article () {
     return (
         <>
-            <Layout>
-                <Articulo/>
-            </Layout>
+            <Articulo/>
         </>
     )
 }
