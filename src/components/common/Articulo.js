@@ -35,7 +35,7 @@ function Articulo() {
 
   return (
     <div className="articulo__container">
-      <Info art={art} />
+      <Info art={art}/>
 
       <div className="articulo__imgPortada">
         {art.archivoDestacado && (
