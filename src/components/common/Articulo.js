@@ -85,10 +85,10 @@ function Articulo() {
                             <p key={comentario.id} className="comentario__texto-comentario-usuario">
                                 {obtenerNick(comentario.usuario)}
                             </p>
-                            <p key={comentario.id} className="comentario__texto-comentario-fecha">
+                            <p key={comentario.fechaPublicacion} className="comentario__texto-comentario-fecha">
                                 {formatearFecha(comentario.fechaPublicacion)}
                             </p>
-                            <p key={comentario.fechaPublicacion} className="comentario__texto-comentario-contenido">
+                            <p key={Math.random()} className="comentario__texto-comentario-contenido">
                                 {comentario.contenido}
                             </p>
                         </div>
