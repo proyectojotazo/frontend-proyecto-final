@@ -1,6 +1,6 @@
 
-const getAuthUserId = () => {
-    const token = localStorage.getItem('auth')
+const getAuthUserNickname = () => {
+    const token = localStorage.getItem('auth') || sessionStorage.getItem('auth') 
     if (token === null) {
         return null
     }
@@ -20,4 +20,4 @@ const getAuthUserId = () => {
     }
 }
 
-export default getAuthUserId;
+export default getAuthUserNickname;

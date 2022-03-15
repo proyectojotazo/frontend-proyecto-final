@@ -3,14 +3,20 @@ import "./info.scss"
 import { FaHeart, FaRegHeart, FaRegComments, FaRegPaperPlane, FaRegEdit } from "react-icons/fa"
 import { useAuth } from "../../contexts/authContext";
 import { artFav, getUser } from "../../api/services/auth";
+import getAuthUserNickname from "../../utils/token";
+import Spinner from './Spinner'
 
-function Info ({art}) {
+function Info ({art, className='info padre'}) {
     const date = new Date(art.fechaPublicacion)
     const representarFecha = date.toUTCString()
-    const { isLogged, dataUser } = useAuth()
-
-
-    const [corazonRelleno, setCorazon] = useState(false)
+    const { isLogged} = useAuth()
+    const [corazonRelleno, setCorazon] = useState()
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState({
+        message: '',
+        active: false,
+      })
+    const nickname = getAuthUserNickname()
 
     const articuloEsFavorito =(usuarioArticulos)=>{
         const resultado = usuarioArticulos.map((x)=>{if (x._id===art._id) { return true } else {return false}});
@@ -22,20 +28,31 @@ function Info ({art}) {
         artFav(artId)
     }
 
+    
+    
     useEffect(() => {
-        dataUser.nickname && 
-        getUser(dataUser.nickname).then((x) => {
-          const articulosFavoritos = x.usuario.articulos.favoritos;
-          if (articuloEsFavorito(articulosFavoritos)) {
-            setCorazon(true)
-          } else {
-            setCorazon(false) 
-          }
+        isLogged && 
+        getUser(nickname)
+        .then((x) => {
+            const articulosFavoritos = x.usuario.articulos.favoritos;
+            if (articuloEsFavorito(articulosFavoritos)) {
+                setCorazon(true)
+            } else {
+                setCorazon(false) 
+            }
         })
-      }, [corazonRelleno]);
+        .catch((err) => setError({ message: err.message, active: true }))
+        .finally(() => setLoading(false))
+    }, [corazonRelleno, isLogged]);
+
+    if (error.active) {
+        return <div>{error.message}</div>
+    }
+
+    if (loading) return <Spinner />
 
     return (
-        <div className="info padre">
+        <div className={className}>
                 <div className="info">
                     <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
                     <div>
@@ -43,8 +60,8 @@ function Info ({art}) {
                         <p className="fecha">{representarFecha}</p>
                     </div>
                 </div>
-                <div className="iconosInfo">
-                    <ul className="uinfo">
+                <div className='iconosInfo'>
+                    <ul className='uinfo'>
                         <li className="listaIconos "><FaRegComments className="iconos comentarios"/>{art.comentarios.length}</li>
                         {isLogged && 
                         <>
