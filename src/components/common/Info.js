@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./info.scss"
 import { FaHeart, FaRegHeart, FaRegComments, FaRegPaperPlane, FaRegEdit } from "react-icons/fa"
-import AuthContext from "../../contexts/authContext";
-import getAuthUserId from "../../utils/token";
+import { useAuth } from "../../contexts/authContext";
 import { artFav, getUser } from "../../api/services/auth";
 
 function Info ({art}) {
     const date = new Date(art.fechaPublicacion)
     const representarFecha = date.toUTCString()
-    const { isLogged } = useContext(AuthContext)
-    const usuarioLogueado= getAuthUserId()
+    const { isLogged, dataUser } = useAuth()
 
 
     const [corazonRelleno, setCorazon] = useState(false)
@@ -25,15 +23,15 @@ function Info ({art}) {
     }
 
     useEffect(() => {
-        getUser(usuarioLogueado).then((x) => {
+        dataUser.nickname && 
+        getUser(dataUser.nickname).then((x) => {
           const articulosFavoritos = x.usuario.articulos.favoritos;
           if (articuloEsFavorito(articulosFavoritos)) {
             setCorazon(true)
           } else {
             setCorazon(false) 
           }
-          
-        });
+        })
       }, [corazonRelleno]);
 
     return (
