@@ -42,9 +42,9 @@ h2#swal2-title {
     display: flex;
   }
 
-  .logoImg{
+  .logoImg {
     height: 100%;
-    object-fit:contain;
+    object-fit: contain;
     object-position: center center;
     image-rendering: crisp-edges;
   }
@@ -65,31 +65,34 @@ h2#swal2-title {
     transition: all 200ms ease;
     cursor: pointer;
   }
-    // .nav-link {
-    //   text-decoration: none;
-    //   height: 100%;
-    //   width: 100%;
-    //   display: flex;
-    //   padding: 5px 15px 5px 5px;
-    //   position: relative;
-    //   transition: all 200ms ease;
-    //   &:hover {
-    //     color: cadetblue;
+  // .nav-link {
+  //   text-decoration: none;
+  //   height: 100%;
+  //   width: 100%;
+  //   display: flex;
+  //   padding: 5px 15px 5px 5px;
+  //   position: relative;
+  //   transition: all 200ms ease;
+  //   &:hover {
+  //     color: cadetblue;
 
-    //     &::before {
-    //       opacity: 1;
-    //     }
-    //   }
-    // }
+  //     &::before {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 
-    .icon {
-      width: 30px;
-      height: 30px;
-    }
-  
-
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
 
   .navbar-home {
     color: black;
+  }
+
+  .userMenu {
+    width: max-content;
+    position: absolute;
   }
 }
