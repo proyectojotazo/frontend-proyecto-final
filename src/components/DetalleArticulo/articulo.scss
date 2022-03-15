@@ -1,0 +1,20 @@
+.articulo__container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90vw;
+}
+
+.articulo__imgPortada-wrapper {
+  & img{
+    width: 100%;
+  }
+}
+
+.articulo__titulo, .articulo__textoIntroductorio{
+  text-align: center;
+}
+
+.articulo__contenido {
+  text-align: justify;
+}

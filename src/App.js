@@ -6,7 +6,7 @@ import { logout } from './api/services/auth';
 import Layout from './components/Layout/Layout';
 
 import Home from './pages/Home';
-import Article from './pages/Article';
+import DetailArticle from './pages/DetailArticle';
 import RecoverAccount from './pages/RecoverAccount';
 import CreaArticle from './pages/CreaArticle';
 
@@ -50,7 +50,7 @@ function App({ isAlreadyLogged }) {
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/articles/:id" element={<Article />} />
+                    <Route path="/articles/:id" element={<DetailArticle />} />
                     <Route path="/crear" element={<CreaArticle />} />
                     <Route
                         path="/recuperatucuenta/:id/:token"
