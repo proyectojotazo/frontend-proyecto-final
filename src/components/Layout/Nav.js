@@ -49,7 +49,7 @@ function Nav() {
                     </NavLink>
                 </li>
                 <li className="navbar-item">
-                    <NavLink to="/" className="nav-link">
+                    <NavLink to="/crear" className="nav-link">
                         <Nuevo className="icon icon-nuevo" />
                     </NavLink>
                 </li>
@@ -106,4 +106,4 @@ function Nav() {
         </nav>
     );
 }
-export default Nav
+export default Nav;
