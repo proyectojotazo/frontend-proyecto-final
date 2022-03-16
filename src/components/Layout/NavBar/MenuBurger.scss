@@ -1,93 +1,91 @@
 @import '../../../sass/variablesSass.scss';
 
 .sidebar-toggle {
-  width: 65vw;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  color: $orange;
+    width: 65vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: $orange;
 }
 
 .sidebar-toggle-logo {
-  font-size: 2rem;
-  color: $orange;
-  cursor: pointer;
-  font-weight: 100;
+    font-size: 2.2rem;
+    color: $orange;
+    cursor: pointer;
+    font-weight: 100;
 }
 
 .sidebar {
-  width: 4.5rem;
-  display: flex;
-  background-color: #2a2c37;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 60px 100px rgba(12, 10, 24, 0.6);
-  border-radius: 12px;
-  height: 100vw;
-  top: 10vh;
-  left: -100px;
-  padding: 5px;
-  margin: 10px;
-  transition: 0.3s all ease-in-out;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: space-between;
-  align-items: center;
-  position: absolute;
-}
-
-.sidebar.active {
-  left: 0;
-  height: max-content;
-  margin: 0px;
-  width: 100vh;
+    width: 4.5rem;
+    display: flex;
+    background-color: #2a2c37;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 60px 100px rgba(12, 10, 24, 0.6);
+    border-radius: 12px;
+    height: 100vw;
+    top: 10vh;
+    left: -100px;
+    padding: 15px;
+    margin: 15px;
+    transition: 0.3s all ease-in-out;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    align-items: center;
+    position: absolute;
 }
 
 .sidebar-items {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  transition: 0.2s all ease-out;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s all ease-out;
+    cursor: pointer;
 }
 
 .sidebar-item {
-  list-style: none;
-  margin: 15px;
-  width: 100%;
-  height: 7rem;
-  transition: all 200ms ease;
-  cursor: pointer;
+    list-style: none;
+    margin: 15px;
+    width: 100%;
+    height: 7rem;
+    transition: all 200ms ease;
+    cursor: pointer;
 }
 
-.sidebar-item a {
-  text-decoration: none;
-  color: #677499;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.2s all ease-out;
+item-usuario .sidebar-item a {
+    text-decoration: none;
+    color: #677499;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s all ease-out;
 }
 
 .sidebar-item a span {
-  margin-left: 1.5rem;
-  font-size: 1.4rem;
+    margin-left: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .sidebar-item a:hover {
-  color: $orangeBrillo;
+    color: $orangeBrillo;
 }
 
 .sidebar .btn {
-  margin-top: 2.4rem;
-  width: 100%;
+    margin-top: 2.4rem;
+    width: 100%;
 }
 
-@media screen and (max-width: 1500px) {
-  .sidebar.active {
-    width: 100vw;
-  }
+@media (max-width: 768px) {
+    .sidebar.active {
+        left: 0;
+        height: 70vh;
+        margin: 10px;
+        width: 15vh;
+        top: 10%;
+        padding-top: 25px;
+    }
 }
