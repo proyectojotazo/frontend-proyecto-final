@@ -8,17 +8,18 @@
         margin-bottom: 0.5rem;
     }
     .profile-avatar {
-        width: 50%;
         justify-self: center;
         margin-bottom: 0.5rem;
         .avatar {
+            width: 10rem;
+            height: 10rem;
             border-radius: 50%;
         }
     }
     .profile-sendfile {
         position: relative;
         display: inline-block;
-        width: 40%;
+        width: 10rem;
         justify-self: center;
         margin-bottom: 0.9rem;
         &:before {
@@ -124,6 +125,7 @@
     }
     .profile-save {
         justify-self: center;
+        margin-bottom: 0.6rem;
         .edit-button {
             color: #fff;
             background-color: $purple;
@@ -144,6 +146,21 @@
             &:hover {
                 color: $green;
                 background-color: $current_line;
+            }
+        }
+    }
+    .profile-delete {
+        justify-self: center;
+        margin-bottom: 0.6rem;
+        .delete-button {
+            color: #000;
+            background-color: $red;
+            padding: 0.5rem;
+            border-radius: 5%;
+            margin-right: 0.1rem;
+            &:hover {
+                color: #000;
+                background-color: $redBrillo;
             }
         }
     }

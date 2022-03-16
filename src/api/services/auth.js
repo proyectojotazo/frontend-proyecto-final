@@ -83,3 +83,14 @@ export const userUpdate = async (id, data) => {
         console.log(error);
     }
 };
+
+// DELETE
+export const deleteUser = async (id) => {
+    try {
+        await client.delete(`users/${id}`);
+        storage.remove('auth');
+        session.remove('auth');
+    } catch (error) {
+        console.log(error);
+    }
+};

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/authContext';
-import { getUser, userUpdate } from '../api/services/auth';
+import { getUser, userUpdate, deleteUser } from '../api/services/auth';
 
 import './MyAccount.scss';
 
@@ -62,8 +62,14 @@ function MyAccount() {
         }
     };
 
-    console.log(datosUsuario);
-    console.log(datosNuevos);
+    const deleteAccount = async () => {
+        try {
+            await deleteUser(datosUsuario._id);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -161,6 +167,14 @@ function MyAccount() {
                         onClick={() => submitChanges()}
                     >
                         Guardar cambios
+                    </button>
+                </div>
+                <div className="profile-delete">
+                    <button
+                        className="delete-button"
+                        onClick={() => deleteAccount()}
+                    >
+                        Eliminar cuenta
                     </button>
                 </div>
             </div>
