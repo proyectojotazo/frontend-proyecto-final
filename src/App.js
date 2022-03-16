@@ -36,7 +36,7 @@ function App({ isAlreadyLogged }) {
             try {
                 const userJSON = atob(b64Data);
                 const user = JSON.parse(userJSON);
-                return user;
+                return user.nickname;
             } catch (error) {
                 console.error('Error while decoding JWT Token', error);
                 return null;
