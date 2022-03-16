@@ -76,9 +76,10 @@ export const recoverAccount = (data) => {
 };
 
 // PATCH
-// Función provisional
-export const userUpdate = (id, data) => {
-    return client.patch(`users/${id}`, data).catch((error) => {
-        return Promise.reject(error);
-    });
+export const userUpdate = async (id, data) => {
+    try {
+        return await client.patch(`users/${id}`, data);
+    } catch (error) {
+        console.log(error);
+    }
 };
