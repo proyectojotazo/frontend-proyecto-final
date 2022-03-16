@@ -1,57 +1,89 @@
 @import '../../sass/variablesSass.scss';
 
-.lds-ellipsis {
+.lds-grid {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
 }
-.lds-ellipsis div {
+.lds-grid div {
   position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: $purple;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  background: rgb(255, 255, 255);
+  animation: lds-grid 1.2s linear infinite;
 }
-.lds-ellipsis div:nth-child(1) {
+.lds-grid div:nth-child(1) {
+  top: 8px;
   left: 8px;
-  animation: lds-ellipsis1 0.6s infinite;
+  animation-delay: 0s;
 }
-.lds-ellipsis div:nth-child(2) {
-  left: 8px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(3) {
+.lds-grid div:nth-child(2) {
+  top: 8px;
   left: 32px;
-  animation: lds-ellipsis2 0.6s infinite;
+  animation-delay: -0.4s;
 }
-.lds-ellipsis div:nth-child(4) {
+.lds-grid div:nth-child(3) {
+  top: 8px;
   left: 56px;
-  animation: lds-ellipsis3 0.6s infinite;
+  animation-delay: -0.8s;
 }
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%,
   100% {
-    transform: scale(1);
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.5;
   }
 }
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(54, 54, 54, 0.267);
+  opacity: 0.8;
 }
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
+
+.centro{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }

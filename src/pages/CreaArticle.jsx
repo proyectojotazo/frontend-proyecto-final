@@ -3,7 +3,15 @@ import React, { useCallback, useState, useMemo } from 'react';
 import { createEditor, Editor, Transforms, Text } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 
-import { CodeElement, DefaultElement, Leaf } from '../hooks/GutembergHooks';
+import {
+    CodeElement,
+    DefaultElement,
+    Leaf,
+    serialize,
+    deserialize,
+} from '../hooks/GutembergHooks';
+
+import '../components/TextEditor/texteditor.scss';
 
 const CustomEditor = {
     isBoldMarkActive(editor) {
@@ -44,16 +52,14 @@ const CustomEditor = {
 
 const CreaArticle = () => {
     const editor = useMemo(() => withReact(createEditor()), []);
-    const [value, setValue] = useState([
-        {
-            type: 'paragraph',
-            children: [{ text: 'A first of text in a paragraph.' }],
-        },
-        {
-            type: 'paragraph',
-            children: [{ text: 'A second of text in a paragraph.' }],
-        },
-    ]);
+    const [value, setValue] = useState(
+        JSON.parse(localStorage.getItem('content')) || [
+            {
+                type: 'paragraph',
+                children: [{ text: 'A line of text in a paragraph.' }],
+            },
+        ]
+    );
 
     const renderElement = useCallback((props) => {
         switch (props.element.type) {
@@ -73,7 +79,24 @@ const CreaArticle = () => {
         <Slate
             editor={editor}
             value={value}
-            onChange={(value) => setValue(value)}
+            onChange={(value) => {
+                setValue(value);
+                const isAstChange = editor.operations.some(
+                    (op) => 'set_selection' !== op.type
+                );
+                if (isAstChange) {
+                    // Save the value to Local Storage.
+                    const content = JSON.stringify(value);
+                    localStorage.setItem('content', content);
+
+                    const nodes = {
+                        children: value,
+                    };
+
+                    const html = serialize(nodes);
+                    console.log(html);
+                }
+            }}
         >
             <div>
                 <button
@@ -81,6 +104,7 @@ const CreaArticle = () => {
                         event.preventDefault();
                         CustomEditor.toggleBoldMark(editor);
                     }}
+                    className="gutemberg-button"
                 >
                     Bold
                 </button>
@@ -89,6 +113,7 @@ const CreaArticle = () => {
                         event.preventDefault();
                         CustomEditor.toggleCodeBlock(editor);
                     }}
+                    className="gutemberg-button"
                 >
                     Code Block
                 </button>

@@ -1,22 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./info.scss"
 import { FaHeart, FaRegHeart, FaRegComments, FaRegPaperPlane, FaRegEdit } from "react-icons/fa"
-import AuthContext from "../../contexts/authContext";
-import getAuthUserId from "../../utils/token";
+import { useAuth } from "../../contexts/authContext";
 import { artFav, getUser } from "../../api/services/auth";
+import getAuthUserNickname from "../../utils/token";
+import Spinner from './Spinner'
 
-function Info ({art}) {
+function Info({ art, className = 'info padre' }) {
     const date = new Date(art.fechaPublicacion)
     const representarFecha = date.toUTCString()
-    const { isLogged } = useContext(AuthContext)
-    const usuarioLogueado= getAuthUserId()
+    const { isLogged } = useAuth()
+    const [corazonRelleno, setCorazon] = useState()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({
+        message: '',
+        active: false,
+    })
+    const nickname = getAuthUserNickname()
 
-
-    const [corazonRelleno, setCorazon] = useState(false)
-
-    const articuloEsFavorito =(usuarioArticulos)=>{
-        const resultado = usuarioArticulos.map((x)=>{if (x._id===art._id) { return true } else {return false}});
-        return resultado.find((x)=>x===true ?true :false)
+    const articuloEsFavorito = (usuarioArticulos) => {
+        const resultado = usuarioArticulos.map((x) => { if (x._id === art._id) { return true } else { return false } });
+        return resultado.find((x) => x === true ? true : false)
     }
 
     const artFavorito = (artId) => {
@@ -24,45 +28,56 @@ function Info ({art}) {
         artFav(artId)
     }
 
+
+
     useEffect(() => {
-        getUser(usuarioLogueado).then((x) => {
-          const articulosFavoritos = x.usuario.articulos.favoritos;
-          if (articuloEsFavorito(articulosFavoritos)) {
-            setCorazon(true)
-          } else {
-            setCorazon(false) 
-          }
-          
-        });
-      }, [corazonRelleno]);
+        isLogged &&
+            getUser(nickname)
+                .then((x) => {
+                    const articulosFavoritos = x.usuario.articulos.favoritos;
+                    if (articuloEsFavorito(articulosFavoritos)) {
+                        setCorazon(true)
+                    } else {
+                        setCorazon(false)
+                    }
+                })
+                .catch((err) => setError({ message: err.message, active: true }))
+                .finally(() => setLoading(false))
+    }, [corazonRelleno, isLogged]);
+
+    if (error.active) {
+        return <div>{error.message}</div>
+    }
+
+    if (loading) return <Spinner />
 
     return (
-        <div className="info padre">
-                <div className="info">
-                    <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
-                    <div>
-                        <p className="usuario">{art.usuario[0].nickname} </p>
-                        <p className="fecha">{representarFecha}</p>
-                    </div>
+        <div className={className}>
+            <div className="info">
+                <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
+                <div>
+                    <p className="usuario">{art.usuario[0].nickname} </p>
+                    <p className="fecha">{representarFecha}</p>
                 </div>
-                <div className="iconosInfo">
-                    <ul className="uinfo">
-                        <li className="listaIconos "><FaRegComments className="iconos comentarios"/>{art.comentarios.length}</li>
-                        {isLogged && 
+            </div>
+            <div className='iconosInfo'>
+                <ul className='uinfo'>
+                    <li className="listaIconos "><FaRegComments className="iconos comentarios" />{art.comentarios.length}</li>
+                    {isLogged &&
                         <>
-                        {corazonRelleno===true &&
-                        <li className="listaIconos " onClick={()=>artFavorito(art._id)}><FaHeart className="iconos corazon"/></li>
-                        } 
-                        {corazonRelleno===false &&
-                        <li className="listaIconos " onClick={()=>artFavorito(art._id)}><FaRegHeart className="iconos corazon"/></li>
-                        }
-                        
-                        <li className="listaIconos "><FaRegEdit className="iconos contestar"/></li>
+                            {corazonRelleno === true &&
+                                <li className="listaIconos " onClick={() => artFavorito(art._id)}><FaHeart className="iconos corazon" /></li>
+                            }
+                            {corazonRelleno === false &&
+                                <li className="listaIconos " onClick={() => artFavorito(art._id)}><FaRegHeart className="iconos corazon" /></li>
+                            }
+
+                            <li className="listaIconos "><FaRegEdit className="iconos contestar" /></li>
                         </>}
-                        <li className="listaIconos "><FaRegPaperPlane className="iconos enviar"/></li>
-                        
-                    </ul>
-                </div>
+                    <li className="listaIconos "><FaRegPaperPlane className="iconos enviar" /></li>
+
+                </ul>
+            </div>
         </div>
     )
 }

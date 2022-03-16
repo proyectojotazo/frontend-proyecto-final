@@ -16,9 +16,14 @@ import { FaFacebook } from 'react-icons/fa';
 import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
+import Sidebar from './sidebar';
 
 function Nav() {
     const [showLogin, setShowLogin] = useState([]);
+    const [userMenu, setUserMenu] = useState(false);
+    const { isLogged, accountLogout } = useAuth();
+    const [menuburger, setMenuburger] = useState(false);
+    const [sidebar, setSidebar] = useState(false);
 
     function LoginPopup() {
         setShowLogin({
@@ -28,50 +33,86 @@ function Nav() {
         });
     }
 
-    return (
-        <nav className="nav">
-            <div className="logo">
-                <Link to="/">
-                    <Logo className="logoImg" />
-                </Link>
-            </div>
+    const showUserMenu = () => {
+        setUserMenu(!userMenu);
+    };
 
-            <ul className="nav-list">
-                <li className="navbar-item">
-                    <NavLink to="/" className="nav-link">
-                        <Lupa className="icon icon-lupa" />
-                    </NavLink>
-                </li>
-                <li className="navbar-item">
-                    <NavLink to="/" className="nav-link">
-                        <Nuevo className="icon icon-nuevo" />
-                    </NavLink>
-                </li>
-                <li className="navbar-item">
-                    <NavLink className="nav-link" to="/escribir">
-                        <Inicio className="icon icon-inicio" />
-                    </NavLink>
-                </li>
-                <li className="navbar-item">
-                    <div>
-                        <Usuario
-                            className="icon icon-usuario"
-                            onClick={() => LoginPopup()}
-                        />
-                        <SweetAlert2
-                            {...showLogin}
-                            didClose={() => {
-                                setShowLogin({
-                                    show: false,
-                                });
-                            }}
-                        >
-                            <Popup />
-                        </SweetAlert2>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+    return (
+        <>
+            <nav className="nav">
+                <div className="logo">
+                    <Link to="/">
+                        <Logo className="logoImg" />
+                    </Link>
+                </div>
+
+                <ul className="nav-list">
+                    <li className="navbar-item">
+                        <NavLink to="/" className="nav-link">
+                            <Lupa className="icon icon-lupa" />
+                        </NavLink>
+                    </li>
+                    <li className="navbar-item">
+                        <NavLink to="/crear" className="nav-link">
+                            <Nuevo className="icon icon-nuevo" />
+                        </NavLink>
+                    </li>
+                    <li className="navbar-item">
+                        <NavLink className="nav-link" to="/escribir">
+                            <Inicio className="icon icon-inicio" />
+                        </NavLink>
+                    </li>
+                    <li className="navbar-item">
+                        <div>
+                            {!isLogged ? (
+                                <>
+                                    <Usuario
+                                        className="icon icon-usuario"
+                                        onClick={() => LoginPopup()}
+                                    />
+                                    <SweetAlert2
+                                        {...showLogin}
+                                        didClose={() => {
+                                            setShowLogin({
+                                                show: false,
+                                            });
+                                        }}
+                                    >
+                                        <Popup />
+                                    </SweetAlert2>
+                                </>
+                            ) : (
+                                <>
+                                    <Usuario
+                                        className="icon icon-usuario"
+                                        onClick={() => showUserMenu()}
+                                    />
+                                    {userMenu && (
+                                        <ul className="userMenu">
+                                            <li>
+                                                <NavLink
+                                                    to="/my-account"
+                                                    className="dropdown-user"
+                                                >
+                                                    Perfil
+                                            </NavLink>
+                                            </li>
+                                            <li onClick={accountLogout}>
+                                                Cerrar Sesión
+                                        </li>
+                                        </ul>
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    </li>
+                </ul>
+
+                <Sidebar></Sidebar>
+            </nav>
+
+
+        </>
     );
 }
 export default Nav;

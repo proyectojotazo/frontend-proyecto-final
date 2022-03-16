@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/authContext';
 import { logout } from './api/services/auth';
-
+import PrivateRoute from './routes/PrivateRoute';
 import Layout from './components/Layout/Layout';
 
 import Home from './pages/Home';
 import DetailArticle from './pages/DetailArticle';
 import RecoverAccount from './pages/RecoverAccount';
 import CreaArticle from './pages/CreaArticle';
+import MyAccount from './pages/MyAccount';
 
 function App({ isAlreadyLogged }) {
     const [isLogged, setIsLogged] = useState(isAlreadyLogged);
@@ -36,7 +37,7 @@ function App({ isAlreadyLogged }) {
             try {
                 const userJSON = atob(b64Data);
                 const user = JSON.parse(userJSON);
-                return user;
+                return user.nickname;
             } catch (error) {
                 console.error('Error while decoding JWT Token', error);
                 return null;
@@ -52,7 +53,22 @@ function App({ isAlreadyLogged }) {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/articles/:id" element={<DetailArticle />} />
-                    <Route path="/crear" element={<CreaArticle />} />
+                    <Route
+                        path="/crear"
+                        element={
+                            <PrivateRoute>
+                                <CreaArticle />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/my-account"
+                        element={
+                            <PrivateRoute>
+                                <MyAccount />
+                            </PrivateRoute>
+                        }
+                    />
                     <Route
                         path="/recuperatucuenta/:id/:token"
                         element={<RecoverAccount />}
