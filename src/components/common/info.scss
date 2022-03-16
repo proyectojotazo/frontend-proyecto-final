@@ -70,3 +70,23 @@ ul.info{
 .padre{
     padding-top: 1rem;
 }
+
+.infoArticulo {
+    .info{
+        width: auto;
+    }
+    .uinfo{
+        gap: 1rem;
+    }
+    .iconosInfo{
+        padding-right: 3rem;
+        display: flex;
+        max-width: inherit;;
+    }
+    .listaIconos{
+        align-items: center;
+    }
+    .corazon, .contestar, .enviar, .comentarios {
+        font-size: 2rem;
+    }
+}
