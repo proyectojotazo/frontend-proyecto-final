@@ -23,7 +23,8 @@ function App({ isAlreadyLogged }) {
 
     const dataUser = () => {
         if (isLogged) {
-            const token = localStorage.getItem('auth');
+            const token =
+                localStorage.getItem('auth') || sessionStorage.getItem('auth');
             if (token === null) {
                 return null;
             }

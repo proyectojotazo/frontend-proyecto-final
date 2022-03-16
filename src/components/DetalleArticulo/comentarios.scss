@@ -1,0 +1,19 @@
+@import '../../sass/variablesSass.scss';
+
+.comentarios__container {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    padding: .5rem 0;
+}
+
+.comentarios__titulo {
+    font-family: $tMaquina;
+    font-size: 1.3rem;
+    color: $yellow;
+    text-align: center;
+}
+
+.comentarios__no-commentarios{
+    text-align: center;
+}

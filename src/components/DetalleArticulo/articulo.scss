@@ -1,20 +1,46 @@
-.articulo__container{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 90vw;
+@import '../../sass/variablesSass.scss';
+
+.articulo__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90vw;
+}
+
+.articulo__titulo,
+.articulo__textoIntroductorio {
+    text-align: center;
+}
+
+.articulo__titulo{
+  font-family: $tTitulares;
+  font-size: 2rem;
+}
+
+.articulo__categorias-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.categorias__item{
+  font-family: $tMaquina;
+  font-size: 1.5rem;
 }
 
 .articulo__imgPortada-wrapper {
-  & img{
-    width: 100%;
-  }
+    & img {
+        width: 100%;
+    }
 }
 
-.articulo__titulo, .articulo__textoIntroductorio{
-  text-align: center;
+.articulo__textoIntroductorio{
+  font-family: $tSubtitulo;
+  font-size: 1.3rem;
 }
 
 .articulo__contenido {
+  font-family: $tContenido;
   text-align: justify;
+  size: 1rem;
 }

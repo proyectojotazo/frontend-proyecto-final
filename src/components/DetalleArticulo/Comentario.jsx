@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import Spinner from '../common/Spinner';
 import moment from 'moment';
 
 import { getUserById } from '../../api/services/usuarios';
 
+import './comentario.scss';
+
 function Comentario({ comentario }) {
     const userId = comentario.usuario[0];
 
-    console.log(comentario);
     const [usuario, setUsuario] = useState({});
     const [error, setError] = useState({
         message: '',
         active: false,
     });
+
     useEffect(() => {
         getUserById(userId)
             .then(setUsuario)
@@ -20,15 +21,18 @@ function Comentario({ comentario }) {
     }, [userId]);
 
     return (
-        <>
-            <p className="comentario__texto-comentario">
-                {comentario.contenido}
+        <div className="comentario__info-wrapper">
+            <p className="info__usuario">Usuario: {usuario.nickname}</p>
+            <p className="info__texto-comentario">
+                Comentario: {comentario.contenido}
             </p>
-            <p>Usuario: {usuario.nickname}</p>
-            <p>
-                {moment(comentario.fechaPublicacion).startOf('hour').fromNow()}
+            <p className="info__fecha-comentario">
+                Fecha:{' '}
+                {moment(comentario.fechaPublicacion)
+                    .startOf('miliseconds')
+                    .fromNow()}
             </p>
-        </>
+        </div>
     );
 }
 

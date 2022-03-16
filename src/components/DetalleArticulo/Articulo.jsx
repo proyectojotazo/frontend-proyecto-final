@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getArticulosId } from '../../api/services/articulos';
@@ -8,12 +8,16 @@ import Spinner from '../common/Spinner';
 import Comentarios from './Comentarios';
 import FormularioComentario from './FormularioComentario';
 
+import { useAuth } from '../../contexts/authContext';
+
 import './articulo.scss';
 
 const parseImgUrl = (url) =>
     `${process.env.REACT_APP_API_BASE_URL}/${url.replace('public\\', '')}`;
 
 function Articulo() {
+    const { isLogged } = useAuth();
+
     const [art, setArticulo] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState({
@@ -30,6 +34,13 @@ function Articulo() {
             .finally(() => setLoading(false));
     }, [id]);
 
+    const updateComments = (comment) => {
+        setArticulo((prev) => ({
+            ...prev,
+            comentarios: [...prev.comentarios, comment],
+        }));
+    };
+
     if (loading) return <Spinner />;
 
     if (error.active) {
@@ -38,6 +49,14 @@ function Articulo() {
 
     return (
         <div className="articulo__container">
+            <h1 className="articulo__titulo">{art.titulo}</h1>
+            <ul className="articulo__categorias-wrapper">
+                {art.categorias.map((cat) => (
+                    <p key={cat} className={`categorias__item ${cat}`}>
+                        {cat}
+                    </p>
+                ))}
+            </ul>
             <Info art={art} />
 
             <div className="articulo__imgPortada-wrapper">
@@ -49,14 +68,18 @@ function Articulo() {
                 )}
             </div>
 
-            <h1 className="articulo__titulo">{art.titulo}</h1>
             <h3 className="articulo__textoIntroductorio">
                 {art.textoIntroductorio}
             </h3>
             <p className="articulo__contenido">{art.contenido}</p>
-
+            <Info art={art} user />
             <Comentarios comentarios={art.comentarios} />
-            <FormularioComentario />
+            {isLogged && (
+                <FormularioComentario
+                    articleId={art._id}
+                    updateComments={updateComments}
+                />
+            )}
         </div>
     );
 }

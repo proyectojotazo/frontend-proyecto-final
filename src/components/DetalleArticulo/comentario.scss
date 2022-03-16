@@ -1,0 +1,22 @@
+@import '../../sass/variablesSass.scss';
+
+.comentario__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.info__usuario {
+    font-family: $tSubtitulo;
+    color: $orange;
+    font-weight: 900;
+}
+
+.info__texto-comentario {
+    font-family: $tSubtitulo;
+}
+
+.info__fecha-comentario {
+    font-family: $tMaquina;
+    color: $comment;
+}
