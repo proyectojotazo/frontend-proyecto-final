@@ -82,10 +82,11 @@ item-usuario .sidebar-item a {
 @media (max-width: 768px) {
     .sidebar.active {
         left: 0;
-        height: 70vh;
+        height: min-content;
         margin: 10px;
         width: 15vh;
         top: 10%;
-        padding-top: 25px;
+        padding-bottom: 5px;
+        padding-top: 30px;
     }
 }
