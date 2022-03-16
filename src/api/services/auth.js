@@ -77,8 +77,8 @@ export const recoverAccount = (data) => {
 
 // PATCH
 // Función provisional
-export const userUpdate = (data) => {
-    return client.patch(`users/${data._id}`, data).catch((error) => {
+export const userUpdate = (id, data) => {
+    return client.patch(`users/${id}`, data).catch((error) => {
         return Promise.reject(error);
     });
 };
