@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
 import { getUser, userUpdate } from '../api/services/auth';
 
@@ -57,7 +56,7 @@ function MyAccount() {
         // console.log(form.get('nickname'));
         try {
             await userUpdate(datosUsuario._id, form);
-            return <Navigate to={'/my-account'} />;
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
