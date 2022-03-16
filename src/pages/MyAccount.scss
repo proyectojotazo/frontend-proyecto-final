@@ -20,7 +20,7 @@
         display: inline-block;
         width: 40%;
         justify-self: center;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.9rem;
         &:before {
             background-color: #5678ef;
             color: white;
@@ -44,23 +44,103 @@
     }
     .profile-nick {
         justify-self: center;
+        display: grid;
+        margin-bottom: 0.5rem;
+        label {
+            justify-self: center;
+        }
+        .field-nick {
+            background-color: $current_line;
+            padding: 0.2rem;
+            text-align: center;
+        }
     }
     .profile-email {
         justify-self: center;
+        display: grid;
+        margin-bottom: 0.5rem;
+        label {
+            justify-self: center;
+        }
+        .field-email {
+            background-color: $current_line;
+            padding: 0.2rem;
+            text-align: center;
+        }
     }
     .profile-name {
         justify-self: center;
+        display: grid;
+        margin-bottom: 0.5rem;
+        label {
+            justify-self: center;
+        }
+        .field-name {
+            background-color: $current_line;
+            padding: 0.2rem;
+            text-align: center;
+        }
     }
     .profile-lastname {
         justify-self: center;
+        display: grid;
+        margin-bottom: 0.9rem;
+        label {
+            justify-self: center;
+        }
+        .field-lastname {
+            background-color: $current_line;
+            padding: 0.2rem;
+            text-align: center;
+        }
+    }
+    .profile-password {
+        justify-self: center;
+        display: grid;
+        margin-bottom: 0.9rem;
+        label {
+            justify-self: center;
+        }
+        .field-password {
+            background-color: $current_line;
+            padding: 0.2rem;
+            text-align: center;
+        }
+    }
+    .profile-changepass {
+        justify-self: center;
+        margin-bottom: 0.6rem;
+        .pass-button {
+            color: #000;
+            background-color: $orange;
+            padding: 0.5rem;
+            border-radius: 5%;
+            margin-right: 0.1rem;
+            &:hover {
+                color: #000;
+                background-color: $orangeBrillo;
+            }
+        }
     }
     .profile-save {
         justify-self: center;
-        .save {
-            color: $purple;
-            background-color: $background;
+        .edit-button {
+            color: #fff;
+            background-color: $purple;
             padding: 0.5rem;
             border-radius: 5%;
+            margin-right: 0.1rem;
+            &:hover {
+                color: #fff;
+                background-color: $purpleBrillo;
+            }
+        }
+        .save-button {
+            color: $background;
+            background-color: $green;
+            padding: 0.5rem;
+            border-radius: 5%;
+            margin-left: 0.1rem;
             &:hover {
                 color: $green;
                 background-color: $current_line;

@@ -1,31 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
-import { getUser } from '../api/services/auth';
-import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
+import { getUser, userUpdate } from '../api/services/auth';
 
 import './MyAccount.scss';
 
 function MyAccount() {
     const { dataUser } = useAuth();
     const [datosUsuario, setDatosUsuario] = useState([]);
+    const [datosNuevos, setDatosNuevos] = useState({});
     const [modificar, setModificar] = useState(false);
-    const {
-        register,
-        handleSubmit,
-        setError,
-        clearErrors,
-        formState: { errors },
-    } = useForm();
-
-    const onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setDatosUsuario({
-                ...datosUsuario,
-                avatar: URL.createObjectURL(event.target.files[0]),
-            });
-        }
-    };
+    const [nuevoPass, setNuevoPass] = useState(false);
 
     useEffect(() => {
         getUser(dataUser()).then((data) => {
@@ -39,7 +24,47 @@ function MyAccount() {
         });
     }, [dataUser]);
 
+    const modifyEnabled = () => {
+        setModificar(!modificar);
+    };
+
+    const modifyPass = () => {
+        setNuevoPass(!nuevoPass);
+    };
+
+    const onImageChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setDatosUsuario({
+                ...datosUsuario,
+                avatar: URL.createObjectURL(event.target.files[0]),
+            });
+            setDatosNuevos({ ...datosNuevos, avatar: event.target.files[0] });
+        }
+    };
+
+    const onHandleChange = (event) => {
+        setDatosNuevos({
+            ...datosNuevos,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const submitChanges = async () => {
+        const form = new FormData();
+        Object.entries(datosNuevos).forEach(([key, value]) => {
+            form.append(key, value);
+        });
+        // console.log(form.get('nickname'));
+        try {
+            await userUpdate(datosUsuario._id, form);
+            return <Navigate to={'/my-account'} />;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     console.log(datosUsuario);
+    console.log(datosNuevos);
 
     return (
         <>
@@ -58,26 +83,86 @@ function MyAccount() {
                 </div>
                 <div className="profile-nick">
                     <label>Nick</label>
-                    <input type="text" value={datosUsuario.nickname} disabled />
+                    <input
+                        type="text"
+                        className="field-nick"
+                        name="nickname"
+                        defaultValue={datosUsuario.nickname}
+                        disabled={!modificar}
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="profile-email">
                     <label>Email</label>
-                    <input type="text" value={datosUsuario.email} disabled />
+                    <input
+                        type="text"
+                        className="field-email"
+                        name="email"
+                        defaultValue={datosUsuario.email}
+                        disabled={!modificar}
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="profile-name">
                     <label>Nombre</label>
-                    <input type="text" value={datosUsuario.nombre} disabled />
+                    <input
+                        type="text"
+                        className="field-name"
+                        name="nombre"
+                        defaultValue={datosUsuario.nombre}
+                        disabled={!modificar}
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="profile-lastname">
                     <label>Apellidos</label>
                     <input
                         type="text"
-                        value={datosUsuario.apellidos}
-                        disabled
+                        className="field-lastname"
+                        name="apellidos"
+                        defaultValue={datosUsuario.apellidos}
+                        disabled={!modificar}
+                        onChange={onHandleChange}
                     />
                 </div>
+                {nuevoPass && (
+                    <div className="profile-password">
+                        <label>Nueva contraseña</label>
+                        <input
+                            type="password"
+                            className="field-password"
+                            name="password"
+                            onChange={onHandleChange}
+                        />
+                        <label>Repetir nueva contraseña</label>
+                        <input
+                            type="password"
+                            className="field-password"
+                            name="repeat-password"
+                        />
+                    </div>
+                )}
+                <div className="profile-changepass">
+                    <button
+                        className="pass-button"
+                        onClick={() => modifyPass()}
+                    >
+                        Cambiar contraseña
+                    </button>
+                </div>
                 <div className="profile-save">
-                    <button className="save">Guardar cambios</button>
+                    <button
+                        className="edit-button"
+                        onClick={() => modifyEnabled()}
+                    >
+                        Editar
+                    </button>
+                    <button
+                        className="save-button"
+                        onClick={() => submitChanges()}
+                    >
+                        Guardar cambios
+                    </button>
                 </div>
             </div>
         </>
