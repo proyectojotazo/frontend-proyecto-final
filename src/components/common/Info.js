@@ -4,14 +4,12 @@ import { FaHeart, FaRegHeart, FaRegComments, FaRegPaperPlane, FaRegEdit } from "
 import { useAuth } from "../../contexts/authContext";
 import { artFav, getUser } from "../../api/services/auth";
 import getAuthUserNickname from "../../utils/token";
-import Spinner from './Spinner'
 
 function Info ({art, className='info padre'}) {
     const date = new Date(art.fechaPublicacion)
     const representarFecha = date.toUTCString()
     const { isLogged} = useAuth()
     const [corazonRelleno, setCorazon] = useState()
-    const [loading, setLoading] = useState(true)
     const [error, setError] = useState({
         message: '',
         active: false,
@@ -28,13 +26,16 @@ function Info ({art, className='info padre'}) {
         artFav(artId)
     }
 
+    const buscarUsuario = async(nickname) => {
+        return await getUser(nickname)
+    }
     
     
     useEffect(() => {
         isLogged && 
-        getUser(nickname)
+        buscarUsuario(nickname)
         .then((x) => {
-            const articulosFavoritos = x.usuario.articulos.favoritos;
+            const articulosFavoritos = x.articulos.favoritos;
             if (articuloEsFavorito(articulosFavoritos)) {
                 setCorazon(true)
             } else {
@@ -42,21 +43,19 @@ function Info ({art, className='info padre'}) {
             }
         })
         .catch((err) => setError({ message: err.message, active: true }))
-        .finally(() => setLoading(false))
     }, [corazonRelleno, isLogged]);
 
     if (error.active) {
         return <div>{error.message}</div>
     }
 
-    if (loading) return <Spinner />
 
     return (
         <div className={className}>
                 <div className="info">
                     <div className="avatar"><img src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}></img></div>
                     <div>
-                        <p className="usuario">{art.usuario[0].nickname} </p>
+                        <p className="usuario">{art.usuario[0].nickname}</p>
                         <p className="fecha">{representarFecha}</p>
                     </div>
                 </div>

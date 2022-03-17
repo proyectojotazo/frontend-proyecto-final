@@ -18,10 +18,10 @@ function Articulos(props) {
 
   return (
     <section className="seccionArticulos">
-      {articulos.map(( advert ) => (
+      {articulos.map(( articulo ) => (
         <Card
-          key={advert._id}
-          advert={advert}
+          key={articulo.id}
+          articulo={articulo}
           cambiarCategoria={cambiarCategoria}
         />
       ))}
