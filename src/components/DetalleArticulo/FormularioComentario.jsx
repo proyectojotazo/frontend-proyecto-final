@@ -11,8 +11,6 @@ function FormularioComentario({ articleId, updateComments }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Hacer petición de creación de comentario
-
         if (comment === '') return;
 
         const comentario = await crearComentario(articleId, comment);
@@ -26,6 +24,8 @@ function FormularioComentario({ articleId, updateComments }) {
         if (value.length <= MAX_CHARS) setComment(value);
     };
 
+    const maxReached = comment.length === MAX_CHARS;
+
     return (
         <form onSubmit={handleSubmit}>
             <h1 className="form-comentario__title">Crea tu comentario</h1>
@@ -35,7 +35,9 @@ function FormularioComentario({ articleId, updateComments }) {
                 className="form-comentario__text-area"
                 placeholder="Aqui tu comentario"
             />
-            <span>
+            <span
+                className={`form-comentario__max-chars ${maxReached && 'max'}`}
+            >
                 {comment.length} / {MAX_CHARS} Carácteres
             </span>
             <button className="form-comentario__btn">Enviar</button>

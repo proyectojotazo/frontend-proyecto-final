@@ -12,6 +12,19 @@
   color: $comment;
 }
 
+.form-comentario__max-chars{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: $tMaquina;
+  color: $green;
+}
+
+.max{
+  color: $red;
+}
+
 .form-comentario__btn{
   border-radius: .5rem;
   background-color: $purple;
