@@ -1,13 +1,12 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getArticulosId } from '../../api/services/articulos';
-
-import Info from '../common/Info';
 import Spinner from '../common/Spinner';
 import Comentarios from './Comentarios';
 import FormularioComentario from './FormularioComentario';
+import ArticleInfo from './../common/ArticleInfo';
 
+import { getArticulosId } from '../../api/services/articulos';
 import { useAuth } from '../../contexts/authContext';
 
 import './articulo.scss';
@@ -57,7 +56,7 @@ function Articulo() {
                     </p>
                 ))}
             </ul>
-            <Info art={art} />
+            <ArticleInfo article={art} />
 
             <div className="articulo__imgPortada-wrapper">
                 {art.archivoDestacado && (
@@ -72,7 +71,6 @@ function Articulo() {
                 {art.textoIntroductorio}
             </h3>
             <p className="articulo__contenido">{art.contenido}</p>
-            <Info art={art} user />
             <Comentarios comentarios={art.comentarios} />
             {isLogged && (
                 <FormularioComentario

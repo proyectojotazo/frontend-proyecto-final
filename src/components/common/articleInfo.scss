@@ -1,0 +1,65 @@
+@import '../../sass/variablesSass.scss';
+
+.articleInfo__container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.articleInfo__img-wrapper {
+    & img {
+        width: 4rem;
+        border-radius: 9rem;
+    }
+}
+
+.articleInfo__data-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.data-wrapper__nickname {
+    color: $orange;
+    font-family: $tSubtitulo;
+    font-weight: 1000;
+}
+
+.data-wrapper__article-date {
+    color: $comment;
+    font-family: $tMaquina;
+    font-size: 0.9rem;
+}
+
+.articleInfo__icons-wrapper {
+    display: flex;
+    margin-left: auto;
+    margin-right: .7rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.comments-wrapper {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.comments-wrapper__icon {
+    fill: $green;
+}
+
+.comments-wrapper__numComments {
+}
+
+.icons-wrapper__like {
+    fill: $red;
+}
+
+.icons-wrapper__edit {
+    fill: $orange;
+}
+
+.icons-wrapper__send {
+    fill: $cyan;
+}

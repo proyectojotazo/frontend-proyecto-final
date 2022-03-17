@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getArticulosId } from "../../api/services/articulos";
-import "./card.scss"
+
 import Categoria from "./Categoria";
-import Info from "./Info";
+import ArticleInfo from './ArticleInfo';
+
+import "./card.scss"
 
 function Card ({ cambiarCategoria, advert}) {
-    const art = advert
     const _id = advert._id
     return(
         <div className="card">
@@ -21,7 +21,7 @@ function Card ({ cambiarCategoria, advert}) {
             <p className="textoIntroductorio">{advert.textoIntroductorio}</p>
             <hr/>
             </Link>
-            <Info art={advert}/>
+            <ArticleInfo article={advert} />
             
         </div>
     );
