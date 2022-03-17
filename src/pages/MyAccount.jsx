@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
-import { getUser, userUpdate } from '../api/services/auth';
+import { getUser, userUpdate, deleteUser } from '../api/services/auth';
 
 import './MyAccount.scss';
 
@@ -57,14 +56,20 @@ function MyAccount() {
         // console.log(form.get('nickname'));
         try {
             await userUpdate(datosUsuario._id, form);
-            return <Navigate to={'/my-account'} />;
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
     };
 
-    console.log(datosUsuario);
-    console.log(datosNuevos);
+    const deleteAccount = async () => {
+        try {
+            await deleteUser(datosUsuario._id);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -162,6 +167,14 @@ function MyAccount() {
                         onClick={() => submitChanges()}
                     >
                         Guardar cambios
+                    </button>
+                </div>
+                <div className="profile-delete">
+                    <button
+                        className="delete-button"
+                        onClick={() => deleteAccount()}
+                    >
+                        Eliminar cuenta
                     </button>
                 </div>
             </div>

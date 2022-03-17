@@ -23,3 +23,9 @@ export const crearComentario = async (id, contenido) => {
         console.log(error);
     }
 };
+
+export const crearArticulo = async (data) => {
+    return client.post('articles', data).catch((error) => {
+        return Promise.reject(error);
+    });
+};
