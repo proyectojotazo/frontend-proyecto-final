@@ -1,7 +1,22 @@
 @import '../../sass/variablesSass.scss';
 
 .gutemberg-button {
-    margin: 5px;
+    margin: 0 5px 20px 0px;
     padding: 5px;
-    background: $purple;
+    background: $orange;
+    color: $background;
+    font-weight: bold;
+    &:hover {
+        background: $green;
+    }
+}
+
+.text-editor-container {
+    border: 1px solid #444759;
+    border-left: 0;
+    border-right: 0;
+    color: #fff;
+    font-family: $tSubtitulo;
+    font-size: 20px;
+    padding: 20px 0 20px 0;
 }

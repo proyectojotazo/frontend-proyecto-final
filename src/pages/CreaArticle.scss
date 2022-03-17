@@ -1,0 +1,44 @@
+@import '../sass/variablesSass.scss';
+
+.create-post-container {
+    .create-post-form-container {
+        input,
+        textarea,
+        select {
+            background: none;
+            border-bottom: 1px solid #444759;
+            color: #fff;
+            font-family: $tSubtitulo;
+            font-size: 20px;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        textarea {
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+            line-height: 15px;
+            height: 50px;
+        }
+
+        #archivoDestacado {
+            width: auto;
+        }
+
+        #fechaPublicacion {
+            width: auto;
+            margin-top: 30px;
+        }
+
+        .publicar-button {
+            background: $purple;
+            padding: 10px 0;
+            &:hover {
+                background: #444759;
+                color: $purple;
+                transform: scale(0.9);
+                transition: all 0.3s;
+            }
+        }
+    }
+}
