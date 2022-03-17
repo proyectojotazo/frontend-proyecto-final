@@ -1,0 +1,32 @@
+@import '../../sass/variablesSass.scss';
+
+.userInfo__container {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.userInfo__img-wrapper {
+    & img {
+        width: 3rem;
+        border-radius: 9rem;
+    }
+}
+
+.userInfo__nickname {
+    color: $orange;
+    font-family: $tSubtitulo;
+    font-weight: 1000;
+}
+
+.userInfo__btn-follow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  background-color: $purple;
+  border-radius: 1rem;
+  margin-left: auto;
+  width: 5rem;
+  height: 2rem;
+}

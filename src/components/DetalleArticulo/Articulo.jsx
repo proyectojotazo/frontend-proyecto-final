@@ -5,6 +5,7 @@ import Spinner from '../common/Spinner';
 import Comentarios from './Comentarios';
 import FormularioComentario from './FormularioComentario';
 import ArticleInfo from './../common/ArticleInfo';
+import UserInfo from './../common/UserInfo';
 
 import { getArticulosId } from '../../api/services/articulos';
 import { useAuth } from '../../contexts/authContext';
@@ -56,7 +57,6 @@ function Articulo() {
                     </p>
                 ))}
             </ul>
-            {/* <ArticleInfo article={art} /> */}
 
             <div className="articulo__imgPortada-wrapper">
                 {art.archivoDestacado && (
@@ -72,6 +72,10 @@ function Articulo() {
                 </h3>
                 <p className="articulo__contenido">{art.contenido}</p>
             </section>
+            <div className="articulo__articleInfo">
+                <ArticleInfo article={art} />
+                <UserInfo user={art.usuario[0]} />
+            </div>
             <Comentarios comentarios={art.comentarios} />
             {isLogged && (
                 <FormularioComentario

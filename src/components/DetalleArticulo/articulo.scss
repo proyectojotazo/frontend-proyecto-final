@@ -61,6 +61,12 @@
     size: 1rem;
 }
 
+.articulo__articleInfo {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
 /*MEDIA QUERIES*/
 @media screen and (min-width: 768px) {
     .articulo__container {
@@ -77,7 +83,8 @@
 
     .articulo__imgPortada-wrapper,
     .articulo__contenido,
-    .comentarios__container{
+    .articulo__articleInfo,
+    .comentarios__container {
         width: 75%;
         margin: 0 auto;
     }
@@ -89,7 +96,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         margin: 0 auto;
-        & form{
+        & form {
             width: 48.5%;
             margin: 0;
             padding: 0 1.2rem;
@@ -114,5 +121,15 @@
     .articulo__textoIntroductorio,
     .articulo__contenido {
         width: 100%;
+    }
+
+    .articulo__articleInfo{
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 3rem;
+        & .userInfo__container{
+            width: 250px;
+        }
     }
 }
