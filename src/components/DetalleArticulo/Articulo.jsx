@@ -43,7 +43,7 @@ function Articulo() {
     if (loading) return <Spinner />;
 
     if (error.active) {
-        return <div>{error.message}</div>;
+        return <p className="articulo__error">{error.message}</p>;
     }
 
     return (
