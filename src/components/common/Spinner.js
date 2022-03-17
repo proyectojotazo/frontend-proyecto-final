@@ -4,7 +4,7 @@ import './Spinner.scss';
 function Spinner() {
     return (
         <div className="spinner__container">
-            <div class="lds-ellipsis">
+            <div className="lds-ellipsis">
                 Cargando...
                 <div></div>
                 <div></div>
