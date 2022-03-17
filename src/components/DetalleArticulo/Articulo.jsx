@@ -56,7 +56,7 @@ function Articulo() {
                     </p>
                 ))}
             </ul>
-            <ArticleInfo article={art} />
+            {/* <ArticleInfo article={art} /> */}
 
             <div className="articulo__imgPortada-wrapper">
                 {art.archivoDestacado && (
@@ -66,11 +66,12 @@ function Articulo() {
                     />
                 )}
             </div>
-
-            <h3 className="articulo__textoIntroductorio">
-                {art.textoIntroductorio}
-            </h3>
-            <p className="articulo__contenido">{art.contenido}</p>
+            <section className="articulo__textoContenido-wrapper">
+                <h3 className="articulo__textoIntroductorio">
+                    {art.textoIntroductorio}
+                </h3>
+                <p className="articulo__contenido">{art.contenido}</p>
+            </section>
             <Comentarios comentarios={art.comentarios} />
             {isLogged && (
                 <FormularioComentario

@@ -22,7 +22,9 @@ function Comentario({ comentario }) {
 
     return (
         <div className="comentario__info-wrapper">
-            <p className="info__usuario">Usuario: {usuario.nickname}</p>
+            <p className="info__usuario">
+                Usuario: {usuario.nickname || 'Desconocido'}
+            </p>
             <p className="info__texto-comentario">
                 Comentario: {comentario.contenido}
             </p>
