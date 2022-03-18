@@ -23,7 +23,7 @@ function Nav() {
     const [userMenu, setUserMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
     const [menuburger, setMenuburger] = useState(false);
-    const [sidebar, setSidebar] = useState(false);
+    const [search, setSearch] = useState(false);
 
     function LoginPopup() {
         setShowLogin({
@@ -48,8 +48,10 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
-                        <NavLink to="/" className="nav-link">
-                            <Lupa className="icon icon-lupa" />
+                        <NavLink to="/buscar" className="nav-link">
+                            <Lupa
+                                className="icon icon-lupa"
+                            />
                         </NavLink>
                     </li>
                     <li className="navbar-item">
@@ -58,7 +60,7 @@ function Nav() {
                         </NavLink>
                     </li>
                     <li className="navbar-item">
-                        <NavLink className="nav-link" to="/escribir">
+                        <NavLink className="nav-link" to="/">
                             <Inicio className="icon icon-inicio" />
                         </NavLink>
                     </li>
