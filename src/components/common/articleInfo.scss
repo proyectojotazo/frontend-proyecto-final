@@ -6,7 +6,7 @@
 }
 
 .articleInfo__img-wrapper {
-    & img {
+    img {
         width: 4rem;
         border-radius: 9rem;
     }
@@ -19,7 +19,6 @@
     gap: 0.3rem;
 }
 
-
 .data-wrapper__article-date {
     color: $comment;
     font-family: $tMaquina;
@@ -29,7 +28,7 @@
 .articleInfo__icons-wrapper {
     display: flex;
     margin-left: auto;
-    margin-right: .7rem;
+    margin-right: 0.7rem;
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
@@ -48,7 +47,7 @@
 }
 
 .icons-wrapper__like {
-    fill: $red;
+    fill: #fafad2;
 }
 
 .icons-wrapper__edit {
