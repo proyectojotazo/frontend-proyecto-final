@@ -4,17 +4,8 @@
     display: grid;
     justify-content: center;
     grid-template-areas:
-        'title title title'
-        'user-menu avatar avatar'
-        'user-menu file file'
-        'user-menu nick nick'
-        'user-menu email email'
-        'user-menu nombre nombre'
-        'user-menu apellidos apellidos'
-        'user-menu password password'
-        'user-menu boton-pass boton-pass'
-        'user-menu botones-edit botones-edit'
-        'user-menu boton-delete boton-delete';
+        'title title'
+        'user-menu data-content';
     .profile-title {
         grid-area: title;
         text-align: center;
@@ -26,174 +17,202 @@
         padding-top: 3rem;
         padding-right: 2rem;
     }
-    .profile-avatar {
-        justify-self: center;
-        margin-bottom: 0.5rem;
-        grid-area: avatar;
-        .avatar {
-            width: 10rem;
-            height: 10rem;
-            border-radius: 50%;
-            object-fit: cover;
+    .my-profile {
+        grid-area: data-content;
+        display: grid;
+        justify-content: center;
+        grid-template-areas:
+            'avatar'
+            'file'
+            'nick'
+            'email'
+            'nombre'
+            'apellidos'
+            'password'
+            'boton-pass'
+            'botones-edit'
+            'boton-delete';
+        .profile-avatar {
+            justify-self: center;
+            margin-bottom: 0.5rem;
+            grid-area: avatar;
+            .avatar {
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
-    }
-    .profile-sendfile {
-        grid-area: file;
-        position: relative;
-        display: inline-block;
-        width: 8rem;
-        justify-self: center;
-        margin-bottom: 0.9rem;
-        padding: 0.3rem 0;
-        &:before {
-            background-color: #5678ef;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 3px;
-            content: 'Cambiar Avatar';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
-        input {
-            opacity: 0;
-            width: 8rem;
-            // height: 32px;
+        .profile-sendfile {
+            grid-area: file;
+            position: relative;
             display: inline-block;
-        }
-    }
-    .profile-nick {
-        grid-area: nick;
-        justify-self: center;
-        display: grid;
-        margin-bottom: 0.5rem;
-        label {
+            width: 8rem;
             justify-self: center;
-        }
-        .field-nick {
-            background-color: $current_line;
-            padding: 0.2rem;
-            text-align: center;
-        }
-    }
-    .profile-email {
-        grid-area: email;
-        justify-self: center;
-        display: grid;
-        margin-bottom: 0.5rem;
-        label {
-            justify-self: center;
-        }
-        .field-email {
-            background-color: $current_line;
-            padding: 0.2rem;
-            text-align: center;
-        }
-    }
-    .profile-name {
-        grid-area: nombre;
-        justify-self: center;
-        display: grid;
-        margin-bottom: 0.5rem;
-        label {
-            justify-self: center;
-        }
-        .field-name {
-            background-color: $current_line;
-            padding: 0.2rem;
-            text-align: center;
-        }
-    }
-    .profile-lastname {
-        grid-area: apellidos;
-        justify-self: center;
-        display: grid;
-        margin-bottom: 0.9rem;
-        label {
-            justify-self: center;
-        }
-        .field-lastname {
-            background-color: $current_line;
-            padding: 0.2rem;
-            text-align: center;
-        }
-    }
-    .profile-password {
-        grid-area: password;
-        justify-self: center;
-        display: grid;
-        margin-bottom: 0.9rem;
-        label {
-            justify-self: center;
-        }
-        .field-password {
-            background-color: $current_line;
-            padding: 0.2rem;
-            text-align: center;
-        }
-    }
-    .profile-changepass {
-        grid-area: boton-pass;
-        justify-self: center;
-        margin-bottom: 0.6rem;
-        .pass-button {
-            color: #000;
-            background-color: $orange;
-            padding: 0.5rem;
-            border-radius: 5%;
-            margin-right: 0.1rem;
-            &:hover {
-                color: #000;
-                background-color: $orangeBrillo;
+            margin-bottom: 0.9rem;
+            padding: 0.3rem 0;
+            &:before {
+                background-color: #5678ef;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                content: 'Cambiar Avatar';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            input {
+                opacity: 0;
+                width: 8rem;
+                // height: 32px;
+                display: inline-block;
             }
         }
-    }
-    .profile-save {
-        grid-area: botones-edit;
-        justify-self: center;
-        margin-bottom: 0.6rem;
-        .edit-button {
-            color: #fff;
-            background-color: $purple;
-            padding: 0.5rem;
-            border-radius: 5%;
-            margin-right: 0.1rem;
-            &:hover {
-                color: #fff;
-                background-color: $purpleBrillo;
+        .profile-nick {
+            grid-area: nick;
+            justify-self: center;
+            display: grid;
+            margin-bottom: 0.5rem;
+            label {
+                justify-self: center;
             }
-        }
-        .save-button {
-            grid-area: datos;
-            color: $background;
-            background-color: $green;
-            padding: 0.5rem;
-            border-radius: 5%;
-            margin-left: 0.1rem;
-            &:hover {
-                color: $green;
+            .field-nick {
                 background-color: $current_line;
+                padding: 0.2rem;
+                text-align: center;
+            }
+        }
+        .profile-email {
+            grid-area: email;
+            justify-self: center;
+            display: grid;
+            margin-bottom: 0.5rem;
+            label {
+                justify-self: center;
+            }
+            .field-email {
+                background-color: $current_line;
+                padding: 0.2rem;
+                text-align: center;
+            }
+        }
+        .profile-name {
+            grid-area: nombre;
+            justify-self: center;
+            display: grid;
+            margin-bottom: 0.5rem;
+            label {
+                justify-self: center;
+            }
+            .field-name {
+                background-color: $current_line;
+                padding: 0.2rem;
+                text-align: center;
+            }
+        }
+        .profile-lastname {
+            grid-area: apellidos;
+            justify-self: center;
+            display: grid;
+            margin-bottom: 0.9rem;
+            label {
+                justify-self: center;
+            }
+            .field-lastname {
+                background-color: $current_line;
+                padding: 0.2rem;
+                text-align: center;
+            }
+        }
+        .profile-password {
+            grid-area: password;
+            justify-self: center;
+            display: grid;
+            margin-bottom: 0.9rem;
+            label {
+                justify-self: center;
+            }
+            .field-password {
+                background-color: $current_line;
+                padding: 0.2rem;
+                text-align: center;
+            }
+        }
+        .profile-changepass {
+            grid-area: boton-pass;
+            justify-self: center;
+            margin-bottom: 0.6rem;
+            .pass-button {
+                color: #000;
+                background-color: $orange;
+                padding: 0.5rem;
+                border-radius: 5%;
+                margin-right: 0.1rem;
+                &:hover {
+                    color: #000;
+                    background-color: $orangeBrillo;
+                }
+            }
+        }
+        .profile-save {
+            grid-area: botones-edit;
+            justify-self: center;
+            margin-bottom: 0.6rem;
+            .edit-button {
+                color: #fff;
+                background-color: $purple;
+                padding: 0.5rem;
+                border-radius: 5%;
+                margin-right: 0.1rem;
+                &:hover {
+                    color: #fff;
+                    background-color: $purpleBrillo;
+                }
+            }
+            .save-button {
+                grid-area: datos;
+                color: $background;
+                background-color: $green;
+                padding: 0.5rem;
+                border-radius: 5%;
+                margin-left: 0.1rem;
+                &:hover {
+                    color: $green;
+                    background-color: $current_line;
+                }
+            }
+        }
+        .profile-delete {
+            grid-area: boton-delete;
+            justify-self: center;
+            margin-bottom: 0.6rem;
+            .delete-button {
+                color: #000;
+                background-color: $red;
+                padding: 0.5rem;
+                border-radius: 5%;
+                margin-right: 0.1rem;
+                &:hover {
+                    color: #000;
+                    background-color: $redBrillo;
+                }
             }
         }
     }
-    .profile-delete {
-        grid-area: boton-delete;
-        justify-self: center;
-        margin-bottom: 0.6rem;
-        .delete-button {
-            color: #000;
-            background-color: $red;
-            padding: 0.5rem;
-            border-radius: 5%;
-            margin-right: 0.1rem;
-            &:hover {
-                color: #000;
-                background-color: $redBrillo;
-            }
-        }
+    .my-articles {
+        grid-area: data-content;
+    }
+    .my-favourites {
+        grid-area: data-content;
+    }
+    .my-followers {
+        grid-area: data-content;
+    }
+    .my-followings {
+        grid-area: data-content;
     }
 }

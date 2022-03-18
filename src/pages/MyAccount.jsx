@@ -87,158 +87,168 @@ function MyAccount() {
                     className="profile-menu"
                     changeOption={changeElection}
                 />
-                {election === 'mi-perfil' && (
-                    <>
-                        <div className="profile-avatar">
-                            <img
-                                src={datosUsuario.avatar}
-                                className="avatar"
-                                alt="avatar"
-                            />
-                        </div>
-
-                        <div className="profile-sendfile">
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={onImageChange}
-                            />
-                        </div>
-                        <div className="profile-nick">
-                            <label>Nick</label>
-                            <input
-                                type="text"
-                                className="field-nick"
-                                name="nickname"
-                                defaultValue={datosUsuario.nickname}
-                                disabled={!modificar}
-                                onChange={onHandleChange}
-                            />
-                        </div>
-                        <div className="profile-email">
-                            <label>Email</label>
-                            <input
-                                type="text"
-                                className="field-email"
-                                name="email"
-                                defaultValue={datosUsuario.email}
-                                disabled={!modificar}
-                                onChange={onHandleChange}
-                            />
-                        </div>
-                        <div className="profile-name">
-                            <label>Nombre</label>
-                            <input
-                                type="text"
-                                className="field-name"
-                                name="nombre"
-                                defaultValue={datosUsuario.nombre}
-                                disabled={!modificar}
-                                onChange={onHandleChange}
-                            />
-                        </div>
-                        <div className="profile-lastname">
-                            <label>Apellidos</label>
-                            <input
-                                type="text"
-                                className="field-lastname"
-                                name="apellidos"
-                                defaultValue={datosUsuario.apellidos}
-                                disabled={!modificar}
-                                onChange={onHandleChange}
-                            />
-                        </div>
-                        {nuevoPass && (
-                            <div className="profile-password">
-                                <label>Nueva contraseña</label>
-                                <input
-                                    type="password"
-                                    className="field-password"
-                                    name="password"
-                                    onChange={onHandleChange}
-                                />
-                                <label>Repetir nueva contraseña</label>
-                                <input
-                                    type="password"
-                                    className="field-password"
-                                    name="repeat-password"
+                <div className="my-profile">
+                    {election === 'mi-perfil' && (
+                        <>
+                            <div className="profile-avatar">
+                                <img
+                                    src={datosUsuario.avatar}
+                                    className="avatar"
+                                    alt="avatar"
                                 />
                             </div>
-                        )}
-                        <div className="profile-changepass">
-                            <button
-                                className="pass-button"
-                                onClick={() => modifyPass()}
-                            >
-                                Cambiar contraseña
-                            </button>
-                        </div>
-                        <div className="profile-save">
-                            <button
-                                className="edit-button"
-                                onClick={() => modifyEnabled()}
-                            >
-                                Editar
-                            </button>
-                            <button
-                                className="save-button"
-                                onClick={() => submitChanges()}
-                            >
-                                Guardar cambios
-                            </button>
-                        </div>
-                        <div className="profile-delete">
-                            <button
-                                className="delete-button"
-                                onClick={() => deleteAccount()}
-                            >
-                                Eliminar cuenta
-                            </button>
-                        </div>
-                    </>
-                )}
+
+                            <div className="profile-sendfile">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={onImageChange}
+                                />
+                            </div>
+                            <div className="profile-nick">
+                                <label>Nick</label>
+                                <input
+                                    type="text"
+                                    className="field-nick"
+                                    name="nickname"
+                                    defaultValue={datosUsuario.nickname}
+                                    disabled={!modificar}
+                                    onChange={onHandleChange}
+                                />
+                            </div>
+                            <div className="profile-email">
+                                <label>Email</label>
+                                <input
+                                    type="text"
+                                    className="field-email"
+                                    name="email"
+                                    defaultValue={datosUsuario.email}
+                                    disabled={!modificar}
+                                    onChange={onHandleChange}
+                                />
+                            </div>
+                            <div className="profile-name">
+                                <label>Nombre</label>
+                                <input
+                                    type="text"
+                                    className="field-name"
+                                    name="nombre"
+                                    defaultValue={datosUsuario.nombre}
+                                    disabled={!modificar}
+                                    onChange={onHandleChange}
+                                />
+                            </div>
+                            <div className="profile-lastname">
+                                <label>Apellidos</label>
+                                <input
+                                    type="text"
+                                    className="field-lastname"
+                                    name="apellidos"
+                                    defaultValue={datosUsuario.apellidos}
+                                    disabled={!modificar}
+                                    onChange={onHandleChange}
+                                />
+                            </div>
+                            {nuevoPass && (
+                                <div className="profile-password">
+                                    <label>Nueva contraseña</label>
+                                    <input
+                                        type="password"
+                                        className="field-password"
+                                        name="password"
+                                        onChange={onHandleChange}
+                                    />
+                                    <label>Repetir nueva contraseña</label>
+                                    <input
+                                        type="password"
+                                        className="field-password"
+                                        name="repeat-password"
+                                    />
+                                </div>
+                            )}
+                            <div className="profile-changepass">
+                                <button
+                                    className="pass-button"
+                                    onClick={() => modifyPass()}
+                                >
+                                    Cambiar contraseña
+                                </button>
+                            </div>
+                            <div className="profile-save">
+                                <button
+                                    className="edit-button"
+                                    onClick={() => modifyEnabled()}
+                                >
+                                    Editar
+                                </button>
+                                <button
+                                    className="save-button"
+                                    onClick={() => submitChanges()}
+                                >
+                                    Guardar cambios
+                                </button>
+                            </div>
+                            <div className="profile-delete">
+                                <button
+                                    className="delete-button"
+                                    onClick={() => deleteAccount()}
+                                >
+                                    Eliminar cuenta
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
                 {election === 'mis-articulos' && (
                     <>
-                        {datosUsuario.articulos.creados.length > 0 ? (
-                            datosUsuario.articulos.creados.map((art) => (
-                                <Card key={art._id} advert={art} />
-                            ))
-                        ) : (
-                            <h4>Aún no has creado artículos</h4>
-                        )}
+                        <div className="my-articles">
+                            {datosUsuario.articulos.creados.length > 0 ? (
+                                datosUsuario.articulos.creados.map((art) => (
+                                    <Card key={art._id} advert={art} />
+                                ))
+                            ) : (
+                                <h4>Aún no has creado artículos</h4>
+                            )}
+                        </div>
                     </>
                 )}
                 {election === 'favoritos' && (
                     <>
-                        {datosUsuario.articulos.favoritos.length > 0 ? (
-                            datosUsuario.articulos.favoritos.map((art) => (
-                                <Card key={art._id} advert={art} />
-                            ))
-                        ) : (
-                            <h4>Aún no has añadido artículos favoritos</h4>
-                        )}
+                        <div className="my-favourites">
+                            {datosUsuario.articulos.favoritos.length > 0 ? (
+                                datosUsuario.articulos.favoritos.map((art) => (
+                                    <Card key={art._id} advert={art} />
+                                ))
+                            ) : (
+                                <h4>Aún no has añadido artículos favoritos</h4>
+                            )}
+                        </div>
                     </>
                 )}
                 {election === 'seguidores' && (
                     <>
-                        {datosUsuario.usuarios.seguidores.length > 0 ? (
-                            datosUsuario.usuarios.seguidores.map((user) => (
-                                <UserInfo user={user} />
-                            ))
-                        ) : (
-                            <h4>Aún no te sigue ningún usuario</h4>
-                        )}
+                        <div className="my-followers">
+                            {datosUsuario.usuarios.seguidores.length > 0 ? (
+                                datosUsuario.usuarios.seguidores.map((user) => (
+                                    <UserInfo user={user} />
+                                ))
+                            ) : (
+                                <h4>Aún no te sigue ningún usuario</h4>
+                            )}
+                        </div>
                     </>
                 )}
                 {election === 'seguidos' && (
                     <>
-                        {datosUsuario.usuarios.seguidos.length > 0 ? (
-                            datosUsuario.usuarios.seguidos.map((user) => (
-                                <UserInfo user={user} />
-                            ))
-                        ) : (
-                            <h4>Aún no sigues a ningún usuario</h4>
-                        )}
+                        <div className="my-followings">
+                            {datosUsuario.usuarios.seguidos.length > 0 ? (
+                                datosUsuario.usuarios.seguidos.map((user) => (
+                                    <UserInfo user={user} />
+                                ))
+                            ) : (
+                                <h4>Aún no sigues a ningún usuario</h4>
+                            )}
+                        </div>
                     </>
                 )}
             </div>
