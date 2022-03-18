@@ -14,9 +14,11 @@
 
 .info__texto-comentario {
     font-family: $tSubtitulo;
+    overflow-wrap: break-word;
 }
 
 .info__fecha-comentario {
     font-family: $tMaquina;
     color: $comment;
+    
 }

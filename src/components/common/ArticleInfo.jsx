@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
     FaRegHeart,
     FaRegComments,
@@ -8,11 +7,10 @@ import {
 
 import { useAuth } from './../../contexts/authContext';
 
+import getMoment from '../../utils/getMoment';
+
 import './articleInfo.scss';
 
-const getMoment = (date) => {
-    return moment(date).startOf('seconds').fromNow();
-};
 
 function ArticleInfo({ article }) {
     const { isLogged } = useAuth();
@@ -20,7 +18,7 @@ function ArticleInfo({ article }) {
         <div className="articleInfo__container">
             <div className="articleInfo__data-wrapper">
                 <p className="data-wrapper__article-date">
-                    Created {getMoment(article.fechaPublicacion)}
+                    Creado {getMoment(article.fechaPublicacion)}
                 </p>
             </div>
             <div className="articleInfo__icons-wrapper">
