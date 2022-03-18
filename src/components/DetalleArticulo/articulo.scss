@@ -1,0 +1,135 @@
+@import '../../sass/variablesSass.scss';
+
+.articulo__error {
+    color: $red;
+    font-family: $tSubtitulo;
+    border: 3px solid $redBrillo;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.articulo__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90vw;
+}
+
+.articulo__titulo,
+.articulo__textoIntroductorio {
+    text-align: center;
+}
+
+.articulo__titulo {
+    font-family: $tTitulares;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.articulo__categorias-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.categorias__item {
+    font-family: $tMaquina;
+    font-size: 1.5rem;
+}
+
+.articulo__imgPortada-wrapper {
+    & img {
+        width: 100%;
+    }
+}
+.articulo__textoContenido-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.articulo__textoIntroductorio {
+    font-family: $tSubtitulo;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+.articulo__contenido {
+    font-family: $tContenido;
+    text-align: justify;
+    size: 1rem;
+}
+
+.articulo__articleInfo {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 768px) {
+    .articulo__container {
+        max-width: 690px;
+        margin: 0 auto;
+        & form {
+            width: 75%;
+            margin: 0 auto;
+        }
+    }
+    .articulo__categorias-wrapper {
+        width: 100%;
+    }
+
+    .articulo__imgPortada-wrapper,
+    .articulo__contenido,
+    .articulo__articleInfo,
+    .comentarios__container {
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .articulo__container {
+        max-width: 1200px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        & form {
+            width: 48.5%;
+            margin: 0;
+            padding: 0 1.2rem;
+        }
+    }
+
+    .articulo__imgPortada-wrapper {
+        width: 50%;
+        margin: auto 0;
+    }
+
+    .comentarios__container {
+        width: 50%;
+        margin: 0;
+    }
+
+    .articulo__textoContenido-wrapper {
+        width: 45%;
+        margin: 0 auto;
+    }
+
+    .articulo__textoIntroductorio,
+    .articulo__contenido {
+        width: 100%;
+    }
+
+    .articulo__articleInfo{
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 3rem;
+        & .userInfo__container{
+            width: 250px;
+        }
+    }
+}

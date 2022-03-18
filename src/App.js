@@ -6,10 +6,11 @@ import PrivateRoute from './routes/PrivateRoute';
 import Layout from './components/Layout/Layout';
 
 import Home from './pages/Home';
-import Article from './pages/Article';
+import DetailArticle from './pages/DetailArticle';
 import RecoverAccount from './pages/RecoverAccount';
 import CreaArticle from './pages/CreaArticle';
 import MyAccount from './pages/MyAccount';
+import SearchArticle from './pages/SearchArticle';
 
 function App({ isAlreadyLogged }) {
     const [isLogged, setIsLogged] = useState(isAlreadyLogged);
@@ -24,7 +25,8 @@ function App({ isAlreadyLogged }) {
 
     const dataUser = () => {
         if (isLogged) {
-            const token = localStorage.getItem('auth');
+            const token =
+                localStorage.getItem('auth') || sessionStorage.getItem('auth');
             if (token === null) {
                 return null;
             }
@@ -36,7 +38,7 @@ function App({ isAlreadyLogged }) {
             try {
                 const userJSON = atob(b64Data);
                 const user = JSON.parse(userJSON);
-                return user;
+                return user.id;
             } catch (error) {
                 console.error('Error while decoding JWT Token', error);
                 return null;
@@ -51,7 +53,7 @@ function App({ isAlreadyLogged }) {
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/articles/:id" element={<Article />} />
+                    <Route path="/articles/:id" element={<DetailArticle />} />
                     <Route
                         path="/crear"
                         element={
@@ -71,6 +73,10 @@ function App({ isAlreadyLogged }) {
                     <Route
                         path="/recuperatucuenta/:id/:token"
                         element={<RecoverAccount />}
+                    />
+                    <Route
+                        path="/buscar"
+                        element={<SearchArticle />}
                     />
                 </Routes>
             </Layout>
