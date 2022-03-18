@@ -4,6 +4,7 @@
     display: flex;
     gap: 0.8rem;
     align-items: center;
+    cursor: pointer;
 }
 
 .userInfo__img-wrapper {
@@ -19,14 +20,18 @@
     font-weight: 1000;
 }
 
-.userInfo__btn-follow{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: .5rem;
-  background-color: $purple;
-  border-radius: 1rem;
-  margin-left: auto;
-  width: 5rem;
-  height: 2rem;
+.userInfo__btn-follow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: $purple;
+    border-radius: 1rem;
+    margin-left: auto;
+    width: 5rem;
+    height: 2rem;
+}
+
+.hidden {
+    visibility: hidden;
 }

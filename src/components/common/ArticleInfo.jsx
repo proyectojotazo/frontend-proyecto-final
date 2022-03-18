@@ -1,5 +1,6 @@
 import {
-    FaRegHeart,
+    FaRegStar,
+    FaStar,
     FaRegComments,
     FaRegPaperPlane,
     FaRegEdit,
@@ -11,9 +12,11 @@ import getMoment from '../../utils/getMoment';
 
 import './articleInfo.scss';
 
-
 function ArticleInfo({ article }) {
     const { isLogged } = useAuth();
+
+    const addFavourite = () => {};
+    
     return (
         <div className="articleInfo__container">
             <div className="articleInfo__data-wrapper">
@@ -30,7 +33,10 @@ function ArticleInfo({ article }) {
                 </div>
                 {isLogged && (
                     <>
-                        <FaRegHeart className="icons-wrapper__like" />
+                        <FaRegStar
+                            onClick={addFavourite}
+                            className="icons-wrapper__like"
+                        />
                         <FaRegEdit className="icons-wrapper__edit" />
                     </>
                 )}

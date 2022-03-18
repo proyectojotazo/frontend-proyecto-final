@@ -7,6 +7,7 @@ import './formularioComentario.scss';
 const MAX_CHARS = 240;
 
 function FormularioComentario({ articleId, updateComments }) {
+    // Deshabilitar btn creacomentario
     const [comment, setComment] = useState('');
 
     const handleSubmit = async (e) => {

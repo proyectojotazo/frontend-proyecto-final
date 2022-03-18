@@ -23,11 +23,11 @@ function Comentario({ comentario }) {
     return (
         <div className="comentario__info-wrapper">
             <p className="info__usuario">
-                Usuario: {usuario.nickname || 'Desconocido'}
+                {usuario.nickname || 'Desconocido'}
             </p>
             <p className="info__texto-comentario">{comentario.contenido}</p>
             <p className="info__fecha-comentario">
-                Fecha: {getMoment(comentario.fechaPublicacion)}
+                {getMoment(comentario.fechaPublicacion)}
             </p>
         </div>
     );
