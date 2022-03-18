@@ -10,6 +10,7 @@ import DetailArticle from './pages/DetailArticle';
 import RecoverAccount from './pages/RecoverAccount';
 import CreaArticle from './pages/CreaArticle';
 import MyAccount from './pages/MyAccount';
+import SearchArticle from './pages/SearchArticle';
 
 function App({ isAlreadyLogged }) {
     const [isLogged, setIsLogged] = useState(isAlreadyLogged);
@@ -72,6 +73,10 @@ function App({ isAlreadyLogged }) {
                     <Route
                         path="/recuperatucuenta/:id/:token"
                         element={<RecoverAccount />}
+                    />
+                    <Route
+                        path="/buscar"
+                        element={<SearchArticle />}
                     />
                 </Routes>
             </Layout>

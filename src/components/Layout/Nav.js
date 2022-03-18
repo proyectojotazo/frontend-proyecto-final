@@ -37,10 +37,6 @@ function Nav() {
         setUserMenu(!userMenu);
     };
 
-    const showSearch = () => {
-        setSearch(!search);
-    };
-
     return (
         <>
             <nav className="nav">
@@ -52,18 +48,10 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
-                        <NavLink to="/" className="nav-link">
+                        <NavLink to="/buscar" className="nav-link">
                             <Lupa
                                 className="icon icon-lupa"
-                                onClick={() => showSearch()}
                             />
-                            {search && (
-                                <input
-                                    type="text"
-                                    className="search-bar"
-                                    placeholder="Busca por Artículo"
-                                />
-                            )}
                         </NavLink>
                     </li>
                     <li className="navbar-item">

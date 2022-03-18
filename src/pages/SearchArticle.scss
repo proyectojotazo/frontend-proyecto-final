@@ -1,0 +1,22 @@
+@import '../sass//variablesSass.scss';
+
+.search-bar {
+    padding: 5px 20px;
+    height: 37px;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 18px;
+    background: #282a36;
+    color: #fff;
+    border: 1px solid #947af9;
+    border-radius: 4px;
+    width: 70%;
+    outline: none;
+    margin-left: 120px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}

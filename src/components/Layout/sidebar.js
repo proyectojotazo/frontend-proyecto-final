@@ -12,6 +12,7 @@ import SweetAlert2 from 'react-sweetalert2';
 import Popup from '../Auth/Popup/PopUp';
 import * as Icons from 'react-icons/fa';
 import { useAuth } from '../../contexts/authContext';
+import { FiLogOut } from "react-icons/fi";
 
 
 export default function Sidebar() {
@@ -45,7 +46,7 @@ export default function Sidebar() {
       <div className={sidebar ? "sidebar active" : "sidebar"}>
         <ul className="sidebar-items">
           <li className="sidebar-item ">
-            <NavLink to="/">
+            <NavLink to="/buscar">
               <Lupa />
             </NavLink>
           </li>
@@ -93,9 +94,13 @@ export default function Sidebar() {
                           Perfil
                                             </NavLink>
                       </li>
-                      <li onClick={accountLogout}>
-                        Cerrar Sesión
-                                        </li>
+                      <li
+                        onClick={accountLogout}
+                        className="logout-icon"
+                      >
+                        <FiLogOut
+                        ></FiLogOut>
+                      </li>
                     </ul>
                   )}
                 </>
