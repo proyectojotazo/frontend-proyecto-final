@@ -96,15 +96,15 @@ function MyAccount() {
                                     className="avatar"
                                     alt="avatar"
                                 />
+                                <div className="profile-sendfile">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={onImageChange}
+                                    />
+                                </div>
                             </div>
 
-                            <div className="profile-sendfile">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={onImageChange}
-                                />
-                            </div>
                             <div className="profile-nick">
                                 <label>Nick</label>
                                 <input
@@ -204,7 +204,11 @@ function MyAccount() {
                         <div className="my-articles">
                             {datosUsuario.articulos.creados.length > 0 ? (
                                 datosUsuario.articulos.creados.map((art) => (
-                                    <Card key={art._id} advert={art} />
+                                    <Card
+                                        className="my-article"
+                                        key={art._id}
+                                        advert={art}
+                                    />
                                 ))
                             ) : (
                                 <h4>Aún no has creado artículos</h4>
