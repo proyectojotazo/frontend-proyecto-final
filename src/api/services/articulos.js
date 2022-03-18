@@ -29,3 +29,12 @@ export const crearArticulo = async (data) => {
         return Promise.reject(error);
     });
 };
+
+export const searchArticle = async (data, order, regex) => {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/articles/search?`;
+    try {
+        return await client.post(url, { data });
+    } catch (error) {
+        console.log(error);
+    }
+};
