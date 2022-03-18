@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/authContext';
 import { getUser, userUpdate, deleteUser } from '../api/services/auth';
 import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
 import Card from '../components/common/Card';
+import UserInfo from '../components/common/UserInfo';
 
 import './MyAccount.scss';
 
@@ -16,12 +17,10 @@ function MyAccount() {
 
     useEffect(() => {
         getUser(dataUser()).then((data) => {
-            const avatar = data.avatar.split('\\');
-            if (avatar.length === 3) {
-                data.avatar = `${process.env.REACT_APP_API_BASE_URL}/upload/${avatar[2]}`;
-            } else {
-                data.avatar = `${process.env.REACT_APP_API_BASE_URL}/upload/${avatar[2]}/${avatar[3]}`;
-            }
+            data.avatar = `${
+                process.env.REACT_APP_API_BASE_URL
+            }/${data.avatar.replace('public\\', '')}`.replaceAll('\\', '/');
+
             setDatosUsuario(data);
         });
     }, [dataUser]);
@@ -60,7 +59,7 @@ function MyAccount() {
         Object.entries(datosNuevos).forEach(([key, value]) => {
             form.append(key, value);
         });
-        // console.log(form.get('nickname'));
+
         try {
             await userUpdate(datosUsuario._id, form);
             window.location.reload();
@@ -91,7 +90,11 @@ function MyAccount() {
                 {election === 'mi-perfil' && (
                     <>
                         <div className="profile-avatar">
-                            <img src={datosUsuario.avatar} className="avatar" />
+                            <img
+                                src={datosUsuario.avatar}
+                                className="avatar"
+                                alt="avatar"
+                            />
                         </div>
 
                         <div className="profile-sendfile">
@@ -220,7 +223,7 @@ function MyAccount() {
                     <>
                         {datosUsuario.usuarios.seguidores.length > 0 ? (
                             datosUsuario.usuarios.seguidores.map((user) => (
-                                <p>{user.nickname}</p>
+                                <UserInfo user={user} />
                             ))
                         ) : (
                             <h4>Aún no te sigue ningún usuario</h4>
@@ -231,7 +234,7 @@ function MyAccount() {
                     <>
                         {datosUsuario.usuarios.seguidos.length > 0 ? (
                             datosUsuario.usuarios.seguidos.map((user) => (
-                                <p>{user.nickname}</p>
+                                <UserInfo user={user} />
                             ))
                         ) : (
                             <h4>Aún no sigues a ningún usuario</h4>
