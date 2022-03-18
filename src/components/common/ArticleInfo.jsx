@@ -1,6 +1,6 @@
-import moment from 'moment';
 import {
-    FaRegHeart,
+    FaRegStar,
+    FaStar,
     FaRegComments,
     FaRegPaperPlane,
     FaRegEdit,
@@ -8,19 +8,20 @@ import {
 
 import { useAuth } from './../../contexts/authContext';
 
-import './articleInfo.scss';
+import getMoment from '../../utils/getMoment';
 
-const getMoment = (date) => {
-    return moment(date).startOf('seconds').fromNow();
-};
+import './articleInfo.scss';
 
 function ArticleInfo({ article }) {
     const { isLogged } = useAuth();
+
+    const addFavourite = () => {};
+    
     return (
         <div className="articleInfo__container">
             <div className="articleInfo__data-wrapper">
                 <p className="data-wrapper__article-date">
-                    Created {getMoment(article.fechaPublicacion)}
+                    Creado {getMoment(article.fechaPublicacion)}
                 </p>
             </div>
             <div className="articleInfo__icons-wrapper">
@@ -32,7 +33,10 @@ function ArticleInfo({ article }) {
                 </div>
                 {isLogged && (
                     <>
-                        <FaRegHeart className="icons-wrapper__like" />
+                        <FaRegStar
+                            onClick={addFavourite}
+                            className="icons-wrapper__like"
+                        />
                         <FaRegEdit className="icons-wrapper__edit" />
                     </>
                 )}
