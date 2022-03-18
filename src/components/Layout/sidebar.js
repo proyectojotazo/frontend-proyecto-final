@@ -9,7 +9,6 @@ import './Nav.scss';
 import './Layout.scss';
 import './NavBar/MenuBurger.scss';
 import SweetAlert2 from 'react-sweetalert2';
-import Login from '../Auth/Login/Login';
 import Popup from '../Auth/Popup/PopUp';
 import * as Icons from 'react-icons/fa';
 import { useAuth } from '../../contexts/authContext';
@@ -51,12 +50,12 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li className="sidebar-item ">
-            <NavLink to="/">
+            <NavLink to="/crear">
               <Nuevo />
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/escribir">
+            <NavLink to="/">
               <Inicio />
             </NavLink>
           </li>

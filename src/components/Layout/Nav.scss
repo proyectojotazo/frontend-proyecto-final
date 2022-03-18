@@ -80,22 +80,6 @@ h2#swal2-title {
         transition: all 200ms ease;
         cursor: pointer;
     }
-    // .nav-link {
-    //   text-decoration: none;
-    //   height: 100%;
-    //   width: 100%;
-    //   display: flex;
-    //   padding: 5px 15px 5px 5px;
-    //   position: relative;
-    //   transition: all 200ms ease;
-    //   &:hover {
-    //     color: cadetblue;
-
-    //     &::before {
-    //       opacity: 1;
-    //     }
-    //   }
-    // }
 
     .icon {
         width: 30px;
@@ -113,6 +97,14 @@ h2#swal2-title {
         flex-direction: column;
         align-items: center;
         margin-left: -28px;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        background-color: #282a36;
+        padding: 8px;
+        border-radius: 21px;
+        border: 1px solid #e5e5e5;
         margin-top: 10px;
     }
 }
