@@ -1,0 +1,12 @@
+@import '../sass/variablesSass.scss';
+
+.user-container {
+    .mymenu-profile {
+        padding-right: 0;
+        .mymenu-lista {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+}
