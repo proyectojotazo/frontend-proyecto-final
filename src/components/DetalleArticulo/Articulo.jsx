@@ -77,7 +77,7 @@ function Articulo() {
                 <h3 className="articulo__textoIntroductorio">
                     {art.textoIntroductorio}
                 </h3>
-                <p className="articulo__contenido">{art.contenido}</p>
+                <div dangerouslySetInnerHTML={{ __html: art.contenido }}></div>{' '}
             </section>
 
             <Comentarios comentarios={art.comentarios} />
