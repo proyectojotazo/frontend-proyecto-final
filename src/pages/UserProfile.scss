@@ -1,6 +1,45 @@
 @import '../sass/variablesSass.scss';
 
 .user-container {
+    display: grid;
+    justify-content: center;
+    margin-top: 2rem;
+    .user-data {
+        display: grid;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        .user-avatar {
+            justify-self: center;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+        .user-nick {
+            justify-self: center;
+            font-size: 2rem;
+            color: $orange;
+        }
+        .user-info {
+            display: grid;
+            grid-template-areas: 'post followers following';
+            grid-gap: 3rem;
+            margin-top: 1rem;
+            .user-post {
+                grid-area: post;
+                text-align: center;
+            }
+            .user-followers {
+                grid-area: followers;
+                text-align: center;
+            }
+            .user-following {
+                grid-area: following;
+                text-align: center;
+            }
+        }
+    }
     .mymenu-profile {
         padding-right: 0;
         .mymenu-lista {

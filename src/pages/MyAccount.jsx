@@ -4,6 +4,7 @@ import { getUser, userUpdate, deleteUser } from '../api/services/auth';
 import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
+import urlConvert from '../utils/urlConvert';
 
 import './MyAccount.scss';
 
@@ -25,10 +26,7 @@ function MyAccount() {
 
     useEffect(() => {
         getUser(dataUser()).then((data) => {
-            data.avatar = `${
-                process.env.REACT_APP_API_BASE_URL
-            }/${data.avatar.replace('public\\', '')}`.replaceAll('\\', '/');
-
+            data.avatar = urlConvert(data.avatar);
             setDatosUsuario(data);
         });
     }, [dataUser]);
