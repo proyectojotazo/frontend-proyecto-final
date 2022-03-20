@@ -23,8 +23,10 @@
         }
         .user-info {
             display: grid;
-            grid-template-areas: 'post followers following';
-            grid-gap: 3rem;
+            grid-template-areas:
+                'post followers following'
+                'button button button';
+            column-gap: 3rem;
             margin-top: 1rem;
             .user-post {
                 grid-area: post;
@@ -38,14 +40,23 @@
                 grid-area: following;
                 text-align: center;
             }
+            .follow-button {
+                grid-area: button;
+                text-align: center;
+                margin-top: 1.5rem;
+            }
         }
     }
     .mymenu-profile {
         padding-right: 0;
+        padding-top: 1.5rem;
         .mymenu-lista {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
+    }
+    .card {
+        margin-bottom: 2rem;
     }
 }

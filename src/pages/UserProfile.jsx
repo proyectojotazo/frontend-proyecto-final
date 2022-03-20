@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUser } from '../api/services/auth';
+import FollowButton from '../components/Profile/FollowButton';
 import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
@@ -29,8 +30,6 @@ function UserProfile() {
         setElection(option);
     };
 
-    console.log(datosPerfil);
-
     return (
         <>
             {datosPerfil && (
@@ -57,6 +56,10 @@ function UserProfile() {
                                 <h4>{datosPerfil.usuarios.seguidos.length}</h4>
                                 <h4>Siguiendo</h4>
                             </div>
+                            <FollowButton
+                                userNick={datosPerfil.nickname}
+                                userId={datosPerfil._id}
+                            />
                         </div>
                     </div>
                     <MyMenuProfile
