@@ -212,7 +212,7 @@ function MyAccount() {
                                     <Card
                                         className="my-article"
                                         key={art._id}
-                                        advert={art}
+                                        articulo={art}
                                     />
                                 ))
                             ) : (
@@ -226,7 +226,7 @@ function MyAccount() {
                         <div className="my-favourites">
                             {datosUsuario.articulos.favoritos.length > 0 ? (
                                 datosUsuario.articulos.favoritos.map((art) => (
-                                    <Card key={art._id} advert={art} />
+                                    <Card key={art._id} articulo={art} />
                                 ))
                             ) : (
                                 <h4>Aún no has añadido artículos favoritos</h4>

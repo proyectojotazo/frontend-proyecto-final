@@ -73,7 +73,7 @@ function UserProfile() {
                                     <Card
                                         className="user-article"
                                         key={art._id}
-                                        advert={art}
+                                        articulo={art}
                                     />
                                 ))
                             ) : (
@@ -87,7 +87,7 @@ function UserProfile() {
                                 {datosPerfil.articulos.favoritos.length > 0 ? (
                                     datosPerfil.articulos.favoritos.map(
                                         (art) => (
-                                            <Card key={art._id} advert={art} />
+                                            <Card key={art._id} articulo={art} />
                                         )
                                     )
                                 ) : (
