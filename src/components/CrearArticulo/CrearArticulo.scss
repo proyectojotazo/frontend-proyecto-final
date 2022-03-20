@@ -1,0 +1,89 @@
+@import '../../sass/variablesSass.scss';
+
+.create-post-container {
+    .create-post-form-container {
+        input,
+        textarea,
+        select {
+            background: none;
+            border-bottom: 1px solid #444759;
+            color: #fff;
+            font-family: $tSubtitulo;
+            font-size: 20px;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        textarea {
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+            line-height: 15px;
+            height: 50px;
+        }
+
+        #archivoDestacado {
+            width: auto;
+        }
+
+        #fechaPublicacion {
+            width: auto;
+            margin-top: 30px;
+        }
+
+        .publicar-button {
+            background: $purple;
+            padding: 10px 0;
+            &:hover {
+                background: #444759;
+                color: $purple;
+                transform: scale(0.9);
+                transition: all 0.3s;
+            }
+        }
+
+        .ql-toolbar.ql-snow {
+            border: 1px solid #bd93f9 !important;
+        }
+
+        .ql-container.ql-snow {
+            border: 1px solid #bd93f9 !important;
+        }
+
+        .ql-snow .ql-picker-options {
+            background-color: #f8b66d !important;
+        }
+
+        .ql-snow .ql-stroke {
+            stroke: #979797 !important;
+        }
+
+        .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+        .ql-snow.ql-toolbar .ql-picker-item:hover {
+            color: #282a36 !important;
+        }
+
+        .ql-snow.ql-toolbar .ql-picker-label:hover {
+            color: #bd93f9 !important;
+        }
+
+        .ql-snow.ql-toolbar button:hover .ql-stroke {
+            stroke: #bd93f9 !important;
+        }
+
+        .ql-snow.ql-toolbar button:active .ql-stroke {
+            stroke: #bd93f9 !important;
+        }
+
+        .ql-snow.ql-toolbar button:hover .ql-stroke {
+            stroke: #bd93f9 !important;
+        }
+
+        .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+            border-color: #f8b66d !important;
+        }
+
+        .create-post-container .create-post-form-container .ql-toolbar.ql-snow {
+            border: 1px solid #bd93f9 !important;
+        }
+    }
+}
