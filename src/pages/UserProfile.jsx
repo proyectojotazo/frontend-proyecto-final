@@ -53,7 +53,7 @@ function UserProfile() {
 
     const handleFollow = async () => {
         if (isMe) navigate('../my-account');
-        
+
         const { articulos, avatar, nickname, nombre, _id } = userLogged;
         const newFollower = {
             articulos,
@@ -168,7 +168,12 @@ function UserProfile() {
                             <div className="my-followers">
                                 {datosPerfil.usuarios.seguidores.length > 0 ? (
                                     datosPerfil.usuarios.seguidores.map(
-                                        (user) => <UserInfo user={user} />
+                                        (user) => (
+                                            <UserInfo
+                                                key={user._id}
+                                                user={user}
+                                            />
+                                        )
                                     )
                                 ) : (
                                     <h4>{nick} aún no tiene seguidores</h4>
@@ -181,7 +186,12 @@ function UserProfile() {
                             <div className="my-followings">
                                 {datosPerfil.usuarios.seguidos.length > 0 ? (
                                     datosPerfil.usuarios.seguidos.map(
-                                        (user) => <UserInfo user={user} />
+                                        (user) => (
+                                            <UserInfo
+                                                key={user._id}
+                                                user={user}
+                                            />
+                                        )
                                     )
                                 ) : (
                                     <h4>
