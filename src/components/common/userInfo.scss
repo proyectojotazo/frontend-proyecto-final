@@ -28,7 +28,8 @@
     background-color: $purple;
     border-radius: 1rem;
     margin-left: auto;
-    width: 5rem;
+    min-width: fit-content;
+    padding: 0.8rem;
     height: 2rem;
 }
 

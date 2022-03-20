@@ -4,6 +4,8 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa';
 
 import { useAuth } from './../../contexts/authContext';
 
+import { followUser } from '../../api/services/usuarios';
+
 import './userInfo.scss';
 
 const parseAvatar = (url) => {
@@ -15,14 +17,29 @@ const parseAvatar = (url) => {
 
 function UserInfo({ user }) {
     const { isLogged, dataUser } = useAuth();
+    // const [currentFollowers, setCurrentFollowers] = useState(
+    //     user.usuarios.seguidores
+    // );
+
+    const isFollowing = !!user.usuarios.seguidores.find(
+        (idFollower) => idFollower === dataUser()
+    );
 
     const navigate = useNavigate();
 
-    const handleFollow = (e) => {
+    const handleFollow = async (e) => {
         e.stopPropagation();
         // Si no se está logeado que muestre un pop-up para loguearse?
-        console.log('Siguiendo');
+
         // Si está logueado que lo agregue a seguidos
+        await followUser(user._id);
+        // if (!isFollowing) setCurrentFollowers((prev) => [...prev, dataUser()]);
+        // else
+        //     setCurrentFollowers((prev) =>
+        //         prev.filter((followerId) => followerId !== dataUser())
+        //     );
+        window.location.reload()
+        
     };
 
     const goToUserProfile = () => {
@@ -42,7 +59,8 @@ function UserInfo({ user }) {
                     onClick={handleFollow}
                     className={`userInfo__btn-follow ${sameUser && 'hidden'}`}
                 >
-                    Seguir <FaRegHeart />
+                    {isFollowing ? 'Dejar de seguir' : 'Seguir'}
+                    {isFollowing ? <FaHeart /> : <FaRegHeart />}
                 </button>
             )}
         </div>
