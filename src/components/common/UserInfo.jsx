@@ -6,24 +6,13 @@ import { useAuth } from './../../contexts/authContext';
 
 import { followUser } from '../../api/services/usuarios';
 
+import urlConvert from '../../utils/urlConvert';
+
 import './userInfo.scss';
 
-const parseAvatar = (url) => {
-    return `${process.env.REACT_APP_API_BASE_URL}/${url.replace(
-        'public\\',
-        ''
-    )}`.replaceAll('\\', '/');
-};
-
 function UserInfo({ user }) {
-    const { isLogged, dataUser } = useAuth();
-    // const [currentFollowers, setCurrentFollowers] = useState(
-    //     user.usuarios.seguidores
-    // );
-
-    const isFollowing = !!user.usuarios.seguidores.find(
-        (idFollower) => idFollower === dataUser()
-    );
+    const { isLogged, userLogged, updateUserLogged } = useAuth();
+    const isFollowing = userLogged.usuarios?.seguidos.find(userFollowed => userFollowed._id === user._id);
 
     const navigate = useNavigate();
 
@@ -33,25 +22,31 @@ function UserInfo({ user }) {
 
         // Si está logueado que lo agregue a seguidos
         await followUser(user._id);
-        // if (!isFollowing) setCurrentFollowers((prev) => [...prev, dataUser()]);
-        // else
-        //     setCurrentFollowers((prev) =>
-        //         prev.filter((followerId) => followerId !== dataUser())
-        //     );
-        window.location.reload()
-        
+
+        const following = {
+            usuarios: {
+                ...userLogged.usuarios,
+                seguidos: isFollowing
+                    ? userLogged.usuarios.seguidos.filter(
+                          (userFollowed) => userFollowed._id !== user._id
+                      )
+                    : [...userLogged.usuarios.seguidos, user],
+            },
+        };
+
+        updateUserLogged(following);
     };
 
     const goToUserProfile = () => {
         navigate(`../user/${user.nickname}`);
     };
 
-    const sameUser = user._id === dataUser();
+    const sameUser = user._id === userLogged._id;
 
     return (
         <div onClick={goToUserProfile} className="userInfo__container">
             <div className="userInfo__img-wrapper">
-                <img src={parseAvatar(user.avatar)} alt="avatar" />
+                <img src={urlConvert(user.avatar)} alt="avatar" />
             </div>
             <p className="userInfo__nickname">{user.nickname}</p>
             {isLogged && (

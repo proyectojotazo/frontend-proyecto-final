@@ -9,11 +9,9 @@ import UserInfo from './../common/UserInfo';
 
 import { getArticulosId } from '../../api/services/articulos';
 import { useAuth } from '../../contexts/authContext';
+import urlConvert from '../../utils/urlConvert'
 
 import './articulo.scss';
-
-const parseImgUrl = (url) =>
-    `${process.env.REACT_APP_API_BASE_URL}/${url.replace('public\\', '')}`;
 
 const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
@@ -67,7 +65,7 @@ function Articulo() {
                 <img
                     src={
                         art.archivoDestacado
-                            ? parseImgUrl(art.archivoDestacado)
+                            ? urlConvert(art.archivoDestacado)
                             : imgHolder
                     }
                     alt="Imagen titular"
@@ -77,7 +75,7 @@ function Articulo() {
                 <h3 className="articulo__textoIntroductorio">
                     {art.textoIntroductorio}
                 </h3>
-                <div dangerouslySetInnerHTML={{ __html: art.contenido }}></div>{' '}
+                <div className="articulo__contenido" dangerouslySetInnerHTML={{ __html: art.contenido }}></div>{' '}
             </section>
 
             <Comentarios comentarios={art.comentarios} />

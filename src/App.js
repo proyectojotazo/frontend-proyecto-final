@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/authContext';
 import { logout } from './api/services/auth';
@@ -12,9 +12,11 @@ import NewArticlePage from './pages/NewArticlePage';
 import MyAccount from './pages/MyAccount';
 import UserProfile from './pages/UserProfile';
 import SearchArticle from './pages/SearchArticle';
+import useUserLogged from './hooks/useUserLogged';
 
 function App({ isAlreadyLogged }) {
     const [isLogged, setIsLogged] = useState(isAlreadyLogged);
+    const { userLogged, updateUserLogged } = useUserLogged();
 
     const accountLogin = () => {
         setIsLogged(true);
@@ -49,7 +51,14 @@ function App({ isAlreadyLogged }) {
 
     return (
         <AuthContextProvider
-            value={{ isLogged, accountLogin, accountLogout, dataUser }}
+            value={{
+                isLogged,
+                accountLogin,
+                accountLogout,
+                dataUser,
+                userLogged,
+                updateUserLogged,
+            }}
         >
             <Layout>
                 <Routes>
