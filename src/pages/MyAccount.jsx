@@ -4,8 +4,17 @@ import { getUser, userUpdate, deleteUser } from '../api/services/auth';
 import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
+import urlConvert from '../utils/urlConvert';
 
 import './MyAccount.scss';
+
+const menuOptions = [
+    'Mi Perfil',
+    'Mis Artículos',
+    'Favoritos',
+    'Seguidores',
+    'Seguidos',
+];
 
 function MyAccount() {
     const { dataUser } = useAuth();
@@ -13,14 +22,11 @@ function MyAccount() {
     const [datosNuevos, setDatosNuevos] = useState({});
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
-    const [election, setElection] = useState('mi-perfil');
+    const [election, setElection] = useState('Mi Perfil');
 
     useEffect(() => {
         getUser(dataUser()).then((data) => {
-            data.avatar = `${
-                process.env.REACT_APP_API_BASE_URL
-            }/${data.avatar.replace('public\\', '')}`.replaceAll('\\', '/');
-
+            data.avatar = urlConvert(data.avatar);
             setDatosUsuario(data);
         });
     }, [dataUser]);
@@ -77,18 +83,17 @@ function MyAccount() {
         }
     };
 
-    console.log(datosUsuario);
-
     return (
         <>
             <div className="profile-content">
                 <h1 className="profile-title">Mi Cuenta</h1>
                 <MyMenuProfile
                     className="profile-menu"
+                    options={menuOptions}
                     changeOption={changeElection}
                 />
                 <div className="my-profile">
-                    {election === 'mi-perfil' && (
+                    {election === 'Mi Perfil' && (
                         <>
                             <div className="profile-avatar">
                                 <img
@@ -199,7 +204,7 @@ function MyAccount() {
                         </>
                     )}
                 </div>
-                {election === 'mis-articulos' && (
+                {election === 'Mis Artículos' && (
                     <>
                         <div className="my-articles">
                             {datosUsuario.articulos.creados.length > 0 ? (
@@ -216,7 +221,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'favoritos' && (
+                {election === 'Favoritos' && (
                     <>
                         <div className="my-favourites">
                             {datosUsuario.articulos.favoritos.length > 0 ? (
@@ -229,7 +234,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'seguidores' && (
+                {election === 'Seguidores' && (
                     <>
                         <div className="my-followers">
                             {datosUsuario.usuarios.seguidores.length > 0 ? (
@@ -242,7 +247,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'seguidos' && (
+                {election === 'Seguidos' && (
                     <>
                         <div className="my-followings">
                             {datosUsuario.usuarios.seguidos.length > 0 ? (

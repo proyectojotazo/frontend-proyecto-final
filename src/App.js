@@ -8,8 +8,9 @@ import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import DetailArticle from './pages/DetailArticle';
 import RecoverAccount from './pages/RecoverAccount';
-import CreaArticle from './pages/CreaArticle';
+import NewArticlePage from './pages/NewArticlePage';
 import MyAccount from './pages/MyAccount';
+import UserProfile from './pages/UserProfile';
 import SearchArticle from './pages/SearchArticle';
 
 function App({ isAlreadyLogged }) {
@@ -54,11 +55,12 @@ function App({ isAlreadyLogged }) {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/articles/:id" element={<DetailArticle />} />
+                    <Route path="/user/:nick" element={<UserProfile />} />
                     <Route
                         path="/crear"
                         element={
                             <PrivateRoute>
-                                <CreaArticle />
+                                <NewArticlePage />
                             </PrivateRoute>
                         }
                     />
@@ -74,10 +76,7 @@ function App({ isAlreadyLogged }) {
                         path="/recuperatucuenta/:id/:token"
                         element={<RecoverAccount />}
                     />
-                    <Route
-                        path="/buscar"
-                        element={<SearchArticle />}
-                    />
+                    <Route path="/buscar" element={<SearchArticle />} />
                 </Routes>
             </Layout>
         </AuthContextProvider>

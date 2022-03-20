@@ -14,7 +14,7 @@ const parseAvatar = (url) => {
 };
 
 function UserInfo({ user }) {
-    const { isLogged, userLoggedId } = useAuth();
+    const { isLogged, dataUser } = useAuth();
 
     const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function UserInfo({ user }) {
         navigate(`../user/${user.nickname}`);
     };
 
-    const sameUser = user._id === userLoggedId;
+    const sameUser = user._id === dataUser();
 
     return (
         <div onClick={goToUserProfile} className="userInfo__container">
