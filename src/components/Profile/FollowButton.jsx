@@ -7,19 +7,20 @@ import { followUser } from '../../api/services/usuarios';
 import './FollowButton.scss';
 
 function FollowButton({ userNick, userId }) {
-    const { dataUser } = useAuth();
+    const { isLogged, dataUser } = useAuth();
     const [nick, setNick] = useState('');
     const [siguiendo, setSiguiendo] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        getUser(dataUser()).then((data) => {
-            data.usuarios.seguidos.forEach((user) => {
-                user.nickname === userNick && setSiguiendo(true);
+        isLogged &&
+            getUser(dataUser()).then((data) => {
+                data.usuarios.seguidos.forEach((user) => {
+                    user.nickname === userNick && setSiguiendo(true);
+                });
+                setNick(data.nickname);
             });
-            setNick(data.nickname);
-        });
-    }, [dataUser, userNick]);
+    }, [dataUser, isLogged, userNick]);
 
     const goToMyAccount = () => {
         navigate('../my-account');
@@ -38,18 +39,28 @@ function FollowButton({ userNick, userId }) {
     return (
         <>
             <div className="follow-button">
-                {nick === userNick ? (
-                    <button onClick={goToMyAccount}>Editar Perfil</button>
-                ) : (
+                {isLogged ? (
                     <>
-                        {!siguiendo ? (
-                            <button onClick={followOrUnfollow}>Seguir</button>
-                        ) : (
-                            <button onClick={followOrUnfollow}>
-                                Dejar de seguir
+                        {nick === userNick ? (
+                            <button onClick={goToMyAccount}>
+                                Editar Perfil
                             </button>
+                        ) : (
+                            <>
+                                {!siguiendo ? (
+                                    <button onClick={followOrUnfollow}>
+                                        Seguir
+                                    </button>
+                                ) : (
+                                    <button onClick={followOrUnfollow}>
+                                        Dejar de seguir
+                                    </button>
+                                )}
+                            </>
                         )}
                     </>
+                ) : (
+                    <h4>Debes iniciar sesión para seguir al usuario</h4>
                 )}
             </div>
         </>
