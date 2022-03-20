@@ -15,15 +15,6 @@ export const getUser = async (nickname) => {
     }
 };
 
-// POST
-export const artFav = async (idArticulo) => {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/users/articles/favourites/${idArticulo}`;
-    try {
-        return await client.post(url);
-    } catch (error) {
-        console.log(error);
-    }
-};
 
 export const register = (data) => {
     const userData = {

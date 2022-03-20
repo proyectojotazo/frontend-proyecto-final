@@ -11,12 +11,43 @@ import { useAuth } from './../../contexts/authContext';
 import getMoment from '../../utils/getMoment';
 
 import './articleInfo.scss';
+import { getUser } from '../../api/services/auth';
+import { useEffect, useState } from 'react';
+import { addArticleFavorite } from '../../api/services/usuarios';
 
 function ArticleInfo({ article }) {
-    const { isLogged } = useAuth();
+    const { isLogged , dataUser} = useAuth();
+    const [articuloFav, setArticuloFav] = useState('');
 
-    const addFavourite = () => {};
+    // esto se quitará cuando user esté en Auth (como me comentó Javier), y todos los condicionales de user
+    const [user, setUser] = useState('')
+    const [propiedadArticulo, setPropiedadArticulo] = useState('')
     
+    useEffect(() => {
+        if(isLogged) {
+            getUser(dataUser())
+                .then((data)=>{
+                    setUser(data)
+                    setPropiedadArticulo(data._id)
+                    setArticuloFav(articuloFavorito(data.articulos.favoritos, article))
+                    })
+        }
+        
+    }, [article, articuloFav, dataUser, isLogged]);
+
+    const articuloFavorito = (usuarioArticulos, article) => {
+        const articulo = usuarioArticulos.find(articulo=>articulo._id===article._id)
+            if (articulo) {
+                return true 
+            } else {
+                return false
+            }
+    } 
+
+    const anadirArticuloFavourito = async (id) => {
+        await addArticleFavorite(id).then(setArticuloFav(!articuloFav))
+    };
+
     return (
         <div className="articleInfo__container">
             <div className="articleInfo__data-wrapper">
@@ -30,13 +61,20 @@ function ArticleInfo({ article }) {
                     <p className="comments-wrapper__numComments">
                         {article.comentarios.length}
                     </p>
+
+                        
+                    
                 </div>
-                {isLogged && (
+                {/* si estas logueado, existe usuar(esto se quitará más adelante cuando usemos el contexto), y si el propietario del articulo no es el mismo que esta logueado */}
+                {user && article.usuario[0]._id!==propiedadArticulo &&(
                     <>
-                        <FaRegStar
-                            onClick={addFavourite}
+                        {articuloFav ? (
+                            <FaStar className="icons-wrapper__like"
+                            onClick={() =>anadirArticuloFavourito(article._id)} />
+                        ): <FaRegStar
                             className="icons-wrapper__like"
-                        />
+                            onClick={() =>anadirArticuloFavourito(article._id)}
+                            />}
                         <FaRegEdit className="icons-wrapper__edit" />
                     </>
                 )}
