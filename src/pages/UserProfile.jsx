@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getUser } from '../api/services/auth';
-import FollowButton from '../components/Profile/FollowButton';
-import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
+import Popup from '../components/Auth/Popup/PopUp';
+import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
+
 import urlConvert from '../utils/urlConvert';
+import { getUser } from '../api/services/auth';
+import { followUser } from '../api/services/usuarios';
+import { useAuth } from './../contexts/authContext';
 
 import './UserProfile.scss';
 
@@ -13,21 +17,64 @@ const menuOptions = ['Artículos', 'Favoritos', 'Seguidores', 'Siguiendo'];
 
 function UserProfile() {
     const { nick } = useParams();
+    const navigate = useNavigate();
+    const { isLogged, userLogged } = useAuth();
     const [datosPerfil, setDatosPerfil] = useState(null);
-    const [election, setElection] = useState('');
+    const [election, setElection] = useState('Artículos');
+    const [showPopup, setShowPopup] = useState(false);
+
+    const isFollowing = datosPerfil?.usuarios.seguidores.find(
+        (user) => user._id === userLogged._id
+    );
+    const isMe = datosPerfil?._id === userLogged?._id;
 
     useEffect(() => {
+        let isApiSubscribed = true;
         getUser(nick)
             .then((data) => {
-                data.avatar = urlConvert(data.avatar);
-                setDatosPerfil(data);
-                setElection('Artículos');
+                if (isApiSubscribed) {
+                    setDatosPerfil(data);
+                }
             })
             .catch((error) => console.log(error));
+
+        return () => {
+            isApiSubscribed = false;
+        };
     }, [nick]);
 
     const changeElection = (option) => {
         setElection(option);
+    };
+
+    const handleShowLogin = () => {
+        setShowPopup((prev) => !prev);
+    };
+
+    const handleFollow = async () => {
+        if (isMe) navigate('../my-account');
+        
+        const { articulos, avatar, nickname, nombre, _id } = userLogged;
+        const newFollower = {
+            articulos,
+            avatar,
+            nickname,
+            nombre,
+            _id,
+        };
+        await followUser(datosPerfil._id);
+
+        setDatosPerfil((prev) => ({
+            ...prev,
+            usuarios: {
+                ...prev.usuarios,
+                seguidores: isFollowing
+                    ? prev.usuarios.seguidores.filter(
+                          (userFollower) => userFollower._id !== userLogged._id
+                      )
+                    : [...prev.usuarios.seguidores, newFollower],
+            },
+        }));
     };
 
     return (
@@ -36,7 +83,7 @@ function UserProfile() {
                 <div className="user-container">
                     <div className="user-data">
                         <img
-                            src={datosPerfil.avatar}
+                            src={urlConvert(datosPerfil.avatar)}
                             className="user-avatar"
                             alt="avatar"
                         />
@@ -56,10 +103,24 @@ function UserProfile() {
                                 <h4>{datosPerfil.usuarios.seguidos.length}</h4>
                                 <h4>Siguiendo</h4>
                             </div>
-                            <FollowButton
-                                userNick={datosPerfil.nickname}
-                                userId={datosPerfil._id}
-                            />
+                            <div className="follow-button">
+                                <button
+                                    onClick={
+                                        isLogged
+                                            ? handleFollow
+                                            : handleShowLogin
+                                    }
+                                >
+                                    {!isLogged
+                                        ? 'Debes iniciar sesión para seguir al usuario'
+                                        : isMe
+                                        ? 'Editar Perfil'
+                                        : isFollowing
+                                        ? 'Dejar de seguir'
+                                        : 'Seguir'}
+                                </button>
+                            </div>
+                            {showPopup && <Popup />}
                         </div>
                     </div>
                     <MyMenuProfile
@@ -87,7 +148,10 @@ function UserProfile() {
                                 {datosPerfil.articulos.favoritos.length > 0 ? (
                                     datosPerfil.articulos.favoritos.map(
                                         (art) => (
-                                            <Card key={art._id} articulo={art} />
+                                            <Card
+                                                key={art._id}
+                                                articulo={art}
+                                            />
                                         )
                                     )
                                 ) : (

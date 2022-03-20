@@ -9,6 +9,7 @@ function MyMenuProfile({ options, changeOption }) {
                 {options.map((item) => {
                     return (
                         <li
+                            key={item}
                             className="mymenu-item"
                             onClick={() => changeOption(item)}
                         >

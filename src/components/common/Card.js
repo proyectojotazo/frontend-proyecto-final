@@ -5,18 +5,21 @@ import Categoria from './Categoria';
 import ArticleInfo from './ArticleInfo';
 
 import './card.scss';
-import UserInfo from './UserInfo';
+
+import urlConvert from './../../utils/urlConvert';
+
+const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
 function Card({ cambiarCategoria, articulo }) {
-    const user = articulo.usuario[0];
+
     const _id = articulo._id;
     return (
         <div className="card">
             <Link to={`/articles/${_id}`}>
                 <div className="imgportada">
                     <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}
-                        alt="avatar"
+                        src={urlConvert(articulo.archivoDestacado) || imgHolder}
+                        alt="archivo destacado"
                     />
                 </div>
             </Link>
@@ -32,7 +35,6 @@ function Card({ cambiarCategoria, articulo }) {
                 <hr />
             </Link>
             <ArticleInfo article={articulo} />
-            <UserInfo user={user} />
         </div>
     );
 }

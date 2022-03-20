@@ -1,4 +1,4 @@
-@import "../../sass/variablesSass.scss";
+@import '../../sass/variablesSass.scss';
 
 .seccionArticulos {
     display: grid;
@@ -9,16 +9,18 @@
     padding-right: 1rem;
 }
 
+.card__wrapper {
+    width: 100%;
+}
+
 @media only screen and (max-width: 1200px) {
     .seccionArticulos {
-    grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media only screen and (max-width: 700px) {
     .seccionArticulos {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 }
-
-
