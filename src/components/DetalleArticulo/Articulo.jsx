@@ -6,14 +6,16 @@ import Comentarios from './Comentarios';
 import FormularioComentario from './FormularioComentario';
 import ArticleInfo from './../common/ArticleInfo';
 import UserInfo from './../common/UserInfo';
+import ShareButtons from '../common/ShareButtons';
 
 import { getArticulosId } from '../../api/services/articulos';
 import { useAuth } from '../../contexts/authContext';
-import urlConvert from '../../utils/urlConvert'
+import urlConvert from '../../utils/urlConvert';
 
 import './articulo.scss';
 
 const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
+const urlArt = `${process.env.REACT_APP_API_BASE_URL}/articles/`;
 
 function Articulo() {
     const { isLogged } = useAuth();
@@ -61,6 +63,13 @@ function Articulo() {
                 <UserInfo user={art.usuario[0]} />
                 <ArticleInfo article={art} />
             </div>
+            <div className="articulo__shareButtons">
+                <ShareButtons
+                    url={urlArt + art._id}
+                    titulo={art.titulo}
+                    resumen={art.textoIntroductorio}
+                />
+            </div>
             <div className="articulo__imgPortada-wrapper">
                 <img
                     src={
@@ -75,7 +84,10 @@ function Articulo() {
                 <h3 className="articulo__textoIntroductorio">
                     {art.textoIntroductorio}
                 </h3>
-                <div className="articulo__contenido" dangerouslySetInnerHTML={{ __html: art.contenido }}></div>{' '}
+                <div
+                    className="articulo__contenido"
+                    dangerouslySetInnerHTML={{ __html: art.contenido }}
+                ></div>{' '}
             </section>
 
             <Comentarios comentarios={art.comentarios} />

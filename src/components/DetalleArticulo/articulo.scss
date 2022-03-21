@@ -97,6 +97,14 @@
         flex-direction: row;
         justify-content: space-between;
     }
+
+    .articulo__shareButtons {
+        display: flex;
+        justify-content: center;
+        .share-buttons {
+            width: 80%;
+        }
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -112,7 +120,7 @@
         }
     }
 
-    .articulo__textoContenido-wrapper{
+    .articulo__textoContenido-wrapper {
         margin: 2rem 0;
     }
 }
