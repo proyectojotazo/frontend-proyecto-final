@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import ReactQuill, { Quill } from 'react-quill';
 import ImageCompress from 'quill-image-compress';
@@ -6,7 +6,7 @@ import ImageCompress from 'quill-image-compress';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { crearArticulo } from '../../api/services/articulos';
+import { crearArticulo, getAllCategorias } from '../../api/services/articulos';
 
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
@@ -20,16 +20,23 @@ const NewArticle = () => {
         textoIntroductorio: '',
         contenido: '',
         fechaPublicacion: '',
-        categorias: ['css', 'html'],
     };
 
     const [selectedDestacado, setSelectedDestacado] = useState(null);
     const [userData, setUserData] = useState(initialState);
     const [sendSucces, setSendSucces] = useState(false);
-
+    const [categoriasFetched, setCategoriasFetched] = useState([]);
+    const [categoriasSelected, setCategoriasSelected] = useState([]);
     const descriptionInput = useRef(null);
+    const [programPost, setProgramPost] = useState(false);
 
-    console.log(htmlRendered);
+    useEffect(() => {
+        getAllCategorias()
+            .then((data) => {
+                setCategoriasFetched(data);
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
     const {
         register,
@@ -42,21 +49,47 @@ const NewArticle = () => {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(name, value);
+
         setUserData({
             ...userData,
             [name]: value,
         });
+
         clearErrors(name);
         clearErrors('custom');
+
+        if (name === 'fechaPublicacion') {
+            value > new Date().toISOString()
+                ? setProgramPost(true)
+                : setProgramPost(false);
+        }
     };
 
     const handleFileInput = (e) => {
-        console.log('hola');
         setSelectedDestacado(e.target.files[0]);
     };
 
+    const handleCategories = (e) => {
+        const categoria = e.target.innerText;
+        if (!categoriasSelected.includes(categoria)) {
+            e.target.classList.toggle('selected-button');
+            setCategoriasSelected((prevArray) => [...prevArray, categoria]);
+        } else {
+            e.target.classList.toggle('selected-button');
+            setCategoriasSelected(
+                categoriasSelected.filter((item) => item !== categoria)
+            );
+        }
+    };
+
     const handleForm = () => {
-        console.log('Inte');
+        if (categoriasSelected.length < 1) {
+            setError('categorias', {
+                type: 'manual',
+                message: 'Debes introducir al menos una categoria',
+            });
+        }
+
         try {
             const data = {
                 titulo: userData.titulo,
@@ -64,7 +97,7 @@ const NewArticle = () => {
                 textoIntroductorio: userData.textoIntroductorio,
                 contenido: htmlRendered,
                 fechaPublicacion: userData.fechaPublicacion,
-                categorias: userData.categorias,
+                categorias: categoriasSelected,
             };
 
             crearArticulo(data)
@@ -83,10 +116,6 @@ const NewArticle = () => {
         } catch (error) {
             console.log(error);
         }
-    };
-
-    const maxSize = () => {
-        console.log(maxSize);
     };
 
     return (
@@ -162,51 +191,36 @@ const NewArticle = () => {
                         </p>
                     </div>
 
-                    <div className="input-container">
-                        <input
-                            {...register('fechaPublicacion', {
-                                required:
-                                    'Es necesario introducir una fecha y hora de publicación',
-                            })}
-                            type="datetime-local"
-                            name="fechaPublicacion"
-                            id="fechaPublicacion"
-                            onChange={handleInputChange}
-                            placeholder="Fecha y hora de publicación"
-                        />
-                        <ErrorMessage
-                            errors={errors}
-                            name="fechaPublicacion"
-                            render={({ message }) => (
-                                <p className="form-custom-error">{message}</p>
-                            )}
-                        />
+                    <div className="categorias-container-main">
+                        <h4 className="categorias-title">
+                            ¿De qué temas nos hablas?
+                        </h4>
+                        <div className="categorias-container">
+                            {categoriasFetched.map((e, key) => (
+                                <div
+                                    className="single-categoria-container"
+                                    key={key}
+                                >
+                                    <button
+                                        className="categoria-button"
+                                        type="button"
+                                        onClick={handleCategories}
+                                    >
+                                        {e}
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-
-                    <div className="input-container">
-                        <select
-                            placeholder="Categorias"
-                            {...register('categorias', {
-                                required:
-                                    'Es necesario introducir al menos una categoría',
-                            })}
-                            multiple
-                            name="categorias"
-                            id="categorias"
-                            onChange={handleInputChange}
-                        >
-                            <option value="html">HTML</option>
-                            <option value="css">CSS</option>
-                            <option value="javascript">JAVASCRIPT</option>
-                        </select>
-                        <ErrorMessage
-                            errors={errors}
-                            name="categorias"
-                            render={({ message }) => (
-                                <p className="form-custom-error">{message}</p>
-                            )}
-                        />
-                    </div>
+                    <ErrorMessage
+                        errors={errors}
+                        name="categorias"
+                        render={({ message }) => (
+                            <p className="form-custom-error categorias-error">
+                                {message}
+                            </p>
+                        )}
+                    />
 
                     <div className="text-editor-container">
                         <ReactQuill
@@ -245,9 +259,31 @@ const NewArticle = () => {
                             <p className="form-custom-error">{message}</p>
                         )}
                     />
+
+                    <div className="input-container">
+                        <input
+                            {...register('fechaPublicacion')}
+                            type="datetime-local"
+                            name="fechaPublicacion"
+                            id="fechaPublicacion"
+                            onChange={handleInputChange}
+                            placeholder="Fecha y hora de publicación"
+                        />
+
+                        <ErrorMessage
+                            errors={errors}
+                            name="fechaPublicacion"
+                            render={({ message }) => (
+                                <p className="form-custom-error">{message}</p>
+                            )}
+                        />
+                    </div>
+
                     <input
                         type="submit"
-                        value="Publicar"
+                        value={
+                            !programPost ? 'Publicar post' : 'Programar post'
+                        }
                         className="publicar-button"
                     />
                 </form>

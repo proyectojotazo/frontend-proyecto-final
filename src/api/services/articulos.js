@@ -35,11 +35,15 @@ export const searchArticle = async (data, order, regex, skip, limit) => {
 
     const arrayRegex = regex || [];
 
-
-
     try {
         return await client.post(url, { data });
     } catch (error) {
         console.log(error);
     }
+};
+
+export const getAllCategorias = async () => {
+    return client.get('/articles/categories').catch((error) => {
+        return Promise.reject(error);
+    });
 };
