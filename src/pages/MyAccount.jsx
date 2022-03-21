@@ -239,7 +239,7 @@ function MyAccount() {
                         <div className="my-followers">
                             {datosUsuario.usuarios.seguidores.length > 0 ? (
                                 datosUsuario.usuarios.seguidores.map((user) => (
-                                    <UserInfo user={user} />
+                                    <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (
                                 <h4>Aún no te sigue ningún usuario</h4>
@@ -252,7 +252,7 @@ function MyAccount() {
                         <div className="my-followings">
                             {datosUsuario.usuarios.seguidos.length > 0 ? (
                                 datosUsuario.usuarios.seguidos.map((user) => (
-                                    <UserInfo user={user} />
+                                    <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (
                                 <h4>Aún no sigues a ningún usuario</h4>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import SweetAlert2 from 'react-sweetalert2';
 
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
@@ -48,7 +49,11 @@ function UserProfile() {
     };
 
     const handleShowLogin = () => {
-        setShowPopup((prev) => !prev);
+        setShowPopup({
+            show: true,
+            showConfirmButton: false,
+            showCloseButton: true,
+        });
     };
 
     const handleFollow = async () => {
@@ -103,24 +108,38 @@ function UserProfile() {
                                 <h4>{datosPerfil.usuarios.seguidos.length}</h4>
                                 <h4>Siguiendo</h4>
                             </div>
-                            <div className="follow-button">
-                                <button
-                                    onClick={
-                                        isLogged
-                                            ? handleFollow
-                                            : handleShowLogin
-                                    }
+                            <div className="follow-container">
+                                {!isLogged ? (
+                                    <button
+                                        className="login-button"
+                                        onClick={handleShowLogin}
+                                    >
+                                        Debes iniciar sesión para seguir al
+                                        usuario
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="follow-button"
+                                        onClick={handleFollow}
+                                    >
+                                        {isMe
+                                            ? 'Editar Perfil'
+                                            : isFollowing
+                                            ? 'Dejar de seguir'
+                                            : 'Seguir'}
+                                    </button>
+                                )}
+                                <SweetAlert2
+                                    {...showPopup}
+                                    didClose={() => {
+                                        setShowPopup({
+                                            show: false,
+                                        });
+                                    }}
                                 >
-                                    {!isLogged
-                                        ? 'Debes iniciar sesión para seguir al usuario'
-                                        : isMe
-                                        ? 'Editar Perfil'
-                                        : isFollowing
-                                        ? 'Dejar de seguir'
-                                        : 'Seguir'}
-                                </button>
+                                    <Popup />
+                                </SweetAlert2>
                             </div>
-                            {showPopup && <Popup />}
                         </div>
                     </div>
                     <MyMenuProfile

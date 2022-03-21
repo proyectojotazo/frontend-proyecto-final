@@ -40,11 +40,12 @@
                 grid-area: following;
                 text-align: center;
             }
-            .follow-button {
+            .follow-container {
                 grid-area: button;
                 text-align: center;
                 margin-top: 1.5rem;
-                button {
+                .follow-button {
+                    cursor: pointer;
                     background-color: $cyan;
                     color: $background;
                     width: 10rem;
@@ -55,9 +56,10 @@
                         background-color: $cyanBrillo;
                     }
                 }
-                h4 {
+                .login-button {
                     background-color: $red;
                     color: #fff;
+                    width: max-content;
                     padding: 0.5rem 0.5rem;
                     border-radius: 3px;
                 }
