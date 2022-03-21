@@ -9,11 +9,11 @@ import UserInfo from './../common/UserInfo';
 
 import { getArticulosId } from '../../api/services/articulos';
 import { useAuth } from '../../contexts/authContext';
+import urlConvert from '../../utils/urlConvert'
 
 import './articulo.scss';
 
-const parseImgUrl = (url) =>
-    `${process.env.REACT_APP_API_BASE_URL}/${url.replace('public\\', '')}`;
+const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
 function Articulo() {
     const { isLogged } = useAuth();
@@ -49,33 +49,35 @@ function Articulo() {
 
     return (
         <div className="articulo__container">
-            <h1 className="articulo__titulo">{art.titulo}</h1>
             <ul className="articulo__categorias-wrapper">
                 {art.categorias.map((cat) => (
                     <p key={cat} className={`categorias__item ${cat}`}>
-                        {cat}
+                        &lt;{cat}&gt;
                     </p>
                 ))}
             </ul>
-
+            <h1 className="articulo__titulo">{art.titulo}</h1>
+            <div className="articulo__articleInfo">
+                <UserInfo user={art.usuario[0]} />
+                <ArticleInfo article={art} />
+            </div>
             <div className="articulo__imgPortada-wrapper">
-                {art.archivoDestacado && (
-                    <img
-                        src={parseImgUrl(art.archivoDestacado)}
-                        alt="Imagen titular"
-                    />
-                )}
+                <img
+                    src={
+                        art.archivoDestacado
+                            ? urlConvert(art.archivoDestacado)
+                            : imgHolder
+                    }
+                    alt="Imagen titular"
+                />
             </div>
             <section className="articulo__textoContenido-wrapper">
                 <h3 className="articulo__textoIntroductorio">
                     {art.textoIntroductorio}
                 </h3>
-                <p className="articulo__contenido">{art.contenido}</p>
+                <div className="articulo__contenido" dangerouslySetInnerHTML={{ __html: art.contenido }}></div>{' '}
             </section>
-            <div className="articulo__articleInfo">
-                <ArticleInfo article={art} />
-                <UserInfo user={art.usuario[0]} />
-            </div>
+
             <Comentarios comentarios={art.comentarios} />
             {isLogged && (
                 <FormularioComentario

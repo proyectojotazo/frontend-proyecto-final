@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 
 import { getUserById } from '../../api/services/usuarios';
+import getMoment from '../../utils/getMoment';
 
 import './comentario.scss';
 
@@ -23,16 +23,11 @@ function Comentario({ comentario }) {
     return (
         <div className="comentario__info-wrapper">
             <p className="info__usuario">
-                Usuario: {usuario.nickname || 'Desconocido'}
+                {usuario.nickname || 'Desconocido'}
             </p>
-            <p className="info__texto-comentario">
-                Comentario: {comentario.contenido}
-            </p>
+            <p className="info__texto-comentario">{comentario.contenido}</p>
             <p className="info__fecha-comentario">
-                Fecha:{' '}
-                {moment(comentario.fechaPublicacion)
-                    .startOf('miliseconds')
-                    .fromNow()}
+                {getMoment(comentario.fechaPublicacion)}
             </p>
         </div>
     );

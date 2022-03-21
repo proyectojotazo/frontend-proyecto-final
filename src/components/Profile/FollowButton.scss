@@ -1,0 +1,21 @@
+@import '../../sass/variablesSass.scss';
+
+.follow-button {
+    button {
+        background-color: $cyan;
+        color: $background;
+        width: 10rem;
+        height: 1.7rem;
+        font-weight: bold;
+        border-radius: 3px;
+        &:hover {
+            background-color: $cyanBrillo;
+        }
+    }
+    h4 {
+        background-color: $red;
+        color: #fff;
+        padding: 0.5rem 0.5rem;
+        border-radius: 3px;
+    }
+}

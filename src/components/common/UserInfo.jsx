@@ -1,25 +1,63 @@
-import './userInfo.scss';
+import { useNavigate } from 'react-router-dom';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 
-const parseAvatar = (url) => {
-    return `${process.env.REACT_APP_API_BASE_URL}/${url.replace(
-        'public\\',
-        ''
-    )}`.replaceAll('\\', '/');
-};
+import { useAuth } from './../../contexts/authContext';
+
+import { followUser } from '../../api/services/usuarios';
+
+import urlConvert from '../../utils/urlConvert';
+
+import './userInfo.scss';
 
 function UserInfo({ user }) {
-    const addFavourite = () => {};
+    const { isLogged, userLogged, updateUserLogged } = useAuth();
+    const isFollowing = userLogged.usuarios?.seguidos.find(userFollowed => userFollowed._id === user._id);
+
+    const navigate = useNavigate();
+
+    const handleFollow = async (e) => {
+        e.stopPropagation();
+        // Si no se está logeado que muestre un pop-up para loguearse?
+
+        // Si está logueado que lo agregue a seguidos
+        await followUser(user._id);
+
+        const following = {
+            usuarios: {
+                ...userLogged.usuarios,
+                seguidos: isFollowing
+                    ? userLogged.usuarios.seguidos.filter(
+                          (userFollowed) => userFollowed._id !== user._id
+                      )
+                    : [...userLogged.usuarios.seguidos, user],
+            },
+        };
+
+        updateUserLogged(following);
+    };
+
+    const goToUserProfile = () => {
+        navigate(`../user/${user.nickname}`);
+    };
+
+    const sameUser = user._id === userLogged._id;
+
     return (
-        <div className="userInfo__container">
+        <div onClick={goToUserProfile} className="userInfo__container">
             <div className="userInfo__img-wrapper">
-                <img src={parseAvatar(user.avatar)} alt="avatar" />
+                <img src={urlConvert(user.avatar)} alt="avatar" />
             </div>
             <p className="userInfo__nickname">{user.nickname}</p>
-            <button onClick={addFavourite} className="userInfo__btn-follow">
-                Seguir <FaRegHeart />
-            </button>
+            {isLogged && (
+                <button
+                    onClick={handleFollow}
+                    className={`userInfo__btn-follow ${sameUser && 'hidden'}`}
+                >
+                    {isFollowing ? 'Dejar de seguir' : 'Seguir'}
+                    {isFollowing ? <FaHeart /> : <FaRegHeart />}
+                </button>
+            )}
         </div>
     );
 }

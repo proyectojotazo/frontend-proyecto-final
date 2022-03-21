@@ -1,0 +1,177 @@
+@import '../sass/variablesSass.scss';
+
+.user-container {
+    display: grid;
+    margin-top: 2rem;
+    .user-data {
+        display: grid;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        .user-avatar {
+            justify-self: center;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+        .user-nick {
+            justify-self: center;
+            font-size: 2rem;
+            color: $orange;
+        }
+        .user-info {
+            display: grid;
+            grid-template-areas:
+                'post followers following'
+                'button button button';
+            column-gap: 3rem;
+            margin-top: 1rem;
+            .num-post {
+                grid-area: post;
+                text-align: center;
+            }
+            .num-followers {
+                grid-area: followers;
+                text-align: center;
+            }
+            .num-following {
+                grid-area: following;
+                text-align: center;
+            }
+            .follow-container {
+                grid-area: button;
+                text-align: center;
+                margin-top: 1.5rem;
+                .follow-button {
+                    cursor: pointer;
+                    background-color: $cyan;
+                    color: $background;
+                    width: 10rem;
+                    height: 1.7rem;
+                    font-weight: bold;
+                    border-radius: 3px;
+                    &:hover {
+                        background-color: $cyanBrillo;
+                    }
+                }
+                .login-button {
+                    background-color: $red;
+                    color: #fff;
+                    width: max-content;
+                    padding: 0.5rem 0.5rem;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+    .mymenu-profile {
+        padding-right: 0;
+        padding-top: 1.9rem;
+        margin-bottom: 1rem;
+        .mymenu-lista {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+    }
+    .user-articles {
+        justify-self: center;
+        .card {
+            margin-bottom: 2rem;
+        }
+    }
+    .user-favourites {
+        justify-self: center;
+        .card {
+            margin-bottom: 2rem;
+        }
+    }
+    .user-followers {
+        justify-self: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+        .userInfo__container {
+            flex-direction: column;
+            display: grid;
+            justify-items: center;
+            margin-bottom: 3rem;
+            .userInfo__btn-follow {
+                margin-left: 0;
+            }
+        }
+    }
+    .user-followings {
+        justify-self: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+        .userInfo__container {
+            flex-direction: column;
+            display: grid;
+            justify-items: center;
+            margin-bottom: 3rem;
+            .userInfo__btn-follow {
+                margin-left: 0;
+                min-width: 0;
+                width: max-content;
+            }
+        }
+    }
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 768px) {
+    .user-container {
+        .user-data {
+            grid-template-areas:
+                'avatar nick nick'
+                'avatar info info';
+            grid-column-gap: 2rem;
+            .user-avatar {
+                grid-area: avatar;
+            }
+            .user-nick {
+                grid-area: nick;
+            }
+            .user-info {
+                grid-area: info;
+                justify-self: left;
+            }
+        }
+        .user-articles {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-column-gap: 3rem;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .user-container {
+        .user-data {
+            .user-nick {
+                justify-self: left;
+            }
+        }
+        .user-articles {
+            grid-template-columns: 33% 33% 33%;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .user-container {
+        .user-data {
+            grid-column-gap: 0;
+            justify-content: space-evenly;
+        }
+        .user-articles {
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+    }
+}

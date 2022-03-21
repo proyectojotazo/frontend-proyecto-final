@@ -11,20 +11,19 @@ function FormularioComentario({ articleId, updateComments }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (comment === '') return;
-
-        const comentario = await crearComentario(articleId, comment);
-        updateComments(comentario);
-
+        if (comment === '' || comment.length > MAX_CHARS) return;
+        const copy = comment;
+        const comentario = await crearComentario(articleId, copy);
         setComment('');
+        updateComments(comentario);
     };
 
     const handleComment = (e) => {
         const { value } = e.target;
-        if (value.length <= MAX_CHARS) setComment(value);
+        setComment(value);
     };
 
-    const maxReached = comment.length === MAX_CHARS;
+    const maxReached = comment.length > MAX_CHARS;
 
     return (
         <form onSubmit={handleSubmit}>
