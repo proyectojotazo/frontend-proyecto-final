@@ -5,34 +5,36 @@ import Categoria from './Categoria';
 import ArticleInfo from './ArticleInfo';
 
 import './card.scss';
-import UserInfo from './UserInfo';
 
-function Card({ cambiarCategoria, advert }) {
-    const user = advert.usuario[0];
-    const _id = advert._id;
+import urlConvert from './../../utils/urlConvert';
+
+const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
+
+function Card({ cambiarCategoria, articulo }) {
+
+    const _id = articulo._id;
     return (
         <div className="card">
             <Link to={`/articles/${_id}`}>
                 <div className="imgportada">
                     <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/upload/avatar_default.jpg`}
-                        alt="avatar"
+                        src={urlConvert(articulo.archivoDestacado) || imgHolder}
+                        alt="archivo destacado"
                     />
                 </div>
             </Link>
             <Categoria
-                categoria={advert.categorias}
+                categoria={articulo.categorias}
                 cambiarCategoria={cambiarCategoria}
             />
             <Link to={`/articles/${_id}`}>
-                <h2>{advert.titulo}</h2>
+                <h2>{articulo.titulo}</h2>
                 <p className="textoIntroductorio">
-                    {advert.textoIntroductorio}
+                    {articulo.textoIntroductorio}
                 </p>
                 <hr />
             </Link>
-            <ArticleInfo article={advert} />
-            <UserInfo user={user} />
+            <ArticleInfo article={articulo} />
         </div>
     );
 }
