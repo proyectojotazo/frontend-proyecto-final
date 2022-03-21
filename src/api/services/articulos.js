@@ -30,8 +30,13 @@ export const crearArticulo = async (data) => {
     });
 };
 
-export const searchArticle = async (data, order, regex) => {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/articles/search?`;
+export const searchArticle = async (data, order, regex, skip, limit) => {
+    let url = `${process.env.REACT_APP_API_BASE_URL}/articles/search?{asc}`;
+
+    const arrayRegex = regex || [];
+
+
+
     try {
         return await client.post(url, { data });
     } catch (error) {
