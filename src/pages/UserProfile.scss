@@ -2,7 +2,6 @@
 
 .user-container {
     display: grid;
-    justify-content: center;
     margin-top: 2rem;
     .user-data {
         display: grid;
@@ -28,15 +27,15 @@
                 'button button button';
             column-gap: 3rem;
             margin-top: 1rem;
-            .user-post {
+            .num-post {
                 grid-area: post;
                 text-align: center;
             }
-            .user-followers {
+            .num-followers {
                 grid-area: followers;
                 text-align: center;
             }
-            .user-following {
+            .num-following {
                 grid-area: following;
                 text-align: center;
             }
@@ -68,14 +67,111 @@
     }
     .mymenu-profile {
         padding-right: 0;
-        padding-top: 1.5rem;
+        padding-top: 1.9rem;
+        margin-bottom: 1rem;
         .mymenu-lista {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
     }
-    .card {
-        margin-bottom: 2rem;
+    .user-articles {
+        justify-self: center;
+        .card {
+            margin-bottom: 2rem;
+        }
+    }
+    .user-favourites {
+        justify-self: center;
+        .card {
+            margin-bottom: 2rem;
+        }
+    }
+    .user-followers {
+        justify-self: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+        .userInfo__container {
+            flex-direction: column;
+            display: grid;
+            justify-items: center;
+            margin-bottom: 3rem;
+            .userInfo__btn-follow {
+                margin-left: 0;
+            }
+        }
+    }
+    .user-followings {
+        justify-self: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+        .userInfo__container {
+            flex-direction: column;
+            display: grid;
+            justify-items: center;
+            margin-bottom: 3rem;
+            .userInfo__btn-follow {
+                margin-left: 0;
+                min-width: 0;
+                width: max-content;
+            }
+        }
+    }
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 768px) {
+    .user-container {
+        .user-data {
+            grid-template-areas:
+                'avatar nick nick'
+                'avatar info info';
+            grid-column-gap: 2rem;
+            .user-avatar {
+                grid-area: avatar;
+            }
+            .user-nick {
+                grid-area: nick;
+            }
+            .user-info {
+                grid-area: info;
+                justify-self: left;
+            }
+        }
+        .user-articles {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-column-gap: 3rem;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .user-container {
+        .user-data {
+            .user-nick {
+                justify-self: left;
+            }
+        }
+        .user-articles {
+            grid-template-columns: 33% 33% 33%;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .user-container {
+        .user-data {
+            grid-column-gap: 0;
+            justify-content: space-evenly;
+        }
+        .user-articles {
+            grid-template-columns: 25% 25% 25% 25%;
+        }
     }
 }

@@ -94,17 +94,17 @@ function UserProfile() {
                         />
                         <h3 className="user-nick">{datosPerfil.nickname}</h3>
                         <div className="user-info">
-                            <div className="user-post">
+                            <div className="num-post">
                                 <h4>{datosPerfil.articulos.creados.length}</h4>
                                 <h4>Artículos</h4>
                             </div>
-                            <div className="user-followers">
+                            <div className="num-followers">
                                 <h4>
                                     {datosPerfil.usuarios.seguidores.length}
                                 </h4>
                                 <h4>Seguidores</h4>
                             </div>
-                            <div className="user-following">
+                            <div className="num-following">
                                 <h4>{datosPerfil.usuarios.seguidos.length}</h4>
                                 <h4>Siguiendo</h4>
                             </div>
@@ -148,22 +148,24 @@ function UserProfile() {
                     />
                     {election === 'Artículos' && (
                         <>
-                            {datosPerfil.articulos.creados.length > 0 ? (
-                                datosPerfil.articulos.creados.map((art) => (
-                                    <Card
-                                        className="user-article"
-                                        key={art._id}
-                                        articulo={art}
-                                    />
-                                ))
-                            ) : (
-                                <h4>{nick} aún no ha creado artículos</h4>
-                            )}
+                            <div className="user-articles">
+                                {datosPerfil.articulos.creados.length > 0 ? (
+                                    datosPerfil.articulos.creados.map((art) => (
+                                        <Card
+                                            className="user-article"
+                                            key={art._id}
+                                            articulo={art}
+                                        />
+                                    ))
+                                ) : (
+                                    <h4>{nick} aún no ha creado artículos</h4>
+                                )}
+                            </div>
                         </>
                     )}
                     {election === 'Favoritos' && (
                         <>
-                            <div className="my-favourites">
+                            <div className="user-favourites">
                                 {datosPerfil.articulos.favoritos.length > 0 ? (
                                     datosPerfil.articulos.favoritos.map(
                                         (art) => (
@@ -184,7 +186,7 @@ function UserProfile() {
                     )}
                     {election === 'Seguidores' && (
                         <>
-                            <div className="my-followers">
+                            <div className="user-followers">
                                 {datosPerfil.usuarios.seguidores.length > 0 ? (
                                     datosPerfil.usuarios.seguidores.map(
                                         (user) => (
@@ -202,7 +204,7 @@ function UserProfile() {
                     )}
                     {election === 'Siguiendo' && (
                         <>
-                            <div className="my-followings">
+                            <div className="user-followings">
                                 {datosPerfil.usuarios.seguidos.length > 0 ? (
                                     datosPerfil.usuarios.seguidos.map(
                                         (user) => (
