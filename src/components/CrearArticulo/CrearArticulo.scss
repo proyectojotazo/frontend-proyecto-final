@@ -123,6 +123,7 @@
             }
             .categorias-container {
                 display: flex;
+                flex-wrap: wrap;
                 .single-categoria-container {
                     margin-top: 10px;
                     button {

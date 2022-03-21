@@ -6,13 +6,25 @@ import ImageCompress from 'quill-image-compress';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { crearArticulo, getAllCategorias } from '../../api/services/articulos';
+import { useParams } from 'react-router-dom';
+
+import {
+    crearArticulo,
+    getAllCategorias,
+    getArticulosId,
+} from '../../api/services/articulos';
 
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
+
 Quill.register('modules/imageCompress', ImageCompress);
 
 const NewArticle = () => {
+    // Si es de respuesta a otro article
+    const { articleId } = useParams();
+    const [postToResponse, setPostToResponse] = useState(null);
+    console.log(postToResponse);
+
     const [htmlRendered, setHtmlRendered] = useState('');
 
     const initialState = {
@@ -36,6 +48,10 @@ const NewArticle = () => {
                 setCategoriasFetched(data);
             })
             .catch((error) => console.log(error));
+
+        if (articleId) {
+            getArticulosId(articleId).then((data) => setPostToResponse(data));
+        }
     }, []);
 
     const {
@@ -120,6 +136,7 @@ const NewArticle = () => {
 
     return (
         <div className="create-post-container">
+            {postToResponse && <div className="to-response-container"></div>}
             <div className="create-post-form-container">
                 <form onSubmit={handleSubmit(handleForm)}>
                     <div className="input-container">
@@ -142,6 +159,7 @@ const NewArticle = () => {
                         />
                     </div>
 
+                    {/* TODO: MOSTRAR VISTA PREVIA DE LA FOTO */}
                     <div className="input-container">
                         <input
                             {...register('archivoDestacado')}
