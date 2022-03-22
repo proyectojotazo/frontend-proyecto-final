@@ -20,3 +20,17 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.btn-search {
+    background-color: magenta;
+    height: 37px;
+}
+
+.search-bar-form {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-content: stretch;
+    align-items: flex-end;
+}

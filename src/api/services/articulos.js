@@ -31,10 +31,7 @@ export const crearArticulo = async (data) => {
 };
 
 export const searchArticle = async (data, order, regex, skip, limit) => {
-    let url = `${process.env.REACT_APP_API_BASE_URL}/articles/search?{asc}`;
-
-    const arrayRegex = regex || [];
-
+    let url = `${process.env.REACT_APP_API_BASE_URL}/articles/search`;
 
 
     try {
