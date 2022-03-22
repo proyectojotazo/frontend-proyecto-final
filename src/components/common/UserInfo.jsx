@@ -28,7 +28,7 @@ function UserInfo({ user }) {
 
         const following = {
             usuarios: {
-                ...userLogged.usuarios,
+                seguidores: [...userLogged.usuarios.seguidores],
                 seguidos: isFollowing
                     ? userLogged.usuarios.seguidos.filter(
                           (userFollowed) => userFollowed._id !== user._id
