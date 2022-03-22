@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/authContext';
 import { getUser, userUpdate, deleteUser } from '../api/services/auth';
-import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
+import MenuProfile from '../components/MenuProfile/MenuProfile';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
+import Spinner from '../components/common/Spinner';
 import urlConvert from '../utils/urlConvert';
 
 import './MyAccount.scss';
@@ -23,13 +24,17 @@ function MyAccount() {
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
     const [election, setElection] = useState('Mi Perfil');
+    const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        getUser(dataUser()).then((data) => {
-            data.avatar = urlConvert(data.avatar);
-            setDatosUsuario(data);
-        });
+        getUser(dataUser())
+            .then((data) => {
+                data.avatar = urlConvert(data.avatar);
+                setDatosUsuario(data);
+            })
+            .catch((error) => console.log(error))
+            .finally(setLoading(false));
     }, [dataUser]);
 
     const changeElection = (option) => {
@@ -98,9 +103,10 @@ function MyAccount() {
 
     return (
         <>
+            {loading && <Spinner />}
             <div className="profile-content">
                 <h1 className="profile-title">Mi Cuenta</h1>
-                <MyMenuProfile
+                <MenuProfile
                     className="profile-menu"
                     options={menuOptions}
                     changeOption={changeElection}
