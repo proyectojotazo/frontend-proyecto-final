@@ -5,6 +5,7 @@ import '../components/common/articulos.scss';
 import ArticulosFound from "../components/common/ArticulosFound";
 import BarraCategorias from "../components/common/BarraCategorias";
 import Paginacion from '../components/common/Paginacion';
+import { BiSearchAlt } from "react-icons/bi";
 
 export default function SearchArticle() {
   const [search, setSearch] = useState("");
@@ -48,18 +49,24 @@ export default function SearchArticle() {
     <div>
       <form
         onSubmit={submitSearch}
-        className="search-bar-form"
+        className="searchBox"
       >
         <input
           type="text"
           name="search"
-          className="search-bar"
+          // className="search-bar"
           placeholder="Busca por Artículo..."
           onChange={handleChange}
         />
+
         <button
           className="btn-search"
-        >Buscador</button>
+        >
+          <BiSearchAlt
+            className="icon-search"
+          ></BiSearchAlt>
+        </button>
+
       </form>
       <BarraCategorias cambiarCategoria={cambiarCategoria} />
       <Paginacion
