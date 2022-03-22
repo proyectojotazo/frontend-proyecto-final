@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 import Comentarios from './Comentarios';
@@ -35,6 +35,11 @@ function Articulo() {
             .catch((err) => setError({ message: err.message, active: true }))
             .finally(() => setLoading(false));
     }, [id]);
+
+    const [redirectToResponder, setRedirectToResponder] = useState(false);
+    if (redirectToResponder) {
+        return <Navigate to={`/responder/${id}`} replace={true} />;
+    }
 
     const updateComments = (comment) => {
         setArticulo((prev) => ({
@@ -88,6 +93,12 @@ function Articulo() {
                     className="articulo__contenido"
                     dangerouslySetInnerHTML={{ __html: art.contenido }}
                 ></div>{' '}
+                <button
+                    className="button-responder-articulo"
+                    onClick={() => setRedirectToResponder(true)}
+                >
+                    Responder a este artículo
+                </button>
             </section>
 
             <Comentarios comentarios={art.comentarios} />

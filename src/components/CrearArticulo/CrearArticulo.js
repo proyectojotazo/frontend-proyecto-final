@@ -12,6 +12,7 @@ import {
     crearArticulo,
     getAllCategorias,
     getArticulosId,
+    responderArticulo,
 } from '../../api/services/articulos';
 
 import 'react-quill/dist/quill.snow.css';
@@ -98,8 +99,11 @@ const NewArticle = () => {
         }
     };
 
+    console.log(categoriasSelected.length);
+
     const handleForm = () => {
         if (categoriasSelected.length < 1) {
+            console.log('errooor');
             setError('categorias', {
                 type: 'manual',
                 message: 'Debes introducir al menos una categoria',
@@ -116,19 +120,20 @@ const NewArticle = () => {
                 categorias: categoriasSelected,
             };
 
-            crearArticulo(data)
-                .then((response) => {
+            if (postToResponse) {
+                console.log(data);
+                responderArticulo(articleId, data).then((response) => {
+                    console.log('Respuesta enviada');
+                    setSendSucces(true);
+                    localStorage.removeItem('content');
+                });
+            } else {
+                crearArticulo(data).then((response) => {
                     console.log('Post enviado');
                     setSendSucces(true);
                     localStorage.removeItem('content');
-                })
-                .catch((error) => {
-                    console.log(error);
-                    setError('custom', {
-                        type: 'manual',
-                        message: error.contenido.message,
-                    });
                 });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -136,7 +141,14 @@ const NewArticle = () => {
 
     return (
         <div className="create-post-container">
-            {postToResponse && <div className="to-response-container"></div>}
+            {postToResponse && (
+                <div className="to-response-container">
+                    <h4 className="custom-title-form">
+                        Respuesta al articulo <b>{postToResponse.titulo}</b> de{' '}
+                        {postToResponse.usuario[0].nickname}
+                    </h4>
+                </div>
+            )}
             <div className="create-post-form-container">
                 <form onSubmit={handleSubmit(handleForm)}>
                     <div className="input-container">

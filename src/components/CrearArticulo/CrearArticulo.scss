@@ -1,6 +1,11 @@
 @import '../../sass/variablesSass.scss';
 
 .create-post-container {
+    .custom-title-form {
+        color: #fff;
+        font-family: $tSubtitulo;
+        font-size: 20px;
+    }
     .create-post-form-container {
         #archivoDestacado {
             position: relative;

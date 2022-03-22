@@ -66,6 +66,14 @@
     gap: 0.8rem;
 }
 
+.button-responder-articulo {
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    background-color: $purple;
+    height: 2rem;
+    width: 75%;
+}
+
 /*MEDIA QUERIES*/
 @media screen and (min-width: 768px) {
     .articulo__container {

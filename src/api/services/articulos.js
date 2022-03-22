@@ -47,3 +47,11 @@ export const getAllCategorias = async () => {
         return Promise.reject(error);
     });
 };
+
+export const responderArticulo = async (idArticulo, data) => {
+    return client
+        .post(`/articles/response/${idArticulo}`, data)
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+};
