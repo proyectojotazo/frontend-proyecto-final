@@ -23,6 +23,7 @@ function MyAccount() {
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
     const [election, setElection] = useState('Mi Perfil');
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         getUser(dataUser()).then((data) => {
@@ -41,6 +42,15 @@ function MyAccount() {
 
     const modifyPass = () => {
         setNuevoPass(!nuevoPass);
+    };
+
+    const comparePassword = (e) => {
+        const msg = 'Las contraseñas no coinciden';
+        const value = e.target.value;
+        setErrors({
+            ...errors,
+            repeatPassword: datosNuevos.password !== value ? msg : '',
+        });
     };
 
     const onImageChange = (event) => {
@@ -67,10 +77,13 @@ function MyAccount() {
         });
 
         try {
-            await userUpdate(datosUsuario._id, form);
-            window.location.reload();
+            if (!errors.repeatPassword) {
+                await userUpdate(datosUsuario._id, form);
+                window.location.reload();
+            }
         } catch (error) {
             console.log(error);
+            setErrors(error);
         }
     };
 
@@ -120,6 +133,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.nickname && (
+                                    <label className="error-msg">
+                                        {errors.nickname.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-email">
                                 <label>Email</label>
@@ -131,6 +149,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.email && (
+                                    <label className="error-msg">
+                                        {errors.email.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-name">
                                 <label>Nombre</label>
@@ -142,6 +165,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.nombre && (
+                                    <label className="error-msg">
+                                        {errors.nombre.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-lastname">
                                 <label>Apellidos</label>
@@ -153,6 +181,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.apellidos && (
+                                    <label className="error-msg">
+                                        {errors.apellidos.message}
+                                    </label>
+                                )}
                             </div>
                             {nuevoPass && (
                                 <div className="profile-password">
@@ -163,12 +196,23 @@ function MyAccount() {
                                         name="password"
                                         onChange={onHandleChange}
                                     />
+                                    {errors.password && (
+                                        <label className="error-msg">
+                                            {errors.password.message}
+                                        </label>
+                                    )}
                                     <label>Repetir nueva contraseña</label>
                                     <input
                                         type="password"
                                         className="field-password"
                                         name="repeat-password"
+                                        onChange={comparePassword}
                                     />
+                                    {errors.repeatPassword && (
+                                        <label className="error-msg">
+                                            {errors.repeatPassword}
+                                        </label>
+                                    )}
                                 </div>
                             )}
                             <div className="profile-changepass">
