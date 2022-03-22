@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import './SearchArticle.scss';
 import { searchArticle } from '../api/services/articulos';
 import Card from "../components/common/Card";
@@ -10,49 +10,34 @@ import "../components/common/articulos.scss";
 
 
 export default function SearchArticle() {
-  //articulos estaticos
+
   const [articulos, setarticulos] = useState([]);
 
   const [search, setSearch] = useState("");
-
-  const [showArticles, setshowArticles] = useState([]);
 
   const submitSearch = (e) => {
     e.preventDefault();
     searchArticle(search).then((data) => {
       setarticulos(data);
-      setshowArticles(data);
     }).catch((error) => {
       console.log(error)
     })
   }
 
   const handleChange = (e) => {
-    setSearch(e.target.name);
-    filter(e.target.value);
-  }
-
-  const filter = (terminoBusqueda) => {
-    let resultadoBusqueda = articulos.filter((elemento) => {
-      if (elemento.contenido.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-        || elemento.titulo.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
-        return elemento;
-      }
-
+    setSearch({
+      [e.target.name]: e.target.value,
     });
-    setshowArticles(resultadoBusqueda);
   }
 
-  console.log(filter)
   console.log(search)
-  console.log(showArticles)
-
-
-
+  console.log(articulos)
   return (
     <div>
-
-      <form onSubmit={submitSearch}>
+      <form
+        onSubmit={submitSearch}
+        className="search-bar-form"
+      >
         <input
           type="text"
           name="search"
@@ -60,17 +45,16 @@ export default function SearchArticle() {
           placeholder="Busca por Artículo..."
           onChange={handleChange}
         />
+        <button
+          className="btn-search"
+        >Buscador</button>
       </form>
       {articulos &&
-        showArticles.map((articulo) => (
+        articulos.map((articulo) => (
           <tr key={articulo._id}>
             <td>{articulo.titulo}</td>
           </tr>
         ))}
-
-
-
-
     </div>
   )
 }
