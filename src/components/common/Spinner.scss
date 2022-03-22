@@ -2,9 +2,17 @@
 
 .spinner__container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   padding-top: 1rem;
+}
+
+.spinner__loading-msg{
+  padding: .5rem;
+  font-size: 1.5rem;
+  color: $comment;
+  font-family: $tMaquina;
 }
 
 .lds-ellipsis {
@@ -12,6 +20,7 @@
   position: relative;
   width: 80px;
   height: 80px;
+  align-self: center;
 }
 .lds-ellipsis div {
   position: absolute;

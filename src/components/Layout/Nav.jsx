@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Nav.scss';
 import './Layout.scss';
 import './NavBar/MenuBurger.scss';
@@ -8,22 +8,17 @@ import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
 import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
 import { ReactComponent as Inicio } from '../../assets/inicio.svg';
 import { ReactComponent as Usuario } from '../../assets/usuario.svg';
-import Login from '../Auth/Login/Login';
 import Popup from '../Auth/Popup/PopUp';
-import * as Icons from 'react-icons/fa';
-import { FaFacebook } from 'react-icons/fa';
 
 import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
-import Sidebar from './sidebar';
+import Sidebar from './Sidebar';
 
 function Nav() {
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
-    const [menuburger, setMenuburger] = useState(false);
-    const [search, setSearch] = useState(false);
 
     function LoginPopup() {
         setShowLogin({
@@ -49,9 +44,7 @@ function Nav() {
                 <ul className="nav-list">
                     <li className="navbar-item">
                         <NavLink to="/buscar" className="nav-link">
-                            <Lupa
-                                className="icon icon-lupa"
-                            />
+                            <Lupa className="icon icon-lupa" />
                         </NavLink>
                     </li>
                     <li className="navbar-item">
@@ -97,11 +90,11 @@ function Nav() {
                                                     className="dropdown-user"
                                                 >
                                                     Perfil
-                                            </NavLink>
+                                                </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>
                                                 Cerrar Sesión
-                                        </li>
+                                            </li>
                                         </ul>
                                     )}
                                 </>
@@ -112,8 +105,6 @@ function Nav() {
 
                 <Sidebar></Sidebar>
             </nav>
-
-
         </>
     );
 }
