@@ -105,6 +105,7 @@
     .articulo__articleInfo {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
 
     .articulo__shareButtons {
@@ -131,5 +132,14 @@
 
     .articulo__textoContenido-wrapper {
         margin: 2rem 0;
+    }
+}
+
+.articulo__info{
+    .toolkit {
+        font-size: 1rem;
+    }
+    .icons-wrapper__send, .icons-wrapper__edit, .icons-wrapper__like, .comments-wrapper {
+        font-size: 2rem;
     }
 }

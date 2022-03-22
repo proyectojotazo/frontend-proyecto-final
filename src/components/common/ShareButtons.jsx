@@ -9,7 +9,11 @@ import {
     LinkedinIcon,
     WhatsappShareButton,
     WhatsappIcon,
+    TelegramShareButton,
+    TelegramIcon,
 } from 'react-share';
+
+import './ShareButtons.scss'
 
 function ShareButtons({ url, titulo, resumen }) {
     return (
@@ -34,6 +38,9 @@ function ShareButtons({ url, titulo, resumen }) {
             <WhatsappShareButton url={url} title={titulo}>
                 <WhatsappIcon round size={32} />
             </WhatsappShareButton>
+            <TelegramShareButton url={url} title={titulo} >
+                <TelegramIcon round size={32} />
+            </TelegramShareButton>
         </div>
     );
 }

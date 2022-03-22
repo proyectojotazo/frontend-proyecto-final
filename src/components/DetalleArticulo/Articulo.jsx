@@ -48,14 +48,9 @@ function Articulo() {
             <h1 className="articulo__titulo">{art.titulo}</h1>
             <div className="articulo__articleInfo">
                 <UserInfo user={art.usuario[0]} />
-                <ArticleInfo article={art} />
+                <ArticleInfo article={art} customClass='articulo__info'/>
             </div>
             <div className="articulo__shareButtons">
-                <ShareButtons
-                    url={urlArt + art._id}
-                    titulo={art.titulo}
-                    resumen={art.textoIntroductorio}
-                />
             </div>
             <div className="articulo__imgPortada-wrapper">
                 <img

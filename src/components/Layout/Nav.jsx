@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../common/tooltip.scss'
 import './Nav.scss';
 import './Layout.scss';
 import './NavBar/MenuBurger.scss';
@@ -43,18 +44,27 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
-                        <NavLink to="/buscar" className="nav-link">
-                            <Lupa className="icon icon-lupa" />
-                        </NavLink>
+                        <div className="tooltip">
+                            <span className="tooltiptext">Buscar</span>
+                            <NavLink to="/buscar" className="nav-link">
+                                <Lupa className="icon icon-lupa" />
+                            </NavLink>
+                        </div>
                     </li>
                     <li className="navbar-item">
                         <NavLink to="/crear" className="nav-link">
-                            <Nuevo className="icon icon-nuevo" />
+                            <div className="tooltip">
+                                <span className="tooltiptext">Crear Articulo</span>
+                                <Nuevo className="icon icon-nuevo" />
+                            </div>
                         </NavLink>
                     </li>
                     <li className="navbar-item">
                         <NavLink className="nav-link" to="/">
-                            <Inicio className="icon icon-inicio" />
+                            <div className="tooltip">
+                                <span className="tooltiptext">Home</span>
+                                <Inicio className="icon icon-inicio" />
+                            </div>
                         </NavLink>
                     </li>
                     <li className="navbar-item">
