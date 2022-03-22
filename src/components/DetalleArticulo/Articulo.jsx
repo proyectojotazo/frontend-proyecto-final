@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
-import Comentarios from './Comentarios';
-import FormularioComentario from './FormularioComentario';
 import ArticleInfo from './../common/ArticleInfo';
 import UserInfo from './../common/UserInfo';
 
-import { getArticulosId } from '../../api/services/articulos';
+import Comentarios from './Comentarios';
+import FormularioComentario from './FormularioComentario';
+
 import { useAuth } from '../../contexts/authContext';
+import useDetailedArticle from './../../hooks/useDetailedArticle';
 import urlConvert from '../../utils/urlConvert'
 
 import './articulo.scss';
@@ -17,29 +17,9 @@ const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
 function Articulo() {
     const { isLogged } = useAuth();
-
-    const [art, setArticulo] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState({
-        message: '',
-        active: false,
-    });
-
     const { id } = useParams();
 
-    useEffect(() => {
-        getArticulosId(id)
-            .then(setArticulo)
-            .catch((err) => setError({ message: err.message, active: true }))
-            .finally(() => setLoading(false));
-    }, [id]);
-
-    const updateComments = (comment) => {
-        setArticulo((prev) => ({
-            ...prev,
-            comentarios: [...prev.comentarios, comment],
-        }));
-    };
+    const {art, loading, error, updateComments} = useDetailedArticle(id)
 
     if (loading) return <Spinner />;
 

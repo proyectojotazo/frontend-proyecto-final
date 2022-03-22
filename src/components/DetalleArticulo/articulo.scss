@@ -5,9 +5,10 @@
     font-family: $tSubtitulo;
     border: 3px solid $redBrillo;
     border-radius: 1rem;
-    margin-top: 1rem;
+    margin: 1rem auto;
     padding: 0.5rem;
     text-align: center;
+    max-width: 552px;
 }
 
 .articulo__container {
@@ -83,7 +84,7 @@
     .articulo__articleInfo,
     .comentarios__container,
     .articulo__categorias-wrapper,
-    .articulo__titulo {
+    .articulo__titulo{
         width: 80%;
         margin: 0 auto;
     }

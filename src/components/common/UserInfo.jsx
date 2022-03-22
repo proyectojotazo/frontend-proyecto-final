@@ -12,7 +12,10 @@ import './userInfo.scss';
 
 function UserInfo({ user }) {
     const { isLogged, userLogged, updateUserLogged } = useAuth();
-    const isFollowing = userLogged.usuarios?.seguidos.find(userFollowed => userFollowed._id === user._id);
+    
+    const isFollowing = userLogged.usuarios?.seguidos.find(
+        (userFollowed) => userFollowed._id === user._id
+    );
 
     const navigate = useNavigate();
 

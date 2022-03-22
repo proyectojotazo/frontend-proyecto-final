@@ -4,8 +4,8 @@ import './Spinner.scss';
 function Spinner() {
     return (
         <div className="spinner__container">
+            <p className="spinner__loading-msg">...Cargando...</p>
             <div className="lds-ellipsis">
-                Cargando...
                 <div></div>
                 <div></div>
                 <div></div>
