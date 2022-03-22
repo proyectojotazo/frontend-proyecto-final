@@ -74,6 +74,14 @@ function App({ isAlreadyLogged }) {
                         }
                     />
                     <Route
+                        path="/responder/:articleId"
+                        element={
+                            <PrivateRoute>
+                                <NewArticlePage />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
                         path="/my-account"
                         element={
                             <PrivateRoute>

@@ -67,6 +67,14 @@
     gap: 0.8rem;
 }
 
+.button-responder-articulo {
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    background-color: $purple;
+    height: 2rem;
+    width: 75%;
+}
+
 /*MEDIA QUERIES*/
 @media screen and (min-width: 768px) {
     .articulo__container {
@@ -98,6 +106,14 @@
         flex-direction: row;
         justify-content: space-between;
     }
+
+    .articulo__shareButtons {
+        display: flex;
+        justify-content: center;
+        .share-buttons {
+            width: 80%;
+        }
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -113,7 +129,7 @@
         }
     }
 
-    .articulo__textoContenido-wrapper{
+    .articulo__textoContenido-wrapper {
         margin: 2rem 0;
     }
 }
