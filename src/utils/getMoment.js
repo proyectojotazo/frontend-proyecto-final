@@ -7,7 +7,13 @@ import 'moment/locale/es';
  * Replace 'arregla' el 'Creado en 5 dias' por 'Creado hace 5 dias'
  */
 const getMoment = (date) => {
-    return moment(date).startOf('seconds').fromNow().replace('en', 'hace');
+    const articleDate = new Date(date).getTime()
+    const now = Date.now()
+    
+    const publicado = `Publicado ${moment(date).startOf('seconds').fromNow().replace('en', 'hace')}`    
+    const pendiente = `Publicación ${moment(date).startOf('seconds').fromNow()}`
+
+    return articleDate > now ? pendiente : publicado
 };
 
 export default getMoment;

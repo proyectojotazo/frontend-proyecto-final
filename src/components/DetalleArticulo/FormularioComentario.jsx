@@ -13,8 +13,8 @@ function FormularioComentario({ articleId, updateComments }) {
         e.preventDefault();
         if (comment === '' || comment.length > MAX_CHARS) return;
         const copy = comment;
-        const comentario = await crearComentario(articleId, copy);
         setComment('');
+        const comentario = await crearComentario(articleId, copy);
         updateComments(comentario);
     };
 

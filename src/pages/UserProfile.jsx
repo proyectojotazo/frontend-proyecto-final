@@ -19,7 +19,7 @@ const menuOptions = ['Artículos', 'Favoritos', 'Seguidores', 'Siguiendo'];
 function UserProfile() {
     const { nick } = useParams();
     const navigate = useNavigate();
-    const { isLogged, userLogged } = useAuth();
+    const { isLogged, userLogged, updateUserLogged } = useAuth();
     const [datosPerfil, setDatosPerfil] = useState(null);
     const [election, setElection] = useState('Artículos');
     const [showPopup, setShowPopup] = useState(false);
@@ -58,16 +58,21 @@ function UserProfile() {
 
     const handleFollow = async () => {
         if (isMe) navigate('../my-account');
-
-        const { articulos, avatar, nickname, nombre, _id } = userLogged;
-        const newFollower = {
-            articulos,
-            avatar,
-            nickname,
-            nombre,
-            _id,
-        };
+        
         await followUser(datosPerfil._id);
+
+        const following = {
+            usuarios: {
+                seguidores: [...userLogged.usuarios.seguidores],
+                seguidos: isFollowing
+                    ? userLogged.usuarios.seguidos.filter(
+                          (userFollowed) => userFollowed._id !== datosPerfil._id
+                      )
+                    : [...userLogged.usuarios.seguidos, datosPerfil],
+            },
+        };
+        
+        updateUserLogged(following)
 
         setDatosPerfil((prev) => ({
             ...prev,
@@ -77,7 +82,7 @@ function UserProfile() {
                     ? prev.usuarios.seguidores.filter(
                           (userFollower) => userFollower._id !== userLogged._id
                       )
-                    : [...prev.usuarios.seguidores, newFollower],
+                    : [...prev.usuarios.seguidores, userLogged],
             },
         }));
     };

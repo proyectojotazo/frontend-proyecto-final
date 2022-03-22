@@ -144,7 +144,7 @@
         }
         .user-articles {
             display: grid;
-            grid-template-columns: 50% 50%;
+            grid-template-columns: repeat(2, 1fr);
             grid-column-gap: 3rem;
             justify-content: center;
         }
@@ -159,7 +159,7 @@
             }
         }
         .user-articles {
-            grid-template-columns: 33% 33% 33%;
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }
@@ -171,7 +171,7 @@
             justify-content: space-evenly;
         }
         .user-articles {
-            grid-template-columns: 25% 25% 25% 25%;
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 }
