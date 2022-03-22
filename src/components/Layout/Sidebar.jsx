@@ -9,10 +9,9 @@ import './Layout.scss';
 import './NavBar/MenuBurger.scss';
 import SweetAlert2 from 'react-sweetalert2';
 import Popup from '../Auth/Popup/PopUp';
-import * as Icons from 'react-icons/fa';
 import { useAuth } from '../../contexts/authContext';
 import { FiLogOut } from 'react-icons/fi';
-
+import { FaTimes, FaBars } from "react-icons/fa";
 export default function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
     const [menuburger, setMenuburger] = useState(false);
@@ -106,12 +105,12 @@ export default function Sidebar() {
                 <div className="mobile-bar">
                     <div className="sidebar-toggle">
                         {sidebar ? (
-                            <Icons.FaTimes
+                            <FaTimes
                                 className="sidebar-toggle-logo"
                                 onClick={() => setSidebar(!sidebar)}
                             />
                         ) : (
-                            <Icons.FaBars
+                            <FaBars
                                 className="sidebar-toggle-logo"
                                 onClick={() => setSidebar(!sidebar)}
                             />

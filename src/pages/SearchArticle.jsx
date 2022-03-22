@@ -1,10 +1,6 @@
 import { React, useState } from 'react';
 import './SearchArticle.scss';
 import { searchArticle } from '../api/services/articulos';
-import Card from '../components/common/Card';
-import Articulos from '../components/common/Articulos';
-import Nav from '../components/Layout/Nav';
-
 import '../components/common/articulos.scss';
 
 export default function SearchArticle() {
