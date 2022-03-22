@@ -14,6 +14,8 @@ import { addArticleFavorite } from '../../api/services/usuarios';
 
 import './articleInfo.scss';
 
+import { useNavigate } from 'react-router-dom';
+
 
 function ArticleInfo({ article }) {
     const { isLogged, userLogged, updateUserLogged } = useAuth();
@@ -40,6 +42,13 @@ function ArticleInfo({ article }) {
         };
 
         updateUserLogged(field);
+    };
+
+    const navigate = useNavigate();
+
+    const goToResponseArticle = () => {
+        navigate(`../articles/response/${article._id}`);
+        console.log(`../articles/response/${article._id}`)
     };
 
     return (
@@ -69,7 +78,7 @@ function ArticleInfo({ article }) {
                                 onClick={anadirArticuloFavourito}
                             />
                         )}
-                        <FaRegEdit className="icons-wrapper__edit" />
+                        <FaRegEdit  onClick={goToResponseArticle} className="icons-wrapper__edit" />
                     </>
                 )}
                 <FaRegPaperPlane className="icons-wrapper__send" />
