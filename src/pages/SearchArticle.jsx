@@ -2,30 +2,48 @@ import { React, useState } from 'react';
 import './SearchArticle.scss';
 import { searchArticle } from '../api/services/articulos';
 import '../components/common/articulos.scss';
+import ArticulosFound from "../components/common/ArticulosFound";
+import BarraCategorias from "../components/common/BarraCategorias";
+import Paginacion from '../components/common/Paginacion';
 
 export default function SearchArticle() {
-
-  const [articulos, setarticulos] = useState([]);
-
   const [search, setSearch] = useState("");
-
-  const submitSearch = (e) => {
-    e.preventDefault();
-    searchArticle(search).then((data) => {
-      setarticulos(data);
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
+  const [send, setSend] = useState(false);
+  const [categoria, setCategoria] = useState('');
+  const [orden, setOrden] = useState('-fechaPublicacion');
+  const [pagina, setPagina] = useState(0);
 
   const handleChange = (e) => {
     setSearch({
       [e.target.name]: e.target.value,
     });
+    setSend(false);
   }
 
-  console.log(search)
-  console.log(articulos)
+  const cambiarCategoria = (x) => {
+    setCategoria(x);
+    setPagina(0);
+  };
+
+  const cambiarPaginaSig = () => {
+    setPagina(pagina + 6);
+  };
+
+  const cambiarPaginaAnt = () => {
+    if (pagina === 0) return;
+    setPagina(pagina - 6);
+  };
+
+  const cambiarOrden = (o) => {
+    setOrden(o);
+  };
+
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    setSend(true);
+  }
+
   return (
     <div>
       <form
@@ -43,12 +61,21 @@ export default function SearchArticle() {
           className="btn-search"
         >Buscador</button>
       </form>
-      {articulos &&
-        articulos.map((articulo) => (
-          <tr key={articulo._id}>
-            <td>{articulo.titulo}</td>
-          </tr>
-        ))}
+      <BarraCategorias cambiarCategoria={cambiarCategoria} />
+      <Paginacion
+        paginaAtras={cambiarPaginaAnt}
+        paginaSig={cambiarPaginaSig}
+        order={cambiarOrden}
+      />
+      {send && (
+        <ArticulosFound
+          search={search}
+          categoria={categoria}
+          cambiarCategoria={cambiarCategoria}
+          orden={orden}
+          pagina={pagina}
+        />
+      )}
     </div>
   )
 }

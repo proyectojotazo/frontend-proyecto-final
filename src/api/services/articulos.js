@@ -30,12 +30,11 @@ export const crearArticulo = async (data) => {
     });
 };
 
-export const searchArticle = async (data, order, regex, skip, limit) => {
-    let url = `${process.env.REACT_APP_API_BASE_URL}/articles/search`;
-
-
+export const searchArticle = async (data, categoria, orden, pagina) => {
+    const categoriaFilter = categoria && `&categorias=${categoria}`;
+    const url = `${process.env.REACT_APP_API_BASE_URL}/articles/search?sort=${orden}&skip=${pagina}&limit=6&estado=Publicado${categoriaFilter}`;
     try {
-        return await client.post(url, { data });
+        return await client.post(url, data);
     } catch (error) {
         console.log(error);
     }
