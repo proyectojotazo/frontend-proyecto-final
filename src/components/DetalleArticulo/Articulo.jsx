@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useParams, Navigate } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ import FormularioComentario from './FormularioComentario';
 import { useAuth } from '../../contexts/authContext';
 import useDetailedArticle from './../../hooks/useDetailedArticle';
 import urlConvert from '../../utils/urlConvert';
+import getUserId from '../../hooks/useUserLogged';
 
 import './articulo.scss';
 
@@ -22,11 +23,6 @@ function Articulo() {
     const { id } = useParams();
 
     const { art, loading, error, updateComments } = useDetailedArticle(id);
-
-    const [redirectToResponder, setRedirectToResponder] = useState(false);
-    if (redirectToResponder) {
-        return <Navigate to={`/responder/${id}`} replace={true} />;
-    }
 
     if (loading) return <Spinner />;
 
@@ -67,12 +63,6 @@ function Articulo() {
                     className="articulo__contenido"
                     dangerouslySetInnerHTML={{ __html: art.contenido }}
                 ></div>{' '}
-                <button
-                    className="button-responder-articulo"
-                    onClick={() => setRedirectToResponder(true)}
-                >
-                    Responder a este artículo
-                </button>
             </section>
 
             <Comentarios comentarios={art.comentarios} />

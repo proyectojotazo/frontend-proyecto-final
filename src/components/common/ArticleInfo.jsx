@@ -4,6 +4,7 @@ import {
     FaRegComments,
     FaRegPaperPlane,
     FaRegEdit,
+    FaTrashAlt,
 } from 'react-icons/fa';
 
 import { useAuth } from './../../contexts/authContext';
@@ -11,6 +12,7 @@ import { useAuth } from './../../contexts/authContext';
 import getMoment from '../../utils/getMoment';
 
 import { addArticleFavorite } from '../../api/services/usuarios';
+import { deleteArticle } from '../../api/services/articulos';
 
 import './articleInfo.scss';
 import '../common/tooltip.scss';
@@ -19,9 +21,11 @@ import { useNavigate } from 'react-router-dom';
 import ShareButtons from './ShareButtons';
 import { useState } from 'react';
 
+import SweetAlert2 from 'react-sweetalert2';
 
-function ArticleInfo({ article, customClass='' }) {
-    const [showShare, setShowShare] = useState(false)
+function ArticleInfo({ article, customClass = '' }) {
+    const [showShare, setShowShare] = useState(false);
+    const [showPopupDelete, setShowPopupDelete] = useState([]);
 
     const { isLogged, userLogged, updateUserLogged } = useAuth();
 
@@ -52,16 +56,33 @@ function ArticleInfo({ article, customClass='' }) {
         updateUserLogged(field);
     };
 
-    
+    function deletePopUp() {
+        setShowPopupDelete({
+            title: '¿Quieres borrar el artículo?',
+            show: true,
+            showConfirmButton: true,
+            showDenyButton: true,
+            confirmButtonText: 'Borrar',
+            denyButtonText: 'Cancelar',
+            showCloseButton: true,
+        });
+    }
+
+    const deletePost = () => {
+        deleteArticle(article._id)
+            .then(() => {
+                navigate(`../`, { replace: true });
+            })
+            .catch((error) => console.log(error));
+    };
 
     const goToResponseArticle = () => {
         navigate(`../responder/${article._id}`);
     };
 
     const share = () => {
-        setShowShare(!showShare)
-    }
-    
+        setShowShare(!showShare);
+    };
 
     return (
         <div className={customClass}>
@@ -85,7 +106,9 @@ function ArticleInfo({ article, customClass='' }) {
                         <>
                             {isFavourite ? (
                                 <div className="tooltip">
-                                    <span className="tooltiptext">Quitar de favoritos</span>
+                                    <span className="tooltiptext">
+                                        Quitar de favoritos
+                                    </span>
                                     <FaStar
                                         className="icons-wrapper__like"
                                         onClick={anadirArticuloFavourito}
@@ -93,7 +116,9 @@ function ArticleInfo({ article, customClass='' }) {
                                 </div>
                             ) : (
                                 <div className="tooltip">
-                                    <span className="tooltiptext">Añadir a favoritos</span>
+                                    <span className="tooltiptext">
+                                        Añadir a favoritos
+                                    </span>
                                     <FaRegStar
                                         className="icons-wrapper__like"
                                         onClick={anadirArticuloFavourito}
@@ -101,26 +126,57 @@ function ArticleInfo({ article, customClass='' }) {
                                 </div>
                             )}
                             <div className="tooltip">
-                                <span className="tooltiptext">Responder Articulo</span>
-                                <FaRegEdit  onClick={goToResponseArticle} className="icons-wrapper__edit" />
+                                <span className="tooltiptext">
+                                    Responder Articulo
+                                </span>
+                                <FaRegEdit
+                                    onClick={goToResponseArticle}
+                                    className="icons-wrapper__edit"
+                                />
                             </div>
                         </>
                     )}
-                    
-                        <div className="tooltip">
-                            <span className="tooltiptext">Compartir</span>
-                            <FaRegPaperPlane onClick={share} className="icons-wrapper__send"></FaRegPaperPlane>
-                        </div>
+
+                    {isMyArticle && (
+                        <>
+                            <div className="tooltip">
+                                <span className="tooltiptext">
+                                    Borrar articulo
+                                </span>
+                                <FaTrashAlt
+                                    onClick={() => deletePopUp()}
+                                    className="icons-wrapper__edit"
+                                />
+                                <SweetAlert2
+                                    {...showPopupDelete}
+                                    onConfirm={() => deletePost()}
+                                    didClose={() => {
+                                        setShowPopupDelete({
+                                            show: false,
+                                        });
+                                    }}
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    <div className="tooltip">
+                        <span className="tooltiptext">Compartir</span>
+                        <FaRegPaperPlane
+                            onClick={share}
+                            className="icons-wrapper__send"
+                        ></FaRegPaperPlane>
+                    </div>
                 </div>
             </div>
             {showShare && (
-                <div className='share'>        
-                <ShareButtons
-                    url={urlArt + article._id}
-                    titulo={article.titulo}
-                    resumen={article.textoIntroductorio}
-                />
-            </div>
+                <div className="share">
+                    <ShareButtons
+                        url={urlArt + article._id}
+                        titulo={article.titulo}
+                        resumen={article.textoIntroductorio}
+                    />
+                </div>
             )}
         </div>
     );
