@@ -5,6 +5,7 @@ import {
     FaRegPaperPlane,
     FaRegEdit,
     FaTrashAlt,
+    FaPencilAlt,
 } from 'react-icons/fa';
 
 import { useAuth } from './../../contexts/authContext';
@@ -76,10 +77,6 @@ function ArticleInfo({ article, customClass = '' }) {
             .catch((error) => console.log(error));
     };
 
-    const goToResponseArticle = () => {
-        navigate(`../responder/${article._id}`);
-    };
-
     const share = () => {
         setShowShare(!showShare);
     };
@@ -130,7 +127,9 @@ function ArticleInfo({ article, customClass = '' }) {
                                     Responder Articulo
                                 </span>
                                 <FaRegEdit
-                                    onClick={goToResponseArticle}
+                                    onClick={() =>
+                                        navigate(`../responder/${article._id}`)
+                                    }
                                     className="icons-wrapper__edit"
                                 />
                             </div>
@@ -155,6 +154,17 @@ function ArticleInfo({ article, customClass = '' }) {
                                             show: false,
                                         });
                                     }}
+                                />
+                            </div>
+                            <div className="tooltip">
+                                <span className="tooltiptext">
+                                    Editar articulo
+                                </span>
+                                <FaPencilAlt
+                                    onClick={() =>
+                                        navigate(`../editar/${article._id}`)
+                                    }
+                                    className="icons-wrapper__edit"
                                 />
                             </div>
                         </>

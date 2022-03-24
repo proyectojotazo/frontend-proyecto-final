@@ -6,13 +6,14 @@ import ImageCompress from 'quill-image-compress';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {
     crearArticulo,
     getAllCategorias,
     getArticulosId,
     responderArticulo,
+    editArticle,
 } from '../../api/services/articulos';
 
 import 'react-quill/dist/quill.snow.css';
@@ -21,12 +22,13 @@ import './CrearArticulo.scss';
 Quill.register('modules/imageCompress', ImageCompress);
 
 const NewArticle = () => {
-    // Si es de respuesta a otro article
     const { articleId } = useParams();
-    const [postToResponse, setPostToResponse] = useState(null);
-    console.log(postToResponse);
+    const [postLoaded, setpostLoaded] = useState(null);
 
-    const [htmlRendered, setHtmlRendered] = useState('');
+    const [htmlRendered, setHtmlRendered] = useState();
+
+    const [toResponse, setToResponse] = useState(false);
+    const [toEdit, setToEdit] = useState(false);
 
     const initialState = {
         titulo: '',
@@ -43,6 +45,8 @@ const NewArticle = () => {
     const descriptionInput = useRef(null);
     const [programPost, setProgramPost] = useState(false);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         getAllCategorias()
             .then((data) => {
@@ -51,7 +55,28 @@ const NewArticle = () => {
             .catch((error) => console.log(error));
 
         if (articleId) {
-            getArticulosId(articleId).then((data) => setPostToResponse(data));
+            getArticulosId(articleId).then((data) => {
+                setpostLoaded(data);
+                if (window.location.pathname.includes('/editar/')) {
+                    setToEdit(true);
+                    setUserData({
+                        ...userData,
+                        titulo: data.titulo,
+                        textoIntroductorio: data.textoIntroductorio,
+                        fechaPublicacion: data.fechaPublicacion,
+                    });
+                    setHtmlRendered(data.contenido);
+                    reset({
+                        titulo: data.titulo,
+                        textoIntroductorio: data.textoIntroductorio,
+                    });
+                    setCategoriasSelected(data.categorias);
+                }
+
+                if (window.location.pathname.includes('/responder/')) {
+                    setToResponse(true);
+                }
+            });
         }
     }, []);
 
@@ -61,6 +86,7 @@ const NewArticle = () => {
         setError,
         clearErrors,
         formState: { errors },
+        reset,
     } = useForm();
 
     const handleInputChange = (event) => {
@@ -99,8 +125,6 @@ const NewArticle = () => {
         }
     };
 
-    console.log(categoriasSelected.length);
-
     const handleForm = () => {
         if (categoriasSelected.length < 1) {
             console.log('errooor');
@@ -120,18 +144,23 @@ const NewArticle = () => {
                 categorias: categoriasSelected,
             };
 
-            if (postToResponse) {
+            if (toResponse) {
                 console.log(data);
                 responderArticulo(articleId, data).then((response) => {
                     console.log('Respuesta enviada');
+                    navigate(`../articles/${articleId}`);
                     setSendSucces(true);
-                    localStorage.removeItem('content');
+                });
+            } else if (toEdit) {
+                editArticle(articleId, data).then((response) => {
+                    console.log('Post editado');
+                    navigate(`../articles/${articleId}`);
+                    setSendSucces(true);
                 });
             } else {
                 crearArticulo(data).then((response) => {
                     console.log('Post enviado');
                     setSendSucces(true);
-                    localStorage.removeItem('content');
                 });
             }
         } catch (error) {
@@ -141,11 +170,19 @@ const NewArticle = () => {
 
     return (
         <div className="create-post-container">
-            {postToResponse && (
+            {postLoaded && toResponse && (
                 <div className="to-response-container">
                     <h4 className="custom-title-form">
-                        Respuesta al articulo <b>{postToResponse.titulo}</b> de{' '}
-                        {postToResponse.usuario[0].nickname}
+                        Respuesta al articulo <b>{postLoaded.titulo}</b> de{' '}
+                        {postLoaded.usuario[0].nickname}
+                    </h4>
+                </div>
+            )}
+
+            {postLoaded && toEdit && (
+                <div className="to-response-container">
+                    <h4 className="custom-title-form">
+                        Edita tu artículo <b>"{postLoaded.titulo}"</b>
                     </h4>
                 </div>
             )}
@@ -170,8 +207,8 @@ const NewArticle = () => {
                             )}
                         />
                     </div>
-
                     {/* TODO: MOSTRAR VISTA PREVIA DE LA FOTO */}
+                    {/* TODO: SI ESTAMOS EDITANDO EL POST, MOSTRAR UNA VISTA PREVIA DE LA FOTO */}
                     <div className="input-container">
                         <input
                             {...register('archivoDestacado')}
@@ -189,7 +226,6 @@ const NewArticle = () => {
                             )}
                         />
                     </div>
-
                     <div className="input-container">
                         <textarea
                             {...register('textoIntroductorio', {
@@ -220,7 +256,6 @@ const NewArticle = () => {
                             /200
                         </p>
                     </div>
-
                     <div className="categorias-container-main">
                         <h4 className="categorias-title">
                             ¿De qué temas nos hablas?
@@ -232,7 +267,11 @@ const NewArticle = () => {
                                     key={key}
                                 >
                                     <button
-                                        className="categoria-button"
+                                        className={
+                                            categoriasSelected.includes(e)
+                                                ? 'selected-button'
+                                                : 'categoria-button'
+                                        }
                                         type="button"
                                         onClick={handleCategories}
                                     >
@@ -251,7 +290,6 @@ const NewArticle = () => {
                             </p>
                         )}
                     />
-
                     <div className="text-editor-container">
                         <ReactQuill
                             theme="snow"
@@ -289,7 +327,6 @@ const NewArticle = () => {
                             <p className="form-custom-error">{message}</p>
                         )}
                     />
-
                     <div className="input-container">
                         <input
                             {...register('fechaPublicacion')}
@@ -308,11 +345,14 @@ const NewArticle = () => {
                             )}
                         />
                     </div>
-
                     <input
                         type="submit"
                         value={
-                            !programPost ? 'Publicar post' : 'Programar post'
+                            toEdit
+                                ? 'Editar post'
+                                : !programPost
+                                ? 'Publicar post'
+                                : 'Programar post'
                         }
                         className="publicar-button"
                     />
