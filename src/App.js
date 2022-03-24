@@ -77,7 +77,7 @@ function App({ isAlreadyLogged }) {
                         path="/responder/:articleId"
                         element={
                             <PrivateRoute>
-                                <NewArticlePage />
+                                <NewArticlePage modo="responder" />
                             </PrivateRoute>
                         }
                     />
@@ -86,7 +86,7 @@ function App({ isAlreadyLogged }) {
                         path="/editar/:articleId"
                         element={
                             <PrivateRoute>
-                                <NewArticlePage />
+                                <NewArticlePage modo="editar" />
                             </PrivateRoute>
                         }
                     />

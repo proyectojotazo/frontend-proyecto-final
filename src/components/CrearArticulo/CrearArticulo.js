@@ -21,7 +21,7 @@ import './CrearArticulo.scss';
 
 Quill.register('modules/imageCompress', ImageCompress);
 
-const NewArticle = () => {
+const NewArticle = ({ modo }) => {
     const { articleId } = useParams();
     const [postLoaded, setpostLoaded] = useState(null);
 
@@ -57,7 +57,7 @@ const NewArticle = () => {
         if (articleId) {
             getArticulosId(articleId).then((data) => {
                 setpostLoaded(data);
-                if (window.location.pathname.includes('/editar/')) {
+                if (modo === 'editar') {
                     setToEdit(true);
                     setUserData({
                         ...userData,
@@ -73,7 +73,7 @@ const NewArticle = () => {
                     setCategoriasSelected(data.categorias);
                 }
 
-                if (window.location.pathname.includes('/responder/')) {
+                if (modo === 'responder') {
                     setToResponse(true);
                 }
             });
@@ -144,22 +144,28 @@ const NewArticle = () => {
                 categorias: categoriasSelected,
             };
 
+            const form = new FormData();
+
+            Object.entries(data).forEach(([key, value]) => {
+                form.append(key, value);
+            });
+
             if (toResponse) {
-                console.log(data);
-                responderArticulo(articleId, data).then((response) => {
+                responderArticulo(articleId, form).then((response) => {
                     console.log('Respuesta enviada');
                     navigate(`../articles/${articleId}`);
                     setSendSucces(true);
                 });
             } else if (toEdit) {
-                editArticle(articleId, data).then((response) => {
+                editArticle(articleId, form).then((response) => {
                     console.log('Post editado');
                     navigate(`../articles/${articleId}`);
                     setSendSucces(true);
                 });
             } else {
-                crearArticulo(data).then((response) => {
-                    console.log('Post enviado');
+                // TODO: Redirigir a home despues de crear articulo. Como obtener id?
+                crearArticulo(form).then((response) => {
+                    console.log('Post publicado');
                     setSendSucces(true);
                 });
             }
