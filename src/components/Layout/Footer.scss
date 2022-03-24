@@ -26,113 +26,48 @@ footer {
   
 }
 
-.container_footer {
-  width: 80%;
+.footer__container_footer{
   display: grid;
-  width: auto;
+  width: 100%;
+  padding: 2rem;
   height: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   grid-auto-flow: row;
   grid-template-areas:
-    'footerTexto footerPersonas'
-    'box__copyright box__copyright';
+    'footerTexto footerTexto footerImagen'
+    'box__copyright box__copyright box__copyright';
+
+    .footer__footerTexto{
+      grid-area: footerTexto;
+    }
+
+    .footer__footerImagen{
+      grid-area: footerImagen;
+    }
+
+    .footer__box__copyright {
+      grid-area: box__copyright;
+      display: flex;
+      margin: auto;
+      text-align: center;
+      p {
+        color: $green;
+        font-family: $tMaquina;
+      }
+      hr {
+        border: none;
+        height: 1px;
+        background-color: $current_line;
+      }
+    }
+
 }
 
-.footerTexto{
-  grid-area: footerTexto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.footerPersonas{
-  display: flex;
-  width: 100%;
-  grid-area: footerPersonas;
-}
 
-.logo{
-  max-width: 10rem;
-}
 
-.logoFooter{
-  height: 100%;
-  object-fit:contain;
-  object-position: center center;
-  image-rendering: crisp-edges;
-}
 
-// .box__footer {
-//   display: flex;
-//   flex-direction: column;
-//   padding: 50px;
-//   margin-top: 30px;
-// }
 
-// .box__footer .logo img {
-//   width: 180px;
-// }
 
-// .box__footer .terms {
-//   max-width: 350px;
-//   margin-top: 20px;
-//   font-weight: 500;
-//   color: $orange;
-//   font-size: 18px;
-//   font-family: $tMaquina;
-// }
 
-// .box__footer h2 {
-//   margin-bottom: 30px;
-//   color: $cyan;
-//   font-weight: 700;
-// }
-
-// .box__footer a {
-//   margin-top: 10px;
-//   color: $current_line;
-//   font-weight: 600;
-// }
-// .box__footer a:hover {
-//   opacity: 0.8;
-// }
-
-// .box__footer a fab {
-//   font-size: 20px;
-// }
-
-.box__copyright {
-  grid-area: box__copyright;
-  display: flex;
-  margin: auto;
-  text-align: center;
-}
-
-.box__copyright p {
-  color: $green;
-  font-family: $tMaquina;
-}
-
-.box__copyright hr {
-  border: none;
-  height: 1px;
-  background-color: $current_line;
-}
-
-@media only screen and (max-width: 1200px) {
-  .container_footer {
-    display: grid;
-    width: 80%;
-    height: 100%;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    grid-auto-flow: column;
-    grid-template-areas:
-      'footerTexto' 
-      'footerPersonas'
-      'box__copyright';
-  }
-}

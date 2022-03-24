@@ -1,16 +1,11 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 505.212 287.504">
+<svg id="f7bae180-e0e2-46ab-9cb4-6aeb0d5acbbf" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 560.313">
   <defs>
     <style>
-      .cls-1 {
-        fill: none;
-      }
-
-      .cls-2 {
+      .a22cce52-0c4f-41c8-b3e0-b309bbcce1e7 {
         fill: #44475a;
       }
     </style>
   </defs>
   <title>fondoFooter</title>
-  <rect class="cls-1" width="505.212" height="287.504"/>
-  <path class="cls-2" d="M504,337.19v-226.7c-27.762-33.215-71.373-51.233-113.706-55.377-45.431-4.447-90.14,5.028-133.625,15.625s-87.146,22.444-132.5,22.839C80.413,93.955,34.011,82.348,0,52.877V337.19Z" transform="translate(0 -49.685)"/>
+  <path class="a22cce52-0c4f-41c8-b3e0-b309bbcce1e7" d="M1920,585V138.228C1814.24,72.77,1648.1,37.26,1486.834,29.094,1313.764,20.33,1143.444,39,977.787,59.887S645.8,104.118,473.025,104.9C306.335,105.642,129.566,82.767,0,24.687V585Z" transform="translate(0 -24.687)"/>
 </svg>
