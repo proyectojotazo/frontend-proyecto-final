@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/authContext';
 import { getUser, userUpdate, deleteUser } from '../api/services/auth';
-import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
+import MenuProfile from '../components/MenuProfile/MenuProfile';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
+import Spinner from '../components/common/Spinner';
 import urlConvert from '../utils/urlConvert';
+
+import DeleteConfirm from '../components/common/DeleteConfirm';
 
 import './MyAccount.scss';
 
@@ -23,12 +26,18 @@ function MyAccount() {
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
     const [election, setElection] = useState('Mi Perfil');
+    const [loading, setLoading] = useState(true);
+    const [errors, setErrors] = useState({});
+    const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
-        getUser(dataUser()).then((data) => {
-            data.avatar = urlConvert(data.avatar);
-            setDatosUsuario(data);
-        });
+        getUser(dataUser())
+            .then((data) => {
+                data.avatar = urlConvert(data.avatar);
+                setDatosUsuario(data);
+            })
+            .catch((error) => console.log(error))
+            .finally(setLoading(false));
     }, [dataUser]);
 
     const changeElection = (option) => {
@@ -41,6 +50,15 @@ function MyAccount() {
 
     const modifyPass = () => {
         setNuevoPass(!nuevoPass);
+    };
+
+    const comparePassword = (e) => {
+        const msg = 'Las contraseñas no coinciden';
+        const value = e.target.value;
+        setErrors({
+            ...errors,
+            repeatPassword: datosNuevos.password !== value ? msg : '',
+        });
     };
 
     const onImageChange = (event) => {
@@ -67,11 +85,18 @@ function MyAccount() {
         });
 
         try {
-            await userUpdate(datosUsuario._id, form);
-            window.location.reload();
+            if (!errors.repeatPassword) {
+                await userUpdate(datosUsuario._id, form);
+                window.location.reload();
+            }
         } catch (error) {
             console.log(error);
+            setErrors(error);
         }
+    };
+
+    const showConfirm = () => {
+        setShowDelete(!showDelete);
     };
 
     const deleteAccount = async () => {
@@ -85,9 +110,10 @@ function MyAccount() {
 
     return (
         <>
+            {loading && <Spinner />}
             <div className="profile-content">
-                <h1 className="profile-title">Mi Cuenta</h1>
-                <MyMenuProfile
+                <h1 className="profile-title">&lt;Mi Cuenta&gt;</h1>
+                <MenuProfile
                     className="profile-menu"
                     options={menuOptions}
                     changeOption={changeElection}
@@ -120,6 +146,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.nickname && (
+                                    <label className="error-msg">
+                                        {errors.nickname.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-email">
                                 <label>Email</label>
@@ -131,6 +162,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.email && (
+                                    <label className="error-msg">
+                                        {errors.email.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-name">
                                 <label>Nombre</label>
@@ -142,6 +178,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.nombre && (
+                                    <label className="error-msg">
+                                        {errors.nombre.message}
+                                    </label>
+                                )}
                             </div>
                             <div className="profile-lastname">
                                 <label>Apellidos</label>
@@ -153,6 +194,11 @@ function MyAccount() {
                                     disabled={!modificar}
                                     onChange={onHandleChange}
                                 />
+                                {errors.apellidos && (
+                                    <label className="error-msg">
+                                        {errors.apellidos.message}
+                                    </label>
+                                )}
                             </div>
                             {nuevoPass && (
                                 <div className="profile-password">
@@ -163,12 +209,23 @@ function MyAccount() {
                                         name="password"
                                         onChange={onHandleChange}
                                     />
+                                    {errors.password && (
+                                        <label className="error-msg">
+                                            {errors.password.message}
+                                        </label>
+                                    )}
                                     <label>Repetir nueva contraseña</label>
                                     <input
                                         type="password"
                                         className="field-password"
                                         name="repeat-password"
+                                        onChange={comparePassword}
                                     />
+                                    {errors.repeatPassword && (
+                                        <label className="error-msg">
+                                            {errors.repeatPassword}
+                                        </label>
+                                    )}
                                 </div>
                             )}
                             <div className="profile-changepass">
@@ -196,10 +253,17 @@ function MyAccount() {
                             <div className="profile-delete">
                                 <button
                                     className="delete-button"
-                                    onClick={() => deleteAccount()}
+                                    onClick={() => showConfirm()}
                                 >
                                     Eliminar cuenta
                                 </button>
+                                {showDelete && (
+                                    <DeleteConfirm
+                                        show={showConfirm}
+                                        msg="Si elimina la cuenta perderá todos sus datos. ¿Está seguro?"
+                                        confirm={deleteAccount}
+                                    />
+                                )}
                             </div>
                         </>
                     )}

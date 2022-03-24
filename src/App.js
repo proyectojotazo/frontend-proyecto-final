@@ -81,6 +81,15 @@ function App({ isAlreadyLogged }) {
                             </PrivateRoute>
                         }
                     />
+
+                    <Route
+                        path="/editar/:articleId"
+                        element={
+                            <PrivateRoute>
+                                <NewArticlePage />
+                            </PrivateRoute>
+                        }
+                    />
                     <Route
                         path="/my-account"
                         element={

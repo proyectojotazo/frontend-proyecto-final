@@ -53,3 +53,15 @@ export const responderArticulo = async (idArticulo, data) => {
             return Promise.reject(error);
         });
 };
+
+export const deleteArticle = async (id) => {
+    return client.delete(`/articles/${id}`).catch((error) => {
+        return Promise.reject(error);
+    });
+};
+
+export const editArticle = async (id, data) => {
+    return client.patch(`/articles/${id}`, data).catch((error) => {
+        return Promise.reject(error);
+    });
+};

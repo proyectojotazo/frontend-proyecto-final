@@ -15,7 +15,6 @@ export const getUser = async (nickname) => {
     }
 };
 
-
 export const register = (data) => {
     const userData = {
         nombre: data.name,
@@ -68,11 +67,7 @@ export const recoverAccount = (data) => {
 
 // PATCH
 export const userUpdate = async (id, data) => {
-    try {
-        return await client.patch(`users/${id}`, data);
-    } catch (error) {
-        console.log(error);
-    }
+    return await client.patch(`users/${id}`, data);
 };
 
 // DELETE

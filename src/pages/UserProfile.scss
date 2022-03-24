@@ -65,11 +65,11 @@
             }
         }
     }
-    .mymenu-profile {
+    .menu-profile {
         padding-right: 0;
         padding-top: 1.9rem;
         margin-bottom: 1rem;
-        .mymenu-lista {
+        .menu-lista {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
@@ -145,7 +145,13 @@
         .user-articles {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-column-gap: 3rem;
+            grid-column-gap: 2rem;
+            justify-content: center;
+        }
+        .user-favourites {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 2rem;
             justify-content: center;
         }
     }
@@ -161,6 +167,9 @@
         .user-articles {
             grid-template-columns: repeat(3, 1fr);
         }
+        .user-favourites {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 }
 
@@ -171,6 +180,9 @@
             justify-content: space-evenly;
         }
         .user-articles {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .user-favourites {
             grid-template-columns: repeat(4, 1fr);
         }
     }

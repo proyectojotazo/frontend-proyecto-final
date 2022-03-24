@@ -1,13 +1,14 @@
 import { React, useState } from 'react';
 import './SearchArticle.scss';
-import { searchArticle } from '../api/services/articulos';
 import '../components/common/articulos.scss';
-import ArticulosFound from "../components/common/ArticulosFound";
-import BarraCategorias from "../components/common/BarraCategorias";
+import ArticulosFound from '../components/common/ArticulosFound';
+import BarraCategorias from '../components/common/BarraCategorias';
 import Paginacion from '../components/common/Paginacion';
+import { BiSearchAlt } from 'react-icons/bi';
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 export default function SearchArticle() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [send, setSend] = useState(false);
   const [categoria, setCategoria] = useState('');
   const [orden, setOrden] = useState('-fechaPublicacion');
@@ -18,7 +19,7 @@ export default function SearchArticle() {
       [e.target.name]: e.target.value,
     });
     setSend(false);
-  }
+  };
 
   const cambiarCategoria = (x) => {
     setCategoria(x);
@@ -38,28 +39,26 @@ export default function SearchArticle() {
     setOrden(o);
   };
 
-
   const submitSearch = (e) => {
     e.preventDefault();
     setSend(true);
-  }
+  };
 
   return (
     <div>
-      <form
-        onSubmit={submitSearch}
-        className="search-bar-form"
-      >
+      <form onSubmit={submitSearch} className="searchBox">
         <input
           type="text"
           name="search"
-          className="search-bar"
+          // className="search-bar"
           placeholder="Busca por Artículo..."
           onChange={handleChange}
         />
-        <button
-          className="btn-search"
-        >Buscador</button>
+
+        <button className="btn-search">
+          <BiSearchAlt className="icon-search"></BiSearchAlt>
+        </button>
+
       </form>
       <BarraCategorias cambiarCategoria={cambiarCategoria} />
       <Paginacion
@@ -72,10 +71,11 @@ export default function SearchArticle() {
           search={search}
           categoria={categoria}
           cambiarCategoria={cambiarCategoria}
+          ultimaPag={cambiarPaginaAnt}
           orden={orden}
           pagina={pagina}
         />
       )}
     </div>
-  )
+  );
 }

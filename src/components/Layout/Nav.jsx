@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../common/tooltip.scss'
+import '../common/tooltip.scss';
 import './Nav.scss';
 import './Layout.scss';
 import './NavBar/MenuBurger.scss';
@@ -10,6 +10,7 @@ import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
 import { ReactComponent as Inicio } from '../../assets/inicio.svg';
 import { ReactComponent as Usuario } from '../../assets/usuario.svg';
 import Popup from '../Auth/Popup/PopUp';
+import { FiLogOut } from 'react-icons/fi';
 
 import { useAuth } from '../../contexts/authContext';
 
@@ -54,7 +55,9 @@ function Nav() {
                     <li className="navbar-item">
                         <NavLink to="/crear" className="nav-link">
                             <div className="tooltip">
-                                <span className="tooltiptext">Crear Articulo</span>
+                                <span className="tooltiptext">
+                                    Crear Articulo
+                                </span>
                                 <Nuevo className="icon icon-nuevo" />
                             </div>
                         </NavLink>
@@ -103,7 +106,9 @@ function Nav() {
                                                 </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>
-                                                Cerrar Sesión
+                                                <FiLogOut
+                                                    className="logout-nav"
+                                                ></FiLogOut>
                                             </li>
                                         </ul>
                                     )}

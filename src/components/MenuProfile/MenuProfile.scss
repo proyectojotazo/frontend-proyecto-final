@@ -1,10 +1,13 @@
 @import '../../sass/variablesSass.scss';
 
-.mymenu-profile {
+.menu-profile {
     padding-top: 3rem;
     padding-right: 2rem;
-    .mymenu-lista {
-        .mymenu-item {
+    .menu-lista {
+        .menu-item {
+            font-family: $tSubtitulo;
+            font-weight: 800;
+            color: $comment;
             cursor: pointer;
             margin-bottom: 1rem;
             &:active {

@@ -5,7 +5,8 @@ import SweetAlert2 from 'react-sweetalert2';
 import Card from '../components/common/Card';
 import UserInfo from '../components/common/UserInfo';
 import Popup from '../components/Auth/Popup/PopUp';
-import MyMenuProfile from '../components/MyMenuProfile/MyMenuProfile';
+import MenuProfile from '../components/MenuProfile/MenuProfile';
+import Spinner from '../components/common/Spinner';
 
 import urlConvert from '../utils/urlConvert';
 import { getUser } from '../api/services/auth';
@@ -23,6 +24,7 @@ function UserProfile() {
     const [datosPerfil, setDatosPerfil] = useState(null);
     const [election, setElection] = useState('Artículos');
     const [showPopup, setShowPopup] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const isFollowing = datosPerfil?.usuarios.seguidores.find(
         (user) => user._id === userLogged._id
@@ -37,8 +39,8 @@ function UserProfile() {
                     setDatosPerfil(data);
                 }
             })
-            .catch((error) => console.log(error));
-
+            .catch((error) => console.log(error))
+            .finally(setLoading(false));
         return () => {
             isApiSubscribed = false;
         };
@@ -58,7 +60,7 @@ function UserProfile() {
 
     const handleFollow = async () => {
         if (isMe) navigate('../my-account');
-        
+
         await followUser(datosPerfil._id);
 
         const following = {
@@ -71,8 +73,8 @@ function UserProfile() {
                     : [...userLogged.usuarios.seguidos, datosPerfil],
             },
         };
-        
-        updateUserLogged(following)
+
+        updateUserLogged(following);
 
         setDatosPerfil((prev) => ({
             ...prev,
@@ -89,6 +91,7 @@ function UserProfile() {
 
     return (
         <>
+            {loading && <Spinner />}
             {datosPerfil && (
                 <div className="user-container">
                     <div className="user-data">
@@ -147,7 +150,7 @@ function UserProfile() {
                             </div>
                         </div>
                     </div>
-                    <MyMenuProfile
+                    <MenuProfile
                         options={menuOptions}
                         changeOption={changeElection}
                     />

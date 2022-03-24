@@ -1,16 +1,16 @@
 import React from 'react';
 
-import './MyMenuProfile.scss';
+import './MenuProfile.scss';
 
-function MyMenuProfile({ options, changeOption }) {
+function MenuProfile({ options, changeOption }) {
     return (
-        <div className="mymenu-profile">
-            <ul className="mymenu-lista">
+        <div className="menu-profile">
+            <ul className="menu-lista">
                 {options.map((item) => {
                     return (
                         <li
                             key={item}
-                            className="mymenu-item"
+                            className="menu-item"
                             onClick={() => changeOption(item)}
                         >
                             {item}
@@ -22,4 +22,4 @@ function MyMenuProfile({ options, changeOption }) {
     );
 }
 
-export default MyMenuProfile;
+export default MenuProfile;
