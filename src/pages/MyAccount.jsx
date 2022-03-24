@@ -7,6 +7,8 @@ import UserInfo from '../components/common/UserInfo';
 import Spinner from '../components/common/Spinner';
 import urlConvert from '../utils/urlConvert';
 
+import DeleteConfirm from '../components/common/DeleteConfirm';
+
 import './MyAccount.scss';
 
 const menuOptions = [
@@ -26,6 +28,7 @@ function MyAccount() {
     const [election, setElection] = useState('Mi Perfil');
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
+    const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
         getUser(dataUser())
@@ -92,6 +95,10 @@ function MyAccount() {
         }
     };
 
+    const showConfirm = () => {
+        setShowDelete(!showDelete);
+    };
+
     const deleteAccount = async () => {
         try {
             await deleteUser(datosUsuario._id);
@@ -105,7 +112,7 @@ function MyAccount() {
         <>
             {loading && <Spinner />}
             <div className="profile-content">
-                <h1 className="profile-title">Mi Cuenta</h1>
+                <h1 className="profile-title">&lt;Mi Cuenta&gt;</h1>
                 <MenuProfile
                     className="profile-menu"
                     options={menuOptions}
@@ -246,10 +253,17 @@ function MyAccount() {
                             <div className="profile-delete">
                                 <button
                                     className="delete-button"
-                                    onClick={() => deleteAccount()}
+                                    onClick={() => showConfirm()}
                                 >
                                     Eliminar cuenta
                                 </button>
+                                {showDelete && (
+                                    <DeleteConfirm
+                                        show={showConfirm}
+                                        msg="Si elimina la cuenta perderá todos sus datos. ¿Está seguro?"
+                                        confirm={deleteAccount}
+                                    />
+                                )}
                             </div>
                         </>
                     )}

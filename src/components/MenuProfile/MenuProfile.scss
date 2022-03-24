@@ -5,6 +5,9 @@
     padding-right: 2rem;
     .menu-lista {
         .menu-item {
+            font-family: $tSubtitulo;
+            font-weight: 800;
+            color: $comment;
             cursor: pointer;
             margin-bottom: 1rem;
             &:active {
