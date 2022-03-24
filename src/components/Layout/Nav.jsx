@@ -12,6 +12,8 @@ import { ReactComponent as Usuario } from '../../assets/usuario.svg';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
+import { FaSearch } from "react-icons/fa";
+
 import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
@@ -49,6 +51,7 @@ function Nav() {
                             <span className="tooltiptext">Buscar</span>
                             <NavLink to="/buscar" className="nav-link">
                                 <Lupa className="icon icon-lupa" />
+
                             </NavLink>
                         </div>
                     </li>

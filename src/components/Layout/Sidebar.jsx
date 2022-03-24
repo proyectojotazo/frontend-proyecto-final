@@ -41,17 +41,17 @@ export default function Sidebar() {
                 <ul className="sidebar-items">
                     <li className="sidebar-item ">
                         <NavLink to="/buscar">
-                            <Lupa />
+                            <Lupa className="icon-lupa" />
                         </NavLink>
                     </li>
                     <li className="sidebar-item ">
                         <NavLink to="/crear">
-                            <Nuevo />
+                            <Nuevo className="icon-nuevo" />
                         </NavLink>
                     </li>
                     <li className="sidebar-item">
                         <NavLink to="/">
-                            <Inicio />
+                            <Inicio className="icon-inicio" />
                         </NavLink>
                     </li>
                     <li className="sidebar-item">
@@ -59,7 +59,7 @@ export default function Sidebar() {
                             {!isLogged ? (
                                 <>
                                     <Usuario
-                                        className="item-usuario"
+                                        className="icon-usuario"
                                         onClick={() => LoginPopup()}
                                     />
                                     <SweetAlert2

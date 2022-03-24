@@ -69,6 +69,7 @@ h2#swal2-title {
         flex-wrap: nowrap;
         align-content: space-around;
         align-items: center;
+        margin-top: 8px;
         cursor: pointer;
         @media (max-width: 768px) {
             display: none;
@@ -80,6 +81,7 @@ h2#swal2-title {
         transition: all 200ms ease;
         cursor: pointer;
         position: relative;
+        margin-top: 1rem;
     }
 
     .icon {
@@ -119,5 +121,26 @@ h2#swal2-title {
 
     .logout-nav {
         margin-top: 0.3rem;
+    }
+
+    .icon-lupa {
+        &:hover {
+            filter: drop-shadow(0px 0px 8px $purpleBrillo);
+        }
+    }
+    .icon-inicio {
+        &:hover {
+            filter: drop-shadow(0px 0px 8px $cyanBrillo);
+        }
+    }
+    .icon-nuevo {
+        &:hover {
+            filter: drop-shadow(0px 0px 8px $greenBrillo);
+        }
+    }
+    .icon-usuario {
+        &:hover {
+            filter: drop-shadow(0px 0px 8px $orangeBrillo);
+        }
     }
 }
