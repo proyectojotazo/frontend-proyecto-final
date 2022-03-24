@@ -1,16 +1,17 @@
 @import '../sass//variablesSass.scss';
 
 .btn-search {
-    height: 37px;
+    height: 2.5rem;
     position: absolute;
-    right: 20px;
+    right: 1.13rem;
     color: rgb(12, 1, 1);
     font-size: 2.8em;
     cursor: pointer;
     background-color: #6272a4;
-    margin-bottom: 10px;
-    margin-right: -10px;
-    border-radius: 10px;
+    margin-bottom: 0.625rem;
+    margin-top: 0.25rem;
+    border-radius: 1.5rem;
+    width: 2.5rem;
 }
 
 .search-bar-form {
@@ -23,21 +24,21 @@
 }
 .searchBox {
     position: relative;
-    width: 65px;
-    height: 50px;
+    height: 3.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 40px;
-}
-
-.searchBox:hover {
-    width: 280px;
+    margin-top: 1.875rem;
+    margin-bottom: 0.53rem;
+    margin-left: 2.5rem;
+    width: 90%;
     background: $comment;
-    border-radius: 25px;
+    border-radius: 1.875rem;
+    color: white;
+    @media (min-width: 23.44rem) {
+        left: 0.63rem;
+    }
 }
 
 .searchBox input {
@@ -47,19 +48,41 @@
     border: none;
     padding: 10px 25px;
     font-size: 1.1em;
-    color: white;
-    background: #44475a;
-    border-radius: 25px;
+    border-radius: 30px;
     font-family: $tMaquina;
 }
 
 .searchBox input::placeholder,
 .searchBox input {
     background-color: $comment;
+    color: white;
+    width: 100%;
 }
 
-.searchBox:hover input::placeholder,
-.searchBox:hover input {
-    color: white;
-    background-color: $comment;
+.not-found {
+    background: #1d1e26;
+    height: 70px;
+    padding: 20px;
+    font-family: $tContenido;
+    border-radius: 10px;
+    color: $red;
+    font-weight: bold;
+    display: flex;
+    @media (min-width: 48rem) {
+        margin-left: 15rem;
+        margin-right: -12.5rem;
+    }
+}
+
+.error-icon {
+    fill: $red;
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+.error-text {
+    font-size: 15px;
+    margin-top: 3px;
+    margin-left: 8px;
+    color: #f8f8f2;
 }
