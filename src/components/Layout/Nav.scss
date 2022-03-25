@@ -41,6 +41,10 @@ h2#swal2-title {
         display: none;
         @media (max-width: 768px) {
             display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-between;
         }
         .sidebar-toggle {
             display: block;
@@ -101,6 +105,9 @@ h2#swal2-title {
         align-items: center;
         margin-top: 0.2rem;
         padding: 0px;
+        align-content: stretch;
+        justify-content: space-evenly;
+        margin-left: -10px;
     }
 
     .sidebar-userMenu {
@@ -108,19 +115,35 @@ h2#swal2-title {
         position: absolute;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin-top: 0.1rem;
+        align-items: stretch;
+        margin-top: 0.2rem;
+        margin-left: -12px;
         padding: 0px;
+        font-family: $tMaquina;
+        letter-spacing: 1px;
+        fill: $orange;
     }
 
-    .logout-icon {
-        padding: 10px;
-        font-size: 18px;
-        font-weight: bold;
-    }
+    // .logout-icon {
+    //     padding: 10px;
+    //     font-size: 18px;
+    //     font-weight: bold;
+    // }
 
+    li.logout-icon {
+        margin-top: 0.4rem;
+        font-size: 20px;
+        font-weight: 900;
+        padding: 5px;
+        margin-left: 10px;
+        filter: drop-shadow(0px 0px 5px white);
+    }
     .logout-nav {
-        margin-top: 0.3rem;
+        margin-top: 0.4rem;
+    }
+
+    svg.logout-nav {
+        filter: drop-shadow(0px 0px 5px white);
     }
 
     .icon-lupa {

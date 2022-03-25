@@ -2,6 +2,12 @@
 
 a {
     cursor: pointer;
+    color: $orange;
+    font-family: $tMaquina;
+    letter-spacing: 1px;
+    &:hover {
+        color: $orangeBrillo;
+    }
 }
 
 .header-login-container {
