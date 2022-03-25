@@ -137,11 +137,11 @@ const NewArticle = ({ modo }) => {
         try {
             const data = {
                 titulo: userData.titulo,
-                archivoDestacado: selectedDestacado,
                 textoIntroductorio: userData.textoIntroductorio,
                 contenido: htmlRendered,
                 fechaPublicacion: userData.fechaPublicacion,
                 categorias: categoriasSelected,
+                archivoDestacado: selectedDestacado,
             };
 
             const form = new FormData();
