@@ -12,7 +12,6 @@ import { ReactComponent as Usuario } from '../../assets/usuario.svg';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
-import { FaSearch } from "react-icons/fa";
 
 import { useAuth } from '../../contexts/authContext';
 

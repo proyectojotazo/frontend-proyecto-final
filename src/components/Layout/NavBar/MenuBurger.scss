@@ -22,7 +22,7 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 60px 100px rgba(12, 10, 24, 0.6);
     border-radius: 12px;
-    height: 100vw;
+    height: max-content;
     top: 10vh;
     left: -100px;
     padding: 15px;
@@ -46,6 +46,7 @@
 .sidebar-item {
     list-style: none;
     margin: 15px;
+    margin-top: 15px;
     width: 100%;
     height: 7rem;
     transition: all 200ms ease;
@@ -65,9 +66,9 @@ item-usuario .sidebar-item a {
     transition: 0.2s all ease-out;
 }
 
-.sidebar-item a span {
-    margin-left: 1.5rem;
-    font-size: 1.4rem;
+.sidebar-item a {
+    color: $orange;
+    font-weight: bolder;
 }
 
 .sidebar-item a:hover {
@@ -82,12 +83,12 @@ item-usuario .sidebar-item a {
 @media (max-width: 768px) {
     .sidebar.active {
         left: 0;
-        height: min-content;
-        margin: 10px;
-        width: 8vh;
-        top: 10%;
-        padding-bottom: 5px;
-        padding-top: 30px;
-        z-index: 100;
+        height: 580px;
+        margin: 5px;
+        width: 9vh;
+        top: 9%;
+        margin-bottom: 5px;
+        padding-top: 40px;
+        z-index: 1;
     }
 }
