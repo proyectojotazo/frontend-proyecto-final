@@ -5,7 +5,7 @@ import ArticulosFound from '../components/common/ArticulosFound';
 import BarraCategorias from '../components/common/BarraCategorias';
 import Paginacion from '../components/common/Paginacion';
 import { BiSearchAlt } from 'react-icons/bi';
-import { FaAngleDoubleRight } from "react-icons/fa";
+
 
 export default function SearchArticle() {
   const [search, setSearch] = useState('');
@@ -50,7 +50,6 @@ export default function SearchArticle() {
         <input
           type="text"
           name="search"
-          // className="search-bar"
           placeholder="Busca por Artículo..."
           onChange={handleChange}
         />

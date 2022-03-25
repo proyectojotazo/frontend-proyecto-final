@@ -5,7 +5,7 @@ import { recoverPassword } from '../../../api/services/auth';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { ReactComponent as Usuario } from '../../../assets/usuario.svg';
+import { Usuario } from '../../../assets/icons';
 import './recoverpassword.scss';
 
 const RecoverPassword = () => {

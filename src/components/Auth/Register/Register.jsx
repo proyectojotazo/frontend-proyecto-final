@@ -5,7 +5,7 @@ import { register as registerService } from '../../../api/services/auth';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { ReactComponent as Usuario } from '../../../assets/usuario.svg';
+import { Usuario } from '../../../assets/icons';
 import './register.scss';
 
 const Register = () => {
@@ -222,7 +222,7 @@ const Register = () => {
                                 />
                                 {errors.repeatPassword &&
                                     errors.repeatPassword.type ===
-                                        'repeatPwd' && (
+                                    'repeatPwd' && (
                                         <p className="form-custom-error">
                                             Tus contraseñas no coinciden
                                         </p>
