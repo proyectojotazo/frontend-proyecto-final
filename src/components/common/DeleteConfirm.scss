@@ -11,10 +11,27 @@
 .swal2-styled.swal2-confirm {
     background-color: $red;
     border-color: $redBrillo;
+    font-family: $tSubtitulo;
+    font-weight: 600;
     &:focus {
-        box-shadow: 0 0 0 3px $red;
+        box-shadow: 0 0 0 0 transparent;
     }
     &:hover {
         background-color: $redBrillo;
     }
+}
+
+.swal2-styled.swal2-cancel {
+    font-family: $tSubtitulo;
+    font-weight: 600;
+    &:focus {
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+.delete-msg {
+    font-family: $tSubtitulo;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 1rem;
 }
