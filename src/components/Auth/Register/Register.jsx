@@ -137,7 +137,7 @@ const Register = () => {
                                         required:
                                             'Introduce tu correo electrònico',
                                         pattern: {
-                                            value: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                                            value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                             message:
                                                 'Tienes que introducir un correo electrònico',
                                         },

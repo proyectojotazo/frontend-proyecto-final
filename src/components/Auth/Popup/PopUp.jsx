@@ -36,12 +36,14 @@ function Popup({ close }) {
                     <>
                         <Login close={close} />
                         <div className="recover-link-container">
-                            <a onClick={openRecover}>
+                            <p className="popup-links" onClick={openRecover}>
                                 ¿Has perdido tu contraseña?
-                            </a>
+                            </p>
                         </div>
                         <div className="register-link-container">
-                            <a onClick={openRegister}>Registrate</a>
+                            <p className="popup-links" onClick={openRegister}>
+                                Registrate
+                            </p>
                         </div>
                     </>
                 )}
@@ -50,7 +52,9 @@ function Popup({ close }) {
                     <>
                         <RecoverPassword />
                         <div className="goback-link-container">
-                            <a onClick={openLogin}>Volver</a>
+                            <p className="popup-links" onClick={openLogin}>
+                                Volver
+                            </p>
                         </div>
                     </>
                 )}
@@ -59,7 +63,9 @@ function Popup({ close }) {
                     <>
                         <Register />
                         <div className="goback-link-container">
-                            <a onClick={openLogin}>Volver</a>
+                            <p className="popup-links" onClick={openLogin}>
+                                Volver
+                            </p>
                         </div>
                     </>
                 )}

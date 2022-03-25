@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 import ArticleInfo from './../common/ArticleInfo';
@@ -12,7 +10,6 @@ import FormularioComentario from './FormularioComentario';
 import { useAuth } from '../../contexts/authContext';
 import useDetailedArticle from './../../hooks/useDetailedArticle';
 import urlConvert from '../../utils/urlConvert';
-import getUserId from '../../hooks/useUserLogged';
 
 import './articulo.scss';
 
