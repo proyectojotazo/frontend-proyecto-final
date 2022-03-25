@@ -257,13 +257,12 @@ function MyAccount() {
                                 >
                                     Eliminar cuenta
                                 </button>
-                                {showDelete && (
-                                    <DeleteConfirm
-                                        show={showConfirm}
-                                        msg="Si elimina la cuenta perderá todos sus datos. ¿Está seguro?"
-                                        confirm={deleteAccount}
-                                    />
-                                )}
+                                <DeleteConfirm
+                                    show={showDelete}
+                                    msg="Si elimina la cuenta perderá todos sus datos. ¿Está seguro?"
+                                    confirm={deleteAccount}
+                                    cancel={showConfirm}
+                                />
                             </div>
                         </>
                     )}

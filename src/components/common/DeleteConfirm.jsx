@@ -3,10 +3,9 @@ import SweetAlert2 from 'react-sweetalert2';
 
 import './DeleteConfirm.scss';
 
-function DeleteConfirm({ show, msg, confirm }) {
+function DeleteConfirm({ show, msg, confirm, cancel }) {
     const showConfirm = {
         show: show,
-        text: msg,
         showCancelButton: true,
         showConfirmButton: true,
         showCloseButton: true,
@@ -15,13 +14,14 @@ function DeleteConfirm({ show, msg, confirm }) {
     };
 
     return (
-        <div className="delete-confirm">
+        <div>
             <SweetAlert2
                 {...showConfirm}
-                didClose={show()}
-                onCancel={show()}
+                didClose={() => cancel()}
                 onConfirm={() => confirm()}
-            />
+            >
+                <h4 className="delete-msg">{msg}</h4>
+            </SweetAlert2>
         </div>
     );
 }
