@@ -12,8 +12,6 @@ import { ReactComponent as Usuario } from '../../assets/usuario.svg';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
-import { FaSearch } from "react-icons/fa";
-
 import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
@@ -24,13 +22,19 @@ function Nav() {
     const [userMenu, setUserMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
 
-    function LoginPopup() {
+    const LoginPopup = () => {
         setShowLogin({
             show: true,
             showConfirmButton: false,
             showCloseButton: true,
         });
-    }
+    };
+
+    const closePopup = () => {
+        setShowLogin({
+            show: false,
+        });
+    };
 
     const showUserMenu = () => {
         setUserMenu(!userMenu);
@@ -51,7 +55,6 @@ function Nav() {
                             <span className="tooltiptext">Buscar</span>
                             <NavLink to="/buscar" className="nav-link">
                                 <Lupa className="icon icon-lupa" />
-
                             </NavLink>
                         </div>
                     </li>
@@ -89,7 +92,7 @@ function Nav() {
                                             });
                                         }}
                                     >
-                                        <Popup />
+                                        <Popup close={closePopup} />
                                     </SweetAlert2>
                                 </>
                             ) : (
@@ -109,9 +112,7 @@ function Nav() {
                                                 </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>
-                                                <FiLogOut
-                                                    className="logout-nav"
-                                                ></FiLogOut>
+                                                <FiLogOut className="logout-nav"></FiLogOut>
                                             </li>
                                         </ul>
                                     )}

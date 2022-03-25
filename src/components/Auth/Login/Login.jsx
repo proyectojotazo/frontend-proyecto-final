@@ -9,7 +9,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import { ReactComponent as Usuario } from '../../../assets/usuario.svg';
 import './login.scss';
 
-const Login = () => {
+function Login({ close }) {
     const initialState = {
         email: '',
         password: '',
@@ -26,7 +26,7 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
-    const { isLogged, accountLogin, accountLogout } = useAuth();
+    const { accountLogin } = useAuth();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -40,7 +40,10 @@ const Login = () => {
 
     const handleLogin = () => {
         login(credentials)
-            .then((data) => accountLogin())
+            .then((data) => {
+                close();
+                accountLogin();
+            })
             .catch((err) =>
                 setError('custom', {
                     type: 'manual',
@@ -62,7 +65,7 @@ const Login = () => {
                             {...register('email', {
                                 required: 'Introduce tu correo electrònico',
                                 pattern: {
-                                    value: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                                    value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                     message:
                                         'Tienes que introducir un correo electrónico',
                                 },
@@ -125,6 +128,6 @@ const Login = () => {
             </div>
         </div>
     );
-};
+}
 
 export default Login;
