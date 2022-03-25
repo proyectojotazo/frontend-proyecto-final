@@ -71,12 +71,12 @@
                 width: 8rem;
                 justify-self: center;
                 margin-bottom: 0.9rem;
-                padding: 0.3rem 0;
                 &:before {
                     background-color: $cyan;
                     color: $background;
                     font-family: $tSubtitulo;
                     font-weight: 800;
+                    font-size: 0.8rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -157,13 +157,17 @@
             margin-bottom: 0.6rem;
             .pass-button {
                 cursor: pointer;
-                color: #000;
-                background-color: $orange;
-                padding: 0.5rem;
+                color: $orange;
+                font-family: $tSubtitulo;
+                font-weight: 600;
+                background-color: transparent;
+                border: 1px solid $orange;
+                font-size: 0.7rem;
+                padding: 0.4rem;
                 border-radius: 3px;
                 margin-right: 0.1rem;
                 &:hover {
-                    color: #000;
+                    color: $background;
                     background-color: $orangeBrillo;
                 }
             }
@@ -175,26 +179,28 @@
             margin-bottom: 0.6rem;
             .edit-button {
                 cursor: pointer;
-                color: #fff;
+                font-family: $tSubtitulo;
+                font-weight: 600;
+                color: $background;
                 background-color: $purple;
                 padding: 0.5rem;
                 border-radius: 3px;
                 margin-right: 0.1rem;
                 &:hover {
-                    color: #fff;
                     background-color: $purpleBrillo;
                 }
             }
             .save-button {
                 cursor: pointer;
+                font-family: $tSubtitulo;
+                font-weight: 600;
                 color: $background;
                 background-color: $green;
                 padding: 0.5rem;
                 border-radius: 3px;
                 margin-left: 0.1rem;
                 &:hover {
-                    color: $green;
-                    background-color: $current_line;
+                    background-color: $greenBrillo;
                 }
             }
         }
@@ -205,13 +211,14 @@
             .delete-button {
                 cursor: pointer;
                 width: 9rem;
-                color: #000;
+                font-family: $tSubtitulo;
+                font-weight: 600;
+                color: $background;
                 background-color: $red;
                 padding: 0.5rem;
                 border-radius: 3px;
                 margin-right: 0.1rem;
                 &:hover {
-                    color: #000;
                     background-color: $redBrillo;
                 }
             }
