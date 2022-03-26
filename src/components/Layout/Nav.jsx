@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import '../common/tooltip.scss';
 import './Nav.scss';
 import './Layout.scss';
-import './NavBar/MenuBurger.scss';
+import './MenuBurger.scss';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logomadeja.svg';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+
+import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -22,13 +20,19 @@ function Nav() {
     const [userMenu, setUserMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
 
-    function LoginPopup() {
+    const LoginPopup = () => {
         setShowLogin({
             show: true,
             showConfirmButton: false,
             showCloseButton: true,
         });
-    }
+    };
+
+    const closePopup = () => {
+        setShowLogin({
+            show: false,
+        });
+    };
 
     const showUserMenu = () => {
         setUserMenu(!userMenu);
@@ -86,7 +90,7 @@ function Nav() {
                                             });
                                         }}
                                     >
-                                        <Popup />
+                                        <Popup close={closePopup} />
                                     </SweetAlert2>
                                 </>
                             ) : (
@@ -106,9 +110,7 @@ function Nav() {
                                                 </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>
-                                                <FiLogOut
-                                                    className="logout-nav"
-                                                ></FiLogOut>
+                                                <FiLogOut className="logout-nav"></FiLogOut>
                                             </li>
                                         </ul>
                                     )}
