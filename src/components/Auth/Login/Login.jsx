@@ -26,7 +26,7 @@ function Login({ close }) {
         formState: { errors },
     } = useForm();
 
-    const { accountLogin } = useAuth();
+    const { accountLogin, t } = useAuth();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -56,14 +56,14 @@ function Login({ close }) {
         <div>
             <div className="header-login-container">
                 <Usuario className="icon icon-usuario" />
-                <h3 className="header-login-title">Accede a tu cuenta</h3>
+                <h3 className="header-login-title">{t('nav.login.title')}</h3>
             </div>
             <div className="login-form-container">
                 <form noValidate onSubmit={handleSubmit(handleLogin)}>
                     <div className="input-container">
                         <input
                             {...register('email', {
-                                required: 'Introduce tu correo electrònico',
+                                required: 'Introduce tu correo electrónico',
                                 pattern: {
                                     value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                     message:
@@ -74,7 +74,7 @@ function Login({ close }) {
                             name="email"
                             id="email"
                             onChange={handleInputChange}
-                            placeholder="Correo electrónico"
+                            placeholder={t('common.email')}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -93,7 +93,7 @@ function Login({ close }) {
                             name="password"
                             id="password"
                             onChange={handleInputChange}
-                            placeholder="Contraseña"
+                            placeholder={t('common.password')}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -110,7 +110,7 @@ function Login({ close }) {
                             id="remember"
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="remember">Recuerdame</label>
+                        <label htmlFor="remember">{t('nav.login.remember')}</label>
                     </div>
                     <ErrorMessage
                         errors={errors}
@@ -121,7 +121,7 @@ function Login({ close }) {
                     />
                     <input
                         type="submit"
-                        value="Entrar"
+                        value={t('common.get')}
                         className="login-submit-button"
                     />
                 </form>

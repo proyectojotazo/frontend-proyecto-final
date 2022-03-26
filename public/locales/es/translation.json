@@ -1,0 +1,45 @@
+{
+    "common" : {
+    "get":"Entrar",
+    "back": "Volver",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "nickname": "Nickname"
+    },
+
+    "header": {
+        "creates": "Crea",
+        "writes": "escribe",
+        "share": "comparte",
+        "subtitle" : "El último & me voy.... nace de la necesidad de unos programadores de devolver a internet un poco de lo que han cogido.... crea, escribe y comparte, únete a la comunidad."
+    },
+
+    "nav":{
+        "login": {
+            "title": "Accede a tu cuenta",
+            "remember": "Recuérdame",
+            "popup":{
+                "openRecover": "¿Has perdido tu contraseña?",
+                "openRegister": "Regístrate"
+            },
+            "recover":{
+                "title":"Recupera tu contraseña",
+                "succes-message": "Se han enviado las instrucciones a tu correo",
+                "recover": "Recuperar tu cuenta"
+            }
+            },
+        "register":{
+            "title": "Regístrate",
+            "name": "Nombre",
+            "surname": "Apellidos",
+            "repeatPassword": "Repite tu contraseña",
+            "repeatPasswordFail": "Tus contraseñas no coinciden"
+        }
+    },
+
+    "footer" : {
+        "title": "Práctica final del bootcamp Full Stak Web de Keepcoding",
+        "copyright": "Todos los derechos reservados"
+    }
+    
+}

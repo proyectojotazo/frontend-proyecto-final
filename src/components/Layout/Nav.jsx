@@ -7,6 +7,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logomadeja.svg';
 
 import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
+import {FaLanguage} from 'react-icons/fa';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -14,10 +15,12 @@ import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
 import Sidebar from './Sidebar';
+import i18next from 'i18next';
 
 function Nav() {
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
+    const [lenguageMenu, setLenguageMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
 
     const LoginPopup = () => {
@@ -38,6 +41,10 @@ function Nav() {
         setUserMenu(!userMenu);
     };
 
+    const showLenguageMenu = () => {
+        setLenguageMenu(!lenguageMenu);
+    };
+
     return (
         <>
             <nav className="nav">
@@ -48,6 +55,19 @@ function Nav() {
                 </div>
 
                 <ul className="nav-list">
+                    <li className="navbar-item">
+                        <FaLanguage className="icon" onClick={() => showLenguageMenu()}/>
+                        {lenguageMenu && (
+                                        <ul className="userMenu">
+                                            <li onClick={()=>i18next.changeLanguage('en')}>
+                                                Inglés
+                                            </li>
+                                            <li onClick={()=>i18next.changeLanguage('es')}>
+                                                Español
+                                            </li>
+                                        </ul>
+                                    )}
+                    </li>
                     <li className="navbar-item">
                         <div className="tooltip">
                             <span className="tooltiptext">Buscar</span>

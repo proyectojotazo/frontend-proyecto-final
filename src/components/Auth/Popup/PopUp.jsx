@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../../contexts/authContext';
 
 import Login from '../Login/Login';
 import RecoverPassword from '../RecoverPassword/RecoverPassword';
@@ -7,6 +8,7 @@ import Register from '../Register/Register';
 import './popup.scss';
 
 function Popup({ close }) {
+    const { t } = useAuth();
     const [showLogin, setShowLogin] = useState(true);
     const [showRecover, setShowRecover] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
@@ -37,12 +39,12 @@ function Popup({ close }) {
                         <Login close={close} />
                         <div className="recover-link-container">
                             <p className="popup-links" onClick={openRecover}>
-                                ¿Has perdido tu contraseña?
+                                {t('nav.login.popup.openRecover')}
                             </p>
                         </div>
                         <div className="register-link-container">
                             <p className="popup-links" onClick={openRegister}>
-                                Registrate
+                                {t('nav.login.popup.openRegister')}
                             </p>
                         </div>
                     </>
@@ -53,7 +55,7 @@ function Popup({ close }) {
                         <RecoverPassword />
                         <div className="goback-link-container">
                             <p className="popup-links" onClick={openLogin}>
-                                Volver
+                                {t('common.back')}
                             </p>
                         </div>
                     </>
@@ -64,7 +66,7 @@ function Popup({ close }) {
                         <Register />
                         <div className="goback-link-container">
                             <p className="popup-links" onClick={openLogin}>
-                                Volver
+                                {t('common.back')}
                             </p>
                         </div>
                     </>

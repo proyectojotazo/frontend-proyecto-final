@@ -7,8 +7,10 @@ import { ErrorMessage } from '@hookform/error-message';
 
 import { Usuario } from '../../../assets/icons';
 import './recoverpassword.scss';
+import { useAuth } from '../../../contexts/authContext';
 
 const RecoverPassword = () => {
+    const { t } = useAuth();
     const initialState = {
         email: '',
         password: '',
@@ -55,7 +57,7 @@ const RecoverPassword = () => {
         <div>
             <div className="header-login-container">
                 <Usuario className="icon icon-usuario" />
-                <h3 className="header-login-title">Recupera tu contraseña</h3>
+                <h3 className="header-login-title">{t('nav.login.recover.title')}</h3>
             </div>
             <div className="login-form-container">
                 <form noValidate onSubmit={handleSubmit(handleRecover)}>
@@ -73,7 +75,7 @@ const RecoverPassword = () => {
                             name="email"
                             id="email"
                             onChange={handleInputChange}
-                            placeholder="Correó electrónico"
+                            placeholder={t('common.email')}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -86,13 +88,13 @@ const RecoverPassword = () => {
                     {isSubmitted && (
                         <div className="succes-message">
                             <h2>
-                                Se han enviado las instrucciones a tu correo
+                                {t('nav.login.recover.succes-message')}
                             </h2>
                         </div>
                     )}
                     <input
                         type="submit"
-                        value="Recuperar cuenta"
+                        value={t('nav.login.recover.recover')}
                         className="recover-submit-button"
                     />
                 </form>

@@ -7,8 +7,10 @@ import { ErrorMessage } from '@hookform/error-message';
 
 import { Usuario } from '../../../assets/icons';
 import './register.scss';
+import { useAuth } from '../../../contexts/authContext';
 
 const Register = () => {
+    const { t } = useAuth();
     const initialState = {
         nombre: '',
         apellidos: '',
@@ -72,7 +74,7 @@ const Register = () => {
                     {' '}
                     <div className="header-login-container">
                         <Usuario className="icon icon-usuario" />
-                        <h3 className="header-login-title">Regístrate</h3>
+                        <h3 className="header-login-title">{t('nav.register.title')}</h3>
                     </div>
                     <div className="login-form-container">
                         <form
@@ -93,7 +95,7 @@ const Register = () => {
                                     name="name"
                                     id="name"
                                     onChange={handleInputChange}
-                                    placeholder="Nombre"
+                                    placeholder={t('nav.register.name')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -119,7 +121,7 @@ const Register = () => {
                                     name="apellidos"
                                     id="apellidos"
                                     onChange={handleInputChange}
-                                    placeholder="Apellidos"
+                                    placeholder={t('nav.register.surname')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -146,7 +148,7 @@ const Register = () => {
                                     name="email"
                                     id="email"
                                     onChange={handleInputChange}
-                                    placeholder="Email"
+                                    placeholder={t('common.email')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -167,7 +169,7 @@ const Register = () => {
                                     name="nickname"
                                     id="nickname"
                                     onChange={handleInputChange}
-                                    placeholder="Nickname"
+                                    placeholder={t('common.nickname')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -193,7 +195,7 @@ const Register = () => {
                                     name="password"
                                     id="password"
                                     onChange={handleInputChange}
-                                    placeholder="Contraseña"
+                                    placeholder={t('common.password')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -218,19 +220,19 @@ const Register = () => {
                                     name="repeatPassword"
                                     id="repeatPassword"
                                     onChange={handleInputChange}
-                                    placeholder="Repite tu contraseña"
+                                    placeholder={t('nav.register.repeatPassword')}
                                 />
                                 {errors.repeatPassword &&
                                     errors.repeatPassword.type ===
                                     'repeatPwd' && (
                                         <p className="form-custom-error">
-                                            Tus contraseñas no coinciden
+                                            {t('nav.register.repeatPasswordFail')}
                                         </p>
                                     )}
                             </div>
                             <input
                                 type="submit"
-                                value="Regístrate"
+                                value={t('nav.register.title')}
                                 className="login-submit-button"
                             />
                         </form>

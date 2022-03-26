@@ -1,0 +1,35 @@
+{
+    "todos_los_derechos_reservados": "All rights reserved 2022",
+    
+
+    "common" : {
+    "get":"Get",
+    "back": "Back",
+    "email": "Email",
+    "password": "Password"
+
+},
+    "header": {
+        "creates": "Creates",
+        "writes": "writes",
+        "share": "share",
+        "subtitle" : "The last one & I'm leaving.... was born from the need of some programmers to give back to the internet a little of what they have taken.... create, write and share, join the community."
+    },
+
+    "nav":{
+        "login": {
+            "title": "Login",
+            "remember": "Remember",
+            "popup":{
+                "openRecover": "Lost your password?",
+                "openRegister": "Register"
+            },
+            "recover":{
+                "title":"Recover your password",
+                "succes-message": "Instructions have been sent to your email",
+                "recover": "Recover your account"
+            }
+            }
+    }
+    
+}
