@@ -26,7 +26,19 @@ import SweetAlert2 from 'react-sweetalert2';
 
 function ArticleInfo({ article, customClass = '' }) {
     const [showShare, setShowShare] = useState(false);
-    const [showPopupDelete, setShowPopupDelete] = useState([]);
+    const [swalProps, setSwalProps] = useState({});
+
+    const handleSwalProps = () => {
+        setSwalProps({
+            show: true,
+            title: '¿Quieres borrar el artículo?',
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+        });
+    };
 
     const { isLogged, userLogged, updateUserLogged } = useAuth();
 
@@ -57,21 +69,19 @@ function ArticleInfo({ article, customClass = '' }) {
         updateUserLogged(field);
     };
 
-    function deletePopUp() {
-        setShowPopupDelete({
-            title: '¿Quieres borrar el artículo?',
-            show: true,
-            showConfirmButton: true,
-            showDenyButton: true,
-            confirmButtonText: 'Borrar',
-            denyButtonText: 'Cancelar',
-            showCloseButton: true,
-        });
-    }
-
     const deletePost = () => {
         deleteArticle(article._id)
             .then(() => {
+                const field = {
+                    articulos: {
+                        ...userLogged.articulos,
+                        creados: userLogged.articulos.creados.filter(
+                            (articulo) => articulo._id !== article._id
+                        ),
+                    },
+                };
+
+                updateUserLogged(field);
                 navigate(`../`, { replace: true });
             })
             .catch((error) => console.log(error));
@@ -143,14 +153,18 @@ function ArticleInfo({ article, customClass = '' }) {
                                     Borrar articulo
                                 </span>
                                 <FaTrashAlt
-                                    onClick={() => deletePopUp()}
+                                    onClick={handleSwalProps}
                                     className="icons-wrapper__edit"
                                 />
                                 <SweetAlert2
-                                    {...showPopupDelete}
-                                    onConfirm={() => deletePost()}
-                                    didClose={() => {
-                                        setShowPopupDelete({
+                                    {...swalProps}
+                                    onResolve={({ isConfirmed }) => {
+                                        if (isConfirmed) {
+                                            deletePost();
+                                            return;
+                                        }
+                                        setSwalProps({
+                                            ...swalProps,
                                             show: false,
                                         });
                                     }}
