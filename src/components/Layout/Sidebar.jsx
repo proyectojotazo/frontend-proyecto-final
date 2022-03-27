@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
+import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons';
 import './Nav.scss';
 import './Layout.scss';
 import './MenuBurger.scss';
@@ -23,6 +23,12 @@ function Sidebar() {
             show: true,
             showConfirmButton: false,
             showCloseButton: true,
+        });
+    };
+
+    const closePopup = () => {
+        setShowLogin({
+            show: false,
         });
     };
 
@@ -69,7 +75,7 @@ function Sidebar() {
                                             });
                                         }}
                                     >
-                                        <Popup />
+                                        <Popup close={closePopup} />
                                     </SweetAlert2>
                                 </>
                             ) : (
