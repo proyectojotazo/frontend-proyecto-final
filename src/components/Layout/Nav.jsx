@@ -2,38 +2,47 @@ import React, { useState } from 'react';
 import '../common/tooltip.scss';
 import './Nav.scss';
 import './Layout.scss';
-import './NavBar/MenuBurger.scss';
+import './MenuBurger.scss';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logomadeja.svg';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+
+import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
+import {FaLanguage} from 'react-icons/fa';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
-
-import { FaSearch } from "react-icons/fa";
 
 import { useAuth } from '../../contexts/authContext';
 
 import SweetAlert2 from 'react-sweetalert2';
 import Sidebar from './Sidebar';
+import i18next from 'i18next';
 
 function Nav() {
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
+    const [lenguageMenu, setLenguageMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
 
-    function LoginPopup() {
+    const LoginPopup = () => {
         setShowLogin({
             show: true,
             showConfirmButton: false,
             showCloseButton: true,
         });
-    }
+    };
+
+    const closePopup = () => {
+        setShowLogin({
+            show: false,
+        });
+    };
 
     const showUserMenu = () => {
         setUserMenu(!userMenu);
+    };
+
+    const showLenguageMenu = () => {
+        setLenguageMenu(!lenguageMenu);
     };
 
     return (
@@ -47,11 +56,23 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
+                        <FaLanguage className="icon" onClick={() => showLenguageMenu()}/>
+                        {lenguageMenu && (
+                                        <ul className="userMenu">
+                                            <li onClick={()=>i18next.changeLanguage('en')}>
+                                                Inglés
+                                            </li>
+                                            <li onClick={()=>i18next.changeLanguage('es')}>
+                                                Español
+                                            </li>
+                                        </ul>
+                                    )}
+                    </li>
+                    <li className="navbar-item">
                         <div className="tooltip">
                             <span className="tooltiptext">Buscar</span>
                             <NavLink to="/buscar" className="nav-link">
                                 <Lupa className="icon icon-lupa" />
-
                             </NavLink>
                         </div>
                     </li>
@@ -89,7 +110,7 @@ function Nav() {
                                             });
                                         }}
                                     >
-                                        <Popup />
+                                        <Popup close={closePopup} />
                                     </SweetAlert2>
                                 </>
                             ) : (
@@ -109,9 +130,7 @@ function Nav() {
                                                 </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>
-                                                <FiLogOut
-                                                    className="logout-nav"
-                                                ></FiLogOut>
+                                                <FiLogOut className="logout-nav"></FiLogOut>
                                             </li>
                                         </ul>
                                     )}

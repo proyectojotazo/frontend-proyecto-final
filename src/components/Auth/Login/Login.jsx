@@ -6,10 +6,10 @@ import { login } from '../../../api/services/auth';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-import { ReactComponent as Usuario } from '../../../assets/usuario.svg';
+import { Usuario } from '../../../assets/icons';
 import './login.scss';
 
-const Login = () => {
+function Login({ close }) {
     const initialState = {
         email: '',
         password: '',
@@ -26,7 +26,7 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
-    const { isLogged, accountLogin, accountLogout } = useAuth();
+    const { accountLogin, t } = useAuth();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -40,7 +40,10 @@ const Login = () => {
 
     const handleLogin = () => {
         login(credentials)
-            .then((data) => accountLogin())
+            .then((data) => {
+                close();
+                accountLogin();
+            })
             .catch((err) =>
                 setError('custom', {
                     type: 'manual',
@@ -53,16 +56,16 @@ const Login = () => {
         <div>
             <div className="header-login-container">
                 <Usuario className="icon icon-usuario" />
-                <h3 className="header-login-title">Accede a tu cuenta</h3>
+                <h3 className="header-login-title">{t('nav.login.title')}</h3>
             </div>
             <div className="login-form-container">
                 <form noValidate onSubmit={handleSubmit(handleLogin)}>
                     <div className="input-container">
                         <input
                             {...register('email', {
-                                required: 'Introduce tu correo electrònico',
+                                required: 'Introduce tu correo electrónico',
                                 pattern: {
-                                    value: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                                    value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                     message:
                                         'Tienes que introducir un correo electrónico',
                                 },
@@ -71,7 +74,7 @@ const Login = () => {
                             name="email"
                             id="email"
                             onChange={handleInputChange}
-                            placeholder="Correo electrónico"
+                            placeholder={t('common.email')}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -90,7 +93,7 @@ const Login = () => {
                             name="password"
                             id="password"
                             onChange={handleInputChange}
-                            placeholder="Contraseña"
+                            placeholder={t('common.password')}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -107,7 +110,7 @@ const Login = () => {
                             id="remember"
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="remember">Recuerdame</label>
+                        <label htmlFor="remember">{t('nav.login.remember')}</label>
                     </div>
                     <ErrorMessage
                         errors={errors}
@@ -118,13 +121,13 @@ const Login = () => {
                     />
                     <input
                         type="submit"
-                        value="Entrar"
+                        value={t('common.get')}
                         className="login-submit-button"
                     />
                 </form>
             </div>
         </div>
     );
-};
+}
 
 export default Login;

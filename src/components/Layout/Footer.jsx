@@ -1,66 +1,35 @@
 import './Layout.scss';
 import './Footer.scss';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/logomadeja.svg';
-import {
-    FaFacebook,
-    FaInstagramSquare,
-    FaTwitter,
-    FaYoutube,
-} from 'react-icons/fa';
+import { ReactComponent as FooterCafe } from '../../assets/footerCafe.svg';
+import { useAuth } from '../../contexts/authContext';
+
 
 function Footer() {
+    const {t} = useAuth();
     return (
         <footer className="footer">
-            <div className="container_footer">
-                <div className="footerTexto">
-                    <div className="logo">
-                        <Link to="/">
-                            <Logo className="logoFooter" />
-                        </Link>
-                    </div>
-                    <div className="terms">
-                        <p>
-                            {' '}
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has
-                            survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially
-                            unchanged. It was popularised in the 1960s with the
-                            release of Letraset sheets containing Lorem Ipsum
-                            passages
-                        </p>
+            <div className="footer__container_footer">
+                <div className="footer__footerTexto">
+                    <h1>{t('footer.title')}</h1>
+                    <h3>KeepCoding Web Development Bootcamp</h3>
+                    <div className='footer__persona'>
+                        <img/>
+                        <div className='footer__info_persona'>
+                            <h2>Cesar</h2>
+                            <h3>Actividad</h3>
+                            
+                        </div>
                     </div>
                 </div>
-
-                <div className="footerPersonas">
-                    <h2> Redes Sociales</h2>
-
-                    <a href="/">
-                        {' '}
-                        <FaFacebook />{' '}
-                    </a>
-                    <a href="/">
-                        {' '}
-                        <FaInstagramSquare />{' '}
-                    </a>
-                    <a href="/">
-                        {' '}
-                        <FaTwitter />{' '}
-                    </a>
-                    <a href="/">
-                        {' '}
-                        <FaYoutube />{' '}
-                    </a>
+                <div className="footer__footerImagen">
+                    <FooterCafe />
                 </div>
-                <div className="box__copyright">
+            
+                <div className="footer__box__copyright">
                     <hr />
                     <p>
-                        Todos los derechos reservados © 2022 {''}
+                        {t("footer.copyright")}
                         <b>El Ultimo & Me Voy</b>
                     </p>
                 </div>

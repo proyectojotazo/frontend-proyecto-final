@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Lupa } from '../../assets/iconoLupa.svg';
-import { ReactComponent as Nuevo } from '../../assets/nuevo.svg';
-import { ReactComponent as Inicio } from '../../assets/inicio.svg';
-import { ReactComponent as Usuario } from '../../assets/usuario.svg';
+
+import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
 import './Nav.scss';
 import './Layout.scss';
-import './NavBar/MenuBurger.scss';
+import './MenuBurger.scss';
 import SweetAlert2 from 'react-sweetalert2';
 import Popup from '../Auth/Popup/PopUp';
 import { useAuth } from '../../contexts/authContext';
 import { FiLogOut } from 'react-icons/fi';
-import { FaTimes, FaBars } from "react-icons/fa";
-export default function Sidebar() {
+import { FaTimes, FaBars } from 'react-icons/fa';
+
+function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
     const [menuburger, setMenuburger] = useState(false);
     const [showLogin, setShowLogin] = useState([]);
@@ -121,3 +120,5 @@ export default function Sidebar() {
         </>
     );
 }
+
+export default Sidebar;

@@ -6,12 +6,11 @@ import ArticleInfo from './ArticleInfo';
 
 import './card.scss';
 
-import urlConvert from './../../utils/urlConvert';
+import urlConvert from '../../utils/urlConvert';
 
 const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
 function Card({ cambiarCategoria, articulo }) {
-
     const _id = articulo._id;
     return (
         <div className="card">

@@ -2,8 +2,10 @@ import './Layout.scss';
 import './Header.scss';
 import React from 'react';
 import { ReactComponent as Gente } from '../../assets/gente.svg';
+import { useAuth } from '../../contexts/authContext';
 
 function Header() {
+    const {t} = useAuth();
     return (
         <header className="header">
             <div className="imagen">
@@ -11,12 +13,10 @@ function Header() {
             </div>
             <div className="texto">
                 <h1>
-                    Crea, <br /> Escribe <br /> & Comparte
+                    {t('header.creates')}, <br /> {t('header.writes')} <br /> & {t('header.share')}
                 </h1>
                 <p>
-                    El último & me voy.... nace de la necesidad de unos
-                    programadores de devolver a internet un poco de lo que han
-                    cogido.... crea, escribe y comparte, únete a la comunidad.{' '}
+                    {t('header.subtitle')}
                 </p>
             </div>
         </header>

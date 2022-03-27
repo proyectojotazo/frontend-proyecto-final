@@ -35,10 +35,7 @@ function ArticulosFound(props) {
         ))
         ) : (
           <div className="not-found">
-            <FaRegTimesCircle
-              className="error-icon"
-            />
-            <p className="error-text" >No Encontrado...
+            <p className="error-text" >No se han encontrado resultado con esa busqueda...
             </p>
           </div>
         )}
