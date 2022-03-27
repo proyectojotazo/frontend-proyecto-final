@@ -6,8 +6,8 @@ import './MenuBurger.scss';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logomadeja.svg';
 
-import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons'
-import {FaLanguage} from 'react-icons/fa';
+import { Lupa, Inicio, Nuevo, Usuario, Esp, Eng } from '../../assets/icons'
+import {FaFlag} from 'react-icons/fa';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -21,7 +21,7 @@ function Nav() {
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
     const [lenguageMenu, setLenguageMenu] = useState(false);
-    const { isLogged, accountLogout } = useAuth();
+    const { isLogged, accountLogout, t } = useAuth();
 
     const LoginPopup = () => {
         setShowLogin({
@@ -56,21 +56,21 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
-                        <FaLanguage className="icon" onClick={() => showLenguageMenu()}/>
+                        <FaFlag className="icon gr" onClick={() => showLenguageMenu()}/>
                         {lenguageMenu && (
                                         <ul className="userMenu">
                                             <li onClick={()=>i18next.changeLanguage('en')}>
-                                                Inglés
+                                                <Eng className="icon"/>
                                             </li>
                                             <li onClick={()=>i18next.changeLanguage('es')}>
-                                                Español
+                                                <Esp className="icon"/>
                                             </li>
                                         </ul>
                                     )}
                     </li>
                     <li className="navbar-item">
                         <div className="tooltip">
-                            <span className="tooltiptext">Buscar</span>
+                            <span className="tooltiptext">{t("nav.tooltipSearch")}</span>
                             <NavLink to="/buscar" className="nav-link">
                                 <Lupa className="icon icon-lupa" />
                             </NavLink>
@@ -80,7 +80,7 @@ function Nav() {
                         <NavLink to="/crear" className="nav-link">
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                    Crear Articulo
+                                {t("nav.tooltipAddArticle")}
                                 </span>
                                 <Nuevo className="icon icon-nuevo" />
                             </div>
@@ -126,7 +126,7 @@ function Nav() {
                                                     to="/my-account"
                                                     className="dropdown-user"
                                                 >
-                                                    Perfil
+                                                {t("nav.profile")}
                                                 </NavLink>
                                             </li>
                                             <li onClick={accountLogout}>

@@ -7,8 +7,10 @@ import { ErrorMessage } from '@hookform/error-message';
 import { Usuario } from '../assets/icons';
 
 import { recoverAccount } from '../api/services/auth';
+import { useAuth } from '../contexts/authContext';
 
 function RecoverAccount() {
+    const {t}=useAuth()
     const { id, token } = useParams();
 
     const [newPassword, setNewPassword] = useState({});
@@ -55,25 +57,25 @@ function RecoverAccount() {
         <div>
             <div className="header-login-container">
                 <Usuario className="icon icon-usuario" />
-                <h3 className="header-login-title">Recupera tu cuenta</h3>
+                <h3 className="header-login-title">{t("main.recoverAccount.recoverAccount")}</h3>
             </div>
             <div className="login-form-container recover-form-container">
                 <form noValidate onSubmit={handleSubmit(handleRecoverAccount)}>
                     <div className="input-container">
                         <input
                             {...register('password', {
-                                required: 'Introduce la nueva contraseña',
+                                required: t("main.myAccount.passwordNew"),
                                 pattern: {
                                     value: /^(?=.*[a-zÀ-ÿ\u00f1\u00d1])(?=.*[A-ZÀ-ÿ\u00f1\u00d1])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-zÀ-ÿ\u00f1\u00d1\d@$!%*?&\-_]{8,}$/,
                                     message:
-                                        'Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_',
+                                     t("main.recoverAccount.passwordRules"),
                                 },
                             })}
                             type="password"
                             name="password"
                             id="password"
                             onChange={handleInputChange}
-                            placeholder="Nueva contraseña"
+                            placeholder= {t("main.myAccount.passwordNew")}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -87,7 +89,7 @@ function RecoverAccount() {
                     <div className="input-container">
                         <input
                             {...register('repeatPassword', {
-                                required: 'Introduce de nuevo la contraseña',
+                                required: t("main.myAccount.RepeatpasswordNew"),
                                 validate: {
                                     repeatPwd: (value) =>
                                         value === newPassword.password,
@@ -97,12 +99,12 @@ function RecoverAccount() {
                             name="repeatPassword"
                             id="repeatPassword"
                             onChange={handleInputChange}
-                            placeholder="Repite la contraseña"
+                            placeholder={t("main.myAccount.RepeatpasswordNew")}
                         />
                         {errors.repeatPassword &&
                             errors.repeatPassword.type === 'repeatPwd' && (
                                 <p className="form-custom-error">
-                                    Tus contraseñas no coinciden
+                                    {t("main.myAccount.passwordNot")}
                                 </p>
                             )}
                     </div>
@@ -116,15 +118,14 @@ function RecoverAccount() {
                     />
                     <input
                         type="submit"
-                        value="Cambiar contraseña"
+                        value={t("main.myAccount.changePassword")}
                         className="login-submit-button"
                     />
 
                     {submittedSucces && (
                         <div>
                             <p className="form-custom-succes">
-                                Se ha cambiado la contraseña correctamente. Se
-                                te va a redirigir a la página de Inicio.
+                            {t("main.recoverAccount.passwordMensage")}
                             </p>
                         </div>
                     )}

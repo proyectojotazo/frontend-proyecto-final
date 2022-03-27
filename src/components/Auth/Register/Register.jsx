@@ -67,7 +67,7 @@ const Register = () => {
         <div>
             {registerSucces ? (
                 <div className="succes-message">
-                    <h2>Bienvenid@ a la comunidad de El Ultimo y me voy</h2>
+                    <h2>{t('nav.register.succesMessage')}</h2>
                 </div>
             ) : (
                 <div>
@@ -84,18 +84,18 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('name', {
-                                        required: 'Introduce tu nombre',
+                                        required: t("common.required.name"),
                                         pattern: {
                                             value: /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
                                             message:
-                                                'El nombre tiene carácteres no válidos',
+                                            t("common.required.nameError"),
                                         },
                                     })}
                                     type="text"
                                     name="name"
                                     id="name"
                                     onChange={handleInputChange}
-                                    placeholder={t('nav.register.name')}
+                                    placeholder={t('common.name')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -110,18 +110,18 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('apellidos', {
-                                        required: 'Introduce tus apellidos',
+                                        required: t("common.required.surname"),
                                         pattern: {
                                             value: /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
                                             message:
-                                                'Los apellidos tienen carácteres no válidos',
+                                            t("common.required.surnameError"),
                                         },
                                     })}
                                     type="text"
                                     name="apellidos"
                                     id="apellidos"
                                     onChange={handleInputChange}
-                                    placeholder={t('nav.register.surname')}
+                                    placeholder={t('common.surname')}
                                 />
                                 <ErrorMessage
                                     errors={errors}
@@ -137,11 +137,11 @@ const Register = () => {
                                 <input
                                     {...register('email', {
                                         required:
-                                            'Introduce tu correo electrònico',
+                                            t('nav.login.emailMessage'),
                                         pattern: {
                                             value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                             message:
-                                                'Tienes que introducir un correo electrònico',
+                                            t('nav.login.emailMessage'),
                                         },
                                     })}
                                     type="email"
@@ -163,7 +163,7 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('nickname', {
-                                        required: 'Introduce tu nickname',
+                                        required: t("common.required.nickname"),
                                     })}
                                     type="text"
                                     name="nickname"
@@ -184,11 +184,11 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('password', {
-                                        required: 'Introduce tu contraseña',
+                                        required: t('common.required.password'),
                                         pattern: {
                                             value: /^(?=.*[a-zÀ-ÿ\u00f1\u00d1])(?=.*[A-ZÀ-ÿ\u00f1\u00d1])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-zÀ-ÿ\u00f1\u00d1\d@$!%*?&\-_]{8,}$/,
                                             message:
-                                                'Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_',
+                                            t('common.required.passwordError'),
                                         },
                                     })}
                                     type="password"
@@ -210,7 +210,7 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('repeatPassword', {
-                                        required: 'Introduce tu contraseña',
+                                        required: t("common.required.password"),
                                         validate: {
                                             repeatPwd: (value) =>
                                                 value === userData.password,

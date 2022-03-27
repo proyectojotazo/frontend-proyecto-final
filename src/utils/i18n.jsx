@@ -10,9 +10,10 @@ i18next
   .use(LanguageDetector) // detecta el idioma de forma autómatica en detection: order: {}
   .use(HttpApi) // un peque backend para almadenar la info backend: 
   .init({
+    supportedLngs: ["es", "en"],
     fallbackLng: "es",
     detection: {
-        order: ['htmlTag', 'cookie', 'localStorage', 'path', 'subdomain'], // orden donde se mira el idioma a usar
+        order: ['navigator','htmlTag', 'cookie', 'localStorage', 'path', 'subdomain'], // orden donde se mira el idioma a usar
         caches: ['cookie']
     },
     backend: {
