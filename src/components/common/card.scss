@@ -17,7 +17,8 @@
     
     .textoIntroductorio {
         font-family: $tSubtitulo;
-        line-height : 125%;
+        line-height : 1.3rem;
+        word-break: break-all;
     }
 }
 
