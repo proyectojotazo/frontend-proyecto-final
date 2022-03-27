@@ -16,6 +16,8 @@ import {
     editArticle,
 } from '../../api/services/articulos';
 
+import urlConvert from '../../utils/urlConvert';
+
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
 
@@ -37,6 +39,8 @@ const NewArticle = ({ modo }) => {
         fechaPublicacion: '',
     };
 
+    console.log();
+
     const [selectedDestacado, setSelectedDestacado] = useState(null);
     const [userData, setUserData] = useState(initialState);
     const [sendSucces, setSendSucces] = useState(false);
@@ -44,6 +48,7 @@ const NewArticle = ({ modo }) => {
     const [categoriasSelected, setCategoriasSelected] = useState([]);
     const descriptionInput = useRef(null);
     const [programPost, setProgramPost] = useState(false);
+    const [previewImage, setPreviewImage] = useState(null);
 
     const navigate = useNavigate();
 
@@ -71,6 +76,7 @@ const NewArticle = ({ modo }) => {
                         textoIntroductorio: data.textoIntroductorio,
                     });
                     setCategoriasSelected(data.categorias);
+                    setPreviewImage(urlConvert(data.archivoDestacado));
                 }
 
                 if (modo === 'responder') {
@@ -110,6 +116,7 @@ const NewArticle = ({ modo }) => {
 
     const handleFileInput = (e) => {
         setSelectedDestacado(e.target.files[0]);
+        setPreviewImage(URL.createObjectURL(e.target.files[0]));
     };
 
     const handleCategories = (e) => {
@@ -213,9 +220,16 @@ const NewArticle = ({ modo }) => {
                             )}
                         />
                     </div>
-                    {/* TODO: MOSTRAR VISTA PREVIA DE LA FOTO */}
-                    {/* TODO: SI ESTAMOS EDITANDO EL POST, MOSTRAR UNA VISTA PREVIA DE LA FOTO */}
                     <div className="input-container">
+                        {previewImage && (
+                            <div className="image-preview-container">
+                                <img
+                                    src={previewImage}
+                                    alt="imagen destacada del post"
+                                    width={200}
+                                />
+                            </div>
+                        )}
                         <input
                             {...register('archivoDestacado')}
                             type="file"
