@@ -8,9 +8,11 @@ import { FaRegTimesCircle } from "react-icons/fa";
 
 import '../common/articulos.scss';
 import UserInfo from './UserInfo';
+import { useAuth } from '../../contexts/authContext';
 
 function ArticulosFound(props) {
   const [articulos, setArticulos] = useState([]);
+  const {t} = useAuth();
   const { search, categoria, orden, pagina, cambiarCategoria, ultimaPag } = props;
 
   useEffect(() => {
@@ -35,7 +37,7 @@ function ArticulosFound(props) {
         ))
         ) : (
           <div className="not-found">
-            <p className="error-text" >No se han encontrado resultado con esa busqueda...
+            <p className="error-text" > {t("main.articulosFound.notFound")}
             </p>
           </div>
         )}

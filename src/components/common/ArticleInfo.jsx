@@ -40,7 +40,7 @@ function ArticleInfo({ article, customClass = '' }) {
         });
     };
 
-    const { isLogged, userLogged, updateUserLogged } = useAuth();
+    const { isLogged, userLogged, updateUserLogged, t } = useAuth();
 
     const isMyArticle = userLogged._id === article.usuario[0]._id;
 
@@ -101,7 +101,7 @@ function ArticleInfo({ article, customClass = '' }) {
                 </div>
                 <div className="articleInfo__icons-wrapper">
                     <div className="tooltip">
-                        <span className="tooltiptext">Comentarios</span>
+                        <span className="tooltiptext">{t('main.articleInfo.tooltipComment')}</span>
                         <div className="comments-wrapper">
                             <FaRegComments className="comments-wrapper__icon" />
                             <p className="comments-wrapper__numComments">
@@ -114,7 +114,7 @@ function ArticleInfo({ article, customClass = '' }) {
                             {isFavourite ? (
                                 <div className="tooltip">
                                     <span className="tooltiptext">
-                                        Quitar de favoritos
+                                    {t('main.articleInfo.tooltipRemoveFavorite')}
                                     </span>
                                     <FaStar
                                         className="icons-wrapper__like"
@@ -124,7 +124,7 @@ function ArticleInfo({ article, customClass = '' }) {
                             ) : (
                                 <div className="tooltip">
                                     <span className="tooltiptext">
-                                        Añadir a favoritos
+                                    {t('main.articleInfo.tooltipAddFavorite')}
                                     </span>
                                     <FaRegStar
                                         className="icons-wrapper__like"
@@ -134,7 +134,7 @@ function ArticleInfo({ article, customClass = '' }) {
                             )}
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                    Responder Articulo
+                                {t('main.articleInfo.tooltipResponse')}
                                 </span>
                                 <FaRegEdit
                                     onClick={() =>
@@ -150,7 +150,7 @@ function ArticleInfo({ article, customClass = '' }) {
                         <>
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                    Borrar articulo
+                                {t('main.articleInfo.tooltipDelete')}
                                 </span>
                                 <FaTrashAlt
                                     onClick={handleSwalProps}
@@ -172,7 +172,7 @@ function ArticleInfo({ article, customClass = '' }) {
                             </div>
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                    Editar articulo
+                                {t('main.articleInfo.tooltipEdit')}
                                 </span>
                                 <FaPencilAlt
                                     onClick={() =>
@@ -185,7 +185,7 @@ function ArticleInfo({ article, customClass = '' }) {
                     )}
 
                     <div className="tooltip">
-                        <span className="tooltiptext">Compartir</span>
+                        <span className="tooltiptext">{t('main.articleInfo.tooltipShared')}</span>
                         <FaRegPaperPlane
                             onClick={share}
                             className="icons-wrapper__send"

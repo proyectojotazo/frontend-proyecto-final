@@ -64,11 +64,11 @@ const RecoverPassword = () => {
                     <div className="input-container">
                         <input
                             {...register('email', {
-                                required: 'Introduce tu correo electrónico',
+                                required: t('common.email'),
                                 pattern: {
                                     value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                     message:
-                                        'Tienes que introducir un correo electrònico',
+                                    t('nav.login.emailMessage'),
                                 },
                             })}
                             type="email"
