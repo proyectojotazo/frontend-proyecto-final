@@ -17,7 +17,7 @@ function Card({ cambiarCategoria, articulo }) {
             <Link to={`/articles/${_id}`}>
                 <div className="imgportada">
                     <img
-                        src={urlConvert || imgHolder}
+                        src={urlConvert(articulo.archivoDestacado) || imgHolder}
                         alt="archivo destacado"
                     />
                 </div>
