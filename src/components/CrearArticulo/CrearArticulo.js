@@ -365,27 +365,32 @@ const NewArticle = ({ modo }) => {
                             <p className="form-custom-error">{message}</p>
                         )}
                     />
-                    <div className="input-container">
-                        <h4 className="program-title">
-                            ¿Quieres programar tu post?
-                        </h4>
-                        <input
-                            {...register('fechaPublicacion')}
-                            type="datetime-local"
-                            name="fechaPublicacion"
-                            id="fechaPublicacion"
-                            onChange={handleInputChange}
-                            placeholder="Fecha y hora de publicación"
-                        />
 
-                        <ErrorMessage
-                            errors={errors}
-                            name="fechaPublicacion"
-                            render={({ message }) => (
-                                <p className="form-custom-error">{message}</p>
-                            )}
-                        />
-                    </div>
+                    {!toEdit && (
+                        <div className="input-container">
+                            <h4 className="program-title">
+                                ¿Quieres programar tu post?
+                            </h4>
+                            <input
+                                {...register('fechaPublicacion')}
+                                type="datetime-local"
+                                name="fechaPublicacion"
+                                id="fechaPublicacion"
+                                onChange={handleInputChange}
+                                placeholder="Fecha y hora de publicación"
+                            />
+
+                            <ErrorMessage
+                                errors={errors}
+                                name="fechaPublicacion"
+                                render={({ message }) => (
+                                    <p className="form-custom-error">
+                                        {message}
+                                    </p>
+                                )}
+                            />
+                        </div>
+                    )}
                     <input
                         type="submit"
                         value={
