@@ -25,8 +25,15 @@
         "nicknameError":"El nickname tiene carácteres no válidos",
         "password": "Introduce tu contraseña",
         "passwordError":"Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_"
+    },
 
+    "menuOptions" : {
+        "profile": "Mi Perfil",
+        "articles": "Mis Articulos",
+        "myFavourites": "Mis Articulos favoritos",
+        "favourites": "Favoritos"
     }
+
     },
 
     "header": {
