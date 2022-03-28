@@ -70,3 +70,9 @@ export const editArticle = async (id, data) => {
         return Promise.reject(error);
     });
 };
+
+export const deleteComment = async (id) => {
+    return client.delete(`/comment/${id}`).catch((error) => {
+        return Promise.reject(error);
+    });
+};
