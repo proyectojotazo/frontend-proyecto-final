@@ -16,20 +16,12 @@ footer {
   height: auto;
   justify-content: center;
   align-items: center;
-//   padding: 50px 0px;
-//   *background-image: url(../../assets/footer.svg);
-//   *background-size: cover;
-//   background-color: #14141b;
-//   -webkit-mask-image: url(../../assets/footer.svg);
-//   max-image: url(../../assets/footer.svg);
-// }
-  
 }
 
-.footer__container_footer{
+.footer__container_footer {
+  padding-top: 2rem;
   display: grid;
-  width: 100%;
-  padding: 2rem;
+  width: 80%;
   height: auto;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
@@ -37,13 +29,86 @@ footer {
   grid-template-areas:
     'footerTexto footerTexto footerImagen'
     'box__copyright box__copyright box__copyright';
+}
+
+.equipo{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  // justify-content: center;
+}
 
     .footer__footerTexto{
       grid-area: footerTexto;
+      & .sub {
+        margin-bottom: 2rem;
+        font-family: $tMaquina;
+        size: 16pt;
+        color: $cyan;
+      }
+
+      & .tit{
+        font-family: $tSubtitulo;
+        size: 16pt;
+        color: $orange;
+      }
     }
 
     .footer__footerImagen{
       grid-area: footerImagen;
+    }
+
+    .footer__persona{
+      display: grid;
+      padding-bottom: 2rem;
+      width: 100%;
+      grid-template-columns: 100px 4fr;
+      grid-auto-flow: row;
+      grid-template-areas: 
+      'footer__avatarFooter footer__info_persona';
+    }
+
+    .footer__avatarFooter{
+      grid-area: footer__avatarFooter;
+      width: 100%;
+      padding-top: 10px;
+      display: flex;
+        & img {
+            width: 100px;
+            border-radius: 9rem;
+    }
+    }
+    
+    .footer__info_persona{
+      grid-area: footer__info_persona;
+      justify-content: center;
+      display: flex;
+      padding-left: 1rem ;
+      flex-direction: column;
+      width: 100%;
+
+      h2{
+        font-size: 28pt;
+        font-family: $tTitulares;
+        color: $orange;
+      }
+
+      h3{
+        font-family: $tMaquina;
+        color: $green;
+      }
+
+    }
+
+    .iconoFooter{
+      fill: white;
+      font-size: 15pt;
+    }
+
+    .footer__info_personaIconos{
+      display: flex;
+      padding-top: 10px;
+      gap: 10px;
     }
 
     .footer__box__copyright {
@@ -62,6 +127,23 @@ footer {
       }
     }
 
+
+
+@media only screen and (max-width: 1100px) {
+  .footer__footerImagen {
+    display: none;
+  }
+
+  .footer__persona{
+    display: grid;
+    padding-bottom: 1rem;}
+
+  .footer__container_footer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'footerTexto'
+      'box__copyright';
+}
 }
 
 

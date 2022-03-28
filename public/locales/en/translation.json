@@ -93,7 +93,7 @@
         },
 
         "paginacion": {
-            "back": "Last page",
+            "back": "Previous page",
             "go": "Next page",
             "old": "Older",
             "recent": "Recent",

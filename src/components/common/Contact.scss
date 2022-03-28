@@ -1,0 +1,63 @@
+    @import '../../sass/variablesSass.scss';
+
+    
+        .footer__persona{
+        display: grid;
+        width: 300px;
+        grid-template-columns: 100px 4fr;
+        grid-auto-flow: row;
+        grid-template-areas: 
+        'footer__avatarFooter footer__info_persona';
+        }
+
+        .footer__avatarFooter{
+        grid-area: footer__avatarFooter;
+        width: 100%;
+        padding-top: 10px;
+        display: flex;
+            & img {
+                width: 100px;
+                border-radius: 9rem;
+        }
+        }
+        
+        .footer__info_persona{
+        grid-area: footer__info_persona;
+        justify-content: center;
+        display: flex;
+        padding-left: 1rem ;
+        flex-direction: column;
+        width: 100%;
+
+        h2{
+            font-size: 16pt;
+            font-family: $tTitulares;
+            color: $orange;
+        }
+
+        h3{
+            font-family: $tMaquina;
+            color: $green;
+        }
+
+        }
+
+        .iconoFooter{
+        fill: white;
+        font-size: 15pt;
+        }
+
+        .footer__info_personaIconos{
+        display: flex;
+        padding-top: 10px;
+        gap: 10px;
+        }
+
+        
+
+
+
+
+
+
+

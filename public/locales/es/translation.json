@@ -70,7 +70,8 @@
     },
 
     "footer" : {
-        "title": "Práctica final del bootcamp Full Stak Web de Keepcoding",
+        "title": "Full Stak Web de Keepcoding",
+        "subtitle": "PRÁCTICA FINAL DEL BOOTCAMP",
         "copyright": "Todos los derechos reservados"
     },
 
