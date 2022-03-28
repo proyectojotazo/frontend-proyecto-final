@@ -18,8 +18,6 @@ import {
     editArticle,
 } from '../../api/services/articulos';
 
-import urlConvert from '../../utils/urlConvert';
-
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
 
@@ -78,7 +76,7 @@ const NewArticle = ({ modo }) => {
                         textoIntroductorio: data.textoIntroductorio,
                     });
                     setCategoriasSelected(data.categorias);
-                    setPreviewImage(urlConvert(data.archivoDestacado));
+                    setPreviewImage(data.archivoDestacado);
                 }
 
                 if (modo === 'responder') {

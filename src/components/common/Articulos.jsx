@@ -12,22 +12,26 @@ function Articulos(props) {
 
     useEffect(() => {
         getArticulosCategorias(categoria, orden, pagina).then((x) => {
-            if (x.length === 0) return ultimaPag();
+            if (x.length === 0 && pagina !== 0) return ultimaPag();
             setArticulos(x);
         });
     }, [categoria, orden, pagina, ultimaPag]);
 
     return (
         <section className="seccionArticulos">
-            {articulos.map((articulo) => (
-                <div key={articulo._id} className="card__wrapper">
-                    <Card
-                        articulo={articulo}
-                        cambiarCategoria={cambiarCategoria}
-                    />
-                    <UserInfo user={articulo.usuario[0]} />
-                </div>
-            ))}
+            {articulos.length !== 0 ? (
+                articulos.map((articulo) => (
+                    <div key={articulo._id} className="card__wrapper">
+                        <Card
+                            articulo={articulo}
+                            cambiarCategoria={cambiarCategoria}
+                        />
+                        <UserInfo user={articulo.usuario[0]} />
+                    </div>
+                ))
+            ) : (
+                <p>No hay</p>
+            )}
         </section>
     );
 }
