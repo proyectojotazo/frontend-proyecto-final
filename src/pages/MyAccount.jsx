@@ -11,26 +11,30 @@ import DeleteConfirm from '../components/common/DeleteConfirm';
 
 import './MyAccount.scss';
 
-const menuOptions = [
-    'Mi Perfil',
-    'Mis Artículos',
-    'Favoritos',
-    'Seguidores',
-    'Seguidos',
-];
+
 
 function MyAccount() {
-    const { dataUser } = useAuth();
+    const { dataUser, t } = useAuth();
     const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosNuevos, setDatosNuevos] = useState({});
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
-    const [election, setElection] = useState('Mi Perfil');
+    const [election, setElection] = useState(t("common.menuOptions.profile"));
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
     const [showDelete, setShowDelete] = useState(false);
 
+    const menuOptions = [
+        t("common.menuOptions.profile"),
+        t("common.menuOptions.articles"),
+        t("common.menuOptions.myFavourites"),
+        t("common.followers"),
+        t("common.follow"),
+        
+    ];
+
     useEffect(() => {
+        setElection(t("common.menuOptions.profile"))
         getUser(dataUser())
             .then((data) => {
                 data.avatar = urlConvert(data.avatar);
@@ -38,7 +42,7 @@ function MyAccount() {
             })
             .catch((error) => console.log(error))
             .finally(setLoading(false));
-    }, [dataUser]);
+    }, [dataUser, t]);
 
     const changeElection = (option) => {
         setElection(option);
@@ -53,7 +57,7 @@ function MyAccount() {
     };
 
     const comparePassword = (e) => {
-        const msg = 'Las contraseñas no coinciden';
+        const msg = t("main.myAccount.passwordNot");
         const value = e.target.value;
         setErrors({
             ...errors,
@@ -112,14 +116,14 @@ function MyAccount() {
         <>
             {loading && <Spinner />}
             <div className="profile-content">
-                <h1 className="profile-title">&lt;Mi Cuenta&gt;</h1>
+                <h1 className="profile-title">&lt;{t("main.myAccount.myAccount")}&gt;</h1>
                 <MenuProfile
                     className="profile-menu"
                     options={menuOptions}
                     changeOption={changeElection}
                 />
                 <div className="my-profile">
-                    {election === 'Mi Perfil' && (
+                    {election === t("common.menuOptions.profile") && (
                         <>
                             <div className="profile-avatar">
                                 <img
@@ -137,7 +141,7 @@ function MyAccount() {
                             </div>
 
                             <div className="profile-nick">
-                                <label>Nick</label>
+                                <label>{t("common.nickname")}</label>
                                 <input
                                     type="text"
                                     className="field-nick"
@@ -153,7 +157,7 @@ function MyAccount() {
                                 )}
                             </div>
                             <div className="profile-email">
-                                <label>Email</label>
+                                <label>{t("common.email")}</label>
                                 <input
                                     type="text"
                                     className="field-email"
@@ -169,7 +173,7 @@ function MyAccount() {
                                 )}
                             </div>
                             <div className="profile-name">
-                                <label>Nombre</label>
+                                <label>{t("common.name")}</label>
                                 <input
                                     type="text"
                                     className="field-name"
@@ -185,7 +189,7 @@ function MyAccount() {
                                 )}
                             </div>
                             <div className="profile-lastname">
-                                <label>Apellidos</label>
+                                <label>{t("common.surname")}</label>
                                 <input
                                     type="text"
                                     className="field-lastname"
@@ -202,7 +206,7 @@ function MyAccount() {
                             </div>
                             {nuevoPass && (
                                 <div className="profile-password">
-                                    <label>Nueva contraseña</label>
+                                    <label>{t("main.myAccount.passwordNew")}</label>
                                     <input
                                         type="password"
                                         className="field-password"
@@ -214,7 +218,7 @@ function MyAccount() {
                                             {errors.password.message}
                                         </label>
                                     )}
-                                    <label>Repetir nueva contraseña</label>
+                                    <label>{t("main.myAccount.RepeatpasswordNew")}</label>
                                     <input
                                         type="password"
                                         className="field-password"
@@ -233,7 +237,7 @@ function MyAccount() {
                                     className="pass-button"
                                     onClick={() => modifyPass()}
                                 >
-                                    Cambiar contraseña
+                                    {t("main.myAccount.changePassword")}
                                 </button>
                             </div>
                             <div className="profile-save">
@@ -241,13 +245,13 @@ function MyAccount() {
                                     className="edit-button"
                                     onClick={() => modifyEnabled()}
                                 >
-                                    Editar
+                                    {t("common.edit")}
                                 </button>
                                 <button
                                     className="save-button"
                                     onClick={() => submitChanges()}
                                 >
-                                    Guardar cambios
+                                    {t("common.save")}
                                 </button>
                             </div>
                             <div className="profile-delete">
@@ -255,11 +259,11 @@ function MyAccount() {
                                     className="delete-button"
                                     onClick={() => showConfirm()}
                                 >
-                                    Eliminar cuenta
+                                    {t("main.myAccount.removeAccount")}
                                 </button>
                                 <DeleteConfirm
                                     show={showDelete}
-                                    msg="Si elimina la cuenta perderá todos sus datos. ¿Está seguro?"
+                                    msg={t("main.myAccount.deleteConf")}
                                     confirm={deleteAccount}
                                     cancel={showConfirm}
                                 />
@@ -267,7 +271,7 @@ function MyAccount() {
                         </>
                     )}
                 </div>
-                {election === 'Mis Artículos' && (
+                {election === t("common.menuOptions.articles") && (
                     <>
                         <div className="my-articles">
                             {datosUsuario.articulos.creados.length > 0 ? (
@@ -279,12 +283,12 @@ function MyAccount() {
                                     />
                                 ))
                             ) : (
-                                <h4>Aún no has creado artículos</h4>
+                                <h4>{t("main.myAccount.notArticle")}</h4>
                             )}
                         </div>
                     </>
                 )}
-                {election === 'Favoritos' && (
+                {election === t("common.menuOptions.myFavourites") && (
                     <>
                         <div className="my-favourites">
                             {datosUsuario.articulos.favoritos.length > 0 ? (
@@ -292,12 +296,12 @@ function MyAccount() {
                                     <Card key={art._id} articulo={art} />
                                 ))
                             ) : (
-                                <h4>Aún no has añadido artículos favoritos</h4>
+                                <h4>{t("main.myAccount.notFavouritesArticles")}</h4>
                             )}
                         </div>
                     </>
                 )}
-                {election === 'Seguidores' && (
+                {election === t("common.followers") && (
                     <>
                         <div className="my-followers">
                             {datosUsuario.usuarios.seguidores.length > 0 ? (
@@ -310,7 +314,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'Seguidos' && (
+                {election === t("common.follow") && (
                     <>
                         <div className="my-followings">
                             {datosUsuario.usuarios.seguidos.length > 0 ? (
@@ -318,7 +322,7 @@ function MyAccount() {
                                     <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (
-                                <h4>Aún no sigues a ningún usuario</h4>
+                                <h4>{t("main.myAccount.notFollowers")}</h4>
                             )}
                         </div>
                     </>

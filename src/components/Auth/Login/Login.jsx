@@ -63,11 +63,11 @@ function Login({ close }) {
                     <div className="input-container">
                         <input
                             {...register('email', {
-                                required: 'Introduce tu correo electrónico',
+                                required: t('common.required.email'),
                                 pattern: {
                                     value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
                                     message:
-                                        'Tienes que introducir un correo electrónico',
+                                    t('nav.login.emailMessage'),
                                 },
                             })}
                             type="email"
@@ -87,7 +87,7 @@ function Login({ close }) {
                     <div className="input-container">
                         <input
                             {...register('password', {
-                                required: 'Introduce tu contraseña',
+                                required: t("common.required.password"),
                             })}
                             type="password"
                             name="password"

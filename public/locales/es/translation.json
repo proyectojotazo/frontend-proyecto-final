@@ -4,7 +4,36 @@
     "back": "Volver",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "nickname": "Nickname"
+    "nickname": "Nickname",
+    "name": "Nombre",
+    "surname": "Apellidos",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar", 
+    "followers": "Seguidores",
+    "follow": "Siguiendo",
+    "articles": "Articulos",
+
+    "required": {
+        "name": "Introduce tu nombre",
+        "nameError":"El nombre tiene carácteres no válidos",
+        "surname": "Introduce tus apellidos",
+        "surnameError":"Los apellidos tiene carácteres no válidos",
+        "email": "Introduce tu correo electrónico",
+        "nickname": "Introduce tu nickname",
+        "nicknameError":"El nickname tiene carácteres no válidos",
+        "password": "Introduce tu contraseña",
+        "passwordError":"Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_"
+    },
+
+    "menuOptions" : {
+        "profile": "Mi Perfil",
+        "articles": "Mis Articulos",
+        "myFavourites": "Mis Articulos favoritos",
+        "favourites": "Favoritos"
+    }
+
     },
 
     "header": {
@@ -18,6 +47,7 @@
         "login": {
             "title": "Accede a tu cuenta",
             "remember": "Recuérdame",
+            "emailMessage": "Tienes que introducir un correo electrónico",
             "popup":{
                 "openRecover": "¿Has perdido tu contraseña?",
                 "openRegister": "Regístrate"
@@ -30,16 +60,77 @@
             },
         "register":{
             "title": "Regístrate",
-            "name": "Nombre",
-            "surname": "Apellidos",
             "repeatPassword": "Repite tu contraseña",
-            "repeatPasswordFail": "Tus contraseñas no coinciden"
-        }
+            "repeatPasswordFail": "Tus contraseñas no coinciden",
+            "succesMessage": "Bienvenido a la comunidad"
+        },
+        "tooltipSearch": "Buscar",
+        "tooltipAddArticle": "Crear Articulo",
+        "profile": "Perfil"
     },
 
     "footer" : {
         "title": "Práctica final del bootcamp Full Stak Web de Keepcoding",
         "copyright": "Todos los derechos reservados"
+    },
+
+    "main" : {
+        "articleInfo" : {
+            "tooltipComment": "Comentarios",
+            "tooltipRemoveFavorite": "Quitar de favoritos",
+            "tooltipAddFavorite": "Añadir a favoritos",
+            "tooltipResponse": "Responder al artículo",
+            "tooltipDelete": "Borrar artículo",
+            "tooltipEdit": "Editar artículo",
+            "tooltipShared": "Compartir artículo"
+        },
+
+        "articulosFound" : {
+            "notFound": "No se han encontrado resultado con esa busqueda..."
+        },
+
+        "barraCategorias": {
+            "all": "todas"
+        },
+
+        "paginacion": {
+            "back": "Página anterior",
+            "go": "Página siguiente",
+            "old": "Más antiguos",
+            "recent": "Más recientes",
+            "orderAZ": "Por título: A-Z",
+            "orderZA": "Por título: Z-A"
+        },
+
+        "myAccount": {
+            "passwordNot": "Las contraseñas no coinciden",
+            "myAccount": "Mi Cuenta",
+            "passwordNew": "Nueva contraseña",
+            "RepeatpasswordNew": "Repetir nueva contraseña",
+            "changePassword": "Cambiar contraseña",
+            "removeAccount": "Eliminar Cuenta",
+            "deleteConf": "Si elimina la cuenta perderá todos sus datos. ¿Está seguro?",
+            "notArticle": "Aún no has creado artículos",
+            "notFavouritesArticles": "Aún no has añadido artículos favoritos",
+            "notFollowers": "Aún no te sigue ningún usuario"
+        },
+
+        "recoverAccount": {
+            "recoverAccount": "Recupera tu cuenta",
+            "passwordRules": "Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_",
+            "passwordMensage": "Se ha cambiado la contraseña correctamente. Se te va a redirigir a la página de Inicio."
+        },
+
+        "userProfile": {
+            "notLoggin": "Debes iniciar sesión para seguir al usuario",
+            "editProfile": "Editar perfil",
+            "follow": "Seguir",
+            "unFollow": "Dejar de seguir",
+            "notArticle":"aún no ha creado artículos",
+            "notFavourites": "aún no ha añadido artículos favoritos",
+            "notFollowers": "aún no tiene seguidores",
+            "notFollow": "aún no sigue a ningún usuario"
+        }
+        
     }
-    
 }

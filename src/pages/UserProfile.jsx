@@ -15,16 +15,18 @@ import { useAuth } from './../contexts/authContext';
 
 import './UserProfile.scss';
 
-const menuOptions = ['Artículos', 'Favoritos', 'Seguidores', 'Siguiendo'];
+
 
 function UserProfile() {
     const { nick } = useParams();
     const navigate = useNavigate();
-    const { isLogged, userLogged, updateUserLogged } = useAuth();
+    const { isLogged, userLogged, updateUserLogged, t } = useAuth();
     const [datosPerfil, setDatosPerfil] = useState(null);
-    const [election, setElection] = useState('Artículos');
+    const [election, setElection] = useState(t('common.articles'));
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(true);
+
+const menuOptions = [t('common.articles'), t('common.menuOptions.favourites'), t('common.followers'), t('common.follow'),];
 
     const isFollowing = datosPerfil?.usuarios.seguidores.find(
         (user) => user._id === userLogged._id
@@ -32,6 +34,7 @@ function UserProfile() {
     const isMe = datosPerfil?._id === userLogged?._id;
 
     useEffect(() => {
+        setElection(t('common.articles'))
         let isApiSubscribed = true;
         getUser(nick)
             .then((data) => {
@@ -44,7 +47,7 @@ function UserProfile() {
         return () => {
             isApiSubscribed = false;
         };
-    }, [nick]);
+    }, [nick, t]);
 
     const changeElection = (option) => {
         setElection(option);
@@ -104,17 +107,17 @@ function UserProfile() {
                         <div className="user-info">
                             <div className="num-post">
                                 <h4>{datosPerfil.articulos.creados.length}</h4>
-                                <h4>Artículos</h4>
+                                <h4>{t("common.articles")}</h4>
                             </div>
                             <div className="num-followers">
                                 <h4>
                                     {datosPerfil.usuarios.seguidores.length}
                                 </h4>
-                                <h4>Seguidores</h4>
+                                <h4>{t("common.followers")}</h4>
                             </div>
                             <div className="num-following">
                                 <h4>{datosPerfil.usuarios.seguidos.length}</h4>
-                                <h4>Siguiendo</h4>
+                                <h4>{t("common.follow")}</h4>
                             </div>
                             <div className="follow-container">
                                 {!isLogged ? (
@@ -122,8 +125,7 @@ function UserProfile() {
                                         className="login-button"
                                         onClick={handleShowLogin}
                                     >
-                                        Debes iniciar sesión para seguir al
-                                        usuario
+                                        {t("main.userProfile.notLoggin")}
                                     </button>
                                 ) : (
                                     <button
@@ -131,10 +133,10 @@ function UserProfile() {
                                         onClick={handleFollow}
                                     >
                                         {isMe
-                                            ? 'Editar Perfil'
+                                            ? t("main.userProfile.editProfile")
                                             : isFollowing
-                                            ? 'Dejar de seguir'
-                                            : 'Seguir'}
+                                            ? t("main.userProfile.unFollow")
+                                            : t("main.userProfile.follow")}
                                     </button>
                                 )}
                                 <SweetAlert2
@@ -154,7 +156,7 @@ function UserProfile() {
                         options={menuOptions}
                         changeOption={changeElection}
                     />
-                    {election === 'Artículos' && (
+                    {election === t('common.articles') && (
                         <>
                             <div className="user-articles">
                                 {datosPerfil.articulos.creados.length > 0 ? (
@@ -166,12 +168,12 @@ function UserProfile() {
                                         />
                                     ))
                                 ) : (
-                                    <h4>{nick} aún no ha creado artículos</h4>
+                                    <h4>{nick} {t("main.userProfile.notArticle")}</h4>
                                 )}
                             </div>
                         </>
                     )}
-                    {election === 'Favoritos' && (
+                    {election === t('common.menuOptions.favourites') && (
                         <>
                             <div className="user-favourites">
                                 {datosPerfil.articulos.favoritos.length > 0 ? (
@@ -185,14 +187,13 @@ function UserProfile() {
                                     )
                                 ) : (
                                     <h4>
-                                        {nick} aún no ha añadido artículos
-                                        favoritos
+                                        {nick} {t("main.userProfile.notFavourites")}
                                     </h4>
                                 )}
                             </div>
                         </>
                     )}
-                    {election === 'Seguidores' && (
+                    {election === t('common.followers') && (
                         <>
                             <div className="user-followers">
                                 {datosPerfil.usuarios.seguidores.length > 0 ? (
@@ -205,12 +206,12 @@ function UserProfile() {
                                         )
                                     )
                                 ) : (
-                                    <h4>{nick} aún no tiene seguidores</h4>
+                                    <h4>{nick} {t("main.userProfile.notFollowers")}</h4>
                                 )}
                             </div>
                         </>
                     )}
-                    {election === 'Siguiendo' && (
+                    {election === t('common.follow') && (
                         <>
                             <div className="user-followings">
                                 {datosPerfil.usuarios.seguidos.length > 0 ? (
@@ -224,7 +225,7 @@ function UserProfile() {
                                     )
                                 ) : (
                                     <h4>
-                                        {nick} aún no sigue a ningún usuario
+                                        {nick} {t("main.userProfile.notFollow")}
                                     </h4>
                                 )}
                             </div>

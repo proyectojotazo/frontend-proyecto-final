@@ -1,35 +1,135 @@
 {
-    "todos_los_derechos_reservados": "All rights reserved 2022",
-    
-
     "common" : {
-    "get":"Get",
+    "get":"Log in",
     "back": "Back",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "nickname": "Nickname",
+    "name": "Name",
+    "surname": "Last name",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit", 
+    "followers": "Follower",
+    "follow": "Following",
+    "articles": "Articles",
 
-},
+    "required": {
+        "name": "Enter you name",
+        "nameError":"Name has invalid characters",
+        "surname": "Enter your last name",
+        "surnameError":"Last name has invalid characters",
+        "email": "Enter your Email",
+        "nickname": "Enter your nickname",
+        "nicknameError":"Nickname has invalid characters",
+        "password": "Enter your password",
+        "passwordError":"At least 8 characters with 1 upperletter, 1 lower case, 1 number and 1 special character from the following: @$!%*?&-_"
+
+    },
+    "menuOptions" : {
+        "profile": "My Profile",
+        "articles": "My Articles",
+        "myFavourites": "My favourite articles",
+        "favourites": "Favourites"
+    }
+    },
+
     "header": {
-        "creates": "Creates",
-        "writes": "writes",
+        "creates": "Create",
+        "writes": "write",
         "share": "share",
-        "subtitle" : "The last one & I'm leaving.... was born from the need of some programmers to give back to the internet a little of what they have taken.... create, write and share, join the community."
+        "subtitle" : "El último & me voy.... was born from the necesity of some programmers to return something to internet of what they have taken.... create, write and share, join our community."
     },
 
     "nav":{
         "login": {
-            "title": "Login",
-            "remember": "Remember",
+            "title": "Log In",
+            "remember": "Remember me",
+            "emailMessage": "You need to enter your email",
             "popup":{
-                "openRecover": "Lost your password?",
-                "openRegister": "Register"
+                "openRecover": "Password lost?",
+                "openRegister": "Sign up"
             },
             "recover":{
-                "title":"Recover your password",
-                "succes-message": "Instructions have been sent to your email",
-                "recover": "Recover your account"
+                "title":"Restore your password",
+                "succes-message": "We have sent the instructions to your email",
+                "recover": "Restore your account"
             }
-            }
+            },
+        "register":{
+            "title": "Sign up",
+            "repeatPassword": "Repeat your password",
+            "repeatPasswordFail": "Your passwords do not match",
+            "succesMessage": "Welcome to the community"
+        },
+        "tooltipSearch": "Search",
+        "tooltipAddArticle": "Create Article",
+        "profile": "Profile"
+    },
+
+    "footer" : {
+        "title": "Final practice of bootcamp Full Stak Web Keepcoding",
+        "copyright": "All rights reserved"
+    },
+
+    "main" : {
+        "articleInfo" : {
+            "tooltipComment": "Comments",
+            "tooltipRemoveFavorite": "Remove from favorites",
+            "tooltipAddFavorite": "Add to favorites",
+            "tooltipResponse": "Respond article",
+            "tooltipDelete": "Delete article",
+            "tooltipEdit": "Edit article",
+            "tooltipShared": "Share article"
+        },
+
+        "articulosFound" : {
+            "notFound": "No results found on this search..."
+        },
+
+        "barraCategorias": {
+            "all": "all"
+        },
+
+        "paginacion": {
+            "back": "Last page",
+            "go": "Next page",
+            "old": "Older",
+            "recent": "Recent",
+            "orderAZ": "By title: A-Z",
+            "orderZA": "By title: Z-A"
+        },
+
+        "myAccount": {
+            "passwordNot": "Password do not match",
+            "myAccount": "My account",
+            "passwordNew": "New password",
+            "RepeatpasswordNew": "Repeat new password",
+            "changePassword": "Change password",
+            "removeAccount": "Delete account",
+            "deleteConf": "If you delete the account you will lose all your data. Are you sure?",
+            "notArticle": "You have no created articles",
+            "notFavouritesArticles": "You have no favorited articles",
+            "notFollowers": "You have no followers"
+        },
+
+        "recoverAccount": {
+            "recoverAccount": "Restore your account",
+            "passwordRules": "At least 8 characters with 1 upperletter, 1 lower case, 1 number and 1 special character from the following: @$!%*?&-_",
+            "passwordMensage": "You have suscesfully changed the password. We are sending you to the home page."
+        },
+
+        "userProfile": {
+            "notLoggin": "You must log in to follow the user",
+            "editProfile": "Edit profile",
+            "follow": "Follow",
+            "unFollow": "Unfollow",
+            "notArticle":"You have no created articles",
+            "notFavourites": "You have no favorited articles",
+            "notFollowers": "You have no followers",
+            "notFollow": "You dont follow any user"
+        }
+        
     }
-    
 }
