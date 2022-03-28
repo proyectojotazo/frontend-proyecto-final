@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { searchArticle } from '../../api/services/articulos';
 import Card from './Card';
-import { FaRegTimesCircle } from "react-icons/fa";
+
 
 
 
@@ -12,7 +12,7 @@ import { useAuth } from '../../contexts/authContext';
 
 function ArticulosFound(props) {
   const [articulos, setArticulos] = useState([]);
-  const {t} = useAuth();
+  const { t } = useAuth();
   const { search, categoria, orden, pagina, cambiarCategoria, ultimaPag } = props;
 
   useEffect(() => {

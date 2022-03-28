@@ -16,8 +16,7 @@
 }
 
 .sidebar {
-    width: 4.5rem;
-    display: flex;
+    width: max-content;
     background-color: #2a2c37;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 60px 100px rgba(12, 10, 24, 0.6);
@@ -25,13 +24,13 @@
     height: max-content;
     top: 10vh;
     left: -100px;
-    padding: 15px;
+    padding: 12px;
     margin: 15px;
     transition: 0.3s all ease-in-out;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: space-between;
-    align-items: center;
+    // flex-direction: column;
+    // flex-wrap: nowrap;
+    // align-content: space-between;
+    // align-items: center;
     position: absolute;
 }
 
@@ -41,14 +40,14 @@
     flex-direction: column;
     transition: 0.2s all ease-out;
     cursor: pointer;
+    margin-top: 25px;
 }
 
 .sidebar-item {
     list-style: none;
-    margin: 15px;
     margin-top: 15px;
     width: 100%;
-    height: 7rem;
+    height: 6rem;
     transition: all 200ms ease;
     cursor: pointer;
 }
@@ -66,12 +65,13 @@ item-usuario .sidebar-item a {
     transition: 0.2s all ease-out;
 }
 
-.sidebar-item a {
+.text-sidebar {
     color: $orange;
-    font-weight: bolder;
+    margin-left: -5px;
+    font-size: 14px;
 }
 
-.sidebar-item a:hover {
+.text-sidebar:hover {
     color: $orangeBrillo;
 }
 
@@ -80,15 +80,25 @@ item-usuario .sidebar-item a {
     width: 100%;
 }
 
+.siderMenu {
+    width: max-content;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    align-content: stretch;
+    justify-content: space-evenly;
+    font-family: $tMaquina;
+}
+
 @media (max-width: 768px) {
     .sidebar.active {
         left: 0;
-        height: 580px;
+        height: 600px;
         margin: 5px;
-        width: 9vh;
+        width: max-content;
         top: 9%;
-        margin-bottom: 5px;
-        padding-top: 40px;
         z-index: 1;
     }
 }

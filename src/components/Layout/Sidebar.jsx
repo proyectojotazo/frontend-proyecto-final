@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { Lupa, Inicio, Nuevo, Usuario } from '../../assets/icons';
+import { Lupa, Inicio, Nuevo, Usuario, Esp, Eng } from '../../assets/icons';
 import './Nav.scss';
 import './Layout.scss';
 import './MenuBurger.scss';
@@ -9,7 +9,9 @@ import SweetAlert2 from 'react-sweetalert2';
 import Popup from '../Auth/Popup/PopUp';
 import { useAuth } from '../../contexts/authContext';
 import { FiLogOut } from 'react-icons/fi';
-import { FaTimes, FaBars } from 'react-icons/fa';
+import { FaTimes, FaBars, FaFlag } from 'react-icons/fa';
+
+import i18next from 'i18next';
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -17,6 +19,7 @@ function Sidebar() {
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
     const { isLogged, accountLogout } = useAuth();
+    const [lenguageMenu, setLenguageMenu] = useState(false);
 
     const LoginPopup = () => {
         setShowLogin({
@@ -36,6 +39,10 @@ function Sidebar() {
         setUserMenu(!userMenu);
     };
 
+    const showLenguageMenu = () => {
+        setLenguageMenu(!lenguageMenu);
+    };
+
     useEffect(() => {
         setMenuburger(true);
     }, []);
@@ -44,6 +51,19 @@ function Sidebar() {
         <>
             <div className={sidebar ? 'sidebar active' : 'sidebar'}>
                 <ul className="sidebar-items">
+                    <li className="sidebar-item">
+                        <FaFlag className="icon gr" onClick={() => showLenguageMenu()} />
+                        {lenguageMenu && (
+                            <ul className="siderMenu">
+                                <li onClick={() => i18next.changeLanguage('en')}>
+                                    <Eng className="icon" />
+                                </li>
+                                <li onClick={() => i18next.changeLanguage('es')}>
+                                    <Esp className="icon" />
+                                </li>
+                            </ul>
+                        )}
+                    </li>
                     <li className="sidebar-item ">
                         <NavLink to="/buscar">
                             <Lupa className="icon-lupa" />
@@ -82,13 +102,15 @@ function Sidebar() {
                                 <>
                                     <Usuario onClick={() => showUserMenu()} />
                                     {userMenu && (
-                                        <ul className="sidebar-userMenu">
+                                        <ul className="siderMenu">
                                             <li>
                                                 <NavLink
                                                     to="/my-account"
                                                     className="dropdown-user"
                                                 >
-                                                    Perfil
+                                                    <span className="text-sidebar">
+                                                        Perfil
+                                                </span>
                                                 </NavLink>
                                             </li>
                                             <li
@@ -103,6 +125,7 @@ function Sidebar() {
                             )}
                         </div>
                     </li>
+
                 </ul>
             </div>
 
