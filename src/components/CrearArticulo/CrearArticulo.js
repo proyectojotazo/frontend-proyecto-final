@@ -1,3 +1,5 @@
+import { FaTrashAlt } from 'react-icons/fa';
+
 import React, { useState, useRef, useEffect } from 'react';
 
 import ReactQuill, { Quill } from 'react-quill';
@@ -15,6 +17,8 @@ import {
     responderArticulo,
     editArticle,
 } from '../../api/services/articulos';
+
+import urlConvert from '../../utils/urlConvert';
 
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
@@ -37,6 +41,8 @@ const NewArticle = ({ modo }) => {
         fechaPublicacion: '',
     };
 
+    console.log();
+
     const [selectedDestacado, setSelectedDestacado] = useState(null);
     const [userData, setUserData] = useState(initialState);
     const [sendSucces, setSendSucces] = useState(false);
@@ -44,6 +50,7 @@ const NewArticle = ({ modo }) => {
     const [categoriasSelected, setCategoriasSelected] = useState([]);
     const descriptionInput = useRef(null);
     const [programPost, setProgramPost] = useState(false);
+    const [previewImage, setPreviewImage] = useState(null);
 
     const navigate = useNavigate();
 
@@ -71,6 +78,7 @@ const NewArticle = ({ modo }) => {
                         textoIntroductorio: data.textoIntroductorio,
                     });
                     setCategoriasSelected(data.categorias);
+                    setPreviewImage(urlConvert(data.archivoDestacado));
                 }
 
                 if (modo === 'responder') {
@@ -91,7 +99,6 @@ const NewArticle = ({ modo }) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
 
         setUserData({
             ...userData,
@@ -110,6 +117,7 @@ const NewArticle = ({ modo }) => {
 
     const handleFileInput = (e) => {
         setSelectedDestacado(e.target.files[0]);
+        setPreviewImage(URL.createObjectURL(e.target.files[0]));
     };
 
     const handleCategories = (e) => {
@@ -143,6 +151,13 @@ const NewArticle = ({ modo }) => {
                 categorias: categoriasSelected,
                 archivoDestacado: selectedDestacado,
             };
+
+            if (
+                data.fechaPublicacion === '' ||
+                data.fechaPublicacion < new Date().toISOString()
+            ) {
+                data.fechaPublicacion = new Date().toISOString();
+            }
 
             const form = new FormData();
 
@@ -213,9 +228,17 @@ const NewArticle = ({ modo }) => {
                             )}
                         />
                     </div>
-                    {/* TODO: MOSTRAR VISTA PREVIA DE LA FOTO */}
-                    {/* TODO: SI ESTAMOS EDITANDO EL POST, MOSTRAR UNA VISTA PREVIA DE LA FOTO */}
                     <div className="input-container">
+                        {previewImage && (
+                            <div className="image-preview-container">
+                                <img
+                                    src={previewImage}
+                                    alt="imagen destacada del post"
+                                    width={200}
+                                />
+                                <FaTrashAlt className="icons-wrapper__like" />
+                            </div>
+                        )}
                         <input
                             {...register('archivoDestacado')}
                             type="file"
@@ -223,6 +246,7 @@ const NewArticle = ({ modo }) => {
                             id="archivoDestacado"
                             onChange={handleFileInput}
                             placeholder="Archivo destacado"
+                            accept=".jpg, .jpeg, .png, .gif"
                         />
                         <ErrorMessage
                             errors={errors}
@@ -237,7 +261,11 @@ const NewArticle = ({ modo }) => {
                             {...register('textoIntroductorio', {
                                 required:
                                     'Es necesario introducir un texto introductorio',
-                                maxLength: 200,
+                                maxLength: {
+                                    value: 150,
+                                    message:
+                                        'El texto introductorio sólo puede tener 150 carácteres',
+                                },
                             })}
                             onChange={handleInputChange}
                             type="text"
@@ -255,11 +283,15 @@ const NewArticle = ({ modo }) => {
                             )}
                         />
 
-                        <p>
-                            {descriptionInput.current
-                                ? descriptionInput.current.value.length
-                                : '0'}
-                            /200
+                        <p
+                            className={
+                                userData.textoIntroductorio.length > 149
+                                    ? 'lenght-intro-max'
+                                    : 'length-intro'
+                            }
+                        >
+                            {userData.textoIntroductorio.length}
+                            /150
                         </p>
                     </div>
                     <div className="categorias-container-main">
@@ -333,24 +365,32 @@ const NewArticle = ({ modo }) => {
                             <p className="form-custom-error">{message}</p>
                         )}
                     />
-                    <div className="input-container">
-                        <input
-                            {...register('fechaPublicacion')}
-                            type="datetime-local"
-                            name="fechaPublicacion"
-                            id="fechaPublicacion"
-                            onChange={handleInputChange}
-                            placeholder="Fecha y hora de publicación"
-                        />
 
-                        <ErrorMessage
-                            errors={errors}
-                            name="fechaPublicacion"
-                            render={({ message }) => (
-                                <p className="form-custom-error">{message}</p>
-                            )}
-                        />
-                    </div>
+                    {!toEdit && (
+                        <div className="input-container">
+                            <h4 className="program-title">
+                                ¿Quieres programar tu post?
+                            </h4>
+                            <input
+                                {...register('fechaPublicacion')}
+                                type="datetime-local"
+                                name="fechaPublicacion"
+                                id="fechaPublicacion"
+                                onChange={handleInputChange}
+                                placeholder="Fecha y hora de publicación"
+                            />
+
+                            <ErrorMessage
+                                errors={errors}
+                                name="fechaPublicacion"
+                                render={({ message }) => (
+                                    <p className="form-custom-error">
+                                        {message}
+                                    </p>
+                                )}
+                            />
+                        </div>
+                    )}
                     <input
                         type="submit"
                         value={

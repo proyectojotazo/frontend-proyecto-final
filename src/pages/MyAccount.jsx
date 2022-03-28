@@ -11,13 +11,7 @@ import DeleteConfirm from '../components/common/DeleteConfirm';
 
 import './MyAccount.scss';
 
-const menuOptions = [
-    'Mi Perfil',
-    'Mis Artículos',
-    'Favoritos',
-    'Seguidores',
-    'Seguidos',
-];
+
 
 function MyAccount() {
     const { dataUser, t } = useAuth();
@@ -25,12 +19,22 @@ function MyAccount() {
     const [datosNuevos, setDatosNuevos] = useState({});
     const [modificar, setModificar] = useState(false);
     const [nuevoPass, setNuevoPass] = useState(false);
-    const [election, setElection] = useState('Mi Perfil');
+    const [election, setElection] = useState(t("common.menuOptions.profile"));
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
     const [showDelete, setShowDelete] = useState(false);
 
+    const menuOptions = [
+        t("common.menuOptions.profile"),
+        t("common.menuOptions.articles"),
+        t("common.menuOptions.myFavourites"),
+        t("common.followers"),
+        t("common.follow"),
+        
+    ];
+
     useEffect(() => {
+        setElection(t("common.menuOptions.profile"))
         getUser(dataUser())
             .then((data) => {
                 data.avatar = urlConvert(data.avatar);
@@ -38,7 +42,7 @@ function MyAccount() {
             })
             .catch((error) => console.log(error))
             .finally(setLoading(false));
-    }, [dataUser]);
+    }, [dataUser, t]);
 
     const changeElection = (option) => {
         setElection(option);
@@ -119,7 +123,7 @@ function MyAccount() {
                     changeOption={changeElection}
                 />
                 <div className="my-profile">
-                    {election === 'Mi Perfil' && (
+                    {election === t("common.menuOptions.profile") && (
                         <>
                             <div className="profile-avatar">
                                 <img
@@ -267,7 +271,7 @@ function MyAccount() {
                         </>
                     )}
                 </div>
-                {election === 'Mis Artículos' && (
+                {election === t("common.menuOptions.articles") && (
                     <>
                         <div className="my-articles">
                             {datosUsuario.articulos.creados.length > 0 ? (
@@ -284,7 +288,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'Favoritos' && (
+                {election === t("common.menuOptions.myFavourites") && (
                     <>
                         <div className="my-favourites">
                             {datosUsuario.articulos.favoritos.length > 0 ? (
@@ -297,7 +301,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'Seguidores' && (
+                {election === t("common.followers") && (
                     <>
                         <div className="my-followers">
                             {datosUsuario.usuarios.seguidores.length > 0 ? (
@@ -310,7 +314,7 @@ function MyAccount() {
                         </div>
                     </>
                 )}
-                {election === 'Seguidos' && (
+                {election === t("common.follow") && (
                     <>
                         <div className="my-followings">
                             {datosUsuario.usuarios.seguidos.length > 0 ? (

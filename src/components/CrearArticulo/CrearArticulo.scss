@@ -57,6 +57,11 @@
             width: auto;
         }
 
+        .lenght-intro-max {
+            color: #fa1e1e;
+            font-size: 20px;
+        }
+
         #fechaPublicacion {
             width: auto;
             margin-top: 30px;
@@ -151,11 +156,19 @@
                     }
                 }
             }
+
+            .categorias-error {
+                margin-top: -10px;
+                margin-bottom: 20px;
+            }
         }
 
-        .categorias-error {
-            margin-top: -10px;
-            margin-bottom: 25px;
+        .program-title {
+            margin-top: 50px;
+            margin-bottom: -20px;
+            color: #fff;
+            font-family: $tSubtitulo;
+            font-size: 20px;
         }
     }
 }

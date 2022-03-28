@@ -26,6 +26,12 @@
         "password": "Enter your password",
         "passwordError":"At least 8 characters with 1 upperletter, 1 lower case, 1 number and 1 special character from the following: @$!%*?&-_"
 
+    },
+    "menuOptions" : {
+        "profile": "My Profile",
+        "articles": "My Articles",
+        "myFavourites": "My favourite articles",
+        "favourites": "Favourites"
     }
     },
 

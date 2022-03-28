@@ -15,16 +15,18 @@ import { useAuth } from './../contexts/authContext';
 
 import './UserProfile.scss';
 
-const menuOptions = ['Artículos', 'Favoritos', 'Seguidores', 'Siguiendo'];
+
 
 function UserProfile() {
     const { nick } = useParams();
     const navigate = useNavigate();
     const { isLogged, userLogged, updateUserLogged, t } = useAuth();
     const [datosPerfil, setDatosPerfil] = useState(null);
-    const [election, setElection] = useState('Artículos');
+    const [election, setElection] = useState(t('common.articles'));
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(true);
+
+const menuOptions = [t('common.articles'), t('common.menuOptions.favourites'), t('common.followers'), t('common.follow'),];
 
     const isFollowing = datosPerfil?.usuarios.seguidores.find(
         (user) => user._id === userLogged._id
@@ -32,6 +34,7 @@ function UserProfile() {
     const isMe = datosPerfil?._id === userLogged?._id;
 
     useEffect(() => {
+        setElection(t('common.articles'))
         let isApiSubscribed = true;
         getUser(nick)
             .then((data) => {
@@ -44,7 +47,7 @@ function UserProfile() {
         return () => {
             isApiSubscribed = false;
         };
-    }, [nick]);
+    }, [nick, t]);
 
     const changeElection = (option) => {
         setElection(option);
@@ -153,7 +156,7 @@ function UserProfile() {
                         options={menuOptions}
                         changeOption={changeElection}
                     />
-                    {election === 'Artículos' && (
+                    {election === t('common.articles') && (
                         <>
                             <div className="user-articles">
                                 {datosPerfil.articulos.creados.length > 0 ? (
@@ -170,7 +173,7 @@ function UserProfile() {
                             </div>
                         </>
                     )}
-                    {election === 'Favoritos' && (
+                    {election === t('common.menuOptions.favourites') && (
                         <>
                             <div className="user-favourites">
                                 {datosPerfil.articulos.favoritos.length > 0 ? (
@@ -190,7 +193,7 @@ function UserProfile() {
                             </div>
                         </>
                     )}
-                    {election === 'Seguidores' && (
+                    {election === t('common.followers') && (
                         <>
                             <div className="user-followers">
                                 {datosPerfil.usuarios.seguidores.length > 0 ? (
@@ -208,7 +211,7 @@ function UserProfile() {
                             </div>
                         </>
                     )}
-                    {election === 'Siguiendo' && (
+                    {election === t('common.follow') && (
                         <>
                             <div className="user-followings">
                                 {datosPerfil.usuarios.seguidos.length > 0 ? (
