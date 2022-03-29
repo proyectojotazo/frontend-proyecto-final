@@ -8,6 +8,7 @@ function Home() {
     const [categoria, setCategoria] = useState('');
     const [orden, setOrden] = useState('-fechaPublicacion');
     const [pagina, setPagina] = useState(0);
+    const [hasArticles, setHasArticles] = useState(false);
 
     const cambiarCategoria = (x) => {
         setCategoria(x);
@@ -27,21 +28,26 @@ function Home() {
         setOrden(o);
     };
 
+    const handleArticles = (hasArticles) => setHasArticles(hasArticles);
+
     return (
         <>
             <Header />
             <BarraCategorias cambiarCategoria={cambiarCategoria} />
-            <Paginacion
-                paginaAtras={cambiarPaginaAnt}
-                paginaSig={cambiarPaginaSig}
-                order={cambiarOrden}
-            />
+            {hasArticles && (
+                <Paginacion
+                    paginaAtras={cambiarPaginaAnt}
+                    paginaSig={cambiarPaginaSig}
+                    order={cambiarOrden}
+                />
+            )}
             <Articulos
                 categoria={categoria}
                 cambiarCategoria={cambiarCategoria}
                 ultimaPag={cambiarPaginaAnt}
                 orden={orden}
                 pagina={pagina}
+                handleArticles={handleArticles}
             />
         </>
     );

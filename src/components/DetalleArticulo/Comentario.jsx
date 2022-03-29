@@ -20,10 +20,10 @@ function Comentario({ ownerArt, comentario, deleteComments }) {
         active: false,
     });
 
-    const { userLogged } = useAuth();
-
+    const { userLogged, isLogged } = useAuth();
+    
     const deleteAuthorized =
-        userLogged._id === userId || userLogged._id === ownerArt;
+        (userLogged._id === userId || userLogged._id === ownerArt) && isLogged;
 
     useEffect(() => {
         getUserById(userId)
