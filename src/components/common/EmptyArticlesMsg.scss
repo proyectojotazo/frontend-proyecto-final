@@ -1,0 +1,34 @@
+@import '../../sass/variablesSass.scss';
+
+.empty-articles-msg__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 1rem;
+
+    h2 {
+        font-family: $tTitulares;
+        text-align: center;
+
+        span {
+            font-family: $tMaquina;
+            text-transform: uppercase;
+            &:hover {
+                text-shadow: none;
+            }
+        }
+    }
+
+    button {
+        width: 8rem;
+        border-radius: 0.5rem;
+        background-color: $purple;
+        height: 2rem;
+    }
+
+    h3 {
+        font-family: $tTitulares;
+        color: $comment;
+    }
+}
