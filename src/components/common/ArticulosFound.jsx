@@ -12,7 +12,15 @@ import { useAuth } from '../../contexts/authContext';
 function ArticulosFound(props) {
   const [articulos, setArticulos] = useState([]);
   const { t } = useAuth();
-  const { search, categoria, orden, pagina, cambiarCategoria, ultimaPag, hasSearch } = props;
+  const {
+    search,
+    categoria,
+    orden,
+    pagina,
+    cambiarCategoria,
+    ultimaPag,
+    hasSearch,
+  } = props;
 
 
   console.log(articulos)
@@ -24,11 +32,12 @@ function ArticulosFound(props) {
   );
 
   useEffect(() => {
-    searchArticle(search, categoria, orden, pagina, ultimaPag).then((x) => {
-      if (x.length === 0 && pagina !== 0)
+    searchArticle(search, categoria, orden, pagina, ultimaPag).then((art) => {
+      if (art.length === 0 && pagina !== 0) {
         return ultimaPag();
-      setArticulos(x);
-      hasSearch(!!x.length);
+      }
+      setArticulos(art);
+      hasSearch(!!art.length);
     });
   }, [search, categoria, orden, pagina, ultimaPag, hasSearch]);
 

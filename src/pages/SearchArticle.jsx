@@ -59,7 +59,6 @@ export default function SearchArticle() {
           name="search"
           placeholder="Busca por Artículo..."
           onChange={handleChange}
-
         />
 
         <button
@@ -92,6 +91,8 @@ export default function SearchArticle() {
           hasSearch={hasSearch}
         />
       )}
+
+
     </div>
   );
 }
