@@ -1,6 +1,6 @@
 import { FaTrashAlt } from 'react-icons/fa';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import ReactQuill, { Quill } from 'react-quill';
 import ImageCompress from 'quill-image-compress';
@@ -48,6 +48,7 @@ function NewArticle({ modo }) {
     const [previewImage, setPreviewImage] = useState(null);
 
     const navigate = useNavigate();
+    const ref = useRef();
     const {
         register,
         handleSubmit,
@@ -118,6 +119,12 @@ function NewArticle({ modo }) {
     const handleFileInput = (e) => {
         setSelectedDestacado(e.target.files[0]);
         setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    };
+
+    const resetFileInput = () => {
+        setPreviewImage(null);
+        setSelectedDestacado(null);
+        ref.current.value = '';
     };
 
     const handleCategories = (e) => {
@@ -243,10 +250,7 @@ function NewArticle({ modo }) {
                                 />
                                 <FaTrashAlt
                                     className="icons-wrapper__like"
-                                    onClick={() => {
-                                        setPreviewImage(null);
-                                        setSelectedDestacado(null);
-                                    }}
+                                    onClick={resetFileInput}
                                 />
                             </div>
                         )}
@@ -255,6 +259,7 @@ function NewArticle({ modo }) {
                             type="file"
                             name="archivoDestacado"
                             id="archivoDestacado"
+                            ref={ref}
                             onChange={handleFileInput}
                             placeholder="Archivo destacado"
                             accept=".jpg, .jpeg, .png, .gif"

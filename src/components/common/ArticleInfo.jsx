@@ -40,7 +40,7 @@ function ArticleInfo({ article, customClass = '' }) {
     );
 
     const navigate = useNavigate();
-    const urlArt = `${process.env.REACT_APP_API_BASE_URL}/articles/`;
+    const urlArt = `${process.env.REACT_APP_BASE_URL}/articles/`;
 
     const anadirArticuloFavourito = async () => {
         await addArticleFavorite(article._id);
