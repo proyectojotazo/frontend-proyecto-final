@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Articulos from '../components/common/Articulos';
 import BarraCategorias from '../components/common/BarraCategorias';
 import Header from '../components/Layout/Header';
@@ -32,6 +33,13 @@ function Home() {
 
     return (
         <>
+            <Helmet>
+                <title>Home | El Último & Me Voy</title>
+                <meta
+                    name="description"
+                    content="Blog sobre Desarrollo Web creado como proyecto final del Bootcamp Full Stack Web Developer de KeepCoding"
+                />
+            </Helmet>
             <Header />
             <BarraCategorias cambiarCategoria={cambiarCategoria} />
             {hasArticles && (

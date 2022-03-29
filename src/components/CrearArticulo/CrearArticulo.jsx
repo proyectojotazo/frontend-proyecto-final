@@ -1,14 +1,10 @@
-import { FaTrashAlt } from 'react-icons/fa';
-
 import React, { useState, useEffect, useRef } from 'react';
-
-import ReactQuill, { Quill } from 'react-quill';
-import ImageCompress from 'quill-image-compress';
-
+import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-
-import { useParams, useNavigate } from 'react-router-dom';
+import ReactQuill, { Quill } from 'react-quill';
+import ImageCompress from 'quill-image-compress';
 
 import {
     crearArticulo,
@@ -19,6 +15,7 @@ import {
 } from '../../api/services/articulos';
 import urlConvert from '../../utils/urlConvert';
 
+import { FaTrashAlt } from 'react-icons/fa';
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
 
@@ -193,16 +190,46 @@ function NewArticle({ modo }) {
     return (
         <div className="create-post-container">
             {postLoaded && toResponse && (
-                <h1 className="create-title">
-                    &lt;Crear Artículo como Respuesta&gt;
-                </h1>
+                <>
+                    <Helmet>
+                        <title>
+                            Crear Artículo como Respuesta | El Último & Me Voy
+                        </title>
+                        <meta
+                            name="description"
+                            content="Blog sobre Desarrollo Web creado como proyecto final del Bootcamp Full Stack Web Developer de KeepCoding"
+                        />
+                    </Helmet>
+                    <h1 className="create-title">
+                        &lt;Crear Artículo como Respuesta&gt;
+                    </h1>
+                </>
             )}
             {postLoaded && toEdit && (
-                <h1 className="create-title">&lt;Editar Artículo&gt;</h1>
+                <>
+                    <Helmet>
+                        <title>Editar Artículo | El Último & Me Voy</title>
+                        <meta
+                            name="description"
+                            content="Blog sobre Desarrollo Web creado como proyecto final del Bootcamp Full Stack Web Developer de KeepCoding"
+                        />
+                    </Helmet>
+                    <h1 className="create-title">&lt;Editar Artículo&gt;</h1>
+                </>
             )}
             {!toResponse && !toEdit && (
-                <h1 className="create-title">&lt;Crear Artículo&gt;</h1>
+                <>
+                    <Helmet>
+                        <title>Crear Artículo | El Último & Me Voy</title>
+                        <meta
+                            name="description"
+                            content="Blog sobre Desarrollo Web creado como proyecto final del Bootcamp Full Stack Web Developer de KeepCoding"
+                        />
+                    </Helmet>
+                    <h1 className="create-title">&lt;Crear Artículo&gt;</h1>
+                </>
             )}
+
             {postLoaded && toResponse && (
                 <div className="to-response-container">
                     <h4 className="custom-title-form">
@@ -211,7 +238,6 @@ function NewArticle({ modo }) {
                     </h4>
                 </div>
             )}
-
             {postLoaded && toEdit && (
                 <div className="to-response-container">
                     <h4 className="custom-title-form">
@@ -219,6 +245,7 @@ function NewArticle({ modo }) {
                     </h4>
                 </div>
             )}
+
             <div className="create-post-form-container">
                 <form onSubmit={handleSubmit(handleForm)}>
                     <div className="input-container">

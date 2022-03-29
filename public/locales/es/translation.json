@@ -68,15 +68,9 @@
         "profile": "Perfil"
     },
 
-<<<<<<< HEAD
-    "footer" : {
-        "title": "Full Stak Web de Keepcoding",
-        "subtitle": "MIEMBROS DEL PROYECTO",
-=======
     "footer": {
         "title": "Full Stack Web de Keepcoding",
-        "subtitle": "PRÁCTICA FINAL DEL BOOTCAMP",
->>>>>>> 06cd23ca1f965e00e9f7daaa531d2963d6c3e147
+        "subtitle": "MIEMBROS DEL PROYECTO",
         "copyright": "Todos los derechos reservados"
     },
 
