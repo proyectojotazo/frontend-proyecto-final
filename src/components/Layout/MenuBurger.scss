@@ -17,20 +17,14 @@
 
 .sidebar {
     width: max-content;
-    background-color: #2a2c37;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 60px 100px rgba(12, 10, 24, 0.6);
+    background-color: #2e3142;
     border-radius: 12px;
     height: max-content;
     top: 10vh;
-    left: -100px;
+    left: -200px;
     padding: 12px;
     margin: 15px;
     transition: 0.3s all ease-in-out;
-    // flex-direction: column;
-    // flex-wrap: nowrap;
-    // align-content: space-between;
-    // align-items: center;
     position: absolute;
 }
 
@@ -40,14 +34,13 @@
     flex-direction: column;
     transition: 0.2s all ease-out;
     cursor: pointer;
-    margin-top: 25px;
 }
 
 .sidebar-item {
     list-style: none;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 100%;
-    height: 6rem;
+    height: 4rem;
     transition: all 200ms ease;
     cursor: pointer;
 }
@@ -81,22 +74,28 @@ item-usuario .sidebar-item a {
 }
 
 .siderMenu {
-    width: max-content;
+    width: 110px;
     position: absolute;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 0px;
-    align-content: stretch;
+    align-content: space-between;
     justify-content: space-evenly;
     font-family: $tMaquina;
+    background-color: #2e3142;
+    flex-wrap: nowrap;
+    margin-top: -40px;
+    margin-left: 30px;
+    border: 6px solid #282a36;
+    border-radius: 20px;
 }
 
 @media (max-width: 768px) {
     .sidebar.active {
         left: 0;
-        height: 600px;
-        margin: 5px;
+        height: 380px;
+        margin: 10px;
         width: max-content;
         top: 9%;
         z-index: 1;
