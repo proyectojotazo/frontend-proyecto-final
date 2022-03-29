@@ -18,38 +18,38 @@ function Footer() {
                     <div className='equipo'>
                     <Contact
                     imagen="cesar_pinto.jpg"
-                    nombre="Cesar Pinto"
+                    nombre="Cesar"
                     git="csrap"
                     linkedin="cesar-augusto-pinto"
                     mail="caugusto3110@gmail.com"
                     />
                     <Contact
-                        imagen="cesar_pinto.jpg"
-                        nombre="Cesar Pinto"
-                        git="csrap"
-                        linkedin="cesar-augusto-pinto"
-                        mail="caugusto3110@gmail.com"
+                        imagen="miguel.jpg"
+                        nombre="Miguel Ángel"
+                        git="MiwelR"
+                        linkedin="miguelangeldelosrios"
+                        mail="rrriosss@gmail.com"
                     />
                     <Contact
-                        imagen="cesar_pinto.jpg"
-                        nombre="Cesar Pinto"
-                        git="csrap"
-                        linkedin="cesar-augusto-pinto"
-                        mail="caugusto3110@gmail.com"
+                        imagen="josep.jpeg"
+                        nombre="Josep Miquel"
+                        git="tommyshelby1917"
+                        linkedin="josep-miquel-arenas-beltran"
+                        mail="josepmiquel@exilium.cat"
                     />
                     <Contact
-                        imagen="cesar_pinto.jpg"
-                        nombre="Cesar Pinto"
-                        git="csrap"
-                        linkedin="cesar-augusto-pinto"
-                        mail="caugusto3110@gmail.com"
+                        imagen="javier.jpg"
+                        nombre="Javier"
+                        git="Jotazo"
+                        linkedin="javier-guerrero-huete-7032101b9"
+                        mail="javigh87@gmail.com"
                     />
                     <Contact
-                        imagen="cesar_pinto.jpg"
-                        nombre="Cesar Pinto"
-                        git="csrap"
-                        linkedin="cesar-augusto-pinto"
-                        mail="caugusto3110@gmail.com"
+                        imagen="elisabet.jpg"
+                        nombre="Elisabet"
+                        git="Venganzaalchocolate"
+                        linkedin="elisabetdacostaalmiron"
+                        mail="venganzaalchocolate@gmail.com"
                     />
                     </div>
                     
@@ -61,8 +61,8 @@ function Footer() {
                     <hr />
                     <p>
                         {t("footer.copyright")}
-                        <b>El Ultimo & Me Voy</b>
                     </p>
+                    <p>El Ultimo & Me Voy</p>
                 </div>
             </div>
         </footer>
