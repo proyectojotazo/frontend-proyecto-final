@@ -1,6 +1,6 @@
 import { FaTrashAlt } from 'react-icons/fa';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ReactQuill, { Quill } from 'react-quill';
 import ImageCompress from 'quill-image-compress';
@@ -17,13 +17,14 @@ import {
     responderArticulo,
     editArticle,
 } from '../../api/services/articulos';
+import urlConvert from '../../utils/urlConvert';
 
 import 'react-quill/dist/quill.snow.css';
 import './CrearArticulo.scss';
 
 Quill.register('modules/imageCompress', ImageCompress);
 
-const NewArticle = ({ modo }) => {
+function NewArticle({ modo }) {
     const { articleId } = useParams();
     const [postLoaded, setpostLoaded] = useState(null);
 
@@ -39,53 +40,14 @@ const NewArticle = ({ modo }) => {
         fechaPublicacion: '',
     };
 
-    console.log();
-
     const [selectedDestacado, setSelectedDestacado] = useState(null);
     const [userData, setUserData] = useState(initialState);
-    const [sendSucces, setSendSucces] = useState(false);
     const [categoriasFetched, setCategoriasFetched] = useState([]);
     const [categoriasSelected, setCategoriasSelected] = useState([]);
-    const descriptionInput = useRef(null);
     const [programPost, setProgramPost] = useState(false);
     const [previewImage, setPreviewImage] = useState(null);
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getAllCategorias()
-            .then((data) => {
-                setCategoriasFetched(data);
-            })
-            .catch((error) => console.log(error));
-
-        if (articleId) {
-            getArticulosId(articleId).then((data) => {
-                setpostLoaded(data);
-                if (modo === 'editar') {
-                    setToEdit(true);
-                    setUserData({
-                        ...userData,
-                        titulo: data.titulo,
-                        textoIntroductorio: data.textoIntroductorio,
-                        fechaPublicacion: data.fechaPublicacion,
-                    });
-                    setHtmlRendered(data.contenido);
-                    reset({
-                        titulo: data.titulo,
-                        textoIntroductorio: data.textoIntroductorio,
-                    });
-                    setCategoriasSelected(data.categorias);
-                    setPreviewImage(data.archivoDestacado);
-                }
-
-                if (modo === 'responder') {
-                    setToResponse(true);
-                }
-            });
-        }
-    }, []);
-
     const {
         register,
         handleSubmit,
@@ -94,6 +56,46 @@ const NewArticle = ({ modo }) => {
         formState: { errors },
         reset,
     } = useForm();
+
+    useEffect(() => {
+        let isApiSubscribed = true;
+        getAllCategorias()
+            .then((data) => {
+                if (isApiSubscribed) {
+                    setCategoriasFetched(data);
+                }
+            })
+            .catch((error) => console.log(error));
+        if (articleId) {
+            getArticulosId(articleId).then((data) => {
+                if (isApiSubscribed) {
+                    setpostLoaded(data);
+                    if (modo === 'editar') {
+                        setToEdit(true);
+                        setUserData({
+                            ...userData,
+                            titulo: data.titulo,
+                            textoIntroductorio: data.textoIntroductorio,
+                            fechaPublicacion: data.fechaPublicacion,
+                        });
+                        setHtmlRendered(data.contenido);
+                        reset({
+                            titulo: data.titulo,
+                            textoIntroductorio: data.textoIntroductorio,
+                        });
+                        setCategoriasSelected(data.categorias);
+                        setPreviewImage(urlConvert(data.archivoDestacado));
+                    }
+                    if (modo === 'responder') {
+                        setToResponse(true);
+                    }
+                }
+            });
+        }
+        return () => {
+            isApiSubscribed = false;
+        };
+    }, []);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -165,21 +167,15 @@ const NewArticle = ({ modo }) => {
 
             if (toResponse) {
                 responderArticulo(articleId, form).then((response) => {
-                    console.log('Respuesta enviada');
-                    navigate(`../articles/${articleId}`);
-                    setSendSucces(true);
+                    navigate(`../articles/${response.id}`);
                 });
             } else if (toEdit) {
                 editArticle(articleId, form).then((response) => {
-                    console.log('Post editado');
                     navigate(`../articles/${articleId}`);
-                    setSendSucces(true);
                 });
             } else {
-                // TODO: Redirigir a home despues de crear articulo. Como obtener id?
                 crearArticulo(form).then((response) => {
-                    console.log('Post publicado');
-                    setSendSucces(true);
+                    navigate(`../articles/${response.id}`);
                 });
             }
         } catch (error) {
@@ -189,6 +185,17 @@ const NewArticle = ({ modo }) => {
 
     return (
         <div className="create-post-container">
+            {postLoaded && toResponse && (
+                <h1 className="create-title">
+                    &lt;Crear Artículo como Respuesta&gt;
+                </h1>
+            )}
+            {postLoaded && toEdit && (
+                <h1 className="create-title">&lt;Editar Artículo&gt;</h1>
+            )}
+            {!toResponse && !toEdit && (
+                <h1 className="create-title">&lt;Crear Artículo&gt;</h1>
+            )}
             {postLoaded && toResponse && (
                 <div className="to-response-container">
                     <h4 className="custom-title-form">
@@ -234,7 +241,13 @@ const NewArticle = ({ modo }) => {
                                     alt="imagen destacada del post"
                                     width={200}
                                 />
-                                <FaTrashAlt className="icons-wrapper__like" />
+                                <FaTrashAlt
+                                    className="icons-wrapper__like"
+                                    onClick={() => {
+                                        setPreviewImage(null);
+                                        setSelectedDestacado(null);
+                                    }}
+                                />
                             </div>
                         )}
                         <input
@@ -270,8 +283,6 @@ const NewArticle = ({ modo }) => {
                             name="textoIntroductorio"
                             id="textoIntroductorio"
                             placeholder="Texto introductorio"
-                            // TODO: Si le pones ref, no funciona react hook form, porque?
-                            // ref={descriptionInput}
                         />
                         <ErrorMessage
                             errors={errors}
@@ -283,7 +294,7 @@ const NewArticle = ({ modo }) => {
 
                         <p
                             className={
-                                userData.textoIntroductorio.length > 149
+                                userData.textoIntroductorio.length > 150
                                     ? 'lenght-intro-max'
                                     : 'length-intro'
                             }
@@ -393,10 +404,10 @@ const NewArticle = ({ modo }) => {
                         type="submit"
                         value={
                             toEdit
-                                ? 'Editar post'
+                                ? 'Editar Artículo'
                                 : !programPost
-                                ? 'Publicar post'
-                                : 'Programar post'
+                                ? 'Publicar Artículo'
+                                : 'Programar Artículo'
                         }
                         className="publicar-button"
                     />
@@ -404,6 +415,6 @@ const NewArticle = ({ modo }) => {
             </div>
         </div>
     );
-};
+}
 
 export default NewArticle;

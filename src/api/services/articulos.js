@@ -25,14 +25,9 @@ export const crearComentario = async (id, contenido) => {
 };
 
 export const crearArticulo = async (data) => {
-    return client
-        .post('articles', data)
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+    return client.post('articles', data).catch((error) => {
+        return Promise.reject(error);
+    });
 };
 
 export const searchArticle = async (data, categoria, orden, pagina) => {

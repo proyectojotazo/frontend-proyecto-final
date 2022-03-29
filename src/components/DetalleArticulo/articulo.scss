@@ -53,6 +53,7 @@
     font-family: $tSubtitulo;
     font-size: 2rem;
     margin-top: 1rem;
+    word-break: break-all;
 }
 
 .articulo__contenido {
@@ -92,7 +93,7 @@
     .articulo__articleInfo,
     .comentarios__container,
     .articulo__categorias-wrapper,
-    .articulo__titulo{
+    .articulo__titulo {
         width: 80%;
         margin: 0 auto;
     }
@@ -135,11 +136,14 @@
     }
 }
 
-.articulo__info{
+.articulo__info {
     .toolkit {
         font-size: 1rem;
     }
-    .icons-wrapper__send, .icons-wrapper__edit, .icons-wrapper__like, .comments-wrapper {
+    .icons-wrapper__send,
+    .icons-wrapper__edit,
+    .icons-wrapper__like,
+    .comments-wrapper {
         font-size: 2rem;
     }
 }
