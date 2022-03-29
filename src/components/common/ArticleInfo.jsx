@@ -21,23 +21,14 @@ import '../common/tooltip.scss';
 import { useNavigate } from 'react-router-dom';
 import ShareButtons from './ShareButtons';
 import { useState } from 'react';
-
-import SweetAlert2 from 'react-sweetalert2';
+import DeleteConfirm from './DeleteConfirm';
 
 function ArticleInfo({ article, customClass = '' }) {
     const [showShare, setShowShare] = useState(false);
-    const [swalProps, setSwalProps] = useState({});
+    const [showDelete, setShowDelete] = useState(false);
 
-    const handleSwalProps = () => {
-        setSwalProps({
-            show: true,
-            title: '¿Quieres borrar el artículo?',
-            showCancelButton: true,
-            showConfirmButton: true,
-            showCloseButton: true,
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar',
-        });
+    const showConfirm = () => {
+        setShowDelete(!showDelete);
     };
 
     const { isLogged, userLogged, updateUserLogged, t } = useAuth();
@@ -49,7 +40,7 @@ function ArticleInfo({ article, customClass = '' }) {
     );
 
     const navigate = useNavigate();
-    const urlArt = `${process.env.REACT_APP_API_BASE_URL}/articles/`;
+    const urlArt = `${process.env.REACT_APP_BASE_URL}/articles/`;
 
     const anadirArticuloFavourito = async () => {
         await addArticleFavorite(article._id);
@@ -101,7 +92,9 @@ function ArticleInfo({ article, customClass = '' }) {
                 </div>
                 <div className="articleInfo__icons-wrapper">
                     <div className="tooltip">
-                        <span className="tooltiptext">{t('main.articleInfo.tooltipComment')}</span>
+                        <span className="tooltiptext">
+                            {t('main.articleInfo.tooltipComment')}
+                        </span>
                         <div className="comments-wrapper">
                             <FaRegComments className="comments-wrapper__icon" />
                             <p className="comments-wrapper__numComments">
@@ -114,7 +107,9 @@ function ArticleInfo({ article, customClass = '' }) {
                             {isFavourite ? (
                                 <div className="tooltip">
                                     <span className="tooltiptext">
-                                    {t('main.articleInfo.tooltipRemoveFavorite')}
+                                        {t(
+                                            'main.articleInfo.tooltipRemoveFavorite'
+                                        )}
                                     </span>
                                     <FaStar
                                         className="icons-wrapper__like"
@@ -124,7 +119,9 @@ function ArticleInfo({ article, customClass = '' }) {
                             ) : (
                                 <div className="tooltip">
                                     <span className="tooltiptext">
-                                    {t('main.articleInfo.tooltipAddFavorite')}
+                                        {t(
+                                            'main.articleInfo.tooltipAddFavorite'
+                                        )}
                                     </span>
                                     <FaRegStar
                                         className="icons-wrapper__like"
@@ -134,7 +131,7 @@ function ArticleInfo({ article, customClass = '' }) {
                             )}
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                {t('main.articleInfo.tooltipResponse')}
+                                    {t('main.articleInfo.tooltipResponse')}
                                 </span>
                                 <FaRegEdit
                                     onClick={() =>
@@ -150,29 +147,22 @@ function ArticleInfo({ article, customClass = '' }) {
                         <>
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                {t('main.articleInfo.tooltipDelete')}
+                                    {t('main.articleInfo.tooltipDelete')}
                                 </span>
                                 <FaTrashAlt
-                                    onClick={handleSwalProps}
+                                    onClick={showConfirm}
                                     className="icons-wrapper__edit"
                                 />
-                                <SweetAlert2
-                                    {...swalProps}
-                                    onResolve={({ isConfirmed }) => {
-                                        if (isConfirmed) {
-                                            deletePost();
-                                            return;
-                                        }
-                                        setSwalProps({
-                                            ...swalProps,
-                                            show: false,
-                                        });
-                                    }}
+                                <DeleteConfirm
+                                    show={showDelete}
+                                    msg={'¿Quieres borrar el artículo?'}
+                                    confirm={deletePost}
+                                    cancel={showConfirm}
                                 />
                             </div>
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                {t('main.articleInfo.tooltipEdit')}
+                                    {t('main.articleInfo.tooltipEdit')}
                                 </span>
                                 <FaPencilAlt
                                     onClick={() =>
@@ -185,7 +175,9 @@ function ArticleInfo({ article, customClass = '' }) {
                     )}
 
                     <div className="tooltip">
-                        <span className="tooltiptext">{t('main.articleInfo.tooltipShared')}</span>
+                        <span className="tooltiptext">
+                            {t('main.articleInfo.tooltipShared')}
+                        </span>
                         <FaRegPaperPlane
                             onClick={share}
                             className="icons-wrapper__send"

@@ -24,7 +24,16 @@ const useDetailedArticle = (id) => {
         }));
     };
 
-    return { art, loading, error, updateComments };
+    const deleteComments = (idComment) => {
+        setArticulo((prev) => ({
+            ...prev,
+            comentarios: prev.comentarios.filter(
+                (comment) => comment._id !== idComment
+            ),
+        }));
+    };
+
+    return { art, loading, error, updateComments, deleteComments };
 };
 
 export default useDetailedArticle;

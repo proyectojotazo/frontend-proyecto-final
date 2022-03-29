@@ -1,88 +1,65 @@
-@import "../../sass/variablesSass.scss";
+@import '../../sass/variablesSass.scss';
 
-p.cat{
+p.cat {
     font-size: 15pt;
     font-family: $tMaquina;
 }
 
-.divCategorias{
+.divCategorias {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
-.html, .css, .javascript{
+.html,
+.css,
+.javascript {
     color: $cyan;
     &:hover {
-        text-shadow:
-            0 0 7px $cyanBrillo,
-            0 0 10px $cyanBrillo,
-            0 0 21px $cyanBrillo,
-            0 0 42px  $cyan,
-            0 0 82px  $cyan,
-            0 0 92px  $cyan,
-            0 0 102px $cyan,
-            0 0 151px $cyan;
+        text-shadow: 0 0 7px $cyanBrillo, 0 0 10px $cyanBrillo,
+            0 0 21px $cyanBrillo, 0 0 42px $cyan, 0 0 82px $cyan, 0 0 92px $cyan,
+            0 0 102px $cyan, 0 0 151px $cyan;
     }
 }
 
-.angular, .vue, .react {
+.angular,
+.vue,
+.react {
     color: $pink;
-    &:hover{
-        text-shadow:
-        0 0 7px $pinkBrillo,
-        0 0 10px $pinkBrillo,
-        0 0 21px $pinkBrillo,
-        0 0 42px  $pink,
-        0 0 82px  $pink,
-        0 0 92px  $pink,
-        0 0 102px $pink,
-        0 0 151px $pink;
+    &:hover {
+        text-shadow: 0 0 7px $pinkBrillo, 0 0 10px $pinkBrillo,
+            0 0 21px $pinkBrillo, 0 0 42px $pink, 0 0 82px $pink, 0 0 92px $pink,
+            0 0 102px $pink, 0 0 151px $pink;
     }
 }
 
-.php, .python, .java {
+.php,
+.python,
+.java {
     color: $orange;
-    &:hover{
-        text-shadow:
-        0 0 7px $orangeBrillo,
-        0 0 10px $orangeBrillo,
-        0 0 21px $orangeBrillo,
-        0 0 42px  $orange,
-        0 0 82px  $orange,
-        0 0 92px  $orange,
-        0 0 102px $orange,
-        0 0 151px $orange;
+    &:hover {
+        text-shadow: 0 0 7px $orangeBrillo, 0 0 10px $orangeBrillo,
+            0 0 21px $orangeBrillo, 0 0 42px $orange, 0 0 82px $orange,
+            0 0 92px $orange, 0 0 102px $orange, 0 0 151px $orange;
     }
-
 }
 
-.node, .laravel {
+.node,
+.laravel {
     color: $purple;
-    &:hover{
-    text-shadow:
-        0 0 7px $purpleBrillo,
-        0 0 10px $purpleBrillo,
-        0 0 21px $purpleBrillo,
-        0 0 42px  $purple,
-        0 0 82px  $purple,
-        0 0 92px  $purple,
-        0 0 102px $purple,
-        0 0 151px $purple;
+    &:hover {
+        text-shadow: 0 0 7px $purpleBrillo, 0 0 10px $purpleBrillo,
+            0 0 21px $purpleBrillo, 0 0 42px $purple, 0 0 82px $purple,
+            0 0 92px $purple, 0 0 102px $purple, 0 0 151px $purple;
     }
 }
 
-
-.mysql, .mongodb{
+.mysql,
+.mongodb {
     color: $green;
-    &:hover{
-    text-shadow:
-        0 0 7px $greenBrillo,
-        0 0 10px $greenBrillo,
-        0 0 21px $greenBrillo,
-        0 0 42px  $green,
-        0 0 82px  $green,
-        0 0 92px  $green,
-        0 0 102px $green,
-        0 0 151px $green;
+    &:hover {
+        text-shadow: 0 0 7px $greenBrillo, 0 0 10px $greenBrillo,
+            0 0 21px $greenBrillo, 0 0 42px $green, 0 0 82px $green,
+            0 0 92px $green, 0 0 102px $green, 0 0 151px $green;
     }
 }

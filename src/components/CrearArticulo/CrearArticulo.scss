@@ -1,6 +1,14 @@
 @import '../../sass/variablesSass.scss';
 
 .create-post-container {
+    margin-top: 5rem;
+    .create-title {
+        grid-area: title;
+        font-family: $tMaquina;
+        color: $orange;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
     .custom-title-form {
         color: #fff;
         font-family: $tSubtitulo;
@@ -45,12 +53,14 @@
             font-size: 20px;
             margin: 15px 0;
             width: 100%;
+            border-radius: 3px;
         }
 
         textarea {
             margin-bottom: 0 !important;
             padding: 0 !important;
             height: auto;
+            resize: none;
         }
 
         #archivoDestacado {

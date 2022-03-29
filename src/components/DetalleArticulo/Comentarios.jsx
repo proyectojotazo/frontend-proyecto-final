@@ -2,7 +2,7 @@ import Comentario from './Comentario';
 
 import './comentarios.scss';
 
-function Comentarios({ comentarios }) {
+function Comentarios({ ownerArt, comentarios, deleteComments }) {
     return (
         <div className="comentarios__container">
             <h3 className="comentarios__titulo">Comentarios:</h3>
@@ -14,7 +14,9 @@ function Comentarios({ comentarios }) {
                 comentarios.map((comentario) => (
                     <Comentario
                         key={comentario.fechaPublicacion}
+                        ownerArt={ownerArt}
                         comentario={comentario}
+                        deleteComments={deleteComments}
                     />
                 ))
             )}

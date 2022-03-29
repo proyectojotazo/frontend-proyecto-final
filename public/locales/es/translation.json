@@ -1,64 +1,63 @@
 {
-    "common" : {
-    "get":"Entrar",
-    "back": "Volver",
-    "email": "Correo electrónico",
-    "password": "Contraseña",
-    "nickname": "Nickname",
-    "name": "Nombre",
-    "surname": "Apellidos",
-    "delete": "Eliminar",
-    "cancel": "Cancelar",
-    "save": "Guardar",
-    "edit": "Editar", 
-    "followers": "Seguidores",
-    "follow": "Siguiendo",
-    "articles": "Articulos",
+    "common": {
+        "get": "Entrar",
+        "back": "Volver",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "nickname": "Nickname",
+        "name": "Nombre",
+        "surname": "Apellidos",
+        "delete": "Eliminar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "edit": "Editar",
+        "followers": "Seguidores",
+        "follow": "Siguiendo",
+        "articles": "Articulos",
 
-    "required": {
-        "name": "Introduce tu nombre",
-        "nameError":"El nombre tiene carácteres no válidos",
-        "surname": "Introduce tus apellidos",
-        "surnameError":"Los apellidos tiene carácteres no válidos",
-        "email": "Introduce tu correo electrónico",
-        "nickname": "Introduce tu nickname",
-        "nicknameError":"El nickname tiene carácteres no válidos",
-        "password": "Introduce tu contraseña",
-        "passwordError":"Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_"
-    },
+        "required": {
+            "name": "Introduce tu nombre",
+            "nameError": "El nombre tiene carácteres no válidos",
+            "surname": "Introduce tus apellidos",
+            "surnameError": "Los apellidos tiene carácteres no válidos",
+            "email": "Introduce tu correo electrónico",
+            "nickname": "Introduce tu nickname",
+            "nicknameError": "El nickname tiene carácteres no válidos",
+            "password": "Introduce tu contraseña",
+            "passwordError": "Mínimo 8 carácteres con 1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes: @$!%*?&-_"
+        },
 
-    "menuOptions" : {
-        "profile": "Mi Perfil",
-        "articles": "Mis Articulos",
-        "myFavourites": "Mis Articulos favoritos",
-        "favourites": "Favoritos"
-    }
-
+        "menuOptions": {
+            "profile": "Mi Perfil",
+            "articles": "Mis Articulos",
+            "myFavourites": "Mis Articulos favoritos",
+            "favourites": "Favoritos"
+        }
     },
 
     "header": {
         "creates": "Crea",
         "writes": "escribe",
         "share": "comparte",
-        "subtitle" : "El último & me voy.... nace de la necesidad de unos programadores de devolver a internet un poco de lo que han cogido.... crea, escribe y comparte, únete a la comunidad."
+        "subtitle": "El último & me voy.... nace de la necesidad de unos programadores de devolver a internet un poco de lo que han cogido.... crea, escribe y comparte, únete a la comunidad."
     },
 
-    "nav":{
+    "nav": {
         "login": {
             "title": "Accede a tu cuenta",
             "remember": "Recuérdame",
             "emailMessage": "Tienes que introducir un correo electrónico",
-            "popup":{
+            "popup": {
                 "openRecover": "¿Has perdido tu contraseña?",
                 "openRegister": "Regístrate"
             },
-            "recover":{
-                "title":"Recupera tu contraseña",
+            "recover": {
+                "title": "Recupera tu contraseña",
                 "succes-message": "Se han enviado las instrucciones a tu correo",
                 "recover": "Recuperar tu cuenta"
             }
-            },
-        "register":{
+        },
+        "register": {
             "title": "Regístrate",
             "repeatPassword": "Repite tu contraseña",
             "repeatPasswordFail": "Tus contraseñas no coinciden",
@@ -69,14 +68,20 @@
         "profile": "Perfil"
     },
 
+<<<<<<< HEAD
     "footer" : {
         "title": "Full Stak Web de Keepcoding",
         "subtitle": "MIEMBROS DEL PROYECTO",
+=======
+    "footer": {
+        "title": "Full Stack Web de Keepcoding",
+        "subtitle": "PRÁCTICA FINAL DEL BOOTCAMP",
+>>>>>>> 06cd23ca1f965e00e9f7daaa531d2963d6c3e147
         "copyright": "Todos los derechos reservados"
     },
 
-    "main" : {
-        "articleInfo" : {
+    "main": {
+        "articleInfo": {
             "tooltipComment": "Comentarios",
             "tooltipRemoveFavorite": "Quitar de favoritos",
             "tooltipAddFavorite": "Añadir a favoritos",
@@ -86,7 +91,7 @@
             "tooltipShared": "Compartir artículo"
         },
 
-        "articulosFound" : {
+        "articulosFound": {
             "notFound": "No se han encontrado resultado con esa busqueda..."
         },
 
@@ -127,11 +132,10 @@
             "editProfile": "Editar perfil",
             "follow": "Seguir",
             "unFollow": "Dejar de seguir",
-            "notArticle":"aún no ha creado artículos",
+            "notArticle": "aún no ha creado artículos",
             "notFavourites": "aún no ha añadido artículos favoritos",
             "notFollowers": "aún no tiene seguidores",
             "notFollow": "aún no sigue a ningún usuario"
         }
-        
     }
 }

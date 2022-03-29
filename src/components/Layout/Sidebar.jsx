@@ -47,6 +47,9 @@ function Sidebar() {
         setMenuburger(true);
     }, []);
 
+
+
+
     return (
         <>
             <div className={sidebar ? 'sidebar active' : 'sidebar'}>
@@ -54,7 +57,9 @@ function Sidebar() {
                     <li className="sidebar-item">
                         <FaFlag className="icon gr" onClick={() => showLenguageMenu()} />
                         {lenguageMenu && (
-                            <ul className="siderMenu">
+                            <ul
+                                className="siderMenu"
+                            >
                                 <li onClick={() => i18next.changeLanguage('en')}>
                                     <Eng className="icon" />
                                 </li>

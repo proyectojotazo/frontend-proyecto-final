@@ -7,20 +7,25 @@ import Paginacion from '../components/common/Paginacion';
 import { BiSearchAlt } from 'react-icons/bi';
 
 
+
 export default function SearchArticle() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState([]);
   const [send, setSend] = useState(false);
   const [categoria, setCategoria] = useState('');
   const [orden, setOrden] = useState('-fechaPublicacion');
   const [pagina, setPagina] = useState(0);
+
+  const [handleSearch, setHandleSearch] = useState(false);
+
+
 
   const handleChange = (e) => {
     setSearch({
       [e.target.name]: e.target.value,
     });
     setSend(false);
-  };
 
+  };
   const cambiarCategoria = (x) => {
     setCategoria(x);
     setPagina(0);
@@ -44,6 +49,8 @@ export default function SearchArticle() {
     setSend(true);
   };
 
+  const hasSearch = (handleSearch) => setHandleSearch(handleSearch);
+
   return (
     <div>
       <form onSubmit={submitSearch} className="searchBox">
@@ -52,19 +59,28 @@ export default function SearchArticle() {
           name="search"
           placeholder="Busca por Artículo..."
           onChange={handleChange}
+
         />
 
-        <button className="btn-search">
+        <button
+          className="btn-search">
           <BiSearchAlt className="icon-search"></BiSearchAlt>
         </button>
 
       </form>
-      <BarraCategorias cambiarCategoria={cambiarCategoria} />
-      <Paginacion
-        paginaAtras={cambiarPaginaAnt}
-        paginaSig={cambiarPaginaSig}
-        order={cambiarOrden}
-      />
+      {handleSearch && (
+        <>
+          <BarraCategorias cambiarCategoria={cambiarCategoria} />
+          <Paginacion
+            paginaAtras={cambiarPaginaAnt}
+            paginaSig={cambiarPaginaSig}
+            order={cambiarOrden}
+          />
+        </>
+      )}
+
+
+
       {send && (
         <ArticulosFound
           search={search}
@@ -73,6 +89,7 @@ export default function SearchArticle() {
           ultimaPag={cambiarPaginaAnt}
           orden={orden}
           pagina={pagina}
+          hasSearch={hasSearch}
         />
       )}
     </div>

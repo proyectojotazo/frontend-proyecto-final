@@ -19,7 +19,8 @@ function Articulo() {
     const { isLogged } = useAuth();
     const { id } = useParams();
 
-    const { art, loading, error, updateComments } = useDetailedArticle(id);
+    const { art, loading, error, updateComments, deleteComments } =
+        useDetailedArticle(id);
 
     if (loading) return <Spinner />;
 
@@ -62,7 +63,11 @@ function Articulo() {
                 ></div>{' '}
             </section>
 
-            <Comentarios comentarios={art.comentarios} />
+            <Comentarios
+                ownerArt={art.usuario[0]._id}
+                comentarios={art.comentarios}
+                deleteComments={deleteComments}
+            />
             {isLogged && (
                 <FormularioComentario
                     articleId={art._id}
