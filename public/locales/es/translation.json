@@ -86,7 +86,10 @@
         },
 
         "articulosFound": {
-            "notFound": "No se han encontrado resultado con esa busqueda..."
+            "search": "Busca por artículos..",
+            "notFound": "No se han encontrado resultado...",
+            "tryagain": "Intenta nuevamente.",
+            "doSearch": "Realiza tu búsqueda..."
         },
 
         "barraCategorias": {
