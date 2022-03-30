@@ -9,16 +9,13 @@ import Spinner from './components/common/Spinner';
 const accesToken = storage.get('auth') || session.get('auth');
 setAuthorizationHeader(accesToken);
 
-
 ReactDOM.render(
     // esto tengo que verlo con vosotros, el suspense es una nueva función que cargar por ejemplo un spinner hasta que carga el contenido
-    <Suspense fallback={<Spinner/>}>
-        <React.StrictMode>
-            <BrowserRouter>
-                <App isAlreadyLogged={!!accesToken} />
-            </BrowserRouter>
-        </React.StrictMode>
+    <Suspense fallback={<Spinner />}>
+        <BrowserRouter>
+            <App isAlreadyLogged={!!accesToken} />
+        </BrowserRouter>
     </Suspense>,
-    
+
     document.getElementById('root')
 );

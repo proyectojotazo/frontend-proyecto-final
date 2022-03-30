@@ -1,33 +1,18 @@
-import { useEffect, useState } from 'react';
-
-import { getArticulosCategorias } from '../../api/services/articulos';
-
 import Card from './Card';
 import UserInfo from './UserInfo';
 import EmptyArticlesMsg from './EmptyArticlesMsg';
 
 import '../common/articulos.scss';
+import Spinner from './Spinner';
+import useArticlesFetched from './../../hooks/useArticlesFetched';
 
 function Articulos(props) {
-    const [articulos, setArticulos] = useState([]);
-    const {
-        categoria,
-        orden,
-        pagina,
-        cambiarCategoria,
-        ultimaPag,
-        handleArticles,
-    } = props;
+    const { cambiarCategoria, categoria } = props;
+    const { articulos, isLoading, error } = useArticlesFetched(props);
 
-    useEffect(() => {
-        getArticulosCategorias(categoria, orden, pagina).then((articles) => {
-            if (articles.length === 0 && pagina !== 0) {
-                return ultimaPag();
-            }
-            setArticulos(articles);
-            handleArticles(!!articles.length);
-        });
-    }, [categoria, orden, pagina, ultimaPag, handleArticles]);
+    if (isLoading) return <Spinner />;
+
+    if (error.active) return <p className="articulo__error">{error.message}</p>;
 
     return (
         <>
