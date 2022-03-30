@@ -2,38 +2,43 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { searchArticle } from '../../api/services/articulos';
 import Card from './Card';
+import NotFoundList from './NotFoundList';
 
 
 import '../common/articulos.scss';
 import UserInfo from './UserInfo';
-import { useAuth } from '../../contexts/authContext';
+import Spinner from './Spinner';
 
 
 function ArticulosFound(props) {
   const [articulos, setArticulos] = useState([]);
-  const { t } = useAuth();
-  const { search, categoria, orden, pagina, cambiarCategoria, ultimaPag, hasSearch } = props;
+  const [loading, setLoading] = useState(true);
 
-
-  console.log(articulos)
-  const NotFoundList = () => (
-    <div className="not-found">
-      <p className="error-text" > {t("main.articulosFound.notFound")}
-      </p>
-    </div>
-  );
+  const {
+    search,
+    categoria,
+    orden,
+    pagina,
+    cambiarCategoria,
+    ultimaPag,
+    hasSearch,
+  } = props;
 
   useEffect(() => {
-    searchArticle(search, categoria, orden, pagina, ultimaPag).then((x) => {
-      if (x.length === 0 && pagina !== 0)
+    searchArticle(search, categoria, orden, pagina, ultimaPag).then((art) => {
+      if (art.length === 0 && pagina !== 0) {
         return ultimaPag();
-      setArticulos(x);
-      hasSearch(!!x.length);
-    });
+      }
+      setArticulos(art);
+      hasSearch(!!art.length);
+    })
+      .catch((error) => console.log(error))
+      .finally(setLoading(false));
   }, [search, categoria, orden, pagina, ultimaPag, hasSearch]);
 
   return (
     <>
+      {loading && <Spinner />}
       {articulos.length !== 0 ? (
         <section className="seccionArticulos">
           {articulos.map((articulo) => (

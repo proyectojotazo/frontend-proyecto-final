@@ -1,16 +1,5 @@
 @import '../../sass/variablesSass.scss';
 
-.articulo__error {
-    color: $red;
-    font-family: $tSubtitulo;
-    border: 3px solid $redBrillo;
-    border-radius: 1rem;
-    margin: 1rem auto;
-    padding: 0.5rem;
-    text-align: center;
-    max-width: 552px;
-}
-
 .articulo__container {
     display: flex;
     flex-direction: column;
@@ -24,10 +13,17 @@
     width: 100%;
 }
 
+.articulo__titulo,
+.articulo__textoContenido-wrapper{
+    word-break: break-all;
+}
+
+
 .articulo__categorias-wrapper {
     display: flex;
     margin-top: 1.5rem;
     gap: 0.3rem;
+    flex-wrap: wrap;
 }
 
 .categorias__item {
@@ -101,12 +97,6 @@
     .articulo__categorias-wrapper {
         justify-content: flex-start;
         margin-top: 2.5rem;
-    }
-
-    .articulo__articleInfo {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .articulo__shareButtons {

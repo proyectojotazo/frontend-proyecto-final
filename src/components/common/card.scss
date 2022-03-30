@@ -1,25 +1,29 @@
-@import "../../sass/variablesSass.scss";
+@import '../../sass/variablesSass.scss';
 
 .card {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: auto;
-    gap: 0.5rem;
-    margin-bottom: .8rem;
+    gap: .5rem;
+    margin-bottom: 0.8rem;
 
-    .imgportada>img {
+    .imgportada > img {
         display: flex;
         object-fit: cover;
         width: 100%;
         height: 200px;
     }
-    
+
     .textoIntroductorio {
         font-family: $tSubtitulo;
-        line-height : 1.3rem;
+        line-height: 1.3rem;
+    }
+
+    .card__text {
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
         word-break: break-all;
     }
 }
-
-

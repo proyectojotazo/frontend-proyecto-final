@@ -17,6 +17,7 @@
     "react": "^17.0.2",
     "react-components": "^0.5.1",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.27.1",
     "react-i18next": "^11.16.2",
     "react-icons": "^4.3.1",

@@ -15,12 +15,13 @@ import SearchArticle from './pages/SearchArticle';
 import useUserLogged from './hooks/useUserLogged';
 import i18next from './utils/i18n';
 import { useTranslation } from 'react-i18next';
+import NotFound from './components/common/NotFound';
 
 function App({ isAlreadyLogged }) {
     const [isLogged, setIsLogged] = useState(isAlreadyLogged);
     const { userLogged, updateUserLogged } = useUserLogged();
 
-    const {t} = useTranslation() 
+    const { t } = useTranslation();
 
     const accountLogin = () => {
         setIsLogged(true);
@@ -62,7 +63,7 @@ function App({ isAlreadyLogged }) {
                 dataUser,
                 userLogged,
                 updateUserLogged,
-                t
+                t,
             }}
         >
             <Layout>
@@ -108,6 +109,7 @@ function App({ isAlreadyLogged }) {
                         element={<RecoverAccount />}
                     />
                     <Route path="/buscar" element={<SearchArticle />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </Layout>
         </AuthContextProvider>

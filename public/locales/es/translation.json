@@ -70,7 +70,7 @@
 
     "footer": {
         "title": "Full Stack Web de Keepcoding",
-        "subtitle": "PRÁCTICA FINAL DEL BOOTCAMP",
+        "subtitle": "MIEMBROS DEL PROYECTO",
         "copyright": "Todos los derechos reservados"
     },
 
@@ -86,7 +86,10 @@
         },
 
         "articulosFound": {
-            "notFound": "No se han encontrado resultado con esa busqueda..."
+            "search": "Busca por artículos..",
+            "notFound": "No se han encontrado resultado...",
+            "tryagain": "Intenta nuevamente.",
+            "doSearch": "< Realiza tu búsqueda >"
         },
 
         "barraCategorias": {
