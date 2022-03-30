@@ -2,16 +2,18 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { searchArticle } from '../../api/services/articulos';
 import Card from './Card';
+import NotFoundList from './NotFoundList';
 
 
 import '../common/articulos.scss';
 import UserInfo from './UserInfo';
-import { useAuth } from '../../contexts/authContext';
+import Spinner from './Spinner';
 
 
 function ArticulosFound(props) {
   const [articulos, setArticulos] = useState([]);
-  const { t } = useAuth();
+  const [loading, setLoading] = useState(true);
+
   const {
     search,
     categoria,
@@ -22,15 +24,6 @@ function ArticulosFound(props) {
     hasSearch,
   } = props;
 
-
-  console.log(articulos)
-  const NotFoundList = () => (
-    <div className="not-found">
-      <p className="error-text" > {t("main.articulosFound.notFound")}
-      </p>
-    </div>
-  );
-
   useEffect(() => {
     searchArticle(search, categoria, orden, pagina, ultimaPag).then((art) => {
       if (art.length === 0 && pagina !== 0) {
@@ -38,11 +31,14 @@ function ArticulosFound(props) {
       }
       setArticulos(art);
       hasSearch(!!art.length);
-    });
+    })
+      .catch((error) => console.log(error))
+      .finally(setLoading(false));
   }, [search, categoria, orden, pagina, ultimaPag, hasSearch]);
 
   return (
     <>
+      {loading && <Spinner />}
       {articulos.length !== 0 ? (
         <section className="seccionArticulos">
           {articulos.map((articulo) => (
