@@ -9,7 +9,7 @@ import urlConvert from '../../utils/urlConvert';
 
 import '../../pages/MyAccount.scss';
 
-import { Lupa, Inicio, Nuevo, Usuario, Esp, Eng } from '../../assets/icons'
+import { Lupa, Inicio, Nuevo, Usuario, Esp, Eng } from '../../assets/icons';
 import { FaFlag } from 'react-icons/fa';
 import Popup from '../Auth/Popup/PopUp';
 import { FiLogOut } from 'react-icons/fi';
@@ -28,14 +28,11 @@ function Nav() {
     const [datosUsuario, setDatosUsuario] = useState([]);
 
     useEffect(() => {
-        getUser(dataUser())
-            .then((data) => {
-                data.avatar = urlConvert(data.avatar);
-                setDatosUsuario(data);
-            })
+        getUser(dataUser()).then((data) => {
+            data.avatar = urlConvert(data.avatar);
+            setDatosUsuario(data);
+        });
     }, [dataUser]);
-
-
 
     const LoginPopup = () => {
         setShowLogin({
@@ -70,13 +67,20 @@ function Nav() {
 
                 <ul className="nav-list">
                     <li className="navbar-item">
-                        <FaFlag className="icon gr" onClick={() => showLenguageMenu()} />
+                        <FaFlag
+                            className="icon gr"
+                            onClick={() => showLenguageMenu()}
+                        />
                         {lenguageMenu && (
                             <ul className="userMenu">
-                                <li onClick={() => i18next.changeLanguage('en')}>
+                                <li
+                                    onClick={() => i18next.changeLanguage('en')}
+                                >
                                     <Eng className="icon" />
                                 </li>
-                                <li onClick={() => i18next.changeLanguage('es')}>
+                                <li
+                                    onClick={() => i18next.changeLanguage('es')}
+                                >
                                     <Esp className="icon" />
                                 </li>
                             </ul>
@@ -84,21 +88,35 @@ function Nav() {
                     </li>
                     <li className="navbar-item">
                         <div className="tooltip">
-                            <span className="tooltiptext">{t("nav.tooltipSearch")}</span>
+                            <span className="tooltiptext">
+                                {t('nav.tooltipSearch')}
+                            </span>
                             <NavLink to="/buscar" className="nav-link">
                                 <Lupa className="icon icon-lupa" />
                             </NavLink>
                         </div>
                     </li>
                     <li className="navbar-item">
-                        <NavLink to="/crear" className="nav-link">
+                        {!isLogged ? (
                             <div className="tooltip">
                                 <span className="tooltiptext">
-                                    {t("nav.tooltipAddArticle")}
+                                    {t('nav.tooltipAddArticle')}
                                 </span>
-                                <Nuevo className="icon icon-nuevo" />
+                                <Nuevo
+                                    className="icon icon-nuevo"
+                                    onClick={() => LoginPopup()}
+                                />
                             </div>
-                        </NavLink>
+                        ) : (
+                            <NavLink to="/crear" className="nav-link">
+                                <div className="tooltip">
+                                    <span className="tooltiptext">
+                                        {t('nav.tooltipAddArticle')}
+                                    </span>
+                                    <Nuevo className="icon icon-nuevo" />
+                                </div>
+                            </NavLink>
+                        )}
                     </li>
                     <li className="navbar-item">
                         <NavLink className="nav-link" to="/">
@@ -146,7 +164,7 @@ function Nav() {
                                                     className="dropdown-user"
                                                 >
                                                     <p className="text-navbar">
-                                                        {t("nav.profile")}
+                                                        {t('nav.profile')}
                                                     </p>
                                                 </NavLink>
                                             </li>
