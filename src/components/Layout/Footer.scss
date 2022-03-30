@@ -35,7 +35,6 @@ footer {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    // justify-content: center;
 }
 
 .footer__footerTexto {
@@ -56,6 +55,7 @@ footer {
 
 .footer__footerImagen {
     grid-area: footerImagen;
+    margin-top: 1.25rem;
 }
 
 .footer__persona {

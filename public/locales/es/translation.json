@@ -87,7 +87,7 @@
 
         "articulosFound": {
             "search": "Busca por artículos..",
-            "notFound": "No se han encontrado resultado...",
+            "notFound": "No se han encontrado artículos..",
             "tryagain": "Intenta nuevamente.",
             "doSearch": "< Realiza tu búsqueda >"
         },

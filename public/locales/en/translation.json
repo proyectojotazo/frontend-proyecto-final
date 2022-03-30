@@ -68,7 +68,7 @@
     },
 
     "footer": {
-        "title": "Full Stak Web of Keepcoding",
+        "title": "Full Stack Web of Keepcoding",
         "subtitle": "PROJECT MEMBERS",
         "copyright": "All rights reserved"
     },
@@ -86,7 +86,7 @@
 
         "articulosFound": {
             "search": "Search by articles...",
-            "notFound": "No results found...",
+            "notFound": "No articles found...",
             "tryagain": "Try again.",
             "doSearch": "< Do your search >"
         },

@@ -50,9 +50,6 @@ function Sidebar() {
         setLenguageMenu(!lenguageMenu);
     };
 
-    // useEffect(() => {
-    //     setMenuburger(true);
-    // }, []);
 
     useEffect(() => {
         setMenuburger(true);
@@ -62,7 +59,7 @@ function Sidebar() {
                 setDatosUsuario(data);
 
             })
-    }, []);
+    }, [dataUser]);
 
 
     return (

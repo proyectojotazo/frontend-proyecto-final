@@ -33,7 +33,7 @@ function Nav() {
                 data.avatar = urlConvert(data.avatar);
                 setDatosUsuario(data);
             })
-    }, []);
+    }, [dataUser]);
 
 
 
