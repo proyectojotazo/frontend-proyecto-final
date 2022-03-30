@@ -65,6 +65,12 @@ function UserProfile() {
         });
     };
 
+    const closePopup = () => {
+        setShowPopup({
+            show: false,
+        });
+    };
+
     const handleFollow = async () => {
         if (isMe) navigate('../my-account');
 
@@ -169,7 +175,7 @@ function UserProfile() {
                                             });
                                         }}
                                     >
-                                        <Popup />
+                                        <Popup close={closePopup} />
                                     </SweetAlert2>
                                 </div>
                             </div>
