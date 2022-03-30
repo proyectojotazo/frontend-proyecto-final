@@ -1,16 +1,5 @@
 @import '../../sass/variablesSass.scss';
 
-.articulo__error {
-    color: $red;
-    font-family: $tSubtitulo;
-    border: 3px solid $redBrillo;
-    border-radius: 1rem;
-    margin: 1rem auto;
-    padding: 0.5rem;
-    text-align: center;
-    max-width: 552px;
-}
-
 .articulo__container {
     display: flex;
     flex-direction: column;

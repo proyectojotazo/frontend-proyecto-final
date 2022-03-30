@@ -12,6 +12,7 @@ import useDetailedArticle from './../../hooks/useDetailedArticle';
 import urlConvert from '../../utils/urlConvert';
 
 import './articulo.scss';
+import ErrorMsg from './../common/ErrorMsg';
 
 const imgHolder = 'https://via.placeholder.com/350?text=No+Image';
 
@@ -25,7 +26,7 @@ function Articulo() {
     if (loading) return <Spinner />;
 
     if (error.active) {
-        return <p className="articulo__error">{error.message}</p>;
+        return <ErrorMsg msg={error.message} />;
     }
 
     return (

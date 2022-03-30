@@ -5,6 +5,7 @@ import EmptyArticlesMsg from './EmptyArticlesMsg';
 import '../common/articulos.scss';
 import Spinner from './Spinner';
 import useArticlesFetched from './../../hooks/useArticlesFetched';
+import ErrorMsg from './ErrorMsg';
 
 function Articulos(props) {
     const { cambiarCategoria, categoria } = props;
@@ -12,7 +13,7 @@ function Articulos(props) {
 
     if (isLoading) return <Spinner />;
 
-    if (error.active) return <p className="articulo__error">{error.message}</p>;
+    if (error.active) return <ErrorMsg msg={error.message} />;
 
     return (
         <>
