@@ -26,12 +26,11 @@ function Card({ cambiarCategoria, articulo }) {
                 categoria={articulo.categorias}
                 cambiarCategoria={cambiarCategoria}
             />
-            <Link to={`/articles/${_id}`}>
+            <Link className="card__text" to={`/articles/${_id}`}>
                 <h2>{articulo.titulo}</h2>
                 <p className="textoIntroductorio">
                     {articulo.textoIntroductorio}
                 </p>
-                <hr />
             </Link>
             <ArticleInfo article={articulo} />
         </div>
