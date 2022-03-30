@@ -85,10 +85,17 @@ item-usuario .sidebar-item a {
     font-family: $tMaquina;
     background-color: #2e3142;
     flex-wrap: nowrap;
-    margin-top: -40px;
+    margin-top: -45px;
     margin-left: 30px;
     border: 6px solid #282a36;
     border-radius: 20px;
+}
+
+.profile-avatar-sidebar .avatar-sidebar {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 @media (max-width: 768px) {

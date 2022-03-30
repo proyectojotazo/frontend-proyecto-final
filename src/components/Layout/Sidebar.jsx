@@ -10,16 +10,23 @@ import Popup from '../Auth/Popup/PopUp';
 import { useAuth } from '../../contexts/authContext';
 import { FiLogOut } from 'react-icons/fi';
 import { FaTimes, FaBars, FaFlag } from 'react-icons/fa';
+import { getUser } from '../../api/services/auth';
 
+
+import urlConvert from '../../utils/urlConvert';
 import i18next from 'i18next';
+import '../../pages/MyAccount.scss';
+
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
     const [menuburger, setMenuburger] = useState(false);
     const [showLogin, setShowLogin] = useState([]);
     const [userMenu, setUserMenu] = useState(false);
-    const { isLogged, accountLogout } = useAuth();
+    const { isLogged, accountLogout, dataUser } = useAuth();
     const [lenguageMenu, setLenguageMenu] = useState(false);
+    const [datosUsuario, setDatosUsuario] = useState([]);
+
 
     const LoginPopup = () => {
         setShowLogin({
@@ -43,11 +50,19 @@ function Sidebar() {
         setLenguageMenu(!lenguageMenu);
     };
 
+    // useEffect(() => {
+    //     setMenuburger(true);
+    // }, []);
+
     useEffect(() => {
         setMenuburger(true);
+        getUser(dataUser())
+            .then((data) => {
+                data.avatar = urlConvert(data.avatar);
+                setDatosUsuario(data);
+
+            })
     }, []);
-
-
 
 
     return (
@@ -105,7 +120,15 @@ function Sidebar() {
                                 </>
                             ) : (
                                 <>
-                                    <Usuario onClick={() => showUserMenu()} />
+                                    <div className="profile-avatar-sidebar">
+                                        <img
+                                            src={datosUsuario.avatar}
+                                            className="avatar-sidebar"
+                                            alt="avatar"
+                                            onClick={() => showUserMenu()}
+                                        />
+                                    </div>
+                                    {/* <Usuario onClick={() => showUserMenu()} /> */}
                                     {userMenu && (
                                         <ul className="siderMenu">
                                             <li>
