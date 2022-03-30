@@ -94,7 +94,7 @@ function SearchArticle() {
           />
         ) : (
           <div className="not-found">
-            <p className="error-text">{t("main.articulosFound.doSearch")}</p>
+            <p className="search-text">{t("main.articulosFound.doSearch")}</p>
           </div>
         )}
 
