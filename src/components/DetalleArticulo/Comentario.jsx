@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 import { useAuth } from '../../contexts/authContext';
-import { getUserById } from '../../api/services/usuarios';
 import { deleteComment } from '../../api/services/articulos';
 import getMoment from '../../utils/getMoment';
 import DeleteConfirm from '../common/DeleteConfirm';
@@ -9,6 +8,7 @@ import DeleteConfirm from '../common/DeleteConfirm';
 import { FaTrashAlt } from 'react-icons/fa';
 
 import './comentario.scss';
+import { getUser } from './../../api/services/auth';
 
 function Comentario({ ownerArt, comentario, deleteComments }) {
     const userId = comentario.usuario[0];
@@ -26,7 +26,7 @@ function Comentario({ ownerArt, comentario, deleteComments }) {
         (userLogged._id === userId || userLogged._id === ownerArt) && isLogged;
 
     useEffect(() => {
-        getUserById(userId)
+        getUser(userId)
             .then(setUsuario)
             .catch((err) => setError({ message: err.message, active: true }));
     }, [userId]);

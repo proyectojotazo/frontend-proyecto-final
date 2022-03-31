@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getUserById } from './../api/services/usuarios';
+import { getUser } from './../api/services/auth';
 
 const getUserId = () => {
     const token =
@@ -35,9 +35,11 @@ const useUserLogged = () => {
     };
     useEffect(() => {
         if (userId) {
-            getUserById(userId).then(setUserLogged);
+            getUser(userId).then(setUserLogged);
         }
     }, [userId]);
+
+    // console.log(userLogged)
 
     return { userLogged, updateUserLogged };
 };

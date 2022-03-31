@@ -13,7 +13,7 @@ import DeleteConfirm from '../components/common/DeleteConfirm';
 import './MyAccount.scss';
 
 function MyAccount() {
-    const { dataUser, t } = useAuth();
+    const { dataUser, t, userLogged } = useAuth();
     const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosNuevos, setDatosNuevos] = useState({});
     const [modificar, setModificar] = useState(false);
@@ -331,8 +331,8 @@ function MyAccount() {
                 {election === t('common.follow') && (
                     <>
                         <div className="my-followings">
-                            {datosUsuario.usuarios.seguidos.length > 0 ? (
-                                datosUsuario.usuarios.seguidos.map((user) => (
+                            {userLogged.usuarios.seguidos.length > 0 ? (
+                                userLogged.usuarios.seguidos.map((user) => (
                                     <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (

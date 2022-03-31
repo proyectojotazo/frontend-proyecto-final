@@ -8,11 +8,7 @@ import storage, { session } from '../../utils/storage';
 // GET
 export const getUser = async (nickname) => {
     const url = `${process.env.REACT_APP_API_BASE_URL}/users/${nickname}`;
-    try {
-        return await client.get(url);
-    } catch (error) {
-        console.log(error);
-    }
+    return await client.get(url);
 };
 
 export const register = (data) => {
