@@ -323,7 +323,7 @@ function MyAccount() {
                                     <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (
-                                <h4>Aún no te sigue ningún usuario</h4>
+                                <h4>{t('main.myAccount.notFollowers')}</h4>
                             )}
                         </div>
                     </>
@@ -336,7 +336,7 @@ function MyAccount() {
                                     <UserInfo key={user._id} user={user} />
                                 ))
                             ) : (
-                                <h4>{t('main.myAccount.notFollowers')}</h4>
+                                <h4>Aún no sigues a ningún usuario</h4>
                             )}
                         </div>
                     </>
