@@ -74,7 +74,9 @@ const Register = () => {
                     {' '}
                     <div className="header-login-container">
                         <Usuario className="icon icon-usuario" />
-                        <h3 className="header-login-title">{t('nav.register.title')}</h3>
+                        <h3 className="header-login-title">
+                            {t('nav.register.title')}
+                        </h3>
                     </div>
                     <div className="login-form-container">
                         <form
@@ -84,17 +86,18 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('name', {
-                                        required: t("common.required.name"),
+                                        required: t('common.required.name'),
                                         pattern: {
                                             value: /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
-                                            message:
-                                            t("common.required.nameError"),
+                                            message: t(
+                                                'common.required.nameError'
+                                            ),
                                         },
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="text"
                                     name="name"
                                     id="name"
-                                    onChange={handleInputChange}
                                     placeholder={t('common.name')}
                                 />
                                 <ErrorMessage
@@ -110,12 +113,14 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('apellidos', {
-                                        required: t("common.required.surname"),
+                                        required: t('common.required.surname'),
                                         pattern: {
                                             value: /^([a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)(([\s-]){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,}(([']){1}[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,})?)?$/i,
-                                            message:
-                                            t("common.required.surnameError"),
+                                            message: t(
+                                                'common.required.surnameError'
+                                            ),
                                         },
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="text"
                                     name="apellidos"
@@ -136,18 +141,18 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('email', {
-                                        required:
-                                            t('nav.login.emailMessage'),
+                                        required: t('nav.login.emailMessage'),
                                         pattern: {
                                             value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
-                                            message:
-                                            t('nav.login.emailMessage'),
+                                            message: t(
+                                                'nav.login.emailMessage'
+                                            ),
                                         },
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="email"
                                     name="email"
                                     id="email"
-                                    onChange={handleInputChange}
                                     placeholder={t('common.email')}
                                 />
                                 <ErrorMessage
@@ -163,12 +168,12 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('nickname', {
-                                        required: t("common.required.nickname"),
+                                        required: t('common.required.nickname'),
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="text"
                                     name="nickname"
                                     id="nickname"
-                                    onChange={handleInputChange}
                                     placeholder={t('common.nickname')}
                                 />
                                 <ErrorMessage
@@ -187,14 +192,15 @@ const Register = () => {
                                         required: t('common.required.password'),
                                         pattern: {
                                             value: /^(?=.*[a-zÀ-ÿ\u00f1\u00d1])(?=.*[A-ZÀ-ÿ\u00f1\u00d1])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-zÀ-ÿ\u00f1\u00d1\d@$!%*?&\-_]{8,}$/,
-                                            message:
-                                            t('common.required.passwordError'),
+                                            message: t(
+                                                'common.required.passwordError'
+                                            ),
                                         },
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="password"
                                     name="password"
                                     id="password"
-                                    onChange={handleInputChange}
                                     placeholder={t('common.password')}
                                 />
                                 <ErrorMessage
@@ -210,23 +216,27 @@ const Register = () => {
                             <div className="input-container">
                                 <input
                                     {...register('repeatPassword', {
-                                        required: t("common.required.password"),
+                                        required: t('common.required.password'),
                                         validate: {
                                             repeatPwd: (value) =>
                                                 value === userData.password,
                                         },
+                                        onChange: (e) => handleInputChange(e),
                                     })}
                                     type="password"
                                     name="repeatPassword"
                                     id="repeatPassword"
-                                    onChange={handleInputChange}
-                                    placeholder={t('nav.register.repeatPassword')}
+                                    placeholder={t(
+                                        'nav.register.repeatPassword'
+                                    )}
                                 />
                                 {errors.repeatPassword &&
                                     errors.repeatPassword.type ===
-                                    'repeatPwd' && (
+                                        'repeatPwd' && (
                                         <p className="form-custom-error">
-                                            {t('nav.register.repeatPasswordFail')}
+                                            {t(
+                                                'nav.register.repeatPasswordFail'
+                                            )}
                                         </p>
                                     )}
                             </div>

@@ -57,7 +57,9 @@ const RecoverPassword = () => {
         <div>
             <div className="header-login-container">
                 <Usuario className="icon icon-usuario" />
-                <h3 className="header-login-title">{t('nav.login.recover.title')}</h3>
+                <h3 className="header-login-title">
+                    {t('nav.login.recover.title')}
+                </h3>
             </div>
             <div className="login-form-container">
                 <form noValidate onSubmit={handleSubmit(handleRecover)}>
@@ -67,14 +69,13 @@ const RecoverPassword = () => {
                                 required: t('common.email'),
                                 pattern: {
                                     value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
-                                    message:
-                                    t('nav.login.emailMessage'),
+                                    message: t('nav.login.emailMessage'),
                                 },
+                                onChange: (e) => handleInputChange(e),
                             })}
                             type="email"
                             name="email"
                             id="email"
-                            onChange={handleInputChange}
                             placeholder={t('common.email')}
                         />
                         <ErrorMessage
@@ -87,9 +88,7 @@ const RecoverPassword = () => {
                     </div>
                     {isSubmitted && (
                         <div className="succes-message">
-                            <h2>
-                                {t('nav.login.recover.succes-message')}
-                            </h2>
+                            <h2>{t('nav.login.recover.succes-message')}</h2>
                         </div>
                     )}
                     <input
