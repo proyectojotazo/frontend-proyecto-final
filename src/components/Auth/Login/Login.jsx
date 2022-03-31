@@ -10,14 +10,6 @@ import { Usuario } from '../../../assets/icons';
 import './login.scss';
 
 function Login({ close }) {
-    const initialState = {
-        email: '',
-        password: '',
-        remember: false,
-    };
-
-    const [credentials, setCredentials] = useState(initialState);
-
     const {
         register,
         handleSubmit,
@@ -26,6 +18,13 @@ function Login({ close }) {
         formState: { errors },
     } = useForm();
 
+    const initialState = {
+        email: '',
+        password: '',
+        remember: false,
+    };
+
+    const [credentials, setCredentials] = useState(initialState);
     const { accountLogin, t } = useAuth();
 
     const handleInputChange = (event) => {
@@ -34,8 +33,8 @@ function Login({ close }) {
             ...credentials,
             [name]: name === 'remember' ? event.target.checked : value,
         });
-        clearErrors(name);
-        clearErrors('custom');
+        // clearErrors(name);
+        // clearErrors('custom');
     };
 
     const handleLogin = () => {
@@ -66,14 +65,13 @@ function Login({ close }) {
                                 required: t('common.required.email'),
                                 pattern: {
                                     value: /^([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/,
-                                    message:
-                                    t('nav.login.emailMessage'),
+                                    message: t('nav.login.emailMessage'),
                                 },
+                                onChange: (e) => handleInputChange(e),
                             })}
                             type="email"
                             name="email"
                             id="email"
-                            onChange={handleInputChange}
                             placeholder={t('common.email')}
                         />
                         <ErrorMessage
@@ -87,12 +85,12 @@ function Login({ close }) {
                     <div className="input-container">
                         <input
                             {...register('password', {
-                                required: t("common.required.password"),
+                                required: t('common.required.password'),
+                                onChange: (e) => handleInputChange(e),
                             })}
                             type="password"
                             name="password"
                             id="password"
-                            onChange={handleInputChange}
                             placeholder={t('common.password')}
                         />
                         <ErrorMessage
@@ -110,7 +108,9 @@ function Login({ close }) {
                             id="remember"
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="remember">{t('nav.login.remember')}</label>
+                        <label htmlFor="remember">
+                            {t('nav.login.remember')}
+                        </label>
                     </div>
                     <ErrorMessage
                         errors={errors}
