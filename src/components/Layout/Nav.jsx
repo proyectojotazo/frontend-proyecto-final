@@ -74,11 +74,13 @@ function Nav() {
                         {lenguageMenu && (
                             <ul className="userMenu">
                                 <li
+                                    className="userMenu-flag"
                                     onClick={() => i18next.changeLanguage('en')}
                                 >
                                     <Eng className="icon" />
                                 </li>
                                 <li
+                                    className="userMenu-flag"
                                     onClick={() => i18next.changeLanguage('es')}
                                 >
                                     <Esp className="icon" />

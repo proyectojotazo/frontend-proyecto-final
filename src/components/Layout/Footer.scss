@@ -119,6 +119,8 @@ footer {
     justify-content: center;
     align-content: space-around;
     flex-wrap: nowrap;
+    margin-bottom: 10px;
+    margin-top: -10px;
     p {
         color: $green;
         font-family: $tMaquina;
