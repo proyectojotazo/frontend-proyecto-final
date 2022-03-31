@@ -18,12 +18,13 @@ import './UserProfile.scss';
 
 function UserProfile() {
     const { nick } = useParams();
-    const navigate = useNavigate();
     const { isLogged, userLogged, updateUserLogged, t } = useAuth();
     const [datosPerfil, setDatosPerfil] = useState(null);
     const [election, setElection] = useState(t('common.articles'));
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(true);
+    
+    const navigate = useNavigate();
 
     const menuOptions = [
         t('common.articles'),

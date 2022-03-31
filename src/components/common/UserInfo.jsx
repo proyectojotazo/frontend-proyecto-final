@@ -12,8 +12,8 @@ import './userInfo.scss';
 
 function UserInfo({ user }) {
     const { isLogged, userLogged, updateUserLogged } = useAuth();
-    
-    const isFollowing = userLogged.usuarios?.seguidos.find(
+
+    const isFollowing = !!userLogged.usuarios?.seguidos.find(
         (userFollowed) => userFollowed._id === user._id
     );
 
@@ -24,20 +24,24 @@ function UserInfo({ user }) {
         // Si no se está logeado que muestre un pop-up para loguearse?
 
         // Si está logueado que lo agregue a seguidos
-        await followUser(user._id);
+        try {
+            await followUser(user._id);
+            const following = {
+                usuarios: {
+                    ...userLogged.usuarios,
+                    seguidos: isFollowing
+                        ? userLogged.usuarios.seguidos.filter(
+                              (userFollowed) => userFollowed._id !== user._id
+                          )
+                        : [...userLogged.usuarios.seguidos, user],
+                },
+            };
 
-        const following = {
-            usuarios: {
-                seguidores: [...userLogged.usuarios.seguidores],
-                seguidos: isFollowing
-                    ? userLogged.usuarios.seguidos.filter(
-                          (userFollowed) => userFollowed._id !== user._id
-                      )
-                    : [...userLogged.usuarios.seguidos, user],
-            },
-        };
-
-        updateUserLogged(following);
+            updateUserLogged(following);
+            
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     const goToUserProfile = () => {
