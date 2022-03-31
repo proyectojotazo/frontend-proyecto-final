@@ -12,11 +12,9 @@ import { FiLogOut } from 'react-icons/fi';
 import { FaTimes, FaBars, FaFlag } from 'react-icons/fa';
 import { getUser } from '../../api/services/auth';
 
-
 import urlConvert from '../../utils/urlConvert';
 import i18next from 'i18next';
 import '../../pages/MyAccount.scss';
-
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -26,7 +24,6 @@ function Sidebar() {
     const { isLogged, accountLogout, dataUser } = useAuth();
     const [lenguageMenu, setLenguageMenu] = useState(false);
     const [datosUsuario, setDatosUsuario] = useState([]);
-
 
     const LoginPopup = () => {
         setShowLogin({
@@ -50,32 +47,35 @@ function Sidebar() {
         setLenguageMenu(!lenguageMenu);
     };
 
-
     useEffect(() => {
         setMenuburger(true);
-        getUser(dataUser())
-            .then((data) => {
+        if (isLogged) {
+            getUser(dataUser()).then((data) => {
                 data.avatar = urlConvert(data.avatar);
                 setDatosUsuario(data);
-
-            })
+            });
+        }
     }, [dataUser]);
-
 
     return (
         <>
             <div className={sidebar ? 'sidebar active' : 'sidebar'}>
                 <ul className="sidebar-items">
                     <li className="sidebar-item">
-                        <FaFlag className="icon gr" onClick={() => showLenguageMenu()} />
+                        <FaFlag
+                            className="icon gr"
+                            onClick={() => showLenguageMenu()}
+                        />
                         {lenguageMenu && (
-                            <ul
-                                className="siderMenu"
-                            >
-                                <li onClick={() => i18next.changeLanguage('en')}>
+                            <ul className="siderMenu">
+                                <li
+                                    onClick={() => i18next.changeLanguage('en')}
+                                >
                                     <Eng className="icon" />
                                 </li>
-                                <li onClick={() => i18next.changeLanguage('es')}>
+                                <li
+                                    onClick={() => i18next.changeLanguage('es')}
+                                >
                                     <Esp className="icon" />
                                 </li>
                             </ul>
@@ -135,7 +135,7 @@ function Sidebar() {
                                                 >
                                                     <span className="text-sidebar">
                                                         Perfil
-                                                </span>
+                                                    </span>
                                                 </NavLink>
                                             </li>
                                             <li
@@ -150,7 +150,6 @@ function Sidebar() {
                             )}
                         </div>
                     </li>
-
                 </ul>
             </div>
 

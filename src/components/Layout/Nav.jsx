@@ -28,10 +28,12 @@ function Nav() {
     const [datosUsuario, setDatosUsuario] = useState([]);
 
     useEffect(() => {
-        getUser(dataUser()).then((data) => {
-            data.avatar = urlConvert(data.avatar);
-            setDatosUsuario(data);
-        });
+        if (isLogged) {
+            getUser(dataUser()).then((data) => {
+                data.avatar = urlConvert(data.avatar);
+                setDatosUsuario(data);
+            });
+        }
     }, [dataUser]);
 
     const LoginPopup = () => {
